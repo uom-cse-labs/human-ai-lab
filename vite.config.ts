@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 
 export default defineConfig({
+  base: process.env.BASE_URL || '/',
   resolve: { tsconfigPaths: true },
   plugins: [devtools(), tailwindcss(), TanStackRouterVite(), viteReact()],
 })

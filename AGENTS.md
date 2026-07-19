@@ -1,3 +1,5 @@
+> **Design reference:** Read `DESIGN.md` before generating any UI — it is the single source of truth for all visual and interaction decisions.
+
 <!-- intent-skills:start -->
 ## Skill Loading
 

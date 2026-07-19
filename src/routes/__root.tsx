@@ -22,6 +22,12 @@ function RootLayout() {
   return (
     <>
       <HeadContent />
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-neutral-900 focus:shadow-sm focus:outline-2 focus:outline-offset-2 focus:outline-brand"
+      >
+        Skip to main content
+      </a>
       <Header />
       <Outlet />
       <Footer />

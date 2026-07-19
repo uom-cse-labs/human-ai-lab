@@ -1,201 +1,209 @@
-# Editorial Academic UI Context
+# Editorial Academic Design System (DESIGN.md)
 
-Strict **Editorial Academic** design language — Stanford HAI, Apple Newsroom, MIT News, Swiss editorial design. Single source of truth for all UI.
+Single source of truth for all UI decisions. Blends an institutional, research-driven aesthetic with a modern, high-contrast editorial layout system.
 
-## Philosophy
+---
 
-Interface presents information, not effects. Communicate: credibility, intelligence, professionalism, calmness, clarity, trust. Feel like a premium research publication, not a SaaS dashboard. Content is hero. Never design around visual effects.
+## 1. Visual Hierarchy & Layout
 
-## Core Principles
+### Grid System
 
-**Content First:** Typography carries design. Whitespace creates hierarchy. Photography creates emotion. Layout guides attention. UI chrome disappears.
+Responsive 12-column structure with a preference for asymmetrical splits. Content is frequently divided into **1/3 and 2/3 ratios** (e.g., a large featured card on the left, paired with a stacked vertical list on the right).
 
-**Calm Interfaces:** Quiet pages. No visual noise. One focal point per screen.
+### Container Width & Margins
 
-**Institutional Quality:** Design like Stanford, MIT, Harvard, Apple Newsroom, Nature, Financial Times, Stripe Docs. Never like crypto pages, startup templates, gaming, AI hype, dashboard SaaS.
+Max-width container (between 1200px and 1440px) centers content on large screens. Generous macro-whitespace (outer margins) frames the interface.
 
-**Keywords:** Editorial, Academic, Minimal, Research, Swiss, Human-centered, Modern, Institutional, Professional, Timeless.
+### Wayfinding Anchors
 
-## Layout
+High-level structural sections are heavily prioritized using **oversized, numbered indices** (e.g., "01", "02") combined with massive section headers. This acts as a distinct "chapter" marker to guide the user down the page.
 
-- Container: 1280px / Content: 1160px / Reading: 680–720px
-- Never stretch article text full-width
-- Section spacing: 96–160px
-- Grid: 12 cols / 32px gutter (desktop), 8 cols / 24px (tablet), 4 cols / 16px (mobile)
+---
 
-## Typography
+## 2. Typography Rules
 
-Primary: **DM Sans**. Editorial: **Source Serif 4** (article titles, long-form, research only).
+### Font Family
 
-| Token | Size |
-|-------|------|
-| Display XL | 72px |
-| Display | 64px |
-| Hero | 56px |
-| H1 | 48px |
-| H2 | 40px |
-| H3 | 32px |
-| H4 | 28px |
-| H5 | 24px |
-| H6 | 20px |
-| Lead | 22px |
-| Body Large | 18px |
-| Body | 16px |
-| Small | 14px |
-| Caption | 13px |
-| Label | 12px |
+A modern, highly legible neo-grotesque or geometric sans-serif typeface used universally.
 
-Body leading: 1.7. Headings: 1.1–1.3. Max paragraph width: 75ch.
+### Typographic Scale
 
-## Color
+Very high-contrast scale. Display headings for hero sections and section titles are massive, stepping down drastically to standard, highly readable body copy. This extreme variance creates immediate visual interest.
 
-| Token | Hex |
-|-------|-----|
-| Primary BG | #FFFFFF |
-| Secondary BG | #FAFAFA |
-| Muted BG | #F5F5F5 |
-| Primary Text | #111827 |
-| Secondary Text | #374151 |
-| Muted Text | #6B7280 |
-| Border | #E5E7EB |
-| Divider | #D1D5DB |
-| Brand | #8C1515 |
-| Brand Hover | #7A1212 |
-| Brand Pressed | #651010 |
+### Case & Tracking
 
-Mostly grayscale. Brand used sparingly. Color directs attention, not decoration.
+- **Headings / Body:** Standard Sentence case or Title Case.
+- **Metadata / Eyebrows:** Dates, small badges, and tags use **UPPERCASE** with increased letter-spacing (tracking) to remain legible at micro-sizes.
 
-## Whitespace
+### Line Height
 
-Feature, not something to fill. Scale: 4, 8, 12, 16, 24, 32, 48, 64, 80, 96, 128, 160. Major sections ≥96px.
+Body copy uses a relaxed line height (150-160%) to ensure readability for dense, academic, or research-heavy paragraphs.
 
-## Components
+---
 
-**Buttons:** Primary = solid brand, white text, 48px h, 6px radius, medium weight. Secondary = white, gray border, dark text. Text = transparent, brand, underline on hover. No glow, no gradients.
+## 3. Spacing & Atoms (Design Tokens)
 
-**Cards:** White bg, subtle border, almost no shadow, 8px radius, 32px padding, subtle hover. No color/glass cards.
+### Border Radii (The "Squircle" & Pill)
 
-**Navigation:** Logo, nav, search, CTA. Max 80px. No oversized sticky headers. Lightweight dropdowns.
+This is a defining atomic rule of the system:
 
-**Hero:** Large statement + copy + CTA + image/video. No overlapping floats, no decorative graphics.
+- **Maximum Radius (Pills):** All buttons, structural tags, and small badges are fully rounded pills.
+- **Large Radius (Cards / Images):** Content cards, imagery, and accordions feature pronounced, soft corner radii (approximately 16px to 24px), avoiding harsh right angles entirely.
 
-**Images:** Authentic photography — research, people, labs, universities, architecture, books, conferences. Natural light, minimal filters, no excessive overlays.
+### Spatial Rhythm
 
-**Forms:** 48px height, 6px radius, visible labels (never floating), clear validation, simple spacing.
+Deep vertical padding between distinct sections (macro-whitespace). Within components (micro-whitespace), elements are given ample room to breathe, preventing clutter even in text-heavy lists.
 
-**Icons:** Outline only (Lucide, Heroicons, Phosphor). 24px default. Never mix styles.
+### Separators & Depth
 
-**Shadows:** Default none. Hover very subtle. Large shadows prohibited. Use borders instead.
+Strong preference for flat design with subtle background contrast over heavy drop shadows. Thin, low-opacity strokes (1px) are used selectively to delineate list items or bound accordion rows.
 
-**Borders:** 1px solid #E5E7EB. Focus: 2px brand.
+---
 
-## Motion
+## 4. Component Logic
 
-Only to improve comprehension. Allowed: fade, opacity, small translateY, small scale. Duration: 150–250ms, max 300ms. Never: bounce, elastic, long parallax, particle effects, background animations, spinning, large page transitions.
+### Buttons (CTAs)
 
-## Accessibility
+Exclusively pill-shaped. Almost always paired with a trailing icon (right-pointing arrow or play icon) to imply forward momentum. The system also supports complex nested buttons (e.g., housing an avatar/profile image alongside the text label inside the pill).
 
-Contrast ≥4.5:1. Touch targets ≥44px. Keyboard nav, visible focus, semantic HTML, reduced motion — all required.
+### Cards
 
-## Component Rule
+Highly structural:
 
-For every component ask: What info is most important? Can whitespace solve this instead of another component? Can typography solve this instead of color? Would removing decoration improve clarity? If yes, remove it.
+- **Feature Cards:** Image-dominant with text placed below or overlaid.
+- **List Cards:** Compact, horizontal layouts with small thumbnail images floating to the right.
 
-## Page Structure
+### Badges
 
-Hero → Introduction → Featured Content → Supporting Sections → Related Articles → CTA → Footer. Maintain rhythm. Never skip hierarchy.
+Floating pill badges consistently anchored to the top-right corner of card imagery to denote categorization.
 
-**Card pattern:** Image → Category → Headline → Summary → Metadata → Read More.
-**Section pattern:** Title → Description → Grid/Content → CTA.
+### Accordions
 
-## Responsive
+Enclosed in full-width, rounded bounding boxes. Rely on a trailing "+" icon aligned to the far right to indicate expandability.
 
-Recompose, don't just shrink. Preserve whitespace, reading width, typography hierarchy.
+---
 
-## Design Language
+## 5. Iconography & Imagery Guidelines
 
-Quiet, Calm, Confident, Professional, Measured, Readable, Human, Intentional. Never flashy, trendy, or over-designed.
+### Iconography
 
-## Never Use
+Icons use clean, monolinear strokes. Social links and navigational controls (like carousel arrows) are enclosed in perfect circles. Dropdowns utilize simple chevrons.
 
-Glassmorphism, neumorphism, animated gradients, glow effects, floating blobs, particle systems, heavy shadows, rainbow/neon colors, over-rounded UI, oversized pills, excessive badges, busy dashboards, frosted panels, huge icons, multiple accent colors, decorative separators, complex backgrounds.
+### Imagery
 
-## Always Prefer
+- **Masking:** All standalone photography and illustrations are strictly masked with the system's standard large border radius.
+- **Style:** Blends high-quality human-centric photography, abstract 3D tech visualizations, and monochromatic overlays (specifically for background hero videos/images) to balance humanity with advanced technology.
 
-Large whitespace, large typography, readable paragraphs, minimal nav, simple cards, subtle borders, editorial rhythm, professional photography, consistent spacing, clear hierarchy, accessible interfaces, institutional credibility.
+---
 
-## Inspiration
+## 6. Motion & Interaction
 
-Stanford HAI, Apple Newsroom, MIT News, Harvard Research, Nature, Stripe Docs, Linear, Financial Times Digital, Swiss Editorial Design, modern university websites.
+### Hover States
 
-## Tailwind Design System (Strict)
+Given the flat nature of the UI, interactive states rely on smooth opacity fades, subtle background shifts (lightening or darkening), and icon translations (e.g., arrows moving a few pixels to the right on hover).
 
-**Never use arbitrary values** (`[48px]`, `[#8C1515]`, `[1.375rem]`) in JSX or templates. Every value must be a theme token.
+### Expansion
 
-If the same value appears in 2+ places, add it to `@theme` in `styles.css` first, then use the token.
+Accordions use a smooth vertical ease-in-out expansion, with the trailing "+" rotating 45 degrees into an "x".
 
-### Custom tokens available in `@theme`
+### Carousels
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| `brand` / `brand-hover` / `brand-pressed` | #8C1515 / #7A1212 / #651010 | `bg-brand`, `text-brand`, `border-brand` |
-| `bg-secondary` | #FAFAFA | `bg-bg-secondary` |
-| `bg-muted` | #F5F5F5 | `bg-bg-muted` |
-| `text-secondary` | #374151 | `text-text-secondary` |
-| `text-muted` | #6B7280 | `text-text-muted` |
-| `border` | #E5E7EB | `border-border` |
-| `divider` | #D1D5DB | `border-divider` |
-| `text-hero` | 3.5rem | `text-hero` |
-| `text-lead` | 1.375rem | `text-lead` |
-| `text-caption` | 0.8125rem | `text-caption` |
-| `spacing-128` | 32rem | `p-128`, `mt-128` |
-| `spacing-160` | 40rem | `p-160`, `gap-160` |
-| `container-content` | 72.5rem | `max-w-content` |
+Horizontal overflow managed via scrolling carousels, telegraphed to the user via floating circular arrow buttons intersecting the edge of the cards.
 
-### Preferred default tokens (no config needed)
+---
 
-| Need | Token |
-|------|-------|
-| Primary bg (white) | `bg-white` |
-| Primary text (#111827) | `text-neutral-900` |
-| Container (1280px) | `max-w-7xl` |
-| Reading width | `max-w-3xl` |
-| Section spacing | `py-24` or `py-32` |
-| Button radius (6px) | `rounded-md` |
-| Card radius (8px) | `rounded-lg` |
-| Body text (16px) | `text-base` |
-| H1 (48px) | `text-5xl` |
-| H2 (40px) | `text-4xl` |
-| H3 (32px) | `text-3xl` |
-| H4 (28px) | `text-2xl` |
-| H5 (24px) | `text-2xl` |
-| H6 (20px) | `text-xl` |
-| Body large (18px) | `text-lg` |
-| Small (14px) | `text-sm` |
-| Label (12px) | `text-xs` |
-| Button height (48px) | `h-12` |
-| Input height (48px) | `h-12` |
-| Card padding (32px) | `p-8` |
+## 7. Accessibility (a11y) Standards
 
-### Adding new tokens
+- **Touch Targets:** Exceptional adherence to mobile-friendly touch targets. Ubiquitous pill buttons and tall accordion rows easily exceed the standard 44x44px minimum touch area.
+- **Visual Contrast:** Strong tonal variance. Typographic hierarchy and distinct background blocks ensure text remains readable against its container.
 
-If a value repeats across components:
+---
 
-1. Add it to the `@theme {}` block in `src/styles.css`
-2. Use the `--<category>-<name>` convention (e.g. `--color-surface-raised`)
-3. Reference it with the corresponding Tailwind utility (e.g. `bg-surface-raised`)
+## 8. Design Patterns
 
-### Ban
+### Progressive Disclosure
 
-- `style=` props with ad-hoc values
-- Tailwind arbitrary values `[x]` in JSX
-- Inline `px`/`rem` values outside of `@theme`
-- Per-component CSS files or CSS modules — all design tokens live in `styles.css` @theme
+To handle dense, institutional information without overwhelming the user, the UI relies heavily on accordions. This keeps the initial page scan clean while offering deep-dives on demand.
 
-## Code Quality
+### Bento / Grid Stacking
 
-Small, reusable, semantic, accessible, typed, predictable components. Composition over monolithic. No unnecessary abstractions.
+The "Latest News" layout pattern mixes one dominant feature story with a compacted list of secondary stories — a classic pattern for editorial and research hubs to prioritize reading flows.
 
-## Final Rule
+---
 
-If a choice makes the interface more exciting but less readable, trustworthy, or more distracting — reject it. Every decision should reinforce reading a premium academic publication, not a marketing site or SaaS product.
+## 9. Voice and Tone
+
+- **Personality:** Authoritative, academic, forward-looking, and institutional, yet modernized through the UI.
+- **Microcopy:** Direct, utilitarian, and action-oriented (e.g., "Watch Our Story," "Read the Report," "Engage"). Avoids playful or overly casual language, maintaining a credible, research-driven posture.
+
+---
+
+## 10. Tailwind Implementation Guidelines (Strict Standards)
+
+### 10.1 Arbitrary Class Restriction
+
+**Zero Arbitrary Passports:** Arbitrary template formatting statements (e.g., `w-[48px]`, `bg-[#8C1515]`) are completely prohibited in JSX files.
+
+**Token Promotion Workflow:** If an explicit styling variable requirement manifests across multiple layout junctions, it must be added to the `@theme` architecture block housed in `src/styles.css`.
+
+### 10.2 Core Theme Configurations (`src/styles.css`)
+
+```css
+@theme {
+  --color-brand: #8C1515;
+  --color-brand-hover: #7A1212;
+  --color-brand-pressed: #651010;
+  
+  --color-bg-secondary: #FAFAFA;
+  --color-bg-muted: #F5F5F5;
+  
+  --color-text-secondary: #374151;
+  --color-text-muted: #6B7280;
+  
+  --color-border-token: #E5E7EB;
+  --color-divider-token: #D1D5DB;
+  
+  --font-size-hero: 3.5rem;
+  --font-size-lead: 1.375rem;
+  --font-size-caption: 0.8125rem;
+  
+  --spacing-128: 32rem;
+  --spacing-160: 40rem;
+  
+  --size-container-content: 72.5rem;
+}
+```
+
+### 10.3 Canonical Tailwind Translation Maps
+
+| Design Specification Target | Standard Tailwind Native Token | Notes / Constraints |
+|---|---|---|
+| **Primary Site Canvas Backing** | `bg-white` | Default clear application canvas |
+| **Primary Base Typography Type** | `text-neutral-900` | Map location for raw color `#111827` |
+| **Global Shell Max Width** | `max-w-7xl` | Standard 1280px layout engine wrapper |
+| **Narrative Column Constraint** | `max-w-3xl` | Standardized 720px content container |
+| **Section Layout Padding Vertical** | `py-24` / `py-32` | Matches standard institutional whitespace rules |
+| **Standard Card Corners Radius** | `rounded-lg` | Maps to 8px corner standard |
+| **Card Element Interior Cushion** | `p-8` | Translates to 32px standard |
+| **Functional Control Element Height** | `h-12` | Ensures consistent interactive targets at 48px |
+| **Pill Button Radius** | `rounded-full` | Fully rounded pills for all buttons/tags/badges |
+| **Pronounced Card Radius** | `rounded-2xl` / `rounded-3xl` | 16px–24px radius for cards and images |
+
+---
+
+## 11. Prohibited & Banned Element Registers
+
+### 🚫 DO NOT USE
+
+- **Visual Styling Artifacts:** Glassmorphism, neumorphic shapes, glowing drop-shadows, floating color blobs, active background particle meshes, or animated mesh gradients.
+- **Color Distributions:** Neon accent marks, multi-colored categorical systems, or saturated dark dashboard background themes.
+- **Structural Mechanics:** Harsh right-angle corners on cards or imagery, heavy drop-shadow arrays, decorative separating icons.
+
+### ✅ ALWAYS PREFER
+
+- Generous structural whitespace to divide elements instead of graphic lines.
+- High-contrast, clean sans-serif typography hierarchies.
+- Pronounced border radii (pills for buttons/tags, 16–24px for cards/images).
+- Flat design with subtle background contrast over shadow-based depth.
+- Thin, low-opacity 1px strokes for delineation over heavy borders.
+- Fixed, crisp layout bounds with clear, predictable interactive responses.

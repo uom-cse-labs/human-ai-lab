@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useNavigate } from '@tanstack/react-router'
 import { useLab } from '@/lab-context'
 import type { FocusArea } from '@/types'
 
@@ -15,6 +15,7 @@ export const Route = createFileRoute('/')({
 })
 
 function Home() {
+  const navigate = useNavigate()
   const {
     setSelectedPaper,
     setSelectedFocusArea,
@@ -36,7 +37,7 @@ function Home() {
       <MissionSection />
       <ResearchThemesSection
         onSelectArea={handleSelectAreaFromModal}
-        onViewAllClick={() => handleNavigate('rounded-focus-areas')}
+        onViewAllClick={() => navigate({ to: '/themes' })}
       />
       <PublicationsSection
         onReadPaper={(paper) => setSelectedPaper(paper)}

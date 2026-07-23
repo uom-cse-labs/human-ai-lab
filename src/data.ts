@@ -8,6 +8,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: 'Perera, S., Wickramasinghe, T., & Silva, R.',
     publishedIn: 'ICLR 2024, Vienna',
     year: 2024,
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
     abstract: 'Sentiment analysis models trained primarily on Western datasets exhibit severe degradation when applied to South Asian contexts, particularly in Sri Lanka. This research details how local linguistic nuances, sarcasm forms, and cultural codes alter emotional expression. We introduce "LankaSent", a culture-sensitive tokenization and training corpus that reduces cultural bias in machine learning by 34% while improving contextual accuracy.',
     keyFindings: [
       'Identified 14 specific cultural linguistic markers in Sri Lankan English and Sinhala-Tamil code-switching ignored by standard LLMs.',
@@ -38,6 +39,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: 'Ratnayake, K., et al.',
     publishedIn: 'CHI Conference 2023',
     year: 2023,
+    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200',
     abstract: 'As populations age, particularly in South Asia where family-based care is the cultural cornerstone, assistive robotic technologies must align with domestic physical rituals. This paper presents the design and evaluation of "Ayu-Node", a tangible wooden control interface integrated into domestic helper robots. Rather than screens or voice controls, Ayu-Node uses tactile physical geometries that mimic traditional Sri Lankan domestic utilities, making elder interaction natural, non-threatening, and highly intuitive.',
     keyFindings: [
       'Developed and user-tested 5 physical interaction metaphors among elder demographics (ages 70-90) with no previous computer literacy.',
@@ -68,6 +70,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: 'Wick, T. & Kumara, A.',
     publishedIn: 'IEEE Transactions on Robotics, Vol 39',
     year: 2023,
+    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
     abstract: 'In high-density indoor agricultural setups in tropical nations, collaborative robotic fleets must operate alongside human farm workers. We detail a novel kinematics planner using localized multi-agent reinforcement learning with safety guarantees. Our system handles unexpected obstacle avoidance (such as dynamic human steps or falling produce) in tight, unstructured greenhouse lanes without requiring extensive high-power visual processing.',
     keyFindings: [
       'Constructed a lightweight 2D spatial occupancy grid model running on edge microcontrollers (under 5W consumption).',

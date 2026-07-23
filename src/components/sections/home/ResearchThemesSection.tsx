@@ -1,24 +1,27 @@
-import { FOCUS_AREAS } from '@/data';
-import type { FocusArea } from '@/types';
-import { Bot, Brain, Shield, Eye, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { FOCUS_AREAS } from "@/data";
+import type { FocusArea } from "@/types";
+import { Bot, Brain, Shield, Eye, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 interface ResearchThemesSectionProps {
   onSelectArea: (area: FocusArea) => void;
   onViewAllClick: () => void;
 }
 
-export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: ResearchThemesSectionProps) {
+export default function ResearchThemesSection({
+  onSelectArea,
+  onViewAllClick,
+}: ResearchThemesSectionProps) {
   const renderIcon = (name: string, className: string) => {
     switch (name) {
-      case 'robot':
+      case "robot":
         return <Bot className={className} />;
-      case 'brain':
+      case "brain":
         return <Brain className={className} />;
-      case 'shield':
+      case "shield":
         return <Shield className={className} />;
-      case 'eye':
+      case "eye":
         return <Eye className={className} />;
       default:
         return <Bot className={className} />;
@@ -26,9 +29,11 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
   };
 
   return (
-    <section id="rounded-focus-areas" className="bg-background py-28 border-b border-outline">
+    <section
+      id="rounded-focus-areas"
+      className="bg-background py-28 border-b border-outline"
+    >
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
           <div>
             <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
@@ -51,9 +56,10 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
           {FOCUS_AREAS.map((area, index) => {
-            const colSpan = (index === 0 || index === 3)
-              ? 'lg:col-span-8 md:col-span-2'
-              : 'lg:col-span-4 md:col-span-1';
+            const colSpan =
+              index === 0 || index === 3
+                ? "lg:col-span-8 md:col-span-2"
+                : "lg:col-span-4 md:col-span-1";
 
             const isImageBg = !!area.imageUrl;
 
@@ -73,7 +79,7 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
                   <div className="absolute inset-0 bg-gradient-to-t from-overlay/95 via-overlay/45 to-transparent rounded-2xl" />
 
                   <div className="absolute inset-0 p-8 flex flex-col justify-end text-white z-10">
-                    <Badge className="mb-4">{area.type}</Badge>
+                    <Badge className="mb-4 max-w-fit">{area.type}</Badge>
                     <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-primary transition-colors uppercase">
                       {area.title}
                     </h3>
@@ -96,7 +102,7 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
               >
                 <div>
                   <div className="w-14 h-14 flex items-center justify-center bg-surface-container text-primary border border-outline mb-8 transition-colors group-hover:border-primary/40 rounded-2xl">
-                    {renderIcon(area.iconName, 'w-6 h-6')}
+                    {renderIcon(area.iconName, "w-6 h-6")}
                   </div>
                   <h3 className="font-sans text-2xl font-black tracking-tight mb-3 text-on-background uppercase">
                     {area.title}
@@ -113,7 +119,6 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
             );
           })}
         </div>
-
       </div>
     </section>
   );

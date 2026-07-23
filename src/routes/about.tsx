@@ -122,7 +122,7 @@ function About() {
 
       {/* Methodology Section */}
       <section className="max-w-7xl mx-auto px-6 py-28 border-b border-outline">
-        <div className="mb-16 text-center max-w-3xl mx-auto">
+        <div className="mb-16 text-left max-w-3xl">
           <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-4 block">
             HOW WE WORK
           </span>
@@ -185,7 +185,7 @@ function About() {
 
       {/* Final CTA / Statement */}
       <section className="max-w-7xl mx-auto px-6 mt-28">
-        <div className="bg-primary p-12 md:p-20 rounded-3xl text-center relative overflow-hidden">
+        <div className="bg-primary p-12 md:p-20 rounded-3xl text-left relative overflow-hidden">
           <div className="absolute inset-0 bg-black/10 mix-blend-overlay" />
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter text-white uppercase leading-[0.95] mb-8">

@@ -136,7 +136,7 @@ function Themes() {
 
       {/* Outro */}
       <section className="max-w-7xl mx-auto px-6 mt-20">
-        <div className="bg-surface border border-outline p-12 md:p-20 rounded-3xl text-center relative overflow-hidden">
+        <div className="bg-surface border border-outline p-12 md:p-20 rounded-3xl text-left relative overflow-hidden">
           <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="font-sans text-3xl md:text-5xl font-black tracking-tighter text-on-background uppercase leading-[1.1] mb-6">

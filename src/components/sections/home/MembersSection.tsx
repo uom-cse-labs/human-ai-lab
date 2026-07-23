@@ -79,7 +79,7 @@ export default function MembersSection({
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-left mb-16">
           <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
             PIONEERS & ADVISORS
           </span>

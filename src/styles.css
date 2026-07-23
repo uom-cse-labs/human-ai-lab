@@ -18,7 +18,8 @@
   --color-outline: #cccccc;
   --color-outline-variant: #e5e5e5;
   
-  --font-sans: 'Space Grotesk', 'Inter', sans-serif;
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 

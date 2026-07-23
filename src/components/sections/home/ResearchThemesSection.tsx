@@ -1,6 +1,8 @@
 import { FOCUS_AREAS } from '@/data';
 import type { FocusArea } from '@/types';
 import { Bot, Brain, Shield, Eye, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
 
 interface ResearchThemesSectionProps {
   onSelectArea: (area: FocusArea) => void;
@@ -36,13 +38,15 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
               Research Themes
             </h2>
           </div>
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={onViewAllClick}
-            className="flex items-center gap-2 font-sans text-xs font-black uppercase tracking-[0.2em] text-on-background/60 hover:text-[#F27D26] group cursor-pointer transition-colors"
+            className="gap-2"
           >
             VIEW ALL THEMES
             <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
-          </button>
+          </Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
@@ -69,9 +73,7 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
                   <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/45 to-transparent rounded-2xl" />
 
                   <div className="absolute inset-0 p-8 flex flex-col justify-end text-white z-10">
-                    <span className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-black bg-[#F27D26] self-start px-3 py-1.5 mb-4 select-none rounded-full">
-                      {area.type}
-                    </span>
+                    <Badge className="mb-4">{area.type}</Badge>
                     <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-[#F27D26] transition-colors uppercase">
                       {area.title}
                     </h3>

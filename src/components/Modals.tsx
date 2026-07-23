@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
 import type { Publication, FocusArea, TeamMember, NewsItem } from '@/types';
 import { X, Send, Bot, CheckCircle, ArrowRight, User, AlertCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { Badge } from '@/components/ui/badge';
 
 // ==========================================
 // 1. PAPER READER & AI CHAT ASSISTANT MODAL
@@ -90,9 +94,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
       >
         <div className="w-full md:w-3/5 border-b md:border-b-0 md:border-r border-outline flex flex-col h-1/2 md:h-full p-8 overflow-y-auto">
           <div className="flex items-center justify-between mb-6">
-            <span className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-black bg-[#F27D26] px-3 py-1.5 rounded-full">
-              {paper.category}
-            </span>
+            <Badge>{paper.category}</Badge>
             <span className="font-mono text-xs text-white/40 font-bold">
               YEAR: {paper.year}
             </span>
@@ -161,13 +163,9 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
               </div>
             </div>
 
-            <button
-              onClick={onClose}
-              className="p-1 text-on-background/40 hover:text-on-background transition-colors cursor-pointer"
-              title="Close Panel"
-            >
+            <Button variant="ghost" size="icon-sm" onClick={onClose} title="Close Panel">
               <X className="w-5 h-5" />
-            </button>
+            </Button>
           </div>
 
           <div className="flex-1 overflow-y-auto p-6 space-y-4">
@@ -216,13 +214,14 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             </span>
             <div className="flex flex-wrap gap-1.5">
               {sampleQuestions.map((q, idx) => (
-                <button
+                <Button
                   key={idx}
+                  variant="outline"
+                  size="sm"
                   onClick={() => handleSuggestionClick(q)}
-                  className="bg-surface hover:bg-surface-container text-on-background/80 border border-outline px-3 py-1.5 font-sans text-[10px] font-bold tracking-wider uppercase transition-colors rounded-full cursor-pointer text-left leading-tight"
                 >
                   {q}
-                </button>
+                </Button>
               ))}
             </div>
           </div>
@@ -234,21 +233,20 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             }}
             className="p-4 border-t border-outline bg-surface flex gap-2"
           >
-            <input
-              type="text"
+            <Input
+              ref={searchInputRef}
               placeholder="Ask a custom scholarly question..."
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              className="flex-1 bg-surface-container border border-outline px-4 py-3.5 font-sans text-xs focus:outline-none focus:border-[#F27D26] text-on-background placeholder-on-background/30 rounded-full"
             />
-            <button
+            <Button
               type="submit"
               disabled={!inputValue.trim()}
-              className="bg-[#F27D26] hover:bg-on-background hover:text-background text-black disabled:opacity-40 p-3 rounded-full flex items-center justify-center transition-colors cursor-pointer shrink-0"
+              size="icon"
               title="Send Message"
             >
               <Send className="w-4 h-4" />
-            </button>
+            </Button>
           </form>
 
         </div>
@@ -281,9 +279,9 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
               {area.title}
             </h2>
           </div>
-          <button onClick={onClose} className="p-1 text-on-background/40 hover:text-on-background cursor-pointer">
+          <Button variant="ghost" size="icon-sm" onClick={onClose}>
             <X className="w-6 h-6" />
-          </button>
+          </Button>
         </div>
 
         <div className="p-6 md:p-8 overflow-y-auto space-y-6">
@@ -335,15 +333,16 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
               </div>
             </div>
 
-            <button
+            <Button
+              size="lg"
               onClick={() => {
                 onClose();
                 onViewPublications();
               }}
-              className="px-8 py-3.5 bg-[#F27D26] hover:bg-on-background hover:text-background text-black font-sans text-xs font-black tracking-[0.2em] uppercase rounded-full cursor-pointer flex items-center gap-2 transition-colors"
+              className="gap-2"
             >
               EXPLORE PUBLICATIONS <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+            </Button>
           </div>
 
         </div>
@@ -405,9 +404,9 @@ export function ContactModal({ onClose }: ContactModalProps) {
               Connect With Us
             </h2>
           </div>
-          <button onClick={onClose} className="p-1 text-on-background/40 hover:text-on-background cursor-pointer">
+          <Button variant="ghost" size="icon-sm" onClick={onClose}>
             <X className="w-5 h-5" />
-          </button>
+          </Button>
         </div>
 
         {submitted ? (
@@ -421,12 +420,13 @@ export function ContactModal({ onClose }: ContactModalProps) {
             <p className="font-sans text-sm text-on-background/60 leading-relaxed max-w-sm mx-auto font-normal">
               Thank you for connecting with AIM at the University of Moratuwa. Our lead research administrator will review your proposal and respond shortly.
             </p>
-            <button
+            <Button
+              variant="secondary"
+              size="lg"
               onClick={onClose}
-              className="px-8 py-3.5 bg-on-background text-background hover:bg-[#F27D26] hover:text-black font-sans text-xs font-black tracking-[0.2em] uppercase rounded-full transition-colors"
             >
               CLOSE WINDOW
-            </button>
+            </Button>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="p-6 space-y-4">
@@ -434,13 +434,12 @@ export function ContactModal({ onClose }: ContactModalProps) {
               <label className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase block mb-1">
                 Full Name *
               </label>
-              <input
+              <Input
                 type="text"
                 required
                 placeholder="e.g. Dr. Jane Smith"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full bg-surface-container border border-outline p-3 font-sans text-xs focus:outline-none focus:border-[#F27D26] text-on-background placeholder-on-background/30 rounded-full"
               />
             </div>
 
@@ -448,13 +447,12 @@ export function ContactModal({ onClose }: ContactModalProps) {
               <label className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase block mb-1">
                 Email Address *
               </label>
-              <input
+              <Input
                 type="email"
                 required
                 placeholder="e.g. jsmith@academy.edu"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full bg-surface-container border border-outline p-3 font-sans text-xs focus:outline-none focus:border-[#F27D26] text-on-background placeholder-on-background/30 rounded-full"
               />
             </div>
 
@@ -462,12 +460,11 @@ export function ContactModal({ onClose }: ContactModalProps) {
               <label className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase block mb-1">
                 Subject Area
               </label>
-              <input
+              <Input
                 type="text"
                 placeholder="e.g. Collaborative Robotics Fellowship"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                className="w-full bg-surface-container border border-outline p-3 font-sans text-xs focus:outline-none focus:border-[#F27D26] text-on-background placeholder-on-background/30 rounded-full"
               />
             </div>
 
@@ -475,31 +472,30 @@ export function ContactModal({ onClose }: ContactModalProps) {
               <label className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase block mb-1">
                 Inquiry / Proposal Details *
               </label>
-              <textarea
+              <Textarea
                 required
-                rows={4}
                 placeholder="Please outline your proposed focus area, requested faculty, or technical scope..."
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                className="w-full bg-surface-container border border-outline p-3 font-sans text-xs focus:outline-none focus:border-[#F27D26] text-on-background placeholder-on-background/30 resize-none rounded-2xl"
               />
             </div>
 
             <div className="pt-4 flex justify-end gap-3 border-t border-outline">
-              <button
+              <Button
                 type="button"
+                variant="outline"
+                size="lg"
                 onClick={onClose}
-                className="px-6 py-3 border border-outline hover:bg-on-background/5 font-sans text-xs font-black text-on-background/60 hover:text-on-background uppercase cursor-pointer rounded-full tracking-[0.2em]"
               >
                 CANCEL
-              </button>
-              <button
+              </Button>
+              <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="px-8 py-3 bg-[#F27D26] hover:bg-on-background hover:text-background disabled:opacity-50 text-black font-sans text-xs font-black uppercase cursor-pointer transition-all rounded-full tracking-[0.2em]"
+                size="lg"
               >
                 {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
-              </button>
+              </Button>
             </div>
           </form>
         )}
@@ -545,9 +541,9 @@ export function SubmissionsDrawer({ onClose }: SubmissionsDrawerProps) {
             Active Submissions
           </h2>
         </div>
-        <button onClick={onClose} className="p-1 text-on-background/40 hover:text-on-background cursor-pointer">
+        <Button variant="ghost" size="icon-sm" onClick={onClose}>
           <X className="w-5 h-5" />
-        </button>
+        </Button>
       </div>
 
       <div className="flex-1 overflow-y-auto space-y-4">
@@ -594,12 +590,14 @@ export function SubmissionsDrawer({ onClose }: SubmissionsDrawerProps) {
       </div>
 
       <div className="border-t border-outline pt-4 mt-6">
-        <button
+        <Button
+          variant="secondary"
+          size="lg"
+          className="w-full justify-center py-4"
           onClick={onClose}
-          className="w-full text-center py-4 bg-on-background text-background hover:bg-[#F27D26] hover:text-black font-mono text-[10px] font-black tracking-[0.2em] uppercase cursor-pointer transition-colors rounded-full"
         >
           CLOSE AUDIT PANEL
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -633,16 +631,14 @@ export function BioModal({ member, onClose }: BioModalProps) {
             <div>
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <span className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.25em] uppercase">
-                    {member.title}
-                  </span>
+                  <Badge variant="ghost" className="text-[10px]">{member.title}</Badge>
                   <h2 className="font-sans text-xl font-black text-on-background mt-1 uppercase">
                     {member.name}
                   </h2>
                 </div>
-                <button onClick={onClose} className="p-1 text-on-background/40 hover:text-on-background cursor-pointer">
+                <Button variant="ghost" size="icon-sm" onClick={onClose}>
                   <X className="w-5 h-5" />
-                </button>
+                </Button>
               </div>
 
               <div className="h-px bg-outline mb-4" />
@@ -688,12 +684,14 @@ export function NewsModal({ news, onClose }: NewsModalProps) {
             className="w-full h-full object-cover filter grayscale contrast-110 brightness-90"
             referrerPolicy="no-referrer"
           />
-          <button
+          <Button
+            variant="ghost"
+            size="icon-sm"
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black/80 text-white hover:bg-[#F27D26] hover:text-black p-2 transition-colors cursor-pointer rounded-full"
+            className="absolute top-4 right-4 bg-black/80 text-white hover:bg-[#F27D26] hover:text-black"
           >
             <X className="w-5 h-5" />
-          </button>
+          </Button>
         </div>
 
         <div className="p-8 space-y-4 bg-background">

@@ -1,5 +1,6 @@
 import { Search, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 interface HeaderProps {
   onContactClick: () => void;
@@ -29,7 +30,6 @@ export default function Header({ onContactClick, onSearchClick, onNavigate }: He
         <div
           onClick={() => handleNavItemClick('rounded-hero')}
           className="flex items-center gap-3 cursor-pointer group"
-          id="header-logo"
         >
           <div className="w-10 h-10 bg-[#F27D26] flex items-center justify-center font-sans font-black text-black text-base tracking-tighter italic transition-transform group-hover:scale-105 rounded-full">
             AIM.
@@ -46,52 +46,58 @@ export default function Header({ onContactClick, onSearchClick, onNavigate }: He
 
         <nav className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
-            <button
+            <Button
               key={item.label}
+              variant="ghost"
+              size="sm"
               onClick={() => handleNavItemClick(item.id)}
-              className="font-sans text-[10px] font-bold tracking-[0.3em] text-on-background/50 hover:text-[#F27D26] transition-colors duration-200 cursor-pointer uppercase"
             >
               {item.label}
-            </button>
+            </Button>
           ))}
         </nav>
 
         <div className="hidden md:flex items-center gap-6">
-          <button onClick={onSearchClick} className="p-2 text-on-background/60 hover:text-[#F27D26] transition-colors duration-200 cursor-pointer" title="Search Publications">
+          <Button variant="ghost" size="icon" onClick={onSearchClick} title="Search Publications">
             <Search className="w-4 h-4" />
-          </button>
-          <button
-            onClick={onContactClick}
-            className="px-8 py-3.5 bg-on-background text-background font-sans text-[10px] font-black tracking-[0.25em] hover:bg-[#F27D26] hover:text-white transition-colors duration-200 rounded-full cursor-pointer uppercase"
-          >
+          </Button>
+          <Button variant="secondary" size="lg" onClick={onContactClick}>
             CONNECT
-          </button>
+          </Button>
         </div>
 
         <div className="flex md:hidden items-center gap-3">
-          <button onClick={onSearchClick} className="p-2 text-on-background/60 hover:text-[#F27D26]">
+          <Button variant="ghost" size="icon-sm" onClick={onSearchClick}>
             <Search className="w-5 h-5" />
-          </button>
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 text-on-background/60 hover:text-on-background">
+          </Button>
+          <Button variant="ghost" size="icon-sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          </Button>
         </div>
       </div>
 
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-outline bg-background px-6 py-6 flex flex-col gap-4 animate-fade-in">
           {navItems.map((item) => (
-            <button key={item.label} onClick={() => handleNavItemClick(item.id)} className="text-left py-2.5 font-sans text-[11px] font-bold tracking-[0.25em] text-on-background/60 hover:text-[#F27D26] uppercase">
+            <Button
+              key={item.label}
+              variant="ghost"
+              size="sm"
+              onClick={() => handleNavItemClick(item.id)}
+              className="justify-start py-2.5"
+            >
               {item.label}
-            </button>
+            </Button>
           ))}
           <div className="h-px bg-outline my-2" />
-          <button
+          <Button
+            variant="default"
+            size="lg"
+            className="w-full justify-center py-4"
             onClick={() => { onContactClick(); setMobileMenuOpen(false); }}
-            className="w-full text-center py-4 bg-[#F27D26] text-black font-sans text-[10px] font-black tracking-[0.25em] rounded-full uppercase"
           >
             CONNECT
-          </button>
+          </Button>
         </div>
       )}
     </header>

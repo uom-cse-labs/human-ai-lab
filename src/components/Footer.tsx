@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
   onContactClick: () => void;
@@ -51,36 +53,46 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
               SITEMAP
             </h4>
             <div className="flex flex-col gap-3">
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleLinkClick('rounded-mission')}
-                className="text-left font-sans text-sm text-on-background/60 hover:text-[#F27D26] transition-colors cursor-pointer uppercase font-bold tracking-wider text-[11px]"
+                className="justify-start py-2.5"
               >
                 WHO WE ARE
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleLinkClick('rounded-focus-areas')}
-                className="text-left font-sans text-sm text-on-background/60 hover:text-[#F27D26] transition-colors cursor-pointer uppercase font-bold tracking-wider text-[11px]"
+                className="justify-start py-2.5"
               >
                 RESEARCH THEMES
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleLinkClick('rounded-publications')}
-                className="text-left font-sans text-sm text-on-background/60 hover:text-[#F27D26] transition-colors cursor-pointer uppercase font-bold tracking-wider text-[11px]"
+                className="justify-start py-2.5"
               >
                 PUBLICATIONS ARCHIVE
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleLinkClick('rounded-leadership')}
-                className="text-left font-sans text-sm text-on-background/60 hover:text-[#F27D26] transition-colors cursor-pointer uppercase font-bold tracking-wider text-[11px]"
+                className="justify-start py-2.5"
               >
                 RESEARCH PIONEERS
-              </button>
-              <button
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => handleLinkClick('rounded-news')}
-                className="text-left font-sans text-sm text-on-background/60 hover:text-[#F27D26] transition-colors cursor-pointer uppercase font-bold tracking-wider text-[11px]"
+                className="justify-start py-2.5"
               >
                 LAB DISPATCHES
-              </button>
+              </Button>
             </div>
           </div>
 
@@ -92,19 +104,13 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
               We welcome collaboration proposals, graduate research inquiries, and public policy partnerships.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <button
-                onClick={onContactClick}
-                className="px-8 py-3.5 bg-[#F27D26] text-black font-sans text-xs font-black tracking-[0.2em] uppercase rounded-full cursor-pointer transition-colors hover:bg-white"
-              >
+              <Button onClick={onContactClick} size="lg">
                 INQUIRE DIRECTLY
-              </button>
+              </Button>
               {onViewSubmissionsClick && (
-                <button
-                  onClick={onViewSubmissionsClick}
-                  className="px-8 py-3.5 border border-outline hover:border-on-background hover:bg-on-background/5 text-on-background font-sans text-xs font-black tracking-[0.2em] uppercase rounded-full cursor-pointer transition-colors"
-                >
+                <Button variant="outline" size="lg" onClick={onViewSubmissionsClick}>
                   SUBMISSIONS
-                </button>
+                </Button>
               )}
             </div>
           </div>

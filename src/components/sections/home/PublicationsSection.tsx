@@ -2,6 +2,9 @@ import { useState, useRef } from 'react';
 import type { Publication } from '@/types';
 import { PUBLICATIONS } from '@/data';
 import { Search, ArrowUpRight, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 
 interface PublicationsSectionProps {
   onReadPaper: (paper: Publication) => void;
@@ -50,12 +53,13 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
         </div>
 
         {!showSearchBox ? (
-          <button
+          <Button
+            variant="outline"
+            size="lg"
             onClick={handleSearchArchiveClick}
-            className="px-8 py-4 border border-outline hover:border-[#F27D26] hover:bg-[#F27D26] hover:text-black text-on-background font-sans text-xs font-black tracking-[0.2em] uppercase rounded-full cursor-pointer transition-all self-start lg:end-0"
           >
             SEARCH ARCHIVE
-          </button>
+          </Button>
         ) : (
           <div className="flex items-center gap-2 w-full lg:w-96 bg-surface border border-outline py-2.5 px-4 self-start lg:self-end animate-fade-in rounded-full">
             <Search className="w-4 h-4 text-[#F27D26]" />
@@ -67,32 +71,31 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full bg-transparent border-none text-sm text-on-background placeholder-on-background/30 focus:outline-none"
             />
-            <button
+            <Button
+              variant="ghost"
+              size="icon-sm"
               onClick={() => {
                 setSearchTerm('');
                 setShowSearchBox(false);
               }}
-              className="text-on-background/40 hover:text-on-background"
             >
               <X className="w-4 h-4" />
-            </button>
+            </Button>
           </div>
         )}
       </div>
 
       <div className="flex flex-wrap gap-2.5 mb-12 border-b border-outline pb-6">
         {categories.map((cat) => (
-          <button
+          <Button
             key={cat}
+            variant={activeCategory === cat ? 'default' : 'outline'}
+            size="sm"
             onClick={() => setActiveCategory(cat)}
-            className={`px-5 py-2.5 font-mono text-[10px] font-black tracking-[0.2em] uppercase cursor-pointer transition-all duration-200 rounded-full ${
-              activeCategory === cat
-                ? 'bg-[#F27D26] text-black'
-                : 'bg-surface text-on-background/60 border border-outline hover:bg-surface-dim hover:text-on-background'
-            }`}
+            className="font-mono"
           >
             {cat}
-          </button>
+          </Button>
         ))}
       </div>
 
@@ -106,9 +109,7 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-[9px] font-black tracking-[0.2em] text-[#F27D26] uppercase">
-                    {paper.category}
-                  </span>
+                  <Badge variant="ghost">{paper.category}</Badge>
                   <span className="font-mono text-[10px] text-on-background/40 font-bold">
                     {paper.year}
                   </span>
@@ -122,9 +123,7 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
                   {paper.authors}
                 </p>
 
-                <p className="font-mono text-[10px] font-black uppercase text-on-background bg-surface-container border border-outline py-1.5 px-3 self-start inline-block tracking-wider rounded-full">
-                  {paper.publishedIn}
-                </p>
+                <Badge variant="outline">{paper.publishedIn}</Badge>
               </div>
 
               <div className="pt-6 border-t border-outline flex items-center justify-between mt-auto">
@@ -141,15 +140,17 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
           <p className="font-sans text-on-background/40 font-normal">
             No publications found matching your active filter criteria.
           </p>
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => {
               setSearchTerm('');
               setActiveCategory('ALL');
             }}
-            className="mt-4 font-mono text-[10px] text-[#F27D26] font-black tracking-[0.2em] uppercase underline hover:text-white transition-colors"
+            className="mt-4 underline"
           >
             Clear Filters & Search
-          </button>
+          </Button>
         </div>
       )}
 

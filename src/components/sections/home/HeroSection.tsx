@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+
 interface HeroSectionProps {
   onExploreResearch: () => void;
   onViewPublications: () => void;
@@ -46,18 +48,12 @@ export default function HeroSection({ onExploreResearch, onViewPublications }: H
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-            <button
-              onClick={onExploreResearch}
-              className="px-10 py-5 bg-[#F27D26] text-black font-sans text-xs font-black tracking-[0.2em] hover:bg-on-background hover:text-background transition-all duration-300 rounded-full text-center cursor-pointer uppercase"
-            >
+            <Button size="xl" onClick={onExploreResearch}>
               EXPLORE THEMES
-            </button>
-            <button
-              onClick={onViewPublications}
-              className="px-10 py-5 bg-transparent text-on-background border border-outline font-sans text-xs font-black tracking-[0.2em] hover:bg-on-background hover:text-background hover:border-on-background transition-all duration-300 rounded-full text-center cursor-pointer uppercase"
-            >
+            </Button>
+            <Button variant="outline" size="xl" onClick={onViewPublications}>
               PUBLICATIONS
-            </button>
+            </Button>
           </div>
 
         </div>

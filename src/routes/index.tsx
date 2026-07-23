@@ -41,6 +41,7 @@ function Home() {
       />
       <PublicationsSection
         onReadPaper={(paper) => setSelectedPaper(paper)}
+        onViewAllClick={() => navigate({ to: '/publications' })}
       />
       <MembersSection
         onSelectMember={(member) => setSelectedMember(member)}

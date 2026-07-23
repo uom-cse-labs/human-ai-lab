@@ -38,13 +38,13 @@ export default function HeroSection({ onExploreResearch, onViewPublications }: H
           <h1
             className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] mb-10 uppercase select-none"
           >
-            Advancing the <span className="text-primary italic">Human</span> <span className="text-on-background relative inline-block underline decoration-primary decoration-[6px] md:decoration-[10px] underline-offset-[8px] md:underline-offset-[14px]">Dimension</span> of AI.
+            <span className="text-primary">Human</span>AI Research Lab
           </h1>
 
           <p
             className="font-sans text-lg md:text-xl text-on-background/60 leading-[1.6] max-w-3xl mb-12 font-normal"
           >
-            AIM at the University of Moratuwa bridges the gap between complex neural architectures and core human values through rigorous, multidisciplinary scientific exploration.
+            Advancing Human-Centered Artificial Intelligence through interdisciplinary research.
           </p>
 
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">

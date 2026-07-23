@@ -1,4 +1,4 @@
-import { createRootRoute, HeadContent, Outlet, Scripts } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Outlet, Scripts, useNavigate } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import Header from '../components/Header'
@@ -6,8 +6,6 @@ import Footer from '../components/Footer'
 import {
   PaperReaderModal,
   FocusAreaModal,
-  ContactModal,
-  SubmissionsDrawer,
   BioModal,
   NewsModal,
 } from '../components/Modals'
@@ -36,13 +34,12 @@ function RootLayout() {
 }
 
 function RootContent() {
+  const navigate = useNavigate()
   const {
     selectedPaper, setSelectedPaper,
     selectedFocusArea, setSelectedFocusArea,
     selectedMember, setSelectedMember,
     selectedNews, setSelectedNews,
-    isContactOpen, setIsContactOpen,
-    isSubmissionsOpen, setIsSubmissionsOpen,
     handleNavigate,
   } = useLab()
 
@@ -57,7 +54,7 @@ function RootContent() {
       </a>
       <div className="min-h-screen bg-background flex flex-col text-on-background relative selection:bg-primary/20 selection:text-primary" id="app-root">
         <Header
-          onContactClick={() => setIsContactOpen(true)}
+          onContactClick={() => navigate({ to: '/contact' })}
           onSearchClick={() => handleNavigate('rounded-publications')}
           onNavigate={handleNavigate}
         />
@@ -66,8 +63,7 @@ function RootContent() {
         </main>
         <Footer
           onNavigate={handleNavigate}
-          onContactClick={() => setIsContactOpen(true)}
-          onViewSubmissionsClick={() => setIsSubmissionsOpen(true)}
+          onContactClick={() => navigate({ to: '/contact' })}
         />
       </div>
 
@@ -94,16 +90,6 @@ function RootContent() {
         <NewsModal
           news={selectedNews}
           onClose={() => setSelectedNews(null)}
-        />
-      )}
-      {isContactOpen && (
-        <ContactModal
-          onClose={() => setIsContactOpen(false)}
-        />
-      )}
-      {isSubmissionsOpen && (
-        <SubmissionsDrawer
-          onClose={() => setIsSubmissionsOpen(false)}
         />
       )}
 

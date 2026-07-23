@@ -1,5 +1,6 @@
 import { Search, Menu, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
@@ -13,6 +14,7 @@ export default function Header({
   onSearchClick,
   onNavigate,
 }: HeaderProps) {
+  const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
@@ -32,7 +34,7 @@ export default function Header({
     <header className="sticky top-0 z-40 w-full bg-background/95 border-b border-outline backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
         <div
-          onClick={() => handleNavItemClick("rounded-hero")}
+          onClick={() => navigate({ to: '/' })}
           className="flex items-center gap-4 cursor-pointer group"
         >
           <img

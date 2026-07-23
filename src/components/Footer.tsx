@@ -3,10 +3,9 @@ import { Button } from '@/components/ui/button';
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
   onContactClick: () => void;
-  onViewSubmissionsClick?: () => void;
 }
 
-export default function Footer({ onNavigate, onContactClick, onViewSubmissionsClick }: FooterProps) {
+export default function Footer({ onNavigate, onContactClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   const handleLinkClick = (id: string) => {
@@ -103,15 +102,10 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
             <p className="font-sans text-sm text-on-background/60 leading-relaxed font-normal">
               We welcome collaboration proposals, graduate research inquiries, and public policy partnerships.
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+            <div className="flex pt-2">
               <Button onClick={onContactClick} size="lg">
                 INQUIRE DIRECTLY
               </Button>
-              {onViewSubmissionsClick && (
-                <Button variant="outline" size="lg" onClick={onViewSubmissionsClick}>
-                  SUBMISSIONS
-                </Button>
-              )}
             </div>
           </div>
 

@@ -16,6 +16,7 @@ import { Route as DispatchesRouteImport } from './routes/dispatches'
 import { Route as PioneersRouteImport } from './routes/pioneers'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ThemesRouteImport } from './routes/themes'
+import { Route as NewsNewsIdRouteImport } from './routes/news/$newsId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const ThemesRoute = ThemesRouteImport.update({
   path: '/themes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NewsNewsIdRoute = NewsNewsIdRouteImport.update({
+  id: '/news/$newsId',
+  path: '/news/$newsId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/pioneers': typeof PioneersRoute
   '/publications': typeof PublicationsRoute
   '/themes': typeof ThemesRoute
+  '/news/$newsId': typeof NewsNewsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/pioneers': typeof PioneersRoute
   '/publications': typeof PublicationsRoute
   '/themes': typeof ThemesRoute
+  '/news/$newsId': typeof NewsNewsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/pioneers': typeof PioneersRoute
   '/publications': typeof PublicationsRoute
   '/themes': typeof ThemesRoute
+  '/news/$newsId': typeof NewsNewsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/pioneers'
     | '/publications'
     | '/themes'
+    | '/news/$newsId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/pioneers'
     | '/publications'
     | '/themes'
+    | '/news/$newsId'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/pioneers'
     | '/publications'
     | '/themes'
+    | '/news/$newsId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   PioneersRoute: typeof PioneersRoute
   PublicationsRoute: typeof PublicationsRoute
   ThemesRoute: typeof ThemesRoute
+  NewsNewsIdRoute: typeof NewsNewsIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/news/$newsId': {
+      id: '/news/$newsId'
+      path: '/news/$newsId'
+      fullPath: '/news/$newsId'
+      preLoaderRoute: typeof NewsNewsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   PioneersRoute: PioneersRoute,
   PublicationsRoute: PublicationsRoute,
   ThemesRoute: ThemesRoute,
+  NewsNewsIdRoute: NewsNewsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

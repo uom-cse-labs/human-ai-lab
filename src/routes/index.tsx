@@ -20,7 +20,6 @@ function Home() {
     setSelectedPaper,
     setSelectedFocusArea,
     setSelectedMember,
-    setSelectedNews,
     handleNavigate,
   } = useLab()
 
@@ -46,9 +45,7 @@ function Home() {
       <MembersSection
         onSelectMember={(member) => setSelectedMember(member)}
       />
-      <NewsSection
-        onSelectNews={(news) => setSelectedNews(news)}
-      />
+      <NewsSection />
       <ContactSection />
     </>
   )

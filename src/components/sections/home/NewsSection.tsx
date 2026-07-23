@@ -1,12 +1,7 @@
 import { NEWS } from '@/data';
-import type { NewsItem } from '@/types';
 import NewsCard from './NewsCard';
 
-interface NewsSectionProps {
-  onSelectNews: (news: NewsItem) => void;
-}
-
-export default function NewsSection({ onSelectNews }: NewsSectionProps) {
+export default function NewsSection() {
   return (
     <section id="rounded-news" className="max-w-7xl mx-auto px-6 py-28 border-b border-outline">
 
@@ -21,7 +16,12 @@ export default function NewsSection({ onSelectNews }: NewsSectionProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {NEWS.map((item) => (
-          <NewsCard key={item.id} item={item} onSelect={onSelectNews} />
+          <NewsCard
+            key={item.id}
+            item={item}
+            to="/news/$newsId"
+            params={{ newsId: item.id }}
+          />
         ))}
       </div>
 

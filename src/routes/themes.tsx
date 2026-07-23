@@ -1,17 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import { FOCUS_AREAS } from '@/data'
 import { Badge } from '@/components/ui/badge'
-import { Bot, Brain, Shield, Eye, ArrowRight } from 'lucide-react'
-import { useLab } from '@/lab-context'
-import type { FocusArea } from '@/types'
+import { Bot, Brain, Shield, Eye, Network } from 'lucide-react'
 
 export const Route = createFileRoute('/themes')({
   component: Themes,
 })
 
 function Themes() {
-  const { setSelectedFocusArea } = useLab()
-
   const renderIcon = (name: string, className: string) => {
     switch (name) {
       case 'robot':
@@ -23,86 +19,138 @@ function Themes() {
       case 'eye':
         return <Eye className={className} />
       default:
-        return <Bot className={className} />
+        return <Network className={className} />
     }
   }
 
-  const handleSelectArea = (area: FocusArea) => {
-    setSelectedFocusArea(area)
-  }
-
   return (
-    <main id="main-content" className="max-w-7xl mx-auto px-6 py-28 min-h-screen">
-      <h1 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background uppercase mb-16">
-        Research Themes
-      </h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+    <main className="min-h-screen bg-background pb-28">
+      {/* Hero Section */}
+      <section className="w-full relative bg-surface border-b border-outline overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-1/2 left-0 w-1/2 h-full bg-[#F27D26] blur-[150px] rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+        </div>
+        <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 relative z-10 flex flex-col gap-6">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] border border-[#F27D26]/30 bg-[#F27D26]/10 w-fit px-3 py-1 rounded-full">
+            EXPLORE OUR DOMAINS
+          </span>
+          <h1 className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] uppercase max-w-5xl">
+            Intersecting technology with human behavior.
+          </h1>
+          <p className="font-sans text-lg md:text-xl text-on-background/60 leading-[1.6] max-w-3xl mt-4">
+            Our research operates at the boundaries of four core domains. Rather than studying these fields in isolation, we focus on the seams where they overlap, creating systems that are holistically integrated into human society.
+          </p>
+        </div>
+      </section>
+
+      {/* Detailed Themes Listing */}
+      <section className="max-w-7xl mx-auto px-6 py-12">
         {FOCUS_AREAS.map((area, index) => {
-          const colSpan = (index === 0 || index === 3)
-            ? 'lg:col-span-8 md:col-span-2'
-            : 'lg:col-span-4 md:col-span-1'
-
-          const isImageBg = !!area.imageUrl
-
-          if (isImageBg) {
-            return (
-              <div
-                key={area.id}
-                onClick={() => handleSelectArea(area)}
-                className={`group relative ${colSpan} h-[420px] cursor-pointer overflow-hidden border border-outline transition-colors duration-300 hover:border-on-background/20 rounded-2xl`}
-              >
-                <img
-                  src={area.imageUrl}
-                  alt={area.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale contrast-125 brightness-[0.35]"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/45 to-transparent rounded-2xl" />
-
-                <div className="absolute inset-0 p-8 flex flex-col justify-end text-white z-10">
-                  <div className="mb-4">
-                    <Badge>{area.type}</Badge>
-                  </div>
-                  <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-[#F27D26] transition-colors uppercase">
-                    {area.title}
-                  </h3>
-                  <p className="font-sans text-sm text-white/60 leading-[1.6] max-w-xl font-normal">
-                    {area.description}
-                  </p>
-                  <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    EXPLORE THEME <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
-                </div>
-              </div>
-            )
-          }
+          const isEven = index % 2 === 0;
 
           return (
-            <div
-              key={area.id}
-              onClick={() => handleSelectArea(area)}
-              className={`group ${colSpan} bg-surface hover:bg-surface-dim p-8 flex flex-col justify-between h-[420px] border border-outline cursor-pointer hover:border-[#F27D26]/40 transition-all duration-300 rounded-2xl`}
-            >
-              <div>
-                <div className="w-14 h-14 flex items-center justify-center bg-surface-container text-[#F27D26] border border-outline mb-8 transition-colors group-hover:border-[#F27D26]/40 rounded-2xl">
-                  {renderIcon(area.iconName, 'w-6 h-6')}
+            <div key={area.id} className="py-24 border-b border-outline last:border-b-0">
+              <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-16 items-center`}>
+                
+                {/* Visual Side */}
+                <div className="w-full lg:w-1/2">
+                  {area.imageUrl ? (
+                    <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden border border-outline shadow-2xl group">
+                      <img 
+                        src={area.imageUrl} 
+                        alt={area.title} 
+                        className="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:scale-105 transition-transform duration-700" 
+                        referrerPolicy="no-referrer"
+                      />
+                      <div className="absolute inset-0 bg-[#F27D26]/10 mix-blend-overlay transition-opacity group-hover:opacity-50" />
+                    </div>
+                  ) : (
+                    <div className={`relative aspect-[4/3] w-full rounded-3xl overflow-hidden border border-outline flex items-center justify-center group ${area.bgClass}`}>
+                       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+                       <div className="bg-background/20 p-12 rounded-full backdrop-blur-md border border-black/10 shadow-2xl group-hover:scale-110 transition-transform duration-700">
+                          {renderIcon(area.iconName, `w-32 h-32 ${area.textClass}`)}
+                       </div>
+                    </div>
+                  )}
                 </div>
-                <h3 className="font-sans text-2xl font-black tracking-tight mb-3 text-on-background uppercase">
-                  {area.title}
-                </h3>
-                <p className="font-sans text-sm leading-[1.6] text-on-background/60 font-normal">
-                  {area.description}
-                </p>
-              </div>
 
-              <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] group-hover:text-white mt-6 inline-flex items-center gap-1.5 transition-colors">
-                EXPLORE THEME <ArrowRight className="w-3.5 h-3.5" />
-              </span>
+                {/* Content Side */}
+                <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                  <div className="mb-6 flex items-center gap-4">
+                    <div className="w-12 h-12 flex items-center justify-center bg-surface-container text-[#F27D26] border border-outline rounded-xl">
+                      {renderIcon(area.iconName, 'w-5 h-5')}
+                    </div>
+                    <Badge variant="outline" className="font-mono uppercase tracking-widest text-[#F27D26] border-[#F27D26]/30">
+                      {area.type}
+                    </Badge>
+                  </div>
+                  
+                  <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background uppercase mb-6 leading-[1.1]">
+                    {area.title}
+                  </h2>
+                  
+                  <p className="font-sans text-xl text-on-background/80 font-medium leading-[1.6] mb-8 border-l-2 border-[#F27D26] pl-6 py-1">
+                    {area.description}
+                  </p>
+
+                  <div className="space-y-4 mb-10">
+                    <p className="font-sans text-base text-on-background/60 leading-[1.8]">
+                      {area.detailedDescription}
+                    </p>
+                  </div>
+
+                  {/* Active Projects */}
+                  <div>
+                    <h3 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-on-background/50 mb-6">
+                      Active Projects
+                    </h3>
+                    <ul className="space-y-4">
+                      {area.projects.map((project, i) => (
+                        <li key={i} className="flex gap-4 items-start group/project">
+                          <span className="font-mono text-xs text-[#F27D26] font-bold mt-1 group-hover/project:translate-x-1 transition-transform">
+                            0{i + 1}
+                          </span>
+                          <span className="font-sans text-sm text-on-background/80 leading-[1.6]">
+                            {project}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-10 pt-6 border-t border-outline flex items-center justify-between">
+                     <span className="font-mono text-[10px] font-black tracking-widest text-on-background/40 uppercase">
+                       Lead Researcher
+                     </span>
+                     <span className="font-sans font-bold text-on-background uppercase">
+                       {area.leadResearcher}
+                     </span>
+                  </div>
+
+                </div>
+              </div>
             </div>
-          )
+          );
         })}
-      </div>
+      </section>
+
+      {/* Outro */}
+      <section className="max-w-7xl mx-auto px-6 mt-20">
+        <div className="bg-surface border border-outline p-12 md:p-20 rounded-3xl text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[#F27D26]/5 mix-blend-overlay" />
+          <div className="relative z-10 max-w-3xl mx-auto">
+            <h2 className="font-sans text-3xl md:text-5xl font-black tracking-tighter text-on-background uppercase leading-[1.1] mb-6">
+              Ready to dive deeper?
+            </h2>
+            <p className="font-sans text-lg text-on-background/60 mb-10">
+              Explore our specific implementations of these themes in our peer-reviewed publications archive.
+            </p>
+            <Link to="/publications" className="inline-flex bg-[#F27D26] text-black font-sans font-black uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white transition-colors">
+              Read Our Publications
+            </Link>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }

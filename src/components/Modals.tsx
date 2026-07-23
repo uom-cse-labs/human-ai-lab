@@ -15,240 +15,70 @@ interface PaperReaderModalProps {
   onClose: () => void;
 }
 
-interface ChatMessage {
-  sender: 'user' | 'assistant';
-  text: string;
-  isWarning?: boolean;
-}
-
 export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      sender: 'assistant',
-      text: `Hello! I am your AIM Research Companion. I have indexed the research blueprint for "${paper.title}". You may inquire about its methodologies, real-world constraints, or local cultural implications.`
-    }
-  ]);
-  const [inputValue, setInputValue] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const [aiActive, setAiActive] = useState<boolean | null>(null);
-  const [warningMessage, setWarningMessage] = useState<string | null>(null);
-
-  const chatEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages, isTyping]);
-
-  const handleSendMessage = async (textToSend: string) => {
-    if (!textToSend.trim()) return;
-
-    const newMessages = [...messages, { sender: 'user' as const, text: textToSend }];
-    setMessages(newMessages);
-    setInputValue('');
-    setIsTyping(true);
-
-    try {
-      const response = await fetch('/api/summarize-paper', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ paperId: paper.id, customQuestion: textToSend })
-      });
-      const data = await response.json();
-
-      setIsTyping(false);
-      setAiActive(data.aiActive);
-
-      if (data.warning) {
-        setWarningMessage(data.warning);
-      } else {
-        setWarningMessage(null);
-      }
-
-      setMessages(prev => [
-        ...prev,
-        { sender: 'assistant', text: data.text }
-      ]);
-    } catch {
-      setIsTyping(false);
-      setMessages(prev => [
-        ...prev,
-        { sender: 'assistant', text: 'Error contacting research server. Please ensure the dev server is active.' }
-      ]);
-    }
-  };
-
-  const handleSuggestionClick = (suggestion: string) => {
-    handleSendMessage(suggestion);
-  };
-
-  const sampleQuestions = [
-    'How does this apply to South Asia?',
-    'Summarize the key methodology.',
-    'What are the real-world limitations?',
-  ];
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
       <div
-        className="bg-background border border-outline w-full max-w-6xl h-[90vh] md:h-[85vh] flex flex-col md:flex-row overflow-hidden animate-fade-in rounded-2xl"
+        className="bg-background border border-outline w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl relative"
       >
-        <div className="w-full md:w-3/5 border-b md:border-b-0 md:border-r border-outline flex flex-col h-1/2 md:h-full p-8 overflow-y-auto">
+        <Button 
+          variant="ghost" 
+          size="icon" 
+          onClick={onClose} 
+          className="absolute top-6 right-6 z-10 bg-surface border border-outline shadow-sm hover:bg-surface-dim rounded-full"
+        >
+          <X className="w-5 h-5" />
+        </Button>
+
+        <div className="w-full flex flex-col p-8 md:p-12 overflow-y-auto custom-scrollbar">
           <div className="flex items-center justify-between mb-6">
             <Badge>{paper.category}</Badge>
-            <span className="font-mono text-xs text-white/40 font-bold">
+            <span className="font-mono text-xs text-white/40 font-bold mr-10">
               YEAR: {paper.year}
             </span>
           </div>
 
-          <h2 className="font-sans text-2xl font-black text-white leading-tight tracking-tight mb-4 uppercase">
+          <h2 className="font-sans text-3xl md:text-4xl font-black text-white leading-tight tracking-tight mb-4 uppercase pr-10">
             {paper.title}
           </h2>
 
-          <p className="font-sans text-sm text-white/50 leading-relaxed italic mb-6">
+          <p className="font-sans text-base text-white/50 leading-relaxed italic mb-8">
             {paper.authors}
           </p>
 
-          <div className="bg-surface p-5 border-l-2 border-[#F27D26] mb-8 rounded-2xl">
-            <p className="font-mono text-[10px] font-black text-on-background/40 uppercase tracking-wider mb-1">
+          <div className="bg-surface p-6 border-l-2 border-[#F27D26] mb-10 rounded-2xl">
+            <p className="font-mono text-xs font-black text-on-background/40 uppercase tracking-wider mb-2">
               PUBLISHED IN / CITED AS:
             </p>
-            <p className="font-sans text-xs text-on-background/70 leading-relaxed">
+            <p className="font-sans text-sm text-on-background/80 leading-relaxed">
               {paper.citation}
             </p>
           </div>
 
-          <div className="space-y-4 mb-8">
-            <h3 className="font-mono text-[10px] font-black tracking-[0.2em] text-on-background/50 uppercase border-b border-outline pb-2">
+          <div className="space-y-4 mb-10">
+            <h3 className="font-mono text-xs font-black tracking-[0.2em] text-on-background/50 uppercase border-b border-outline pb-2">
               ABSTRACT
             </h3>
-            <p className="font-sans text-sm text-on-background/60 leading-[1.65] font-normal">
+            <p className="font-sans text-base text-on-background/70 leading-[1.7] font-normal">
               {paper.abstract}
             </p>
           </div>
 
-          <div className="space-y-4 mb-4">
-            <h3 className="font-mono text-[10px] font-black tracking-[0.2em] text-on-background/50 uppercase border-b border-outline pb-2">
+          <div className="space-y-4 mb-6">
+            <h3 className="font-mono text-xs font-black tracking-[0.2em] text-on-background/50 uppercase border-b border-outline pb-2">
               KEY RESEARCH FINDINGS
             </h3>
-            <ul className="space-y-3">
+            <ul className="space-y-4 pt-2">
               {paper.keyFindings.map((finding, idx) => (
-                <li key={idx} className="flex items-start gap-2.5">
-                  <span className="font-mono text-xs font-black text-[#F27D26] mt-0.5">•</span>
-                  <p className="font-sans text-sm text-on-background/60 leading-[1.5]">
+                <li key={idx} className="flex items-start gap-3">
+                  <CheckCircle className="w-5 h-5 text-[#F27D26] shrink-0 mt-0.5" />
+                  <p className="font-sans text-base text-on-background/70 leading-[1.6]">
                     {finding}
                   </p>
                 </li>
               ))}
             </ul>
           </div>
-        </div>
-
-        <div className="w-full md:w-2/5 flex flex-col h-1/2 md:h-full bg-surface-dim">
-
-          <div className="px-6 py-4 border-b border-outline bg-surface flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-[#F27D26] flex items-center justify-center text-black font-black italic rounded-full">
-                A.
-              </div>
-              <div>
-                <h4 className="font-sans text-xs font-black text-on-background uppercase tracking-wider">
-                  Research Companion
-                </h4>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className={`w-1.5 h-1.5 rounded-full ${aiActive === true ? 'bg-emerald-500 animate-pulse' : 'bg-[#F27D26] animate-pulse'}`} />
-                  <span className="font-mono text-[9px] text-on-background/40 tracking-wider">
-                    {aiActive === true ? 'GEMINI LIVE' : 'LOCAL SYNTHESIS'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <Button variant="ghost" size="icon-sm" onClick={onClose} title="Close Panel">
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'} max-w-full`}
-              >
-                <div className={`p-4 rounded-2xl max-w-[90%] font-sans text-xs leading-relaxed ${
-                  msg.sender === 'user'
-                    ? 'bg-on-background text-background font-semibold'
-                    : 'bg-surface text-on-background border border-outline'
-                }`}>
-                  <div className="whitespace-pre-line">
-                    {msg.text}
-                  </div>
-                </div>
-                <span className="font-mono text-[8px] tracking-wider text-on-background/40 mt-1 uppercase px-1">
-                  {msg.sender === 'user' ? 'YOU' : 'ASSISTANT'}
-                </span>
-              </div>
-            ))}
-
-            {isTyping && (
-              <div className="flex items-center gap-2 text-on-background/40 font-mono text-xs px-2 animate-pulse">
-                <Bot className="w-4 h-4 text-[#F27D26]" />
-                <span>AIM Assistant is reasoning...</span>
-              </div>
-            )}
-
-            {warningMessage && (
-              <div className="p-3 bg-surface border border-outline flex gap-2.5 text-on-background/60 rounded-2xl my-2">
-                <AlertCircle className="w-4 h-4 text-[#F27D26] shrink-0 mt-0.5" />
-                <div className="font-sans text-[11px] leading-normal font-normal">
-                  <strong>Developer Note:</strong> To activate conversational intelligence powered by Google Gemini, define a valid <code>GEMINI_API_KEY</code> in the Secrets dashboard.
-                </div>
-              </div>
-            )}
-
-            <div ref={chatEndRef} />
-          </div>
-
-          <div className="px-6 py-3 border-t border-outline bg-surface space-y-2">
-            <span className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] block uppercase">
-              RECOMMENDED QUESTIONS
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {sampleQuestions.map((q, idx) => (
-                <Button
-                  key={idx}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestionClick(q)}
-                >
-                  {q}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          <form
-            onSubmit={(e: FormEvent) => {
-              e.preventDefault();
-              handleSendMessage(inputValue);
-            }}
-            className="p-4 border-t border-outline bg-surface flex gap-2"
-          >
-            <Input
-              ref={searchInputRef}
-              placeholder="Ask a custom scholarly question..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <Button
-              type="submit"
-              disabled={!inputValue.trim()}
-              size="icon"
-              title="Send Message"
-            >
-              <Send className="w-4 h-4" />
-            </Button>
-          </form>
-
         </div>
       </div>
     </div>

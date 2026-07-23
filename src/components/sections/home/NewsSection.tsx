@@ -1,11 +1,7 @@
 import { NEWS } from '@/data';
-import type { NewsItem } from '@/types';
+import { Link } from '@tanstack/react-router';
 
-interface NewsSectionProps {
-  onSelectNews: (news: NewsItem) => void;
-}
-
-export default function NewsSection({ onSelectNews }: NewsSectionProps) {
+export default function NewsSection() {
   return (
     <section id="rounded-news" className="max-w-7xl mx-auto px-6 py-28 border-b border-outline">
 
@@ -20,9 +16,10 @@ export default function NewsSection({ onSelectNews }: NewsSectionProps) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {NEWS.map((item) => (
-          <div
+          <Link
             key={item.id}
-            onClick={() => onSelectNews(item)}
+            to="/news/$newsId"
+            params={{ newsId: item.id }}
             className="group cursor-pointer flex flex-col"
           >
             <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-outline bg-surface rounded-2xl">
@@ -46,7 +43,7 @@ export default function NewsSection({ onSelectNews }: NewsSectionProps) {
             <p className="font-sans text-sm text-on-background/60 leading-[1.6] font-normal">
               {item.content}
             </p>
-          </div>
+          </Link>
         ))}
       </div>
 

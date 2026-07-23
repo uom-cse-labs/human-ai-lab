@@ -44,9 +44,7 @@ function Home() {
       <MembersSection
         onSelectMember={(member) => setSelectedMember(member)}
       />
-      <NewsSection
-        onSelectNews={(news) => setSelectedNews(news)}
-      />
+      <NewsSection />
     </>
   )
 }

@@ -1,49 +1,118 @@
-import SectionHeader from "@/components/sections/SectionHeader"
-
-interface Theme {
-  title: string
-  description: string
-  image: string
-}
+import { FOCUS_AREAS } from '@/data';
+import type { FocusArea } from '@/types';
+import { Bot, Brain, Shield, Eye, ArrowRight } from 'lucide-react';
 
 interface ResearchThemesSectionProps {
-  themes: Theme[]
+  onSelectArea: (area: FocusArea) => void;
+  onViewAllClick: () => void;
 }
 
-export default function ResearchThemesSection({
-  themes,
-}: ResearchThemesSectionProps) {
+export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: ResearchThemesSectionProps) {
+  const renderIcon = (name: string, className: string) => {
+    switch (name) {
+      case 'robot':
+        return <Bot className={className} />;
+      case 'brain':
+        return <Brain className={className} />;
+      case 'shield':
+        return <Shield className={className} />;
+      case 'eye':
+        return <Eye className={className} />;
+      default:
+        return <Bot className={className} />;
+    }
+  };
+
   return (
-    <section id="research-themes" className="bg-bg-secondary py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader title="Research Themes" />
-        <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {themes.map((theme) => (
-            <div
-              key={theme.title}
-              className="overflow-hidden rounded-3xl border border-border-token bg-white transition-colors duration-200 hover:bg-bg-muted"
-            >
-              <img
-                src={theme.image}
-                alt=""
-                className="aspect-video w-full object-cover"
-                loading="lazy"
-              />
-              <div className="p-8">
-                <h3 className="text-2xl font-semibold text-neutral-900">
-                  {theme.title}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-secondary">
-                  {theme.description}
-                </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-caption font-semibold uppercase tracking-widest text-brand transition-all hover:gap-3">
-                  Learn More
+    <section id="rounded-focus-areas" className="bg-background py-28 border-b border-outline">
+      <div className="max-w-7xl mx-auto px-6">
+
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
+          <div>
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+              AREAS OF INVESTIGATION
+            </span>
+            <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 uppercase select-none">
+              Research Themes
+            </h2>
+          </div>
+          <button
+            onClick={onViewAllClick}
+            className="flex items-center gap-2 font-sans text-xs font-black uppercase tracking-[0.2em] text-on-background/60 hover:text-[#F27D26] group cursor-pointer transition-colors"
+          >
+            VIEW ALL THEMES
+            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+          {FOCUS_AREAS.map((area, index) => {
+            const colSpan = (index === 0 || index === 3)
+              ? 'lg:col-span-8 md:col-span-2'
+              : 'lg:col-span-4 md:col-span-1';
+
+            const isImageBg = !!area.imageUrl;
+
+            if (isImageBg) {
+              return (
+                <div
+                  key={area.id}
+                  onClick={() => onSelectArea(area)}
+                  className={`group relative ${colSpan} h-[420px] cursor-pointer overflow-hidden border border-outline transition-colors duration-300 hover:border-on-background/20 rounded-2xl`}
+                >
+                  <img
+                    src={area.imageUrl}
+                    alt={area.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale contrast-125 brightness-[0.35]"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/45 to-transparent rounded-2xl" />
+
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end text-white z-10">
+                    <span className="font-mono text-[9px] font-black uppercase tracking-[0.2em] text-black bg-[#F27D26] self-start px-3 py-1.5 mb-4 select-none rounded-full">
+                      {area.type}
+                    </span>
+                    <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-[#F27D26] transition-colors uppercase">
+                      {area.title}
+                    </h3>
+                    <p className="font-sans text-sm text-white/60 leading-[1.6] max-w-xl font-normal">
+                      {area.description}
+                    </p>
+                    <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      EXPLORE THEME <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div
+                key={area.id}
+                onClick={() => onSelectArea(area)}
+                className={`group ${colSpan} bg-surface hover:bg-surface-dim p-8 flex flex-col justify-between h-[420px] border border-outline cursor-pointer hover:border-[#F27D26]/40 transition-all duration-300 rounded-2xl`}
+              >
+                <div>
+                  <div className="w-14 h-14 flex items-center justify-center bg-surface-container text-[#F27D26] border border-outline mb-8 transition-colors group-hover:border-[#F27D26]/40 rounded-2xl">
+                    {renderIcon(area.iconName, 'w-6 h-6')}
+                  </div>
+                  <h3 className="font-sans text-2xl font-black tracking-tight mb-3 text-on-background uppercase">
+                    {area.title}
+                  </h3>
+                  <p className="font-sans text-sm leading-[1.6] text-on-background/60 font-normal">
+                    {area.description}
+                  </p>
+                </div>
+
+                <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] group-hover:text-white mt-6 inline-flex items-center gap-1.5 transition-colors">
+                  EXPLORE THEME <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
       </div>
     </section>
-  )
+  );
 }

@@ -1,76 +1,55 @@
-import SectionHeader from "@/components/sections/SectionHeader"
-
-interface NewsItem {
-  date: string
-  title: string
-  description: string
-  image: string
-  featured: boolean
-}
+import { NEWS } from '@/data';
+import type { NewsItem } from '@/types';
 
 interface NewsSectionProps {
-  news: NewsItem[]
+  onSelectNews: (news: NewsItem) => void;
 }
 
-export default function NewsSection({ news }: NewsSectionProps) {
-  const featuredNews = news.find((n) => n.featured)!
-  const listNews = news.filter((n) => !n.featured)
-
+export default function NewsSection({ onSelectNews }: NewsSectionProps) {
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader title="Latest News" />
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="relative overflow-hidden rounded-3xl lg:col-span-7">
-            <img
-              src={featuredNews.image}
-              alt={featuredNews.title}
-              className="aspect-[4/3] w-full object-cover lg:aspect-[3/2]"
-              loading="lazy"
-            />
-            <span className="absolute right-4 top-4 z-10 rounded-full bg-white/90 px-3 py-1 text-caption font-semibold uppercase tracking-widest text-text-secondary">
-              Announcement
-            </span>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-8">
-              <p className="text-caption uppercase tracking-widest text-white/80">
-                {featuredNews.date}
-              </p>
-              <h3 className="mt-2 text-2xl font-semibold text-white">
-                {featuredNews.title}
-              </h3>
-              <p className="mt-2 max-w-lg text-sm leading-relaxed text-white/90">
-                {featuredNews.description}
-              </p>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 lg:col-span-5">
-            {listNews.map((item, i) => (
-              <div
-                key={item.title}
-                className={`flex items-start gap-4 pb-6 ${i < listNews.length - 1 ? "border-b border-divider-token" : ""}`}
-              >
-                <img
-                  src={item.image}
-                  alt=""
-                  className="h-20 w-20 shrink-0 rounded-2xl object-cover"
-                  loading="lazy"
-                />
-                <div className="min-w-0 flex-1">
-                  <p className="text-caption uppercase tracking-widest text-text-muted">
-                    {item.date}
-                  </p>
-                  <h3 className="mt-1 text-base font-semibold leading-snug text-neutral-900">
-                    {item.title}
-                  </h3>
-                  <p className="mt-1 text-sm leading-relaxed text-text-secondary">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    <section id="rounded-news" className="max-w-7xl mx-auto px-6 py-28 border-b border-outline">
+
+      <div className="mb-16">
+        <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+          LABORATORY DISPATCHES
+        </span>
+        <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 uppercase select-none">
+          News from the Lab
+        </h2>
       </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        {NEWS.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => onSelectNews(item)}
+            className="group cursor-pointer flex flex-col"
+          >
+            <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-outline bg-surface rounded-2xl">
+              <img
+                src={item.imageUrl}
+                alt={item.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102 filter grayscale contrast-110 brightness-95"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-[#F27D26]/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+            </div>
+
+            <span className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.2em] uppercase mb-3">
+              {item.date}
+            </span>
+
+            <h3 className="font-sans text-xl font-black text-on-background group-hover:text-[#F27D26] transition-colors mb-3 tracking-tight leading-snug uppercase">
+              {item.title}
+            </h3>
+
+            <p className="font-sans text-sm text-on-background/60 leading-[1.6] font-normal">
+              {item.content}
+            </p>
+          </div>
+        ))}
+      </div>
+
     </section>
-  )
+  );
 }

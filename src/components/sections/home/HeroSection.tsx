@@ -1,58 +1,67 @@
-import { Button } from "@/components/ui/button"
+interface HeroSectionProps {
+  onExploreResearch: () => void;
+  onViewPublications: () => void;
+}
 
-export default function HeroSection() {
+export default function HeroSection({ onExploreResearch, onViewPublications }: HeroSectionProps) {
   return (
-    <section className="relative">
-      <div className="absolute inset-x-0 top-0 z-20 h-1 bg-brand" />
-      <div className="mx-auto max-w-7xl px-4 py-24 lg:px-8 lg:py-32">
-        <div className="relative overflow-hidden rounded-3xl bg-neutral-900">
-          <img
-            src="https://images.unsplash.com/photo-1573164574472-797cdf4a583a?w=1440&q=85&auto=format&fit=crop"
-            alt=""
-            className="absolute inset-0 h-full w-full object-cover"
-            loading="eager"
-            fetchPriority="high"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
-          <div className="relative z-10 px-8 py-20 lg:px-16 lg:py-28">
-            <p className="text-caption uppercase tracking-widest text-white/65">
-              Human-AI Lab — University of Moratuwa
-            </p>
-            <h1 className="mt-4 max-w-4xl text-hero font-bold leading-tight text-white lg:text-6xl">
-              Human-Centered Artificial Intelligence for Real-World Impact
-            </h1>
-            <p className="mt-6 max-w-2xl text-lead leading-relaxed text-white/80">
-              The Human-AI Lab at the University of Moratuwa explores how
-              artificial intelligence can be designed, evaluated, and deployed
-              to support people, organizations, and society through
-              responsible, transparent, and human-centered research.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Button
-                className="px-8 text-base"
-                onClick={() =>
-                  document
-                    .getElementById("research-themes")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                Explore Research
-              </Button>
-              <Button
-                variant="light"
-                className="px-8 text-base"
-                onClick={() =>
-                  document
-                    .getElementById("publications")
-                    ?.scrollIntoView({ behavior: "smooth" })
-                }
-              >
-                View Publications
-              </Button>
-            </div>
+    <section
+      id="rounded-hero"
+      className="relative min-h-[90vh] flex items-center bg-background overflow-hidden py-24 border-b border-outline"
+    >
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
+      </div>
+
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+        <img
+          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=2000"
+          alt=""
+          className="w-full h-full object-cover object-center filter grayscale contrast-100 opacity-25 brightness-110"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="lg:col-span-11 xl:col-span-10 flex flex-col items-start">
+
+          <div className="mb-8 flex items-center gap-3 animate-fade-in">
+            <span className="w-12 h-[2px] bg-[#F27D26]" />
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+              SRI LANKA'S PREMIER HUB FOR AI RESEARCH
+            </span>
           </div>
+
+          <h1
+            className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] mb-10 uppercase select-none"
+          >
+            Advancing the <span className="text-[#F27D26] italic">Human</span> <span className="text-on-background relative inline-block underline decoration-[#F27D26] decoration-[6px] md:decoration-[10px] underline-offset-[8px] md:underline-offset-[14px]">Dimension</span> of AI.
+          </h1>
+
+          <p
+            className="font-sans text-lg md:text-xl text-on-background/60 leading-[1.6] max-w-3xl mb-12 font-normal"
+          >
+            AIM at the University of Moratuwa bridges the gap between complex neural architectures and core human values through rigorous, multidisciplinary scientific exploration.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+            <button
+              onClick={onExploreResearch}
+              className="px-10 py-5 bg-[#F27D26] text-black font-sans text-xs font-black tracking-[0.2em] hover:bg-on-background hover:text-background transition-all duration-300 rounded-full text-center cursor-pointer uppercase"
+            >
+              EXPLORE THEMES
+            </button>
+            <button
+              onClick={onViewPublications}
+              className="px-10 py-5 bg-transparent text-on-background border border-outline font-sans text-xs font-black tracking-[0.2em] hover:bg-on-background hover:text-background hover:border-on-background transition-all duration-300 rounded-full text-center cursor-pointer uppercase"
+            >
+              PUBLICATIONS
+            </button>
+          </div>
+
         </div>
       </div>
     </section>
-  )
+  );
 }

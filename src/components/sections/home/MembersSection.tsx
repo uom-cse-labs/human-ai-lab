@@ -1,70 +1,55 @@
-import SectionHeader from "@/components/sections/SectionHeader"
+import { TEAM_MEMBERS } from '@/data';
+import type { TeamMember } from '@/types';
 
-export default function MembersSection() {
+interface MembersSectionProps {
+  onSelectMember: (member: TeamMember) => void;
+}
+
+export default function MembersSection({ onSelectMember }: MembersSectionProps) {
   return (
-    <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <SectionHeader title="Meet Our Lab Members" />
-        <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-12">
-          <div className="rounded-3xl border border-border-token bg-bg-secondary p-8 lg:col-span-7">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
-              <div className="size-24 shrink-0 overflow-hidden rounded-full border-2 border-brand/20">
-                <img
-                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=200&q=80&auto=format&fit=crop"
-                  alt=""
-                  className="h-full w-full object-cover"
-                  loading="lazy"
-                />
-              </div>
-              <div>
-                <span className="text-caption font-semibold uppercase tracking-widest text-text-muted">
-                  Lab Director
-                </span>
-                <h3 className="mt-2 text-xl font-semibold text-neutral-900">
-                  Eng. Prof. Indika Perera, PhD (St Andrews), CEng
-                </h3>
-                <p className="mt-1 text-base text-text-secondary">
-                  Professor, Department of Computer Science and Engineering
-                </p>
-                <p className="mt-4 text-base leading-relaxed text-text-secondary">
-                  Research interests include human-centered AI, machine
-                  learning, software engineering, and intelligent systems.
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6 lg:col-span-5">
-            <div className="rounded-3xl border border-border-token p-8 transition-colors duration-200 hover:bg-bg-muted">
-              <span className="text-caption font-semibold uppercase tracking-widest text-text-muted">
-                Faculty
-              </span>
-              <p className="mt-4 text-base leading-relaxed text-text-secondary">
-                Short profiles introducing academic staff affiliated with the
-                Human-AI Lab.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-border-token p-8 transition-colors duration-200 hover:bg-bg-muted">
-              <span className="text-caption font-semibold uppercase tracking-widest text-text-muted">
-                Postgraduate Researchers
-              </span>
-              <p className="mt-4 text-base leading-relaxed text-text-secondary">
-                MSc and PhD researchers working on ongoing research projects
-                across multiple AI disciplines.
-              </p>
-            </div>
-            <div className="rounded-3xl border border-border-token p-8 transition-colors duration-200 hover:bg-bg-muted">
-              <span className="text-caption font-semibold uppercase tracking-widest text-text-muted">
-                Undergraduate Research Assistants
-              </span>
-              <p className="mt-4 text-base leading-relaxed text-text-secondary">
-                Students contributing to active research through software
-                development, experimentation, literature reviews, and data
-                analysis.
-              </p>
-            </div>
-          </div>
+    <section id="rounded-leadership" className="bg-background py-28 border-b border-outline">
+      <div className="max-w-7xl mx-auto px-6">
+
+        <div className="text-center mb-16">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+            PIONEERS & ADVISORS
+          </span>
+          <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 uppercase select-none">
+            Research Leadership
+          </h2>
         </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {TEAM_MEMBERS.map((member) => (
+            <div
+              key={member.id}
+              onClick={() => onSelectMember(member)}
+              className="group cursor-pointer flex flex-col"
+            >
+              <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 border border-outline bg-surface rounded-2xl">
+                <img
+                  src={member.imageUrl}
+                  alt={member.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102 grayscale contrast-[1.1] brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-[#F27D26]/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+              </div>
+
+              <h3 className="font-sans text-lg font-black text-on-background group-hover:text-[#F27D26] transition-colors leading-snug uppercase tracking-tight">
+                {member.name}
+              </h3>
+              <p className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.2em] uppercase mt-1 mb-3">
+                {member.title}
+              </p>
+              <p className="font-sans text-xs text-on-background/60 leading-[1.6] font-normal">
+                {member.expertise}
+              </p>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
-  )
+  );
 }

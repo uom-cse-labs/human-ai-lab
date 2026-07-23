@@ -1,33 +1,51 @@
-import SectionHeader from "@/components/sections/SectionHeader"
-
 export default function MissionSection() {
+  const stats = [
+    { value: '12+', label: 'ACTIVE PROJECTS' },
+    { value: '45', label: 'PUBLICATIONS' },
+    { value: '08', label: 'PHD FELLOWS' },
+  ];
+
   return (
-    <section className="relative bg-white py-24">
-      <div className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <div className="relative overflow-hidden rounded-3xl">
-              <img
-                src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80&auto=format&fit=crop"
-                alt="Abstract representation of artificial intelligence"
-                className="aspect-[4/3] w-full object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-brand/10" />
+    <section
+      id="rounded-mission"
+      className="max-w-7xl mx-auto px-6 py-28 grid grid-cols-1 lg:grid-cols-12 gap-16 border-b border-outline"
+    >
+      <div className="lg:col-span-4">
+        <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background leading-[1.1] uppercase select-none">
+          Pioneering ethical AI for a human-centric future.
+        </h2>
+      </div>
+
+      <div className="lg:col-span-8 flex flex-col justify-between">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="space-y-6">
+            <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
+              Located in the heart of Sri Lanka's premier technological university, Human-Centered AI (AIM) is dedicated to ensuring that the next generation of intelligent systems serves the needs of people and society.
+            </p>
+            <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
+              Our mission is to investigate how AI interacts with human behavior, culture, and ethics. We don't just build faster algorithms; we design systems that are transparent, fair, and deeply integrated with human decision-making processes.
+            </p>
+          </div>
+          <div>
+            <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
+              Through interdisciplinary collaboration across computer science, psychology, and design, our researchers are tackling the most pressing challenges of our digital age—from bias in automated hiring to the cognitive impact of social robotics.
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-4 pt-12 border-t border-outline">
+          {stats.map((stat, i) => (
+            <div key={i} className="flex flex-col">
+              <span className="font-sans text-5xl md:text-6xl font-black text-[#F27D26] tracking-tighter">
+                {stat.value}
+              </span>
+              <span className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] mt-2 uppercase">
+                {stat.label}
+              </span>
             </div>
-          </div>
-          <div className="flex flex-col justify-center lg:col-span-6">
-            <SectionHeader title="Mission Statement" />
-            <blockquote className="mt-8 border-l-4 border-brand pl-8">
-              <p className="text-2xl leading-relaxed italic text-text-secondary">
-                To advance human-centered artificial intelligence through
-                impactful research, responsible innovation, and education that
-                empowers people and society.
-              </p>
-            </blockquote>
-          </div>
+          ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

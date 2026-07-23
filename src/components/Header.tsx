@@ -1,6 +1,8 @@
 import { Search, Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Link, useNavigate } from '@tanstack/react-router';
+import { cn } from '@/lib/utils';
 
 interface HeaderProps {
   onContactClick: () => void;
@@ -10,25 +12,21 @@ interface HeaderProps {
 
 export default function Header({ onContactClick, onSearchClick, onNavigate }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
-    { label: 'WHO WE ARE', id: 'rounded-mission' },
-    { label: 'RESEARCH THEMES', id: 'rounded-focus-areas' },
-    { label: 'PUBLICATIONS', id: 'rounded-publications' },
-    { label: 'PIONEERS', id: 'rounded-leadership' },
-    { label: 'DISPATCHES', id: 'rounded-news' },
+    { label: 'WHO WE ARE', route: '/about' },
+    { label: 'RESEARCH THEMES', route: '/themes' },
+    { label: 'PUBLICATIONS', route: '/publications' },
+    { label: 'PIONEERS', route: '/pioneers' },
+    { label: 'DISPATCHES', route: '/dispatches' },
   ];
-
-  const handleNavItemClick = (id: string) => {
-    onNavigate(id);
-    setMobileMenuOpen(false);
-  };
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/95 border-b border-outline backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-        <div
-          onClick={() => handleNavItemClick('rounded-hero')}
+        <Link
+          to="/"
           className="flex items-center gap-3 cursor-pointer group"
         >
           <div className="w-10 h-10 bg-[#F27D26] flex items-center justify-center font-sans font-black text-black text-base tracking-tighter italic transition-transform group-hover:scale-105 rounded-full">
@@ -42,18 +40,17 @@ export default function Header({ onContactClick, onSearchClick, onNavigate }: He
               MORATUWA
             </span>
           </div>
-        </div>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
-            <Button
+            <Link
               key={item.label}
-              variant="ghost"
-              size="sm"
-              onClick={() => handleNavItemClick(item.id)}
+              to={item.route}
+              className={buttonVariants({ variant: 'ghost', size: 'sm' })}
             >
               {item.label}
-            </Button>
+            </Link>
           ))}
         </nav>
 
@@ -79,15 +76,14 @@ export default function Header({ onContactClick, onSearchClick, onNavigate }: He
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-outline bg-background px-6 py-6 flex flex-col gap-4 animate-fade-in">
           {navItems.map((item) => (
-            <Button
+            <Link
               key={item.label}
-              variant="ghost"
-              size="sm"
-              onClick={() => handleNavItemClick(item.id)}
-              className="justify-start py-2.5"
+              to={item.route}
+              onClick={() => setMobileMenuOpen(false)}
+              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), "justify-start py-2.5")}
             >
               {item.label}
-            </Button>
+            </Link>
           ))}
           <div className="h-px bg-outline my-2" />
           <Button

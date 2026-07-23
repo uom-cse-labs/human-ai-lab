@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as DispatchesRouteImport } from './routes/dispatches'
+import { Route as PioneersRouteImport } from './routes/pioneers'
+import { Route as PublicationsRouteImport } from './routes/publications'
+import { Route as ThemesRouteImport } from './routes/themes'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +26,75 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DispatchesRoute = DispatchesRouteImport.update({
+  id: '/dispatches',
+  path: '/dispatches',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PioneersRoute = PioneersRouteImport.update({
+  id: '/pioneers',
+  path: '/pioneers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PublicationsRoute = PublicationsRouteImport.update({
+  id: '/publications',
+  path: '/publications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ThemesRoute = ThemesRouteImport.update({
+  id: '/themes',
+  path: '/themes',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dispatches': typeof DispatchesRoute
+  '/pioneers': typeof PioneersRoute
+  '/publications': typeof PublicationsRoute
+  '/themes': typeof ThemesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dispatches': typeof DispatchesRoute
+  '/pioneers': typeof PioneersRoute
+  '/publications': typeof PublicationsRoute
+  '/themes': typeof ThemesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/dispatches': typeof DispatchesRoute
+  '/pioneers': typeof PioneersRoute
+  '/publications': typeof PublicationsRoute
+  '/themes': typeof ThemesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    '/' | '/about' | '/dispatches' | '/pioneers' | '/publications' | '/themes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/dispatches' | '/pioneers' | '/publications' | '/themes'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/dispatches'
+    | '/pioneers'
+    | '/publications'
+    | '/themes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DispatchesRoute: typeof DispatchesRoute
+  PioneersRoute: typeof PioneersRoute
+  PublicationsRoute: typeof PublicationsRoute
+  ThemesRoute: typeof ThemesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +113,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dispatches': {
+      id: '/dispatches'
+      path: '/dispatches'
+      fullPath: '/dispatches'
+      preLoaderRoute: typeof DispatchesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pioneers': {
+      id: '/pioneers'
+      path: '/pioneers'
+      fullPath: '/pioneers'
+      preLoaderRoute: typeof PioneersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/publications': {
+      id: '/publications'
+      path: '/publications'
+      fullPath: '/publications'
+      preLoaderRoute: typeof PublicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/themes': {
+      id: '/themes'
+      path: '/themes'
+      fullPath: '/themes'
+      preLoaderRoute: typeof ThemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DispatchesRoute: DispatchesRoute,
+  PioneersRoute: PioneersRoute,
+  PublicationsRoute: PublicationsRoute,
+  ThemesRoute: ThemesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

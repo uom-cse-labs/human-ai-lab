@@ -25,14 +25,36 @@ export interface FocusArea {
   leadResearcher: string;
 }
 
+export interface SocialLinks {
+  email?: string;
+  linkedin?: string;
+  scholar?: string;
+}
+
 export interface TeamMember {
   id: string;
   name: string;
   role: string;
-  title: 'DIRECTOR, AIM' | 'LEAD RESEARCHER' | 'PRINCIPAL INVESTIGATOR' | 'SENIOR ADVISOR';
+  title: string;
   bio: string;
   expertise: string;
   imageUrl: string;
+  socials?: SocialLinks;
+}
+
+export interface StudentResearcher {
+  name: string;
+  role: string;
+  topic?: string;
+  socials?: SocialLinks;
+}
+
+export interface Alumni {
+  name: string;
+  role: string;
+  period?: string;
+  currentPosition?: string;
+  socials?: SocialLinks;
 }
 
 export interface NewsItem {

@@ -1,4 +1,5 @@
-import type { Publication, FocusArea, TeamMember, NewsItem } from './types';
+import type { Publication, FocusArea, TeamMember, NewsItem, StudentResearcher, Alumni } from './types';
+import teamData from './data.json';
 
 export const PUBLICATIONS: Publication[] = [
   {
@@ -150,44 +151,7 @@ export const FOCUS_AREAS: FocusArea[] = [
   }
 ];
 
-export const TEAM_MEMBERS: TeamMember[] = [
-  {
-    id: 'member-1',
-    name: 'Prof. Indika Perera',
-    role: 'DIRECTOR, AIM',
-    title: 'DIRECTOR, AIM',
-    bio: 'Prof. Rohan Silva has over 25 years of research experience in distributed systems and intelligent software architectures. He spearheaded the creation of AIM to unite machine learning models with human behavioral sciences. He previously worked as an advisor to the Ministry of Technology on state-level infrastructure digitization and currently chairs the University\'s AI Task Force.',
-    expertise: 'Expertise in Multi-Agent Systems and Cognitive Architecture.',
-    imageUrl: 'https://res.cloudinary.com/bajgh4wo/image/upload/v1784541907/prof_indika_bqphbe.jpg'
-  },
-  {
-    id: 'member-2',
-    name: 'Dr. Anjali Kumara',
-    role: 'LEAD RESEARCHER',
-    title: 'LEAD RESEARCHER',
-    bio: 'Dr. Anjali Kumara completed her PhD at Oxford University focusing on the socio-technical impacts of algorithmic automation in developing economies. She serves on international AI policy panels and actively collaborates with civic tech groups to draft human-centered AI legislation. Her research focuses on the intersection of data ethics, post-colonial geography, and public policy.',
-    expertise: 'Specializing in AI Ethics and Policy in the Global South.',
-    imageUrl: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400'
-  },
-  {
-    id: 'member-3',
-    name: 'Dr. Tharindu Wick',
-    role: 'PRINCIPAL INVESTIGATOR',
-    title: 'PRINCIPAL INVESTIGATOR',
-    bio: 'Dr. Tharindu Wick leads the Robotics and Human-Machine Interface labs at the University of Moratuwa. His research concentrates on developing low-cost, lightweight sensors and physical actuators that enable safer, more collaborative interactions between elders, field workers, and autonomous machinery. He is a passionate advocate for physical-first interface designs.',
-    expertise: 'Pioneering work in Affective Computing and User Experience.',
-    imageUrl: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400'
-  },
-  {
-    id: 'member-4',
-    name: 'Prof. Emeritus Siri',
-    role: 'SENIOR ADVISOR',
-    title: 'SENIOR ADVISOR',
-    bio: 'Prof. Siri is a pioneer of computer science in Sri Lanka, having introduced the country\'s first software engineering curricula in the 1980s. His current advisory focus is on archiving and preserving local linguistic histories and cultural databases using decentralized technologies, ensuring future generations have clean, representative datasets to train localized systems.',
-    expertise: 'Foundational contributor to AI research in Sri Lanka.',
-    imageUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400'
-  }
-];
+export const TEAM_MEMBERS: TeamMember[] = teamData.teamMembers;
 
 export const NEWS: NewsItem[] = [
   {
@@ -207,3 +171,9 @@ export const NEWS: NewsItem[] = [
     details: 'The Presidential Commission on Science & Technology awarded Dr. Kumara for her groundbreaking "HITL Healthcare-Audit Protocol". The framework is currently deployed in regional rural clinics to monitor diagnostics equality, protecting patient data sovereignty while ensuring fair algorithmically-driven vaccine distribution.'
   }
 ];
+
+export const FOUNDING_RAS: TeamMember[] = teamData.foundingRAs;
+
+export const STUDENT_RESEARCHERS: StudentResearcher[] = teamData.studentResearchers;
+
+export const ALUMNI: Alumni[] = teamData.alumni;

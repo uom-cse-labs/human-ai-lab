@@ -2,23 +2,23 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: oklch(52.91% 0.221 262.13);
-  --color-primary-hover: oklch(45.07% 0.186 262.16);
-  --color-primary-light: oklch(70.42% 0.131 263.04);
-  --color-secondary: oklch(53.49% 0.156 262.43);
-  --color-tertiary: oklch(20.44% 0.022 263.92);
+  --color-primary: #151B54;
+  --color-primary-hover: #1f2680;
+  --color-primary-light: #eef0f7;
+  --color-secondary: #2a3a8c;
+  --color-tertiary: #0d0f2b;
   --color-background: #ffffff;
-  --color-on-background: oklch(17.23% 0.016 261.51);
-  --color-surface: oklch(95.73% 0.007 260.73);
-  --color-surface-dim: oklch(91.49% 0.015 264.49);
+  --color-on-background: #0d0f2b;
+  --color-surface: #f5f6fa;
+  --color-surface-dim: #e8eaf2;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: oklch(95.73% 0.007 260.73);
-  --color-surface-container: oklch(91.49% 0.015 264.49);
-  --color-surface-container-high: oklch(82.78% 0.032 263.49);
-  --color-surface-container-highest: oklch(73.93% 0.048 263.62);
-  --color-outline: oklch(73.93% 0.048 263.62);
-  --color-outline-variant: oklch(82.78% 0.032 263.49);
-  --color-overlay: oklch(16.12% 0.044 258.73);
+  --color-surface-container-low: #f5f6fa;
+  --color-surface-container: #e8eaf2;
+  --color-surface-container-high: #d5d8e4;
+  --color-surface-container-highest: #c2c6d6;
+  --color-outline: #c2c6d6;
+  --color-outline-variant: #d5d8e4;
+  --color-overlay: rgba(13, 15, 43, 0.6);
 
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, serif;

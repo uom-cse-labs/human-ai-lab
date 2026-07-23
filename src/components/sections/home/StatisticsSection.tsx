@@ -11,7 +11,7 @@ export default function StatisticsSection({
   stats,
 }: StatisticsSectionProps) {
   return (
-    <section className="relative bg-brand py-24">
+    <section className="relative bg-primary py-24">
       <div className="absolute inset-0 overflow-hidden">
         <svg
           className="h-full w-full opacity-5"

@@ -6,12 +6,12 @@ interface EquipmentSectionProps {
 
 export default function EquipmentSection({ items }: EquipmentSectionProps) {
   return (
-    <section className="bg-bg-secondary py-24">
+    <section className="bg-surface-dim py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <SectionHeader title="Physical Lab Equipment" />
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <div className="overflow-hidden rounded-3xl border border-border-token">
+            <div className="overflow-hidden rounded-3xl border border-outline">
               <img
                 src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=600&q=80&auto=format&fit=crop"
                 alt="Research laboratory equipment"
@@ -21,7 +21,7 @@ export default function EquipmentSection({ items }: EquipmentSectionProps) {
             </div>
           </div>
           <div className="lg:col-span-7">
-            <p className="text-lead leading-relaxed text-text-secondary">
+            <p className="text-lead leading-relaxed text-on-background/60">
               The Human-AI Lab is developing a collection of computing
               resources and specialized hardware to support research
               activities.
@@ -30,7 +30,7 @@ export default function EquipmentSection({ items }: EquipmentSectionProps) {
               {items.map((item) => (
                 <span
                   key={item}
-                  className="rounded-full border border-border-token bg-white px-5 py-3 text-sm text-text-secondary transition-colors duration-200 hover:border-brand/30 hover:text-brand"
+                  className="rounded-full border border-outline bg-background px-5 py-3 text-sm text-on-background/60 transition-colors duration-200 hover:border-primary/30 hover:text-primary"
                 >
                   {item}
                 </span>

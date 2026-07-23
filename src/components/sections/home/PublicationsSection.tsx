@@ -41,7 +41,7 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
 
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
         <div className="max-w-2xl">
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
             SCHOLARLY OUTPUT
           </span>
           <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 mb-4 uppercase select-none">
@@ -62,7 +62,7 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
           </Button>
         ) : (
           <div className="flex items-center gap-2 w-full lg:w-96 bg-surface border border-outline py-2.5 px-4 self-start lg:self-end animate-fade-in rounded-full">
-            <Search className="w-4 h-4 text-[#F27D26]" />
+            <Search className="w-4 h-4 text-primary" />
             <input
               ref={searchInputRef}
               type="text"
@@ -105,7 +105,7 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
             <div
               key={paper.id}
               onClick={() => onReadPaper(paper)}
-              className="group bg-surface hover:bg-surface-dim border border-outline hover:border-[#F27D26]/40 p-8 flex flex-col justify-between h-[420px] cursor-pointer transition-all duration-300 rounded-2xl"
+              className="group bg-surface hover:bg-surface-dim border border-outline hover:border-primary/40 p-8 flex flex-col justify-between h-[420px] cursor-pointer transition-all duration-300 rounded-2xl"
             >
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -115,7 +115,7 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
                   </span>
                 </div>
 
-                <h3 className="font-sans text-lg font-black text-on-background leading-[1.3] tracking-tight group-hover:text-[#F27D26] transition-colors line-clamp-3 uppercase">
+                <h3 className="font-sans text-lg font-black text-on-background leading-[1.3] tracking-tight group-hover:text-primary transition-colors line-clamp-3 uppercase">
                   {paper.title}
                 </h3>
 
@@ -127,10 +127,10 @@ export default function PublicationsSection({ onReadPaper }: PublicationsSection
               </div>
 
               <div className="pt-6 border-t border-outline flex items-center justify-between mt-auto">
-                <span className="font-mono text-[10px] font-black tracking-[0.25em] text-[#F27D26] uppercase group-hover:text-white transition-colors">
+                <span className="font-mono text-[10px] font-black tracking-[0.25em] text-primary uppercase group-hover:text-white transition-colors">
                   READ BRIEF & CHAT
                 </span>
-                <ArrowUpRight className="w-4 h-4 text-[#F27D26] group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-250" />
+                <ArrowUpRight className="w-4 h-4 text-primary group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-250" />
               </div>
             </div>
           ))}

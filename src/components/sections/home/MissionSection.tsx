@@ -36,7 +36,7 @@ export default function MissionSection() {
         <div className="grid grid-cols-3 gap-4 pt-12 border-t border-outline">
           {stats.map((stat, i) => (
             <div key={i} className="flex flex-col">
-              <span className="font-sans text-5xl md:text-6xl font-black text-[#F27D26] tracking-tighter">
+              <span className="font-sans text-5xl md:text-6xl font-black text-primary tracking-tighter">
                 {stat.value}
               </span>
               <span className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] mt-2 uppercase">

@@ -14,7 +14,7 @@ export default function FeaturedResearchSection({
   projects,
 }: FeaturedResearchSectionProps) {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-surface py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <SectionHeader
           title="Featured Research"
@@ -24,7 +24,7 @@ export default function FeaturedResearchSection({
           {projects.map((project) => (
             <div
               key={project.title}
-              className="overflow-hidden rounded-3xl border border-border-token bg-bg-secondary"
+              className="overflow-hidden rounded-3xl border border-outline bg-surface-dim"
             >
               <img
                 src={project.image}
@@ -33,10 +33,10 @@ export default function FeaturedResearchSection({
                 loading="lazy"
               />
               <div className="p-8">
-                <h3 className="text-xl font-semibold text-neutral-900">
+                <h3 className="text-xl font-semibold text-on-background">
                   {project.title}
                 </h3>
-                <p className="mt-3 text-base leading-relaxed text-text-secondary">
+                <p className="mt-3 text-base leading-relaxed text-on-background/60">
                   {project.description}
                 </p>
               </div>

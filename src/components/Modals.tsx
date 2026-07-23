@@ -88,7 +88,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
   ];
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-6xl h-[90vh] md:h-[85vh] flex flex-col md:flex-row overflow-hidden animate-fade-in rounded-2xl"
       >
@@ -108,7 +108,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             {paper.authors}
           </p>
 
-          <div className="bg-surface p-5 border-l-2 border-[#F27D26] mb-8 rounded-2xl">
+          <div className="bg-surface p-5 border-l-2 border-primary mb-8 rounded-2xl">
             <p className="font-mono text-[10px] font-black text-on-background/40 uppercase tracking-wider mb-1">
               PUBLISHED IN / CITED AS:
             </p>
@@ -133,7 +133,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             <ul className="space-y-3">
               {paper.keyFindings.map((finding, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <span className="font-mono text-xs font-black text-[#F27D26] mt-0.5">•</span>
+                  <span className="font-mono text-xs font-black text-primary mt-0.5">•</span>
                   <p className="font-sans text-sm text-on-background/60 leading-[1.5]">
                     {finding}
                   </p>
@@ -147,7 +147,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
 
           <div className="px-6 py-4 border-b border-outline bg-surface flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-[#F27D26] flex items-center justify-center text-black font-black italic rounded-full">
+              <div className="w-8 h-8 bg-primary flex items-center justify-center text-white font-black italic rounded-full">
                 A.
               </div>
               <div>
@@ -155,7 +155,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
                   Research Companion
                 </h4>
                 <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className={`w-1.5 h-1.5 rounded-full ${aiActive === true ? 'bg-emerald-500 animate-pulse' : 'bg-[#F27D26] animate-pulse'}`} />
+                  <span className={`w-1.5 h-1.5 rounded-full ${aiActive === true ? 'bg-primary-light animate-pulse' : 'bg-primary animate-pulse'}`} />
                   <span className="font-mono text-[9px] text-on-background/40 tracking-wider">
                     {aiActive === true ? 'GEMINI LIVE' : 'LOCAL SYNTHESIS'}
                   </span>
@@ -191,14 +191,14 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
 
             {isTyping && (
               <div className="flex items-center gap-2 text-on-background/40 font-mono text-xs px-2 animate-pulse">
-                <Bot className="w-4 h-4 text-[#F27D26]" />
+                <Bot className="w-4 h-4 text-primary" />
                 <span>AIM Assistant is reasoning...</span>
               </div>
             )}
 
             {warningMessage && (
               <div className="p-3 bg-surface border border-outline flex gap-2.5 text-on-background/60 rounded-2xl my-2">
-                <AlertCircle className="w-4 h-4 text-[#F27D26] shrink-0 mt-0.5" />
+                <AlertCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                 <div className="font-sans text-[11px] leading-normal font-normal">
                   <strong>Developer Note:</strong> To activate conversational intelligence powered by Google Gemini, define a valid <code>GEMINI_API_KEY</code> in the Secrets dashboard.
                 </div>
@@ -266,13 +266,13 @@ interface FocusAreaModalProps {
 
 export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl"
       >
         <div className="p-6 md:p-8 border-b border-outline bg-surface flex items-center justify-between">
           <div>
-            <span className="font-mono text-[9px] font-black text-[#F27D26] tracking-[0.2em] uppercase select-none">
+            <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase select-none">
               {area.type}
             </span>
             <h2 className="font-sans text-2xl font-black text-on-background mt-1 uppercase">
@@ -306,7 +306,7 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
                 const parts = proj.split(':');
                 return (
                   <div key={idx} className="flex gap-2">
-                    <span className="text-[#F27D26] font-mono">•</span>
+                    <span className="text-primary font-mono">•</span>
                     <p className="font-sans text-sm text-on-background/60 leading-relaxed">
                       <strong className="text-on-background font-bold">{parts[0]}</strong>: {parts[1]}
                     </p>
@@ -320,7 +320,7 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-surface flex items-center justify-center text-[#F27D26] border border-outline rounded-full">
+              <div className="w-10 h-10 bg-surface flex items-center justify-center text-primary border border-outline rounded-full">
                 <User className="w-5 h-5" />
               </div>
               <div>
@@ -391,13 +391,13 @@ export function ContactModal({ onClose }: ContactModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-lg overflow-hidden animate-fade-in rounded-2xl"
       >
         <div className="p-6 border-b border-outline bg-surface flex items-center justify-between">
           <div>
-            <span className="font-mono text-[9px] font-black text-[#F27D26] tracking-[0.2em] uppercase">
+            <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase">
               LABORATORY INQUIRY
             </span>
             <h2 className="font-sans text-xl font-black text-on-background uppercase mt-1">
@@ -411,7 +411,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
 
         {submitted ? (
           <div className="p-8 text-center space-y-4">
-            <div className="w-16 h-16 bg-surface text-[#F27D26] border border-outline flex items-center justify-center mx-auto rounded-full">
+            <div className="w-16 h-16 bg-surface text-primary border border-outline flex items-center justify-center mx-auto rounded-full">
               <CheckCircle className="w-8 h-8" />
             </div>
             <h3 className="font-sans text-lg font-black text-on-background uppercase tracking-tight">
@@ -534,7 +534,7 @@ export function SubmissionsDrawer({ onClose }: SubmissionsDrawerProps) {
     <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-background border-l border-outline shadow-2xl flex flex-col p-6 animate-slide-in text-on-background">
       <div className="flex items-center justify-between border-b border-outline pb-4 mb-6">
         <div>
-          <span className="font-mono text-[9px] font-black text-[#F27D26] tracking-[0.2em] uppercase">
+          <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase">
             SERVER STATE ACTIVE
           </span>
           <h2 className="font-sans text-lg font-black text-on-background uppercase mt-1">
@@ -569,7 +569,7 @@ export function SubmissionsDrawer({ onClose }: SubmissionsDrawerProps) {
                 {sub.email}
               </p>
               <div className="h-px bg-outline my-1.5" />
-              <p className="font-mono text-[9px] font-black text-[#F27D26] uppercase tracking-wider">
+              <p className="font-mono text-[9px] font-black text-primary uppercase tracking-wider">
                 SUBJECT: {sub.subject || 'GENERAL INQUIRY'}
               </p>
               <p className="font-sans text-xs text-on-background/70 leading-relaxed italic whitespace-pre-wrap">
@@ -582,7 +582,7 @@ export function SubmissionsDrawer({ onClose }: SubmissionsDrawerProps) {
             <p className="font-sans text-xs text-on-background/40 font-normal">
               No submissions registered in this server session yet.
             </p>
-            <p className="font-mono text-[9px] text-[#F27D26] mt-2 tracking-wider">
+            <p className="font-mono text-[9px] text-primary mt-2 tracking-wider">
               Submit a proposal in the Connect box to see it register live!
             </p>
           </div>
@@ -613,7 +613,7 @@ interface BioModalProps {
 
 export function BioModal({ member, onClose }: BioModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
       >
@@ -648,7 +648,7 @@ export function BioModal({ member, onClose }: BioModalProps) {
               </p>
             </div>
 
-            <div className="bg-surface p-4 border-l-2 border-[#F27D26] rounded-2xl">
+            <div className="bg-surface p-4 border-l-2 border-primary rounded-2xl">
               <p className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] uppercase mb-1">
                 CORE INVESTIGATION FOCUS
               </p>
@@ -673,7 +673,7 @@ interface NewsModalProps {
 
 export function NewsModal({ news, onClose }: NewsModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
       >
@@ -688,14 +688,14 @@ export function NewsModal({ news, onClose }: NewsModalProps) {
             variant="ghost"
             size="icon-sm"
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black/80 text-white hover:bg-[#F27D26] hover:text-black"
+            className="absolute top-4 right-4 bg-overlay/80 text-white hover:bg-primary hover:text-white"
           >
             <X className="w-5 h-5" />
           </Button>
         </div>
 
         <div className="p-8 space-y-4 bg-background">
-          <span className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.2em] uppercase block">
+          <span className="font-mono text-[10px] font-black text-primary tracking-[0.2em] uppercase block">
             PUBLISHED: {news.date}
           </span>
           <h2 className="font-sans text-2xl font-black text-on-background tracking-tight leading-snug uppercase">

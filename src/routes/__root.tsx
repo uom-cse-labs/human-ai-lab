@@ -51,11 +51,11 @@ function RootContent() {
       <HeadContent />
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-neutral-900 focus:shadow-sm focus:outline-2 focus:outline-offset-2 focus:outline-brand"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary focus:shadow-sm focus:outline-2 focus:outline-offset-2 focus:outline-primary"
       >
         Skip to main content
       </a>
-      <div className="min-h-screen bg-background flex flex-col text-on-background relative selection:bg-[#F27D26]/20 selection:text-[#F27D26]" id="app-root">
+      <div className="min-h-screen bg-background flex flex-col text-on-background relative selection:bg-primary/20 selection:text-primary" id="app-root">
         <Header
           onContactClick={() => setIsContactOpen(true)}
           onSearchClick={() => handleNavigate('rounded-publications')}

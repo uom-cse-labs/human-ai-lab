@@ -21,14 +21,14 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
 
           <div className="md:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-[#F27D26] flex items-center justify-center font-sans font-black text-black text-sm tracking-tighter italic rounded-full">
+              <div className="w-10 h-10 bg-primary flex items-center justify-center font-sans font-black text-white text-sm tracking-tighter italic rounded-full">
                 AIM.
               </div>
               <div className="flex flex-col">
                 <span className="font-sans font-black text-sm tracking-wider text-on-background uppercase">
                   AIM LAB
                 </span>
-                <span className="font-mono text-[8px] tracking-[0.2em] text-[#F27D26] font-bold">
+                <span className="font-mono text-[8px] tracking-[0.2em] text-primary font-bold">
                   MORATUWA
                 </span>
               </div>
@@ -49,7 +49,7 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
           </div>
 
           <div className="md:col-span-3 space-y-5">
-            <h4 className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.25em] uppercase">
+            <h4 className="font-mono text-[10px] font-black text-primary tracking-[0.25em] uppercase">
               SITEMAP
             </h4>
             <div className="flex flex-col gap-3">
@@ -97,7 +97,7 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
           </div>
 
           <div className="md:col-span-4 space-y-5">
-            <h4 className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.25em] uppercase">
+            <h4 className="font-mono text-[10px] font-black text-primary tracking-[0.25em] uppercase">
               CONNECT
             </h4>
             <p className="font-sans text-sm text-on-background/60 leading-relaxed font-normal">
@@ -122,7 +122,7 @@ export default function Footer({ onNavigate, onContactClick, onViewSubmissionsCl
             &copy; {currentYear} AIM LAB, UNIVERSITY OF MORATUWA. ALL RIGHTS RESERVED.
           </p>
           <div className="flex items-center gap-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#F27D26]" />
+            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             <span className="font-mono text-[9px] tracking-wider text-on-background/30 uppercase">
               PILL DESIGN SYSTEM
             </span>

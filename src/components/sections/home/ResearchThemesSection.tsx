@@ -31,7 +31,7 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
 
         <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
           <div>
-            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
               AREAS OF INVESTIGATION
             </span>
             <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 uppercase select-none">
@@ -70,17 +70,17 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale contrast-125 brightness-[0.35]"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/95 via-[#050505]/45 to-transparent rounded-2xl" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-overlay/95 via-overlay/45 to-transparent rounded-2xl" />
 
                   <div className="absolute inset-0 p-8 flex flex-col justify-end text-white z-10">
                     <Badge className="mb-4">{area.type}</Badge>
-                    <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-[#F27D26] transition-colors uppercase">
+                    <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-primary transition-colors uppercase">
                       {area.title}
                     </h3>
                     <p className="font-sans text-sm text-white/60 leading-[1.6] max-w-xl font-normal">
                       {area.description}
                     </p>
-                    <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       EXPLORE THEME <ArrowRight className="w-3.5 h-3.5" />
                     </span>
                   </div>
@@ -92,10 +92,10 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
               <div
                 key={area.id}
                 onClick={() => onSelectArea(area)}
-                className={`group ${colSpan} bg-surface hover:bg-surface-dim p-8 flex flex-col justify-between h-[420px] border border-outline cursor-pointer hover:border-[#F27D26]/40 transition-all duration-300 rounded-2xl`}
+                className={`group ${colSpan} bg-surface hover:bg-surface-dim p-8 flex flex-col justify-between h-[420px] border border-outline cursor-pointer hover:border-primary/40 transition-all duration-300 rounded-2xl`}
               >
                 <div>
-                  <div className="w-14 h-14 flex items-center justify-center bg-surface-container text-[#F27D26] border border-outline mb-8 transition-colors group-hover:border-[#F27D26]/40 rounded-2xl">
+                  <div className="w-14 h-14 flex items-center justify-center bg-surface-container text-primary border border-outline mb-8 transition-colors group-hover:border-primary/40 rounded-2xl">
                     {renderIcon(area.iconName, 'w-6 h-6')}
                   </div>
                   <h3 className="font-sans text-2xl font-black tracking-tight mb-3 text-on-background uppercase">
@@ -106,7 +106,7 @@ export default function ResearchThemesSection({ onSelectArea, onViewAllClick }: 
                   </p>
                 </div>
 
-                <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] group-hover:text-white mt-6 inline-flex items-center gap-1.5 transition-colors">
+                <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary group-hover:text-white mt-6 inline-flex items-center gap-1.5 transition-colors">
                   EXPLORE THEME <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>

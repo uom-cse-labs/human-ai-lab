@@ -31,14 +31,14 @@ export default function Header({ onContactClick, onSearchClick, onNavigate }: He
           onClick={() => handleNavItemClick('rounded-hero')}
           className="flex items-center gap-3 cursor-pointer group"
         >
-          <div className="w-10 h-10 bg-[#F27D26] flex items-center justify-center font-sans font-black text-black text-base tracking-tighter italic transition-transform group-hover:scale-105 rounded-full">
+          <div className="w-10 h-10 bg-primary flex items-center justify-center font-sans font-black text-white text-base tracking-tighter italic transition-transform group-hover:scale-105 rounded-full">
             AIM.
           </div>
           <div className="flex flex-col">
             <span className="font-sans font-black text-sm tracking-wider text-on-background uppercase">
               AIM LAB
             </span>
-            <span className="font-mono text-[8px] tracking-[0.2em] text-[#F27D26] font-bold">
+            <span className="font-mono text-[8px] tracking-[0.2em] text-primary font-bold">
               MORATUWA
             </span>
           </div>

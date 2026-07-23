@@ -12,7 +12,7 @@ export default function HeroSection({ onExploreResearch, onViewPublications }: H
       className="relative min-h-[90vh] flex items-center bg-background overflow-hidden py-24 border-b border-outline"
     >
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.03)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(52.91%_0.221_262.13/0.03)_1px,transparent_1px),linear-gradient(to_bottom,oklch(52.91%_0.221_262.13/0.03)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
       </div>
 
       <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
@@ -29,8 +29,8 @@ export default function HeroSection({ onExploreResearch, onViewPublications }: H
         <div className="lg:col-span-11 xl:col-span-10 flex flex-col items-start">
 
           <div className="mb-8 flex items-center gap-3 animate-fade-in">
-            <span className="w-12 h-[2px] bg-[#F27D26]" />
-            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+            <span className="w-12 h-[2px] bg-primary" />
+            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
               SRI LANKA'S PREMIER HUB FOR AI RESEARCH
             </span>
           </div>
@@ -38,7 +38,7 @@ export default function HeroSection({ onExploreResearch, onViewPublications }: H
           <h1
             className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] mb-10 uppercase select-none"
           >
-            Advancing the <span className="text-[#F27D26] italic">Human</span> <span className="text-on-background relative inline-block underline decoration-[#F27D26] decoration-[6px] md:decoration-[10px] underline-offset-[8px] md:underline-offset-[14px]">Dimension</span> of AI.
+            Advancing the <span className="text-primary italic">Human</span> <span className="text-on-background relative inline-block underline decoration-primary decoration-[6px] md:decoration-[10px] underline-offset-[8px] md:underline-offset-[14px]">Dimension</span> of AI.
           </h1>
 
           <p

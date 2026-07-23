@@ -87,7 +87,7 @@ export default function ContactSection() {
           LABORATORY CONTACT
         </span>
         <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 uppercase select-none">
-          Connect with AIM
+          Connect with Human AI Lab
         </h2>
       </div>
 

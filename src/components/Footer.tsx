@@ -21,11 +21,11 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
           <div className="md:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 bg-primary flex items-center justify-center font-sans font-black text-white text-sm tracking-tighter italic rounded-full">
-                AIM.
+                HA.
               </div>
               <div className="flex flex-col">
                 <span className="font-sans font-black text-sm tracking-wider text-on-background uppercase">
-                  AIM LAB
+                  HUMAN AI LAB
                 </span>
                 <span className="font-mono text-[8px] tracking-[0.2em] text-primary font-bold">
                   MORATUWA
@@ -113,7 +113,7 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-mono text-[9px] text-on-background/40 tracking-wider uppercase">
-            &copy; {currentYear} AIM LAB, UNIVERSITY OF MORATUWA. ALL RIGHTS RESERVED.
+            &copy; {currentYear} HUMAN AI LAB, UNIVERSITY OF MORATUWA. ALL RIGHTS RESERVED.
           </p>
           <div className="flex items-center gap-3">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />

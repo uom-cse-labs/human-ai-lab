@@ -22,7 +22,7 @@ export default function MissionSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <div className="space-y-6">
             <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
-              Located in the heart of Sri Lanka's premier technological university, Human-Centered AI (AIM) is dedicated to ensuring that the next generation of intelligent systems serves the needs of people and society.
+              Located in the heart of Sri Lanka's premier technological university, Human-Centered AI (Human AI Lab) is dedicated to ensuring that the next generation of intelligent systems serves the needs of people and society.
             </p>
             <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
               Our mission is to investigate how AI interacts with human behavior, culture, and ethics. We don't just build faster algorithms; we design systems that are transparent, fair, and deeply integrated with human decision-making processes.

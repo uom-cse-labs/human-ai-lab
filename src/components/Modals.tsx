@@ -248,7 +248,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
               PROPOSAL REGISTERED SUCCESSFULLY
             </h3>
             <p className="font-sans text-sm text-on-background/60 leading-relaxed max-w-sm mx-auto font-normal">
-              Thank you for connecting with AIM at the University of Moratuwa. Our lead research administrator will review your proposal and respond shortly.
+              Thank you for connecting with Human AI Lab at the University of Moratuwa. Our lead research administrator will review your proposal and respond shortly.
             </p>
             <Button
               variant="secondary"

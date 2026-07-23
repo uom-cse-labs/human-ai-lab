@@ -3,9 +3,9 @@
     {
       "id": "member-1",
       "name": "Prof. Indika Perera",
-      "role": "DIRECTOR, AIM",
-      "title": "DIRECTOR, AIM",
-      "bio": "Prof. Rohan Silva has over 25 years of research experience in distributed systems and intelligent software architectures. He spearheaded the creation of AIM to unite machine learning models with human behavioral sciences. He previously worked as an advisor to the Ministry of Technology on state-level infrastructure digitization and currently chairs the University's AI Task Force.",
+      "role": "DIRECTOR, HUMAN AI LAB",
+      "title": "DIRECTOR, HUMAN AI LAB",
+      "bio": "Prof. Rohan Silva has over 25 years of research experience in distributed systems and intelligent software architectures. He spearheaded the creation of Human AI Lab to unite machine learning models with human behavioral sciences. He previously worked as an advisor to the Ministry of Technology on state-level infrastructure digitization and currently chairs the University's AI Task Force.",
       "expertise": "Expertise in Multi-Agent Systems and Cognitive Architecture.",
       "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1784541907/prof_indika_bqphbe.jpg",
       "socials": {

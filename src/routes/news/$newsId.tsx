@@ -90,7 +90,7 @@ function NewsArticle() {
                 PRESS INQUIRIES
               </span>
               <p className="font-sans text-xs text-on-background/60 leading-[1.6]">
-                For media inquiries regarding this dispatch, please contact the AIM Lab communications office.
+                For media inquiries regarding this dispatch, please contact the Human AI Lab communications office.
               </p>
             </div>
           </div>

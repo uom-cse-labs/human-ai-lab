@@ -66,7 +66,7 @@ function About() {
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-12">
           <div className="max-w-4xl">
             <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-6 block border border-primary/30 bg-primary/10 w-fit px-3 py-1 rounded-full">
-              ABOUT THE AIM LAB
+              ABOUT THE HUMAN AI LAB
             </span>
             <h1 className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] uppercase">
               Designing the future of human-machine interaction.
@@ -101,7 +101,7 @@ function About() {
           <div className="lg:col-span-7 flex flex-col justify-center">
             <div className="space-y-6 text-on-background/80 leading-[1.8] font-sans text-lg mb-12">
               <p>
-                Founded with the vision to bridge the growing gap between rapid AI advancement and human adaptability, AIM Lab began as an interdisciplinary collective. We recognized early on that the most profound challenges in computing were no longer just algorithmic—they were psychological, sociological, and ethical.
+                Founded with the vision to bridge the growing gap between rapid AI advancement and human adaptability, Human AI Lab began as an interdisciplinary collective. We recognized early on that the most profound challenges in computing were no longer just algorithmic—they were psychological, sociological, and ethical.
               </p>
               <p>
                 Today, we operate at the bleeding edge of cognitive modeling and socio-technical systems, bringing together software engineers, interaction designers, and behavioral scientists under one roof. Our mission is not just to make machines smarter, but to make them safer and more collaborative.
@@ -130,7 +130,7 @@ function About() {
             Our Research Methodology
           </h2>
           <p className="font-sans text-lg text-on-background/60 leading-[1.6]">
-            Every project at the AIM Lab undergoes a rigorous, four-step lifecycle designed to guarantee ethical integrity and functional reliability before public deployment.
+            Every project at the Human AI Lab undergoes a rigorous, four-step lifecycle designed to guarantee ethical integrity and functional reliability before public deployment.
           </p>
         </div>
 

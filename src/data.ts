@@ -157,7 +157,7 @@ export const NEWS: NewsItem[] = [
   {
     id: 'news-1',
     date: 'MAY 15, 2024',
-    title: 'AIM hosts International Workshop on Responsible AI',
+    title: 'Human AI Lab hosts International Workshop on Responsible AI',
     content: 'Bringing together scholars from across Southeast Asia to discuss regulatory frameworks.',
     imageUrl: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600',
     details: 'The event hosted 120 policy makers, technologists, and researchers at the Moratuwa University Auditorium. Keynote discussions centered around creating flexible regional standards for AI deployment, auditing bias in agricultural automation tools, and coordinating public-sector data standards across SAARC nations.'

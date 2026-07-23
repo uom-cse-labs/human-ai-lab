@@ -25,7 +25,7 @@ function DispatchesPage() {
             News from the Lab
           </h1>
           <p className="font-sans text-lg md:text-xl text-on-background/60 leading-[1.6] max-w-3xl mt-4">
-            Stay updated on the latest research breakthroughs, team announcements, conference attendances, and media features surrounding the AIM Lab.
+            Stay updated on the latest research breakthroughs, team announcements, conference attendances, and media features surrounding the Human AI Lab.
           </p>
         </div>
       </section>

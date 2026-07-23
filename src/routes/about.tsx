@@ -33,7 +33,7 @@ function About() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-6 pt-28 pb-20 border-b border-outline">
-        <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+        <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
           WHO WE ARE
         </span>
         <h1 className="font-sans text-5xl md:text-7xl font-black tracking-tighter text-on-background mt-4 leading-[0.9] uppercase max-w-4xl">
@@ -60,7 +60,7 @@ function About() {
           </div>
         </div>
         <div className="bg-surface p-12 rounded-2xl border border-outline flex flex-col justify-center">
-          <h2 className="font-sans text-2xl font-black tracking-tight text-[#F27D26] uppercase mb-6">
+          <h2 className="font-sans text-2xl font-black tracking-tight text-primary uppercase mb-6">
             The Philosophy
           </h2>
           <blockquote className="font-sans text-2xl leading-[1.4] text-on-background italic">
@@ -74,7 +74,7 @@ function About() {
 
       {/* Core Pillars */}
       <section className="max-w-7xl mx-auto px-6 py-28">
-        <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] mb-4 block">
+        <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-4 block">
           OUR FRAMEWORK
         </span>
         <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background uppercase mb-16">
@@ -83,8 +83,8 @@ function About() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {pillars.map((pillar, idx) => (
-            <div key={idx} className="group flex flex-col p-8 bg-surface border border-outline hover:border-[#F27D26]/50 transition-colors rounded-2xl">
-              <div className="w-12 h-12 flex items-center justify-center bg-surface-container text-[#F27D26] border border-outline rounded-xl mb-8 group-hover:scale-110 transition-transform">
+            <div key={idx} className="group flex flex-col p-8 bg-surface border border-outline hover:border-primary/50 transition-colors rounded-2xl">
+              <div className="w-12 h-12 flex items-center justify-center bg-surface-container text-primary border border-outline rounded-xl mb-8 group-hover:scale-110 transition-transform">
                 <pillar.icon className="w-5 h-5" />
               </div>
               <h3 className="font-sans text-xl font-black uppercase tracking-tight text-on-background mb-4">
@@ -99,12 +99,12 @@ function About() {
       </section>
 
       {/* Final CTA / Statement */}
-      <section className="bg-[#F27D26] py-24 px-6">
+      <section className="bg-primary py-24 px-6">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter text-black uppercase leading-none mb-8">
+          <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter text-white uppercase leading-none mb-8">
             Let's build a predictable future together.
           </h2>
-          <p className="font-sans text-lg text-black/80 max-w-2xl mx-auto mb-12">
+          <p className="font-sans text-lg text-white/80 max-w-2xl mx-auto mb-12">
             Whether you're a prospective PhD student, an industry partner, or a fellow researcher, we're always open to collaboration.
           </p>
         </div>

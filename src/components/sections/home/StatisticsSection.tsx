@@ -1,3 +1,5 @@
+import StatisticsStat from "./StatisticsStat";
+
 interface Stat {
   value: string
   label: string
@@ -32,12 +34,7 @@ export default function StatisticsSection({
         </h2>
         <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-6">
           {stats.map((stat) => (
-            <div key={stat.label} className="text-center">
-              <span className="text-4xl font-bold text-white lg:text-5xl">
-                {stat.value}
-              </span>
-              <p className="mt-2 text-sm text-white/80">{stat.label}</p>
-            </div>
+            <StatisticsStat key={stat.label} value={stat.value} label={stat.label} />
           ))}
         </div>
       </div>

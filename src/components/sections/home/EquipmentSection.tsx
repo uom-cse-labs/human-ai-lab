@@ -1,4 +1,5 @@
 import SectionHeader from "@/components/sections/SectionHeader"
+import EquipmentPill from "./EquipmentPill"
 
 interface EquipmentSectionProps {
   items: string[]
@@ -28,12 +29,7 @@ export default function EquipmentSection({ items }: EquipmentSectionProps) {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               {items.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-outline bg-background px-5 py-3 text-sm text-on-background/60 transition-colors duration-200 hover:border-primary/30 hover:text-primary"
-                >
-                  {item}
-                </span>
+                <EquipmentPill key={item} label={item} />
               ))}
             </div>
           </div>

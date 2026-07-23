@@ -1,4 +1,5 @@
 import SectionHeader from "@/components/sections/SectionHeader"
+import Paragraph from "./Paragraph"
 
 interface AboutSectionProps {
   paragraphs: string[]
@@ -12,16 +13,7 @@ export default function AboutSection({ paragraphs }: AboutSectionProps) {
         <div className="mt-12 grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
             {paragraphs.map((p, i) => (
-              <p
-                key={i}
-                className={
-                  i === 0
-                    ? "text-lead leading-relaxed text-on-background/60"
-                    : "mt-6 text-base leading-relaxed text-on-background/60"
-                }
-              >
-                {p}
-              </p>
+              <Paragraph key={i} text={p} isFirst={i === 0} />
             ))}
           </div>
           <div className="lg:col-span-5">

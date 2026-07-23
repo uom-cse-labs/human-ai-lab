@@ -1,4 +1,5 @@
 import SectionHeader from "@/components/sections/SectionHeader"
+import CollaborationPill from "./CollaborationPill"
 
 interface CollaborationSectionProps {
   areas: string[]
@@ -28,12 +29,7 @@ export default function CollaborationSection({
             />
             <div className="mt-10 flex flex-wrap gap-3">
               {areas.map((area) => (
-                <span
-                  key={area}
-                  className="rounded-full border border-outline bg-surface-dim px-5 py-2.5 text-sm font-medium text-on-background/60 transition-colors duration-200 hover:border-primary/30 hover:bg-surface-container hover:text-primary"
-                >
-                  {area}
-                </span>
+                <CollaborationPill key={area} label={area} />
               ))}
             </div>
           </div>

@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useRef } from 'react'
 import { PUBLICATIONS } from '@/data'
-import { Search, ArrowUpRight, X } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
+import PublicationCard from '@/components/sections/home/PublicationCard'
 import { useLab } from '@/lab-context'
 
 export const Route = createFileRoute('/publications')({
@@ -41,7 +41,7 @@ function PublicationsPage() {
     <main id="main-content" className="max-w-7xl mx-auto px-6 py-28 min-h-screen">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
         <div className="max-w-2xl">
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26]">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
             SCHOLARLY OUTPUT
           </span>
           <h1 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 mb-4 uppercase select-none">
@@ -62,7 +62,7 @@ function PublicationsPage() {
           </Button>
         ) : (
           <div className="flex items-center gap-2 w-full lg:w-96 bg-surface border border-outline py-2.5 px-4 self-start lg:self-end animate-fade-in rounded-full">
-            <Search className="w-4 h-4 text-[#F27D26]" />
+            <Search className="w-4 h-4 text-primary" />
             <input
               ref={searchInputRef}
               type="text"
@@ -102,37 +102,7 @@ function PublicationsPage() {
       {filteredPapers.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredPapers.map((paper) => (
-            <div
-              key={paper.id}
-              onClick={() => setSelectedPaper(paper)}
-              className="group bg-surface hover:bg-surface-dim border border-outline hover:border-[#F27D26]/40 p-8 flex flex-col justify-between h-[420px] cursor-pointer transition-all duration-300 rounded-2xl"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <Badge variant="ghost">{paper.category}</Badge>
-                  <span className="font-mono text-[10px] text-on-background/40 font-bold">
-                    {paper.year}
-                  </span>
-                </div>
-
-                <h3 className="font-sans text-lg font-black text-on-background leading-[1.3] tracking-tight group-hover:text-[#F27D26] transition-colors line-clamp-3 uppercase">
-                  {paper.title}
-                </h3>
-
-                <p className="font-sans text-[13px] text-on-background/50 leading-relaxed italic line-clamp-2">
-                  {paper.authors}
-                </p>
-
-                <Badge variant="outline">{paper.publishedIn}</Badge>
-              </div>
-
-              <div className="pt-6 border-t border-outline flex items-center justify-between mt-auto">
-                <span className="font-mono text-[10px] font-black tracking-[0.25em] text-[#F27D26] uppercase group-hover:text-white transition-colors">
-                  READ BRIEF & CHAT
-                </span>
-                <ArrowUpRight className="w-4 h-4 text-[#F27D26] group-hover:text-white transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-250" />
-              </div>
-            </div>
+            <PublicationCard key={paper.id} paper={paper} onRead={setSelectedPaper} />
           ))}
         </div>
       ) : (

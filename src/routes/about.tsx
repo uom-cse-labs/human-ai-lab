@@ -1,11 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Target, Users, Lightbulb, ShieldCheck } from 'lucide-react'
+import { useLab } from '@/lab-context'
+import MembersSection from '@/components/sections/home/MembersSection'
+import PillarCard from '@/components/sections/about/PillarCard'
 
 export const Route = createFileRoute('/about')({
   component: About,
 })
 
 function About() {
+  const { setSelectedMember } = useLab()
   const pillars = [
     {
       title: 'Human-Centricity',
@@ -82,21 +86,15 @@ function About() {
         </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {pillars.map((pillar, idx) => (
-            <div key={idx} className="group flex flex-col p-8 bg-surface border border-outline hover:border-primary/50 transition-colors rounded-2xl">
-              <div className="w-12 h-12 flex items-center justify-center bg-surface-container text-primary border border-outline rounded-xl mb-8 group-hover:scale-110 transition-transform">
-                <pillar.icon className="w-5 h-5" />
-              </div>
-              <h3 className="font-sans text-xl font-black uppercase tracking-tight text-on-background mb-4">
-                {pillar.title}
-              </h3>
-              <p className="font-sans text-sm text-on-background/60 leading-[1.6]">
-                {pillar.description}
-              </p>
-            </div>
+          {pillars.map((pillar) => (
+            <PillarCard key={pillar.title} title={pillar.title} icon={pillar.icon} description={pillar.description} />
           ))}
         </div>
       </section>
+
+      <MembersSection
+        onSelectMember={(member) => setSelectedMember(member)}
+      />
 
       {/* Final CTA / Statement */}
       <section className="bg-primary py-24 px-6">

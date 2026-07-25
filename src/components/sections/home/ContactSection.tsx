@@ -1,11 +1,11 @@
-import { Mail, MapPin, Phone, Clock, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, Phone, Clock, ExternalLink } from "lucide-react";
 
 function GoogleScholarIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z" />
     </svg>
-  )
+  );
 }
 
 function ResearchGateIcon({ className }: { className?: string }) {
@@ -13,7 +13,7 @@ function ResearchGateIcon({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M17.074 12.002c0 3.746-3.044 6.783-6.796 6.783-3.752 0-6.796-3.037-6.796-6.783s3.044-6.783 6.796-6.783c3.752 0 6.796 3.037 6.796 6.783zm-2.914-4.06v-.002c-1.062-.791-2.355-1.244-3.746-1.244-3.52 0-6.373 2.85-6.373 6.365 0 2.19 1.105 4.125 2.783 5.267.594-2.666 2.646-6.617 7.336-10.386z" />
     </svg>
-  )
+  );
 }
 
 function LinkedInIcon({ className }: { className?: string }) {
@@ -21,19 +21,19 @@ function LinkedInIcon({ className }: { className?: string }) {
     <svg className={className} viewBox="0 0 24 24" fill="currentColor">
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
     </svg>
-  )
+  );
 }
 
 const contactDetails = [
   {
     icon: Mail,
-    label: 'Email',
-    value: 'humanai@cse.mrt.ac.lk',
-    href: 'mailto:humanai@cse.mrt.ac.lk',
+    label: "Email",
+    value: "humanai@cse.mrt.ac.lk",
+    href: "mailto:humanai@cse.mrt.ac.lk",
   },
   {
     icon: MapPin,
-    label: 'Address',
+    label: "Address",
     value: (
       <>
         Department of Computer Science & Engineering
@@ -46,21 +46,31 @@ const contactDetails = [
   },
   {
     icon: Phone,
-    label: 'Telephone',
+    label: "Telephone",
     value: (
       <div className="space-y-2">
         <div>
-          <span className="font-semibold text-on-background">Prof. Samantha Thelijjagoda</span>
+          <span className="font-semibold text-on-background">
+            Dr. Robert Johnson
+          </span>
           <br />
-          <a href="tel:+94112650537" className="hover:text-primary transition-colors">
-            +94 11 265 0537
+          <a
+            href="tel:+94112345678"
+            className="hover:text-primary transition-colors"
+          >
+            +94 11 234 5678
           </a>
         </div>
         <div>
-          <span className="font-semibold text-on-background">Dr. Isuru Nawinne</span>
+          <span className="font-semibold text-on-background">
+            Dr. Sarah Williams
+          </span>
           <br />
-          <a href="tel:+94112650563" className="hover:text-primary transition-colors">
-            +94 11 265 0563
+          <a
+            href="tel:+94112345679"
+            className="hover:text-primary transition-colors"
+          >
+            +94 11 234 5679
           </a>
         </div>
       </div>
@@ -68,20 +78,23 @@ const contactDetails = [
   },
   {
     icon: Clock,
-    label: 'Office Hours',
-    value: 'Monday – Friday, 9:00 AM – 5:00 PM (SLST)',
+    label: "Office Hours",
+    value: "Monday – Friday, 9:00 AM – 5:00 PM (SLST)",
   },
 ];
 
 const referenceLinks = [
-  { label: 'Google Scholar', href: '#', icon: GoogleScholarIcon },
-  { label: 'ResearchGate', href: '#', icon: ResearchGateIcon },
-  { label: 'LinkedIn', href: '#', icon: LinkedInIcon },
+  { label: "Google Scholar", href: "#", icon: GoogleScholarIcon },
+  { label: "ResearchGate", href: "#", icon: ResearchGateIcon },
+  { label: "LinkedIn", href: "#", icon: LinkedInIcon },
 ];
 
 export default function ContactSection() {
   return (
-    <section id="rounded-contact" className="max-w-7xl mx-auto px-6 py-28 border-b border-outline">
+    <section
+      id="rounded-contact"
+      className="max-w-7xl mx-auto px-6 py-28 border-b border-outline"
+    >
       <div className="mb-16">
         <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
           LABORATORY CONTACT
@@ -106,7 +119,10 @@ export default function ContactSection() {
                   </p>
                   <div className="font-sans text-sm text-on-background/60 leading-relaxed">
                     {item.href ? (
-                      <a href={item.href} className="hover:text-primary transition-colors">
+                      <a
+                        href={item.href}
+                        className="hover:text-primary transition-colors"
+                      >
                         {item.value}
                       </a>
                     ) : (
@@ -137,7 +153,7 @@ export default function ContactSection() {
 
             <div className="space-y-4">
               {referenceLinks.map((link) => {
-                const Icon = link.icon
+                const Icon = link.icon;
                 return (
                   <a
                     key={link.label}
@@ -152,7 +168,7 @@ export default function ContactSection() {
                     </span>
                     <ExternalLink className="w-4 h-4 text-on-background/20 group-hover:text-primary transition-colors" />
                   </a>
-                )
+                );
               })}
             </div>
           </div>

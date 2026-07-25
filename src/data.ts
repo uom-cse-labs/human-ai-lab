@@ -6,7 +6,7 @@ export const PUBLICATIONS: Publication[] = [
     id: 'pub-1',
     category: 'INTELLIGENCE',
     title: '"Cross-Cultural Bias in Sentiment Analysis: A Sri Lankan Case Study"',
-    authors: 'Perera, S., Wickramasinghe, T., & Silva, R.',
+    authors: 'Chen, A., Taylor, J., & Patel, R.',
     publishedIn: 'ICLR 2024, Vienna',
     year: 2024,
     imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
@@ -16,13 +16,13 @@ export const PUBLICATIONS: Publication[] = [
       'Constructed a benchmark dataset of 50,000 human-annotated local statements for training.',
       'Demonstrated that adjusting word embeddings with local socio-cultural context vectors increases sentiment classification F1-score from 0.62 to 0.89.'
     ],
-    citation: 'Perera, S., Wickramasinghe, T., & Silva, R. (2024). Cross-Cultural Bias in Sentiment Analysis: A Sri Lankan Case Study. In Proceedings of the International Conference on Learning Representations (ICLR 2024), Vienna, Austria.'
+    citation: 'Chen, A., Taylor, J., & Patel, R. (2024). Cross-Cultural Bias in Sentiment Analysis: A Sri Lankan Case Study. In Proceedings of the International Conference on Learning Representations (ICLR 2024), Vienna, Austria.'
   },
   {
     id: 'pub-2',
     category: 'ETHICS',
     title: '"Human-in-the-loop: Ethical Frameworks for Urban Planning AI"',
-    authors: 'Kumara, A. & Fernando, M.',
+    authors: 'Chen, A. & White, I.',
     publishedIn: 'Nature Machine Intelligence, Vol 12',
     year: 2024,
     abstract: 'Autonomous algorithmic decision-making in urban rezoning and infrastructure allocation often exacerbates historic socio-economic disparities. This paper introduces an actionable "Human-in-the-Loop" (HITL) ethical framework designed for municipal planning departments in developing economies. We detail a participatory governance pipeline that integrates machine learning simulations with public assembly inputs to foster equitable resource distribution.',
@@ -31,13 +31,13 @@ export const PUBLICATIONS: Publication[] = [
       'Conducted a comparative trial across three developing metro regions, showing a 40% increase in public satisfaction metrics with algorithmic suggestions.',
       'Formulated the "Participatory AI Charter" containing audit guidelines for civil servants using predictive urban planning systems.'
     ],
-    citation: 'Kumara, A., & Fernando, M. (2024). Human-in-the-loop: Ethical Frameworks for Urban Planning AI. Nature Machine Intelligence, 12(4), 312-325.'
+    citation: 'Chen, A., & White, I. (2024). Human-in-the-loop: Ethical Frameworks for Urban Planning AI. Nature Machine Intelligence, 12(4), 312-325.'
   },
   {
     id: 'pub-3',
     category: 'DESIGN',
     title: '"Tangible Interfaces for Elder Care via Assistive Robotics"',
-    authors: 'Ratnayake, K., et al.',
+    authors: 'Davis, A., et al.',
     publishedIn: 'CHI Conference 2023',
     year: 2023,
     imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200',
@@ -47,13 +47,13 @@ export const PUBLICATIONS: Publication[] = [
       'Proved that wooden tangible interfaces reduce task anxiety by 55% compared to tablet-based touch screen interfaces.',
       'Maintained 94% task completion rates for daily medical reminders and micro-interaction prompts via assistive domestic devices.'
     ],
-    citation: 'Ratnayake, K., Gunasekara, D., Alwis, L., & Wick, T. (2023). Tangible Interfaces for Elder Care via Assistive Robotics. In Proceedings of the ACM CHI Conference on Human Factors in Computing Systems (CHI 2023).'
+    citation: 'Davis, A., Green, S., Parker, O., & Taylor, J. (2023). Tangible Interfaces for Elder Care via Assistive Robotics. In Proceedings of the ACM CHI Conference on Human Factors in Computing Systems (CHI 2023).'
   },
   {
     id: 'pub-4',
     category: 'INTELLIGENCE',
     title: '"Low-Resource Language LLM Fine-Tuning: Methods and Sinhalese Benchmarks"',
-    authors: 'Silva, R., Wickramasinghe, T., & Perera, S.',
+    authors: 'Patel, R., Taylor, J., & Chen, A.',
     publishedIn: 'AAAI 2024, Vancouver',
     year: 2024,
     abstract: 'Fine-tuning large language models on low-resource morphological languages like Sinhalese often causes model collapse or severe vocabulary dilution. We present a novel Parameter-Efficient Fine-Tuning (PEFT) framework using localized adapters trained on custom syntactic trees. We introduce "LankaGLUE", the first comprehensive benchmark suite for evaluating Sinhala language understanding, featuring reading comprehension, sentiment analysis, and semantic similarity tasks.',
@@ -62,13 +62,13 @@ export const PUBLICATIONS: Publication[] = [
       'Validated LankaGLUE benchmarks across 8 open-weight models, showcasing standard fine-tuning limitations.',
       'Achieved a 22% improvement in reasoning tasks in low-resource environments using custom localized adapters.'
     ],
-    citation: 'Silva, R., Wickramasinghe, T., & Perera, S. (2024). Low-Resource Language LLM Fine-Tuning: Methods and Sinhalese Benchmarks. In Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2024), Vancouver, Canada.'
+    citation: 'Patel, R., Taylor, J., & Chen, A. (2024). Low-Resource Language LLM Fine-Tuning: Methods and Sinhalese Benchmarks. In Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2024), Vancouver, Canada.'
   },
   {
     id: 'pub-5',
     category: 'ROBOTICS',
     title: '"Collaborative Kinematics: Safe Multi-Agent Navigation in Agricultural Labs"',
-    authors: 'Wick, T. & Kumara, A.',
+    authors: 'Taylor, J. & Chen, A.',
     publishedIn: 'IEEE Transactions on Robotics, Vol 39',
     year: 2023,
     imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
@@ -78,7 +78,7 @@ export const PUBLICATIONS: Publication[] = [
       'Tested fleet efficiency across a 1200-hour operational simulation, reporting zero collisions with human workers.',
       'Enhanced fleet-wide navigation efficiency by 18% compared to standard decentralized path planners.'
     ],
-    citation: 'Wick, T., & Kumara, A. (2023). Collaborative Kinematics: Safe Multi-Agent Navigation in Agricultural Labs. IEEE Transactions on Robotics, 39(6), 1482-1498.'
+    citation: 'Taylor, J., & Chen, A. (2023). Collaborative Kinematics: Safe Multi-Agent Navigation in Agricultural Labs. IEEE Transactions on Robotics, 39(6), 1482-1498.'
   }
 ];
 
@@ -98,7 +98,7 @@ export const FOCUS_AREAS: FocusArea[] = [
       'Kinesics-AI: Multi-agent spatial awareness models for collaborative lab spaces.',
       'Gaze-Sync: Predicting human manipulation intentions in assembly lines through continuous gaze-tracking.'
     ],
-    leadResearcher: 'Dr. Tharindu Wick'
+    leadResearcher: 'Dr. Jordan Taylor'
   },
   {
     id: 'focus-2',
@@ -114,7 +114,7 @@ export const FOCUS_AREAS: FocusArea[] = [
       'Cognitive-Load Tracker: Real-time calculation of human user mental fatigue using low-intrusive behavioral markers.',
       'Decision-Bridges: Aligning LLM reasoning hierarchies with human heuristic patterns.'
     ],
-    leadResearcher: 'Prof. Rohan Silva'
+    leadResearcher: 'Dr. Alex Chen'
   },
   {
     id: 'focus-3',
@@ -130,7 +130,7 @@ export const FOCUS_AREAS: FocusArea[] = [
       'Ethical Rezoning Charter: Participatory templates for public infrastructure machine-learning tools.',
       'AI-Impact Matrix: Quantifying the socio-economic displacement of automated services in regional industries.'
     ],
-    leadResearcher: 'Dr. Anjali Kumara'
+    leadResearcher: 'Dr. Alex Chen'
   },
   {
     id: 'focus-4',
@@ -147,7 +147,7 @@ export const FOCUS_AREAS: FocusArea[] = [
       'Heuristic Maps: Translating neural network weight shifts into high-level human semantic concepts.',
       'Explainable-Water: Transparent predictive models for regional reservoir discharge and drought management.'
     ],
-    leadResearcher: 'Prof. Emeritus Siri'
+    leadResearcher: 'Prof. Emeritus Morgan Smith'
   }
 ];
 
@@ -165,10 +165,10 @@ export const NEWS: NewsItem[] = [
   {
     id: 'news-2',
     date: 'APRIL 2, 2024',
-    title: 'Dr. Anjali Kumara receives Presidential Award',
+    title: 'Dr. Alex Chen receives Presidential Award',
     content: 'Recognized for contributions to ethical data mining in public health sectors.',
     imageUrl: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=600',
-    details: 'The Presidential Commission on Science & Technology awarded Dr. Kumara for her groundbreaking "HITL Healthcare-Audit Protocol". The framework is currently deployed in regional rural clinics to monitor diagnostics equality, protecting patient data sovereignty while ensuring fair algorithmically-driven vaccine distribution.'
+    details: 'The Presidential Commission on Science & Technology awarded Dr. Chen for her groundbreaking "HITL Healthcare-Audit Protocol". The framework is currently deployed in regional rural clinics to monitor diagnostics equality, protecting patient data sovereignty while ensuring fair algorithmically-driven vaccine distribution.'
   }
 ];
 

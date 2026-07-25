@@ -5,7 +5,7 @@
       "name": "Prof. Indika Perera",
       "role": "DIRECTOR, HUMAN AI LAB",
       "title": "DIRECTOR, HUMAN AI LAB",
-      "bio": "Prof. Rohan Silva has over 25 years of research experience in distributed systems and intelligent software architectures. He spearheaded the creation of Human AI Lab to unite machine learning models with human behavioral sciences. He previously worked as an advisor to the Ministry of Technology on state-level infrastructure digitization and currently chairs the University's AI Task Force.",
+      "bio": "Prof. Indika Perera has over 25 years of research experience in distributed systems and intelligent software architectures. He spearheaded the creation of Human AI Lab to unite machine learning models with human behavioral sciences. He previously worked as an advisor to the Ministry of Technology on state-level infrastructure digitization and currently chairs the University's AI Task Force.",
       "expertise": "Expertise in Multi-Agent Systems and Cognitive Architecture.",
       "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1784541907/prof_indika_bqphbe.jpg",
       "socials": {
@@ -16,183 +16,183 @@
     },
     {
       "id": "member-2",
-      "name": "Dr. Anjali Kumara",
+      "name": "Dr. Alex Chen",
       "role": "LEAD RESEARCHER",
       "title": "LEAD RESEARCHER",
-      "bio": "Dr. Anjali Kumara completed her PhD at Oxford University focusing on the socio-technical impacts of algorithmic automation in developing economies. She serves on international AI policy panels and actively collaborates with civic tech groups to draft human-centered AI legislation. Her research focuses on the intersection of data ethics, post-colonial geography, and public policy.",
+      "bio": "Dr. Alex Chen completed her PhD at Oxford University focusing on the socio-technical impacts of algorithmic automation in developing economies. She serves on international AI policy panels and actively collaborates with civic tech groups to draft human-centered AI legislation. Her research focuses on the intersection of data ethics, post-colonial geography, and public policy.",
       "expertise": "Specializing in AI Ethics and Policy in the Global South.",
       "imageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:anjali.k@uom.lk",
-        "linkedin": "https://linkedin.com/in/dr-anjali-kumara",
-        "scholar": "https://scholar.google.com/citations?user=anjali-kumara"
+        "email": "mailto:alex.chen@uom.lk",
+        "linkedin": "https://linkedin.com/in/dr-alex-chen",
+        "scholar": "https://scholar.google.com/citations?user=alex-chen"
       }
     },
     {
       "id": "member-3",
-      "name": "Dr. Tharindu Wick",
+      "name": "Dr. Jordan Taylor",
       "role": "PRINCIPAL INVESTIGATOR",
       "title": "PRINCIPAL INVESTIGATOR",
-      "bio": "Dr. Tharindu Wick leads the Robotics and Human-Machine Interface labs at the University of Moratuwa. His research concentrates on developing low-cost, lightweight sensors and physical actuators that enable safer, more collaborative interactions between elders, field workers, and autonomous machinery. He is a passionate advocate for physical-first interface designs.",
+      "bio": "Dr. Jordan Taylor leads the Robotics and Human-Machine Interface labs at the University of Moratuwa. His research concentrates on developing low-cost, lightweight sensors and physical actuators that enable safer, more collaborative interactions between elders, field workers, and autonomous machinery. He is a passionate advocate for physical-first interface designs.",
       "expertise": "Pioneering work in Affective Computing and User Experience.",
       "imageUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:tharindu.w@uom.lk",
-        "linkedin": "https://linkedin.com/in/dr-tharindu-wick",
-        "scholar": "https://scholar.google.com/citations?user=tharindu-wick"
+        "email": "mailto:jordan.taylor@uom.lk",
+        "linkedin": "https://linkedin.com/in/dr-jordan-taylor",
+        "scholar": "https://scholar.google.com/citations?user=jordan-taylor"
       }
     },
     {
       "id": "member-4",
-      "name": "Prof. Emeritus Siri",
+      "name": "Prof. Emeritus Morgan Smith",
       "role": "SENIOR ADVISOR",
       "title": "SENIOR ADVISOR",
-      "bio": "Prof. Siri is a pioneer of computer science in Sri Lanka, having introduced the country's first software engineering curricula in the 1980s. His current advisory focus is on archiving and preserving local linguistic histories and cultural databases using decentralized technologies, ensuring future generations have clean, representative datasets to train localized systems.",
+      "bio": "Prof. Morgan Smith is a pioneer of computer science in Sri Lanka, having introduced the country's first software engineering curricula in the 1980s. His current advisory focus is on archiving and preserving local linguistic histories and cultural databases using decentralized technologies, ensuring future generations have clean, representative datasets to train localized systems.",
       "expertise": "Foundational contributor to AI research in Sri Lanka.",
       "imageUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:siri@uom.lk",
-        "linkedin": "https://linkedin.com/in/prof-emeritus-siri",
-        "scholar": "https://scholar.google.com/citations?user=emeritus-siri"
+        "email": "mailto:morgan.smith@uom.lk",
+        "linkedin": "https://linkedin.com/in/prof-morgan-smith",
+        "scholar": "https://scholar.google.com/citations?user=morgan-smith"
       }
     }
   ],
   "foundingRAs": [
     {
       "id": "ra-1",
-      "name": "Kavindu Herath",
+      "name": "Samuel Green",
       "role": "Research Assistant",
       "title": "Founding RA",
-      "bio": "Kavindu is a graduate from the Department of Computer Science & Engineering. His research focuses on deploying low-latency deep learning models on edge computing devices in collaborative workspaces.",
+      "bio": "Samuel is a graduate from the Department of Computer Science & Engineering. His research focuses on deploying low-latency deep learning models on edge computing devices in collaborative workspaces.",
       "expertise": "Edge AI and Computer Vision.",
       "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:kavindu.h@uom.lk",
-        "linkedin": "https://linkedin.com/in/kavindu-herath",
-        "scholar": "https://scholar.google.com/citations?user=kavindu-herath"
+        "email": "mailto:samuel.green@uom.lk",
+        "linkedin": "https://linkedin.com/in/samuel-green",
+        "scholar": "https://scholar.google.com/citations?user=samuel-green"
       }
     },
     {
       "id": "ra-2",
-      "name": "Sanduni Senanayake",
+      "name": "Emily Brooks",
       "role": "Research Assistant",
       "title": "Founding RA",
-      "bio": "Sanduni specializes in user experience design and human-robot interaction loops. She investigates how tactile interfaces and physical affordances affect user trust during robotics operations in healthcare settings.",
+      "bio": "Emily specializes in user experience design and human-robot interaction loops. She investigates how tactile interfaces and physical affordances affect user trust during robotics operations in healthcare settings.",
       "expertise": "HRI and Tactile Interface Design.",
       "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:sanduni.s@uom.lk",
-        "linkedin": "https://linkedin.com/in/sanduni-senanayake",
-        "scholar": "https://scholar.google.com/citations?user=sanduni-senanayake"
+        "email": "mailto:emily.brooks@uom.lk",
+        "linkedin": "https://linkedin.com/in/emily-brooks",
+        "scholar": "https://scholar.google.com/citations?user=emily-brooks"
       }
     },
     {
       "id": "ra-3",
-      "name": "Minura Silva",
+      "name": "David Kim",
       "role": "Research Assistant",
       "title": "Founding RA",
-      "bio": "Minura holds an engineering degree and works on reinforcement learning algorithms for autonomous path planning. He designs decentralized coordination protocols for multi-agent robotic fleets.",
+      "bio": "David holds an engineering degree and works on reinforcement learning algorithms for autonomous path planning. He designs decentralized coordination protocols for multi-agent robotic fleets.",
       "expertise": "Reinforcement Learning and Path Planning.",
       "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:minura.s@uom.lk",
-        "linkedin": "https://linkedin.com/in/minura-silva",
-        "scholar": "https://scholar.google.com/citations?user=minura-silva"
+        "email": "mailto:david.kim@uom.lk",
+        "linkedin": "https://linkedin.com/in/david-kim",
+        "scholar": "https://scholar.google.com/citations?user=david-kim"
       }
     },
     {
       "id": "ra-4",
-      "name": "Shamika Liyanage",
+      "name": "Olivia Parker",
       "role": "Research Assistant",
       "title": "Founding RA",
-      "bio": "Shamika translates high-level ethical guidelines into actionable software constraints. She develops automated compliance checkers for municipal planning systems and low-resource natural language processors.",
+      "bio": "Olivia translates high-level ethical guidelines into actionable software constraints. She develops automated compliance checkers for municipal planning systems and low-resource natural language processors.",
       "expertise": "Algorithmic Fairness and NLP.",
       "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400&h=400",
       "socials": {
-        "email": "mailto:shamika.l@uom.lk",
-        "linkedin": "https://linkedin.com/in/shamika-liyanage",
-        "scholar": "https://scholar.google.com/citations?user=shamika-liyanage"
+        "email": "mailto:olivia.parker@uom.lk",
+        "linkedin": "https://linkedin.com/in/olivia-parker",
+        "scholar": "https://scholar.google.com/citations?user=olivia-parker"
       }
     }
   ],
   "studentResearchers": [
     {
-      "name": "Pasindu Bandara",
+      "name": "Liam Wilson",
       "role": "Undergraduate Researcher, CSE",
       "topic": "Human-Robot Interaction in Tropical Agriculture",
       "socials": {
-        "email": "mailto:pasindu.b@uom.lk",
-        "linkedin": "https://linkedin.com/in/pasindu-bandara",
-        "scholar": "https://scholar.google.com/citations?user=pasindu-bandara"
+        "email": "mailto:liam.wilson@uom.lk",
+        "linkedin": "https://linkedin.com/in/liam-wilson",
+        "scholar": "https://scholar.google.com/citations?user=liam-wilson"
       }
     },
     {
-      "name": "Nimasha Gunawardena",
+      "name": "Sophia Lee",
       "role": "Undergraduate Researcher, CSE",
       "topic": "Explainable AI in Clinical Decision Support Systems",
       "socials": {
-        "email": "mailto:nimasha.g@uom.lk",
-        "linkedin": "https://linkedin.com/in/nimasha-gunawardena",
-        "scholar": "https://scholar.google.com/citations?user=pasindu-bandara"
+        "email": "mailto:sophia.lee@uom.lk",
+        "linkedin": "https://linkedin.com/in/sophia-lee",
+        "scholar": "https://scholar.google.com/citations?user=sophia-lee"
       }
     },
     {
-      "name": "Dinuka Wijesinghe",
+      "name": "Noah Brown",
       "role": "Undergraduate Researcher, CSE",
       "topic": "Cognitive Load Modeling for Assistive Technology",
       "socials": {
-        "email": "mailto:dinuka.w@uom.lk",
-        "linkedin": "https://linkedin.com/in/dinuka-wijesinghe"
+        "email": "mailto:noah.brown@uom.lk",
+        "linkedin": "https://linkedin.com/in/noah-brown"
       }
     },
     {
-      "name": "Sajani Rathnayake",
+      "name": "Ava Davis",
       "role": "Undergraduate Researcher, CSE",
       "topic": "Algorithmic Fairness & Policy Auditing Frameworks",
       "socials": {
-        "email": "mailto:sajani.r@uom.lk",
-        "linkedin": "https://linkedin.com/in/sajani-rathnayake",
-        "scholar": "https://scholar.google.com/citations?user=sajani-rathnayake"
+        "email": "mailto:ava.davis@uom.lk",
+        "linkedin": "https://linkedin.com/in/ava-davis",
+        "scholar": "https://scholar.google.com/citations?user=ava-davis"
       }
     }
   ],
   "alumni": [
     {
-      "name": "Dr. Ruwan Jayasekara",
+      "name": "Dr. Michael Clark",
       "role": "Postdoctoral Researcher (2022 - 2024)",
       "currentPosition": "Assistant Professor at National University of Singapore",
       "socials": {
-        "email": "mailto:ruwan.j@nus.edu.sg",
-        "linkedin": "https://linkedin.com/in/dr-ruwan-jayasekara",
-        "scholar": "https://scholar.google.com/citations?user=ruwan-jayasekara"
+        "email": "mailto:michael.clark@nus.edu.sg",
+        "linkedin": "https://linkedin.com/in/dr-michael-clark",
+        "scholar": "https://scholar.google.com/citations?user=michael-clark"
       }
     },
     {
-      "name": "Tharushi Fernando",
+      "name": "Isabella White",
       "role": "Research Assistant (2023 - 2024)",
       "currentPosition": "PhD Candidate at Stanford University",
       "socials": {
-        "email": "mailto:tharushi.f@stanford.edu",
-        "linkedin": "https://linkedin.com/in/tharushi-fernando",
-        "scholar": "https://scholar.google.com/citations?user=tharushi-fernando"
+        "email": "mailto:isabella.white@stanford.edu",
+        "linkedin": "https://linkedin.com/in/isabella-white",
+        "scholar": "https://scholar.google.com/citations?user=isabella-white"
       }
     },
     {
-      "name": "Kaveen Perera",
+      "name": "Ethan Harris",
       "role": "Undergraduate Researcher (2023)",
       "currentPosition": "Software Engineer at Google",
       "socials": {
-        "linkedin": "https://linkedin.com/in/kaveen-perera"
+        "linkedin": "https://linkedin.com/in/ethan-harris"
       }
     },
     {
-      "name": "Methma de Silva",
+      "name": "Charlotte Miller",
       "role": "Research Assistant (2022 - 2023)",
       "currentPosition": "PhD Candidate at Carnegie Mellon University",
       "socials": {
-        "email": "mailto:methma.d@cmu.edu",
-        "linkedin": "https://linkedin.com/in/methma-desilva",
-        "scholar": "https://scholar.google.com/citations?user=methma-desilva"
+        "email": "mailto:charlotte.miller@cmu.edu",
+        "linkedin": "https://linkedin.com/in/charlotte-miller",
+        "scholar": "https://scholar.google.com/citations?user=charlotte-miller"
       }
     }
   ]

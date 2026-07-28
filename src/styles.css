@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-primary: #151B54;
@@ -56,6 +57,17 @@ body {
 @keyframes slideIn {
   from { transform: translateX(100%); }
   to { transform: translateX(0); }
+}
+
+.prose {
+  --tw-prose-body: var(--color-on-background);
+  --tw-prose-headings: var(--color-on-background);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-on-background);
+  --tw-prose-quotes: var(--color-on-background);
+  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-code: var(--color-on-background);
+  --tw-prose-hr: var(--color-outline);
 }
 
 .animate-fade-in {

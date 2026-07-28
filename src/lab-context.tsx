@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from 'react'
 import type { ReactNode } from 'react'
-import type { Publication, FocusArea, TeamMember, NewsItem } from '@/types'
+import type { Publication, FocusArea, TeamMember } from '@/types'
 
 interface LabContextType {
   selectedPaper: Publication | null
@@ -9,8 +9,6 @@ interface LabContextType {
   setSelectedFocusArea: (f: FocusArea | null) => void
   selectedMember: TeamMember | null
   setSelectedMember: (t: TeamMember | null) => void
-  selectedNews: NewsItem | null
-  setSelectedNews: (n: NewsItem | null) => void
   handleNavigate: (sectionId: string) => void
 }
 
@@ -20,7 +18,6 @@ export function LabProvider({ children }: { children: ReactNode }) {
   const [selectedPaper, setSelectedPaper] = useState<Publication | null>(null)
   const [selectedFocusArea, setSelectedFocusArea] = useState<FocusArea | null>(null)
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
-  const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
 
   const handleNavigate = (sectionId: string) => {
     if (sectionId === 'hero') {
@@ -41,7 +38,6 @@ export function LabProvider({ children }: { children: ReactNode }) {
       selectedPaper, setSelectedPaper,
       selectedFocusArea, setSelectedFocusArea,
       selectedMember, setSelectedMember,
-      selectedNews, setSelectedNews,
       handleNavigate
     }}>
       {children}

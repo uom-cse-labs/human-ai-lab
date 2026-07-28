@@ -1,16 +1,15 @@
 import { Link } from '@tanstack/react-router'
-import type { NewsItem } from '@/types'
+import type { NewsIndexItem } from '@/lib/news'
 
 interface NewsCardProps {
-  item: NewsItem
-  onSelect?: (item: NewsItem) => void
-  to?: string
-  params?: Record<string, string>
+  item: NewsIndexItem
+  to: string
+  params: Record<string, string>
 }
 
-export default function NewsCard({ item, onSelect, to, params }: NewsCardProps) {
-  const content = (
-    <>
+export default function NewsCard({ item, to, params }: NewsCardProps) {
+  return (
+    <Link to={to} params={params} className="group cursor-pointer flex flex-col">
       <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-outline bg-surface rounded-2xl">
         <img
           src={item.imageUrl}
@@ -32,20 +31,6 @@ export default function NewsCard({ item, onSelect, to, params }: NewsCardProps) 
       <p className="font-sans text-sm text-on-background/60 leading-[1.6] font-normal">
         {item.content}
       </p>
-    </>
-  )
-
-  if (to && params) {
-    return (
-      <Link to={to} params={params} className="group cursor-pointer flex flex-col">
-        {content}
-      </Link>
-    )
-  }
-
-  return (
-    <div onClick={() => onSelect?.(item)} className="group cursor-pointer flex flex-col">
-      {content}
-    </div>
+    </Link>
   )
 }

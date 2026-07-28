@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
-import { NEWS } from '@/data'
+import { getAllArticles } from '@/lib/news'
+import type { NewsIndexItem } from '@/lib/news'
 import { ArrowUpRight } from 'lucide-react'
 
 export const Route = createFileRoute('/dispatches')({
@@ -7,8 +8,9 @@ export const Route = createFileRoute('/dispatches')({
 })
 
 function DispatchesPage() {
-  const featured = NEWS[0];
-  const rest = NEWS.slice(1);
+  const articles = getAllArticles()
+  const featured = articles[0]
+  const rest = articles.slice(1)
 
   return (
     <main className="min-h-screen bg-background pb-28">
@@ -37,8 +39,8 @@ function DispatchesPage() {
             LATEST DISPATCH
           </h2>
           <Link
-            to="/news/$newsId"
-            params={{ newsId: featured.id }}
+            to="/news/$slug"
+            params={{ slug: featured.slug }}
             className="group flex flex-col lg:flex-row gap-8 lg:gap-16 items-center bg-surface border border-outline rounded-3xl p-6 md:p-8 hover:border-primary/50 transition-colors"
           >
             <div className="w-full lg:w-3/5 overflow-hidden rounded-2xl relative aspect-[16/9] lg:aspect-[4/3]">
@@ -59,7 +61,7 @@ function DispatchesPage() {
                 {featured.title}
               </h3>
               <p className="font-sans text-lg text-on-background/70 leading-[1.6] font-normal mb-8">
-                {featured.details.substring(0, 200)}...
+                {featured.content}
               </p>
               <div className="inline-flex items-center gap-2 font-mono text-xs font-black uppercase tracking-widest text-on-background group-hover:text-primary transition-colors">
                 READ FULL DISPATCH <ArrowUpRight className="w-4 h-4" />
@@ -76,11 +78,11 @@ function DispatchesPage() {
             PREVIOUS DISPATCHES
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {rest.map((item) => (
+            {rest.map((item: NewsIndexItem) => (
               <Link
-                key={item.id}
-                to="/news/$newsId"
-                params={{ newsId: item.id }}
+                key={item.slug}
+                to="/news/$slug"
+                params={{ slug: item.slug }}
                 className="group flex flex-col h-full bg-surface-dim hover:bg-surface border border-outline hover:border-primary/40 rounded-3xl p-6 md:p-8 transition-all duration-300"
               >
                 <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 rounded-2xl border border-outline shadow-sm">

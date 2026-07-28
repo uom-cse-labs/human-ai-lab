@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
-import type { Publication, FocusArea, TeamMember, NewsItem } from '@/types';
+import type { Publication, FocusArea, TeamMember } from '@/types';
 import { X, Send, Bot, CheckCircle, ArrowRight, User, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -388,54 +388,6 @@ export function BioModal({ member, onClose }: BioModalProps) {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ==========================================
-// 6. NEWS ARTICLE DETAIL MODAL
-// ==========================================
-interface NewsModalProps {
-  news: NewsItem;
-  onClose: () => void;
-}
-
-export function NewsModal({ news, onClose }: NewsModalProps) {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
-      <div
-        className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
-      >
-        <div className="aspect-[16/9] w-full relative overflow-hidden bg-surface border-b border-outline rounded-t-2xl">
-          <img
-            src={news.imageUrl}
-            alt={news.title}
-            className="w-full h-full object-cover filter grayscale contrast-110 brightness-90"
-            referrerPolicy="no-referrer"
-          />
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-overlay/80 text-white hover:bg-primary hover:text-white"
-          >
-            <X className="w-5 h-5" />
-          </Button>
-        </div>
-
-        <div className="p-8 space-y-4 bg-background">
-          <span className="font-mono text-[10px] font-black text-primary tracking-[0.2em] uppercase block">
-            PUBLISHED: {news.date}
-          </span>
-          <h2 className="font-sans text-2xl font-black text-on-background tracking-tight leading-snug uppercase">
-            {news.title}
-          </h2>
-          <div className="h-px bg-outline my-3" />
-          <p className="font-sans text-sm text-on-background/60 leading-[1.65] font-normal">
-            {news.details}
-          </p>
         </div>
       </div>
     </div>

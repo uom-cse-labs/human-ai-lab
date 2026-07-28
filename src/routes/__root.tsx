@@ -7,7 +7,6 @@ import {
   PaperReaderModal,
   FocusAreaModal,
   BioModal,
-  NewsModal,
 } from '../components/Modals'
 import { LabProvider, useLab } from '@/lab-context'
 
@@ -39,7 +38,6 @@ function RootContent() {
     selectedPaper, setSelectedPaper,
     selectedFocusArea, setSelectedFocusArea,
     selectedMember, setSelectedMember,
-    selectedNews, setSelectedNews,
     handleNavigate,
   } = useLab()
 
@@ -84,12 +82,6 @@ function RootContent() {
         <BioModal
           member={selectedMember}
           onClose={() => setSelectedMember(null)}
-        />
-      )}
-      {selectedNews && (
-        <NewsModal
-          news={selectedNews}
-          onClose={() => setSelectedNews(null)}
         />
       )}
 

@@ -1,4 +1,4 @@
-import type { Publication, FocusArea, TeamMember, NewsItem, StudentResearcher, Alumni } from './types';
+import type { Publication, FocusArea, TeamMember, StudentResearcher, Alumni } from './types';
 import teamData from './data.json';
 
 export const PUBLICATIONS: Publication[] = [
@@ -152,25 +152,6 @@ export const FOCUS_AREAS: FocusArea[] = [
 ];
 
 export const TEAM_MEMBERS: TeamMember[] = teamData.teamMembers;
-
-export const NEWS: NewsItem[] = [
-  {
-    id: 'news-1',
-    date: 'MAY 15, 2024',
-    title: 'Human AI Lab hosts International Workshop on Responsible AI',
-    content: 'Bringing together scholars from across Southeast Asia to discuss regulatory frameworks.',
-    imageUrl: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600',
-    details: 'The event hosted 120 policy makers, technologists, and researchers at the Moratuwa University Auditorium. Keynote discussions centered around creating flexible regional standards for AI deployment, auditing bias in agricultural automation tools, and coordinating public-sector data standards across SAARC nations.'
-  },
-  {
-    id: 'news-2',
-    date: 'APRIL 2, 2024',
-    title: 'Dr. Alex Chen receives Presidential Award',
-    content: 'Recognized for contributions to ethical data mining in public health sectors.',
-    imageUrl: 'https://images.unsplash.com/photo-1531545514256-b1400bc00f31?auto=format&fit=crop&q=80&w=600',
-    details: 'The Presidential Commission on Science & Technology awarded Dr. Chen for her groundbreaking "HITL Healthcare-Audit Protocol". The framework is currently deployed in regional rural clinics to monitor diagnostics equality, protecting patient data sovereignty while ensuring fair algorithmically-driven vaccine distribution.'
-  }
-];
 
 export const FOUNDING_RAS: TeamMember[] = teamData.foundingRAs;
 

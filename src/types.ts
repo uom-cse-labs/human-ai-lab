@@ -57,15 +57,6 @@ export interface Alumni {
   socials?: SocialLinks;
 }
 
-export interface NewsItem {
-  id: string;
-  date: string;
-  title: string;
-  content: string;
-  imageUrl: string;
-  details: string;
-}
-
 export interface ContactMessage {
   name: string;
   email: string;

@@ -11,6 +11,20 @@ Before editing files for a substantial task:
 - Multiple matches: prefer the most specific local skill for the package or concern you are changing; load additional skills only when the task spans multiple packages or concerns.
 <!-- intent-skills:end -->
 
+## Agent skills
+
+### Issue tracker
+
+Issues and specs are local markdown files under `.scratch/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Five canonical roles with default label strings (e.g. `ready-for-agent`, `needs-info`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context — `CONTEXT.md` at the repo root, no `CONTEXT-MAP.md`. See `docs/agents/domain.md`.
+
 # Project Context
 
 ## Scaffolding Command

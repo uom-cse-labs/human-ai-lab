@@ -23,12 +23,13 @@ export default function Header({
     { label: "RESEARCH THEMES", route: "/themes" },
     { label: "PUBLICATIONS", route: "/publications" },
     { label: "PIONEERS", route: "/pioneers" },
+    { label: "PROJECTS", route: "/projects" },
     { label: "DISPATCHES", route: "/dispatches" },
   ];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/95 border-b border-outline backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <div className="max-w-container-nav mx-auto px-6 h-24 flex items-center justify-between">
         <div
           onClick={() => navigate({ to: "/" })}
           className="flex items-center gap-4 cursor-pointer group"
@@ -42,6 +43,11 @@ export default function Header({
             src="/cse_logo.png"
             alt="Department of Computer Science and Engineering"
             className="h-14 w-auto"
+          />
+          <img
+            src="/humanailogo.jpeg"
+            alt="Human AI Lab"
+            className="h-12 w-auto"
           />
         </div>
 

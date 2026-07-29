@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { TEAM_MEMBERS } from '@/data'
 import { Badge } from '@/components/ui/badge'
+import PioneerCard from '@/components/PioneerCard'
 
 export const Route = createFileRoute('/pioneers')({
   component: PioneersPage,
@@ -27,63 +28,61 @@ function PioneersPage() {
         </div>
       </section>
 
-      {/* Roster Section */}
-      <section className="max-w-7xl mx-auto px-6 py-12">
-        {TEAM_MEMBERS.map((member, index) => {
-          const isEven = index % 2 === 0;
-
+      {/* Director */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        {(() => {
+          const indika = TEAM_MEMBERS.find((m) => m.id === 'member-1')!
           return (
-            <div key={member.id} className="py-20 border-b border-outline last:border-b-0">
-              <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}>
-                
-                {/* Visual Side */}
-                <div className="w-full lg:w-5/12">
-                  <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-outline shadow-2xl group">
-                    <img
-                      src={member.imageUrl}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
-                      referrerPolicy="no-referrer"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60 pointer-events-none" />
-                  </div>
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center pb-16 border-b border-outline">
+              <div className="w-full lg:w-4/12">
+                <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-outline shadow-2xl group">
+                  <img
+                    src={indika.imageUrl}
+                    alt={indika.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60 pointer-events-none" />
                 </div>
-
-                {/* Content Side */}
-                <div className="w-full lg:w-7/12 flex flex-col justify-center">
-                  <div className="mb-6 flex flex-wrap items-center gap-3">
-                    <Badge variant="outline" className="font-mono uppercase tracking-widest text-primary border-primary/30 bg-primary/5">
-                      {member.title}
-                    </Badge>
-                    <Badge variant="secondary" className="font-mono uppercase tracking-widest bg-surface-dim text-on-background/60">
-                      {member.role}
-                    </Badge>
-                  </div>
-                  
-                  <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter text-on-background uppercase mb-8 leading-[1]">
-                    {member.name}
-                  </h2>
-                  
-                  <div className="bg-surface p-6 md:p-8 border-l-2 border-primary mb-8 rounded-2xl">
-                    <p className="font-mono text-xs font-black text-on-background/40 uppercase tracking-[0.2em] mb-2">
-                      Core Investigation Focus
-                    </p>
-                    <p className="font-sans text-xl text-on-background font-bold leading-relaxed">
-                      {member.expertise}
-                    </p>
-                  </div>
-
-                  <div className="space-y-4">
-                    <p className="font-sans text-lg text-on-background/70 leading-[1.8] font-normal whitespace-pre-line">
-                      {member.bio}
-                    </p>
-                  </div>
-
+              </div>
+              <div className="w-full lg:w-8/12 flex flex-col justify-center">
+                <div className="mb-6 flex flex-wrap items-center gap-3">
+                  <Badge variant="outline" className="font-mono uppercase tracking-widest text-primary border-primary/30 bg-primary/5">
+                    {indika.title}
+                  </Badge>
+                  <Badge variant="secondary" className="font-mono uppercase tracking-widest bg-surface-dim text-on-background/60">
+                    {indika.role}
+                  </Badge>
+                </div>
+                <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter text-on-background uppercase mb-8 leading-[1]">
+                  {indika.name}
+                </h2>
+                <div className="bg-surface p-6 md:p-8 border-l-2 border-primary mb-8 rounded-2xl">
+                  <p className="font-mono text-xs font-black text-on-background/40 uppercase tracking-[0.2em] mb-2">
+                    Core Investigation Focus
+                  </p>
+                  <p className="font-sans text-xl text-on-background font-bold leading-relaxed">
+                    {indika.expertise}
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <p className="font-sans text-lg text-on-background/70 leading-[1.8] font-normal whitespace-pre-line">
+                    {indika.bio}
+                  </p>
                 </div>
               </div>
             </div>
-          );
-        })}
+          )
+        })()}
+      </section>
+
+      {/* Team */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 grid-rows-[auto_1fr]">
+          {TEAM_MEMBERS.filter((m) => m.id !== 'member-1').map((member) => (
+            <PioneerCard key={member.id} member={member} />
+          ))}
+        </div>
       </section>
     </main>
   )

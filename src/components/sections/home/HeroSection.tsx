@@ -33,16 +33,17 @@ export default function HeroSection({
           <div className="mb-8 flex items-center gap-3 animate-fade-in">
             <span className="w-12 h-[2px] bg-primary" />
             <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
-              SRI LANKA'S PREMIER HUB FOR AI RESEARCH
+              DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING — UNIVERSITY OF MORATUWA
             </span>
           </div>
 
           <h1 className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] mb-10 uppercase select-none">
-            Advancing the <span className="text-primary italic">Human</span>{" "}
+            <span className="text-primary italic">Human</span>
+            -Centered{" "}
             <span className="text-on-background relative inline-block underline decoration-primary decoration-[6px] md:decoration-[10px] underline-offset-[8px] md:underline-offset-[14px]">
-              Dimension
+              AI
             </span>{" "}
-            of AI.
+            Research Lab.
           </h1>
 
           <p className="font-sans text-lg md:text-xl text-on-background/60 leading-[1.6] max-w-3xl mb-12 font-normal">

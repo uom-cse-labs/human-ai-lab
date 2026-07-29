@@ -29,7 +29,7 @@ export default function Header({
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/95 border-b border-outline backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+      <div className="max-w-container-nav mx-auto px-6 h-24 flex items-center justify-between">
         <div
           onClick={() => navigate({ to: "/" })}
           className="flex items-center gap-4 cursor-pointer group"

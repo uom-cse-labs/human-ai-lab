@@ -24,6 +24,8 @@
   --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   --font-serif: 'Source Serif 4', Georgia, serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  --size-container-nav: 90rem;
 }
 
 body {

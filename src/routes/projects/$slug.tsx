@@ -37,18 +37,18 @@ function ProjectDetail() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-end max-w-7xl mx-auto px-6 pb-12">
+        <div className="absolute inset-0 flex flex-col justify-end max-w-3xl mx-auto px-6 pb-12">
           <Link
             to="/projects"
             className="inline-flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:text-white transition-colors mb-6 w-fit bg-surface-container px-4 py-2 rounded-full border border-outline backdrop-blur-md"
           >
             <ArrowLeft className="w-3.5 h-3.5" /> LABORATORY PROJECTS
           </Link>
-          <div className="max-w-4xl">
+          <div>
             <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white uppercase leading-[0.95] mb-4">
               {project.title}
             </h1>
-            <span className="font-mono text-xs font-black text-primary tracking-[0.2em] uppercase">
+            <span className="font-mono text-xs font-black text-white/60 tracking-[0.2em] uppercase">
               {project.date}
             </span>
           </div>

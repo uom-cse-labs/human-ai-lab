@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "ai-governance-framework",
+    "date": "JUNE 10, 2024",
+    "title": "AI Governance Framework for Southeast Asia",
+    "content": "Developing culturally-grounded AI governance standards for the South Asian region.",
+    "imageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600",
+    "order": 0,
+    "share": {
+      "twitter": "https://twitter.com/HumanAILab/status/123456789",
+      "linkedin": "https://linkedin.com/posts/human-ai-lab/ai-governance-framework"
+    }
+  },
+  {
+    "slug": "healthcare-audit-protocol",
+    "date": "MARCH 22, 2024",
+    "title": "Human-in-the-Loop Healthcare Audit Protocol",
+    "content": "A real-time monitoring framework for algorithmic fairness in rural public health systems.",
+    "imageUrl": "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&q=80&w=600",
+    "share": {
+      "twitter": "https://twitter.com/HumanAILab/status/987654321",
+      "linkedin": "https://linkedin.com/posts/human-ai-lab/healthcare-audit-protocol"
+    }
+  },
+  {
+    "slug": "agricultural-ai-ethics",
+    "date": "JANUARY 15, 2024",
+    "title": "Ethical AI for Agricultural Decision Support",
+    "content": "Auditing bias in crop-yield prediction models trained on non-localized datasets.",
+    "imageUrl": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&q=80&w=600"
+  }
+]

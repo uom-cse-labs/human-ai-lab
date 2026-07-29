@@ -23,6 +23,7 @@ export default function Header({
     { label: "RESEARCH THEMES", route: "/themes" },
     { label: "PUBLICATIONS", route: "/publications" },
     { label: "PIONEERS", route: "/pioneers" },
+    { label: "PROJECTS", route: "/projects" },
     { label: "DISPATCHES", route: "/dispatches" },
   ];
 
@@ -42,6 +43,11 @@ export default function Header({
             src="/cse_logo.png"
             alt="Department of Computer Science and Engineering"
             className="h-14 w-auto"
+          />
+          <img
+            src="/humanailogo.jpeg"
+            alt="Human AI Lab"
+            className="h-12 w-auto"
           />
         </div>
 

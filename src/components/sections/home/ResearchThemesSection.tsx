@@ -94,7 +94,7 @@ export default function ResearchThemesSection({
             <div className="relative z-20 p-2 bg-background rounded-full mx-auto self-center shrink-0 my-4">
               <div className="w-32 h-32 rounded-full overflow-hidden border border-outline shadow-[0_0_30px_rgba(var(--primary),0.15)] relative">
                 <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10"></div>
-                <img src="/central_network_node.png" alt="Central AI Node" className="w-full h-full object-cover scale-110" />
+                <img src="/hand_in_hand.png" alt="Central AI Node" className="w-full h-full object-cover scale-110" />
               </div>
             </div>
 

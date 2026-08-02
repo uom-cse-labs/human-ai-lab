@@ -4,7 +4,8 @@
     "date": "JULY 20, 2026",
     "title": "Personalized Sinhala Speech Recognition for Speech-Impaired Communication",
     "content": "Building a speech-recognition system for Sinhala-speaking individuals with speech impairments such as dysarthria, personalized to each user's own voice and trained on 40 everyday phrases covering food, pain, help, and emergencies.",
-    "imageUrl": "https://snipboard.io/hkCU8s.jpg"
+    "imageUrl": "https://snipboard.io/hkCU8s.jpg",
+    "order": 0
   },
   {
     "slug": "social-media-virality-modeling",

@@ -1,6 +1,7 @@
 import {
   TEAM_MEMBERS,
   FOUNDING_RAS,
+  RESEARCH_ASSISTANTS,
   STUDENT_RESEARCHERS,
   ALUMNI,
 } from "@/data";
@@ -128,15 +129,6 @@ export default function MembersSection({
                 </div>
 
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mt-4">
-                  <div className="bg-surface-dim p-5 border-l-2 border-primary rounded-2xl flex-1 w-full">
-                    <span className="font-mono text-[8px] font-black text-on-background/40 tracking-widest uppercase block mb-1">
-                      Core Expertise
-                    </span>
-                    <p className="font-sans text-xs text-on-background/80 font-semibold">
-                      {director.expertise}
-                    </p>
-                  </div>
-
                   {/* Enlarged social icons for Director */}
                   <div
                     className="flex items-center gap-3 self-end md:self-auto shrink-0"
@@ -210,9 +202,6 @@ export default function MembersSection({
                   {member.title}
                 </p>
                 <SocialLinks socials={member.socials} />
-                <p className="font-sans text-xs text-on-background/60 leading-[1.6] font-normal mt-3">
-                  {member.expertise}
-                </p>
               </div>
             ))}
           </div>
@@ -231,16 +220,6 @@ export default function MembersSection({
                 onClick={() => onSelectMember(ra)}
                 className="group cursor-pointer flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 rounded-2xl border border-outline shadow-sm">
-                  <img
-                    src={ra.imageUrl}
-                    alt={ra.name}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
-                </div>
-
                 <h4 className="font-sans text-sm font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">
                   {ra.name}
                 </h4>
@@ -255,6 +234,38 @@ export default function MembersSection({
             ))}
           </div>
         </div>
+
+        {/* 4. Research Assistants */}
+        {RESEARCH_ASSISTANTS.length > 0 && (
+          <div className="border-t border-outline/50 pt-16 mt-16">
+            <h3 className="font-mono text-xs font-black tracking-widest text-primary uppercase mb-8">
+              Research Assistants
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {RESEARCH_ASSISTANTS.map((ra) => (
+                <div
+                  key={ra.id}
+                  onClick={() => onSelectMember(ra)}
+                  className="group cursor-pointer flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
+                >
+                  <h4 className="font-sans text-sm font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">
+                    {ra.name}
+                  </h4>
+                  <p className="font-mono text-[8px] font-black text-primary tracking-[0.15em] uppercase mt-1 mb-1">
+                    {ra.title}
+                  </p>
+                  <SocialLinks socials={ra.socials} />
+                  {ra.expertise && (
+                    <p className="font-sans text-[11px] text-on-background/55 leading-relaxed mt-2.5">
+                      {ra.expertise}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* 4. Student Researchers */}
         <div className="border-t border-outline/50 pt-16 mt-16">
@@ -290,7 +301,7 @@ export default function MembersSection({
           </div>
         </div>
 
-        {/* 5. Alumni */}
+        {/* 5. Alumni
         <div className="border-t border-outline/50 pt-16 mt-16">
           <h3 className="font-mono text-xs font-black tracking-widest text-primary uppercase mb-8">
             Alumni
@@ -322,7 +333,7 @@ export default function MembersSection({
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );

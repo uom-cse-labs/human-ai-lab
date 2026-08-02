@@ -1,4 +1,5 @@
 import type { TeamMember } from "@/types";
+import { Mail, Linkedin, GraduationCap } from "lucide-react";
 
 interface PioneerCardProps {
   member: TeamMember;
@@ -22,25 +23,47 @@ export default function PioneerCard({ member }: PioneerCardProps) {
           <span className="font-mono text-[10px] font-black uppercase tracking-widest text-primary border border-primary/30 bg-primary/5 px-2.5 py-1 rounded-full">
             {member.title}
           </span>
-          {/* <span className="font-mono text-[10px] font-black uppercase tracking-widest bg-surface-dim text-on-background/60 px-2.5 py-1 rounded-full">
-            {member.role}
-          </span> */}
         </div>
 
         <h3 className="font-sans text-2xl md:text-3xl font-black tracking-tighter text-on-background uppercase leading-[1.1] mb-4">
           {member.name}
         </h3>
 
-        {/* <div className="bg-background p-4 md:p-5 border-l-2 border-primary rounded-2xl mb-4">
-          <p className="font-mono text-[10px] font-black text-on-background/40 uppercase tracking-[0.2em] mb-1.5">
-            Core Investigation Focus
-          </p>
-          <p className="font-sans text-sm md:text-base text-on-background font-bold leading-relaxed">
-            {member.expertise}
-          </p>
-        </div> */}
-
-        
+        {member.socials && (
+          <div className="flex gap-3 mt-auto pt-4 border-t border-outline/30">
+            {member.socials.email && (
+              <a
+                href={member.socials.email}
+                className="w-9 h-9 rounded-full bg-surface-dim hover:bg-primary/10 text-on-background/60 hover:text-primary border border-outline/30 flex items-center justify-center transition-colors"
+                title="Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            )}
+            {member.socials.linkedin && (
+              <a
+                href={member.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-surface-dim hover:bg-primary/10 text-on-background/60 hover:text-primary border border-outline/30 flex items-center justify-center transition-colors"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+            )}
+            {member.socials.scholar && (
+              <a
+                href={member.socials.scholar}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-full bg-surface-dim hover:bg-primary/10 text-on-background/60 hover:text-primary border border-outline/30 flex items-center justify-center transition-colors"
+                title="Google Scholar"
+              >
+                <GraduationCap className="w-4 h-4" />
+              </a>
+            )}
+          </div>
+        )}
 
         {member.id === "member-1" && (
           <div className="mt-auto pt-2 border-t border-outline/50">

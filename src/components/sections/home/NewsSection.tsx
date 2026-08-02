@@ -1,5 +1,4 @@
 import { NEWS } from '@/data';
-import { NEWS } from '@/data';
 import type { NewsItem } from '@/types';
 import NewsCard from './NewsCard';
 
@@ -18,7 +17,7 @@ export default function NewsSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         {NEWS.map((item) => (
-          <NewsCard key={item.id} item={item} onSelect={onSelectNews} />
+          <NewsCard key={item.id} item={item} onSelect={(item) => console.log('Selected news:', item)} />
         ))}
       </div>
 

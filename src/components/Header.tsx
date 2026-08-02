@@ -17,7 +17,6 @@ export default function Header({
 }: HeaderProps) {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   const navItems = [
     { label: 'WHO WE ARE', route: '/about', id: 'rounded-mission' },

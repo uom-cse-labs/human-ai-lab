@@ -99,34 +99,6 @@ function Themes() {
                     </p>
                   </div>
 
-                  {/* Active Projects */}
-                  <div>
-                    <h3 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-on-background/50 mb-6">
-                      Active Projects
-                    </h3>
-                    <ul className="space-y-4">
-                      {area.projects.map((project, i) => (
-                        <li key={i} className="flex gap-4 items-start group/project">
-                          <span className="font-mono text-xs text-[#F27D26] font-bold mt-1 group-hover/project:translate-x-1 transition-transform">
-                            0{i + 1}
-                          </span>
-                          <span className="font-sans text-sm text-on-background/80 leading-[1.6]">
-                            {project}
-                          </span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-10 pt-6 border-t border-outline flex items-center justify-between">
-                     <span className="font-mono text-[10px] font-black tracking-widest text-on-background/40 uppercase">
-                       Lead Researcher
-                     </span>
-                     <span className="font-sans font-bold text-on-background uppercase">
-                       {area.leadResearcher}
-                     </span>
-                  </div>
-
                 </div>
               </div>
             </div>

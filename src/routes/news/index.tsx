@@ -91,10 +91,10 @@ function NewsPage() {
                   <img
                     src={item.imageUrl}
                     alt={item.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale contrast-110 brightness-95 group-hover:grayscale-0 group-hover:brightness-100"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <div className="flex-grow">

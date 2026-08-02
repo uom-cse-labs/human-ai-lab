@@ -32,11 +32,11 @@ function NewsArticle() {
 
   return (
     <main className="min-h-screen bg-background pb-28">
-      <div className="w-full h-[50vh] md:h-[70vh] relative overflow-hidden">
+      <div className="w-full min-h-[50vh]  md:min-h-[70vh] relative overflow-hidden">
         <img
           src={article.imageUrl}
           alt={article.title}
-          className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125 brightness-[0.25]"
+          className="absolute inset-0 w-full h-full object-cover filter contrast-85 brightness-[0.2] grayscale-[0.5]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
@@ -48,7 +48,7 @@ function NewsArticle() {
             <ArrowLeft className="w-3.5 h-3.5" /> LAB NEWS
           </Link>
           <div className="max-w-4xl">
-            <h1 className="font-sans text-2xl md:text-3xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.95] mb-6">
+            <h1 className="font-sans text-2xl md:text-3xl lg:text-5xl font-bold  text-white mb-4">
               {article.title}
             </h1>
             <p className="font-sans text-lg md:text-xl text-white/70 leading-[1.4] font-medium border-l-4 border-primary pl-6 py-2">

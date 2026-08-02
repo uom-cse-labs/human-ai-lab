@@ -29,11 +29,11 @@ function ProjectDetail() {
 
   return (
     <main className="min-h-screen bg-background pb-28">
-      <div className="w-full h-[40vh] relative overflow-hidden">
+      <div className="w-full min-h-[50vh] relative overflow-hidden">
         <img
           src={project.imageUrl}
           alt={project.title}
-          className="absolute inset-0 w-full h-full object-cover filter grayscale contrast-125 brightness-[0.25]"
+          className="absolute inset-0 w-full h-full object-cover filter contrast-85 brightness-[0.2] grayscale-[0.5]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
@@ -45,7 +45,7 @@ function ProjectDetail() {
             <ArrowLeft className="w-3.5 h-3.5" /> LABORATORY PROJECTS
           </Link>
           <div>
-            <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white uppercase leading-[0.95] mb-4">
+            <h1 className="font-sans text-2xl md:text-3xl lg:text-5xl font-bold  text-white mb-4">
               {project.title}
             </h1>
             <span className="font-mono text-xs font-black text-white/60 tracking-[0.2em] uppercase">
@@ -70,7 +70,14 @@ function ProjectDetail() {
               size="icon"
               className="rounded-full border-outline hover:border-primary hover:text-primary w-8 h-8"
               disabled={!project.share?.twitter}
-              onClick={() => project.share?.twitter && window.open(project.share.twitter, '_blank', 'noopener,noreferrer')}
+              onClick={() =>
+                project.share?.twitter &&
+                window.open(
+                  project.share.twitter,
+                  "_blank",
+                  "noopener,noreferrer",
+                )
+              }
             >
               <Twitter className="w-3.5 h-3.5" />
             </Button>
@@ -79,7 +86,14 @@ function ProjectDetail() {
               size="icon"
               className="rounded-full border-outline hover:border-primary hover:text-primary w-8 h-8"
               disabled={!project.share?.linkedin}
-              onClick={() => project.share?.linkedin && window.open(project.share.linkedin, '_blank', 'noopener,noreferrer')}
+              onClick={() =>
+                project.share?.linkedin &&
+                window.open(
+                  project.share.linkedin,
+                  "_blank",
+                  "noopener,noreferrer",
+                )
+              }
             >
               <Linkedin className="w-3.5 h-3.5" />
             </Button>
@@ -87,7 +101,9 @@ function ProjectDetail() {
               variant="outline"
               size="icon"
               className="rounded-full border-outline hover:border-primary hover:text-primary w-8 h-8"
-              onClick={() => navigator.clipboard.writeText(window.location.href)}
+              onClick={() =>
+                navigator.clipboard.writeText(window.location.href)
+              }
             >
               <Copy className="w-3.5 h-3.5" />
             </Button>

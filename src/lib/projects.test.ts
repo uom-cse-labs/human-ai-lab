@@ -4,14 +4,19 @@ import { getAllProjects, getProjectBody } from './projects'
 describe('getAllProjects', () => {
   it('returns all projects from the generated index', () => {
     const projects = getAllProjects()
-    expect(projects.length).toBe(3)
+    expect(projects.length).toBe(6)
   })
 
   it('returns projects sorted by order first, then date descending', () => {
     const projects = getAllProjects()
-    expect(projects[0].slug).toBe('ai-governance-framework')
-    expect(projects[1].slug).toBe('healthcare-audit-protocol')
-    expect(projects[2].slug).toBe('agricultural-ai-ethics')
+    expect(projects.map((p) => p.slug)).toEqual([
+      'personalized-sinhala-speech-recognition',
+      'social-media-virality-modeling',
+      'research-to-product-automation',
+      'formally-constrained-self-evolution',
+      'stresssense-smartphone-mental-health',
+      'graspnet-6dof-grasp-pose-estimation',
+    ])
   })
 
   it('returns projects with the correct shape', () => {
@@ -24,28 +29,24 @@ describe('getAllProjects', () => {
     expect(project).toHaveProperty('imageUrl')
   })
 
-  it('includes the order field when present', () => {
+  it('does not include the order field when absent', () => {
     const projects = getAllProjects()
-    expect(projects[0].order).toBe(0)
-  })
-
-  it('includes share links when present in frontmatter', () => {
-    const projects = getAllProjects()
-    expect(projects[0].share?.twitter).toBeDefined()
-    expect(projects[0].share?.linkedin).toBeDefined()
+    expect(projects[0].order).toBeUndefined()
   })
 
   it('does not include share links when absent from frontmatter', () => {
     const projects = getAllProjects()
-    expect(projects[2].share).toBeUndefined()
+    for (const project of projects) {
+      expect(project.share).toBeUndefined()
+    }
   })
 })
 
 describe('getProjectBody', () => {
   it('returns the markdown body for a valid slug', () => {
-    const body = getProjectBody('ai-governance-framework')
+    const body = getProjectBody('personalized-sinhala-speech-recognition')
     expect(body).not.toBeNull()
-    expect(body).toContain('## Overview')
+    expect(body).toContain('## Team')
   })
 
   it('returns null for a non-existent slug', () => {
@@ -54,7 +55,7 @@ describe('getProjectBody', () => {
   })
 
   it('strips frontmatter from the body', () => {
-    const body = getProjectBody('ai-governance-framework')
+    const body = getProjectBody('personalized-sinhala-speech-recognition')
     expect(body).not.toContain('---')
     expect(body).not.toContain('imageUrl:')
   })

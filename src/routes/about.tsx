@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Target, Users, Lightbulb, ShieldCheck, Microscope, Database, BrainCircuit, Milestone } from 'lucide-react'
+import { Target, Users, Lightbulb, ShieldCheck } from 'lucide-react'
 import { useLab } from '@/lab-context'
 import MembersSection from '@/components/sections/home/MembersSection'
 import PillarCard from '@/components/sections/about/PillarCard'
@@ -30,29 +30,6 @@ function About() {
       title: 'Actionable Impact',
       icon: Target,
       description: 'Beyond theoretical papers, we build functional prototypes that solve real-world problems in healthcare, education, and industry.'
-    }
-  ]
-
-  const methodology = [
-    {
-      title: 'Empirical Observation',
-      icon: Microscope,
-      text: 'We begin by studying human-environment interactions through rigorous ethnographic and quantitative observation, capturing behavioral baselines before any algorithmic intervention.'
-    },
-    {
-      title: 'Data Synthesization',
-      icon: Database,
-      text: 'Our engineering teams construct heavily curated, localized datasets. We actively filter for cultural nuances and historical biases to ensure our foundation models reflect our target demographics.'
-    },
-    {
-      title: 'Algorithmic Prototyping',
-      icon: BrainCircuit,
-      text: 'We develop custom neural architectures and heuristic models that prioritize explainability and bounded safety parameters over unchecked predictive power.'
-    },
-    {
-      title: 'Iterative Deployment',
-      icon: Milestone,
-      text: 'Prototypes are deployed in closed-loop "sandbox" environments where human interaction is continuously monitored, allowing us to adjust for cognitive load and user trust in real-time.'
     }
   ]
 
@@ -117,42 +94,6 @@ function About() {
               </blockquote>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Methodology Section */}
-      <section className="max-w-7xl mx-auto px-6 py-28 border-b border-outline">
-        <div className="mb-16 text-left max-w-3xl">
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary mb-4 block">
-            HOW WE WORK
-          </span>
-          <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background uppercase mb-6">
-            Our Research Methodology
-          </h2>
-          <p className="font-sans text-lg text-on-background/60 leading-[1.6]">
-            Every project at the Human AI Lab undergoes a rigorous, four-step lifecycle designed to guarantee ethical integrity and functional reliability before public deployment.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {methodology.map((step, idx) => (
-            <div key={idx} className="flex gap-6 p-8 bg-surface border border-outline rounded-2xl group hover:border-primary/50 transition-colors">
-              <div className="flex-shrink-0 w-16 h-16 bg-background border border-outline rounded-xl flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
-                <step.icon className="w-8 h-8" />
-              </div>
-              <div>
-                <span className="font-mono text-xs font-black text-on-background/40 tracking-widest mb-1 block">
-                  PHASE 0{idx + 1}
-                </span>
-                <h3 className="font-sans text-2xl font-black uppercase tracking-tight text-on-background mb-3">
-                  {step.title}
-                </h3>
-                <p className="font-sans text-sm text-on-background/70 leading-[1.7]">
-                  {step.text}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 

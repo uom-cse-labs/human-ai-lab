@@ -2,9 +2,9 @@ import MissionStat from './MissionStat';
 
 export default function MissionSection() {
   const stats = [
-    { value: '12+', label: 'ACTIVE PROJECTS' },
-    { value: '45', label: 'PUBLICATIONS' },
-    { value: '08', label: 'PHD FELLOWS' },
+    { value: '10+', label: 'ACTIVE PROJECTS' },
+    { value: '50+', label: 'PUBLICATIONS' },
+    { value: '10+', label: 'RESEARCH FELLOWS' },
   ];
 
   return (
@@ -22,15 +22,12 @@ export default function MissionSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           <div className="space-y-6">
             <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
-              Located in the heart of Sri Lanka's premier technological university, Human-Centered AI (Human AI Lab) is dedicated to ensuring that the next generation of intelligent systems serves the needs of people and society.
-            </p>
-            <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
-              Our mission is to investigate how AI interacts with human behavior, culture, and ethics. We don't just build faster algorithms; we design systems that are transparent, fair, and deeply integrated with human decision-making processes.
+              HumanAI Research Lab is dedicated to advancing the frontiers of human-centered AI through interdisciplinary research, technological innovation, and collaborative exploration. We aim to develop trustworthy AI systems that enhance human capabilities, solve complex challenges, and create meaningful impact across diverse domains.
             </p>
           </div>
           <div>
             <p className="font-sans text-base text-on-background/60 leading-[1.7] font-normal">
-              Through interdisciplinary collaboration across computer science, psychology, and design, our researchers are tackling the most pressing challenges of our digital age—from bias in automated hiring to the cognitive impact of social robotics.
+              HumanAI Research Lab envisions a future where AI technologies are designed with humans at the center, enabling inclusive, ethical, and sustainable progress. We strive to become a recognized center of excellence in AI research, education, and innovation, contributing to global advancements while addressing local and societal needs.
             </p>
           </div>
         </div>

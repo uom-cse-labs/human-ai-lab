@@ -23,8 +23,8 @@ function NewsArticle() {
         <h1 className="font-sans text-2xl font-black text-on-background mb-4">
           Article Not Found
         </h1>
-        <Link to="/dispatches">
-          <Button variant="outline">Back to Dispatches</Button>
+        <Link to="/news">
+          <Button variant="outline">Back to News</Button>
         </Link>
       </div>
     );
@@ -42,16 +42,16 @@ function NewsArticle() {
 
         <div className="absolute inset-0 flex flex-col justify-end max-w-7xl mx-auto px-6 pb-16 md:pb-24">
           <Link
-            to="/dispatches"
+            to="/news"
             className="inline-flex items-center gap-2 font-mono text-[10px] font-black uppercase tracking-[0.2em] text-primary hover:text-white transition-colors mb-8 w-fit bg-surface-container px-4 py-2 rounded-full border border-outline backdrop-blur-md"
           >
-            <ArrowLeft className="w-3.5 h-3.5" /> LAB DISPATCHES
+            <ArrowLeft className="w-3.5 h-3.5" /> LAB NEWS
           </Link>
           <div className="max-w-4xl">
-            <h1 className="font-sans text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white uppercase leading-[0.95] mb-6">
+            <h1 className="font-sans text-2xl md:text-3xl lg:text-5xl font-black tracking-tighter text-white uppercase leading-[0.95] mb-6">
               {article.title}
             </h1>
-            <p className="font-sans text-xl md:text-2xl text-white/70 leading-[1.4] font-medium border-l-4 border-primary pl-6 py-2">
+            <p className="font-sans text-lg md:text-xl text-white/70 leading-[1.4] font-medium border-l-4 border-primary pl-6 py-2">
               {article.content}
             </p>
           </div>
@@ -72,7 +72,7 @@ function NewsArticle() {
 
             <div>
               <span className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase mb-4 block">
-                SHARE DISPATCH
+                SHARE NEWS
               </span>
               <div className="flex gap-3">
                 <Button
@@ -80,7 +80,14 @@ function NewsArticle() {
                   size="icon"
                   className="rounded-full border-outline hover:border-primary hover:text-primary"
                   disabled={!article.share?.twitter}
-                  onClick={() => article.share?.twitter && window.open(article.share.twitter, '_blank', 'noopener,noreferrer')}
+                  onClick={() =>
+                    article.share?.twitter &&
+                    window.open(
+                      article.share.twitter,
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }
                 >
                   <Twitter className="w-4 h-4" />
                 </Button>
@@ -89,7 +96,14 @@ function NewsArticle() {
                   size="icon"
                   className="rounded-full border-outline hover:border-primary hover:text-primary"
                   disabled={!article.share?.linkedin}
-                  onClick={() => article.share?.linkedin && window.open(article.share.linkedin, '_blank', 'noopener,noreferrer')}
+                  onClick={() =>
+                    article.share?.linkedin &&
+                    window.open(
+                      article.share.linkedin,
+                      "_blank",
+                      "noopener,noreferrer",
+                    )
+                  }
                 >
                   <Linkedin className="w-4 h-4" />
                 </Button>
@@ -97,7 +111,9 @@ function NewsArticle() {
                   variant="outline"
                   size="icon"
                   className="rounded-full border-outline hover:border-primary hover:text-primary"
-                  onClick={() => navigator.clipboard.writeText(window.location.href)}
+                  onClick={() =>
+                    navigator.clipboard.writeText(window.location.href)
+                  }
                 >
                   <Copy className="w-4 h-4" />
                 </Button>
@@ -111,7 +127,7 @@ function NewsArticle() {
                 PRESS INQUIRIES
               </span>
               <p className="font-sans text-xs text-on-background/60 leading-[1.6]">
-                For media inquiries regarding this dispatch, please contact the
+                For media inquiries regarding this news, please contact the
                 Human AI Lab communications office.
               </p>
             </div>
@@ -131,7 +147,7 @@ function NewsArticle() {
             <h2 className="font-sans text-3xl font-black tracking-tighter text-on-background uppercase">
               More from the Lab
             </h2>
-            <Link to="/dispatches">
+            <Link to="/news">
               <Button
                 variant="ghost"
                 className="font-mono text-[10px] tracking-widest uppercase"

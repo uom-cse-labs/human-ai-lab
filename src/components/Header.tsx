@@ -21,10 +21,10 @@ export default function Header({
   const navItems = [
     { label: "WHO WE ARE", route: "/about" },
     { label: "RESEARCH THEMES", route: "/themes" },
+    { label: "PROJECTS", route: "/projects" },
     { label: "PUBLICATIONS", route: "/publications" },
     { label: "PIONEERS", route: "/pioneers" },
-    { label: "PROJECTS", route: "/projects" },
-    { label: "DISPATCHES", route: "/dispatches" },
+    { label: "NEWS", route: "/news" },
   ];
 
   return (

@@ -1,12 +1,12 @@
 # Content Authoring Guide
 
-This guide covers how to write and publish content for the Human-AI Lab website — Lab Dispatches (news) and Research Projects.
+This guide covers how to write and publish content for the Human-AI Lab website — Lab News and Research Projects.
 
 ## Where content lives
 
 | Content type | Directory | Index file |
 |---|---|---|
-| Lab Dispatches (News) | `src/content/news/` | `src/content/news-index.gen.json` |
+| Lab News | `src/content/news/` | `src/content/news-index.gen.json` |
 | Research Projects | `src/content/projects/` | `src/content/projects-index.gen.json` |
 
 Each article/project is a single Markdown (`.md`) file. The index files are auto-generated — **do not edit them by hand**.
@@ -17,7 +17,7 @@ Create a new `.md` file in the appropriate directory with YAML frontmatter at th
 
 ### Frontmatter fields
 
-#### Dispatches (news)
+#### News
 
 ```yaml
 ---
@@ -110,7 +110,7 @@ npm run generate-projects-index  # projects only
 
 The index determines the sort order on the listing pages:
 - **Projects**: sorted by `order` (ascending), then by `date` (descending)
-- **Dispatches**: sorted by `date` (descending)
+- **News**: sorted by `date` (descending)
 
 After regenerating, commit both the new `.md` file and the updated index JSON.
 

@@ -12,10 +12,10 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as DispatchesRouteImport } from './routes/dispatches'
 import { Route as PioneersRouteImport } from './routes/pioneers'
 import { Route as PublicationsRouteImport } from './routes/publications'
 import { Route as ThemesRouteImport } from './routes/themes'
+import { Route as NewsIndexRouteImport } from './routes/news/index'
 import { Route as NewsSlugRouteImport } from './routes/news/$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
 import { Route as ProjectsSlugRouteImport } from './routes/projects/$slug'
@@ -35,11 +35,6 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DispatchesRoute = DispatchesRouteImport.update({
-  id: '/dispatches',
-  path: '/dispatches',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const PioneersRoute = PioneersRouteImport.update({
   id: '/pioneers',
   path: '/pioneers',
@@ -53,6 +48,11 @@ const PublicationsRoute = PublicationsRouteImport.update({
 const ThemesRoute = ThemesRouteImport.update({
   id: '/themes',
   path: '/themes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewsIndexRoute = NewsIndexRouteImport.update({
+  id: '/news/',
+  path: '/news/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const NewsSlugRoute = NewsSlugRouteImport.update({
@@ -75,24 +75,24 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/dispatches': typeof DispatchesRoute
   '/pioneers': typeof PioneersRoute
   '/publications': typeof PublicationsRoute
   '/themes': typeof ThemesRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/news/': typeof NewsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/dispatches': typeof DispatchesRoute
   '/pioneers': typeof PioneersRoute
   '/publications': typeof PublicationsRoute
   '/themes': typeof ThemesRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/news': typeof NewsIndexRoute
   '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
@@ -100,12 +100,12 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
-  '/dispatches': typeof DispatchesRoute
   '/pioneers': typeof PioneersRoute
   '/publications': typeof PublicationsRoute
   '/themes': typeof ThemesRoute
   '/news/$slug': typeof NewsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
+  '/news/': typeof NewsIndexRoute
   '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
@@ -114,36 +114,36 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/contact'
-    | '/dispatches'
     | '/pioneers'
     | '/publications'
     | '/themes'
     | '/news/$slug'
     | '/projects/$slug'
+    | '/news/'
     | '/projects/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/contact'
-    | '/dispatches'
     | '/pioneers'
     | '/publications'
     | '/themes'
     | '/news/$slug'
     | '/projects/$slug'
+    | '/news'
     | '/projects'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/contact'
-    | '/dispatches'
     | '/pioneers'
     | '/publications'
     | '/themes'
     | '/news/$slug'
     | '/projects/$slug'
+    | '/news/'
     | '/projects/'
   fileRoutesById: FileRoutesById
 }
@@ -151,12 +151,12 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
-  DispatchesRoute: typeof DispatchesRoute
   PioneersRoute: typeof PioneersRoute
   PublicationsRoute: typeof PublicationsRoute
   ThemesRoute: typeof ThemesRoute
   NewsSlugRoute: typeof NewsSlugRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
+  NewsIndexRoute: typeof NewsIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
@@ -183,13 +183,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dispatches': {
-      id: '/dispatches'
-      path: '/dispatches'
-      fullPath: '/dispatches'
-      preLoaderRoute: typeof DispatchesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/pioneers': {
       id: '/pioneers'
       path: '/pioneers'
@@ -209,6 +202,13 @@ declare module '@tanstack/react-router' {
       path: '/themes'
       fullPath: '/themes'
       preLoaderRoute: typeof ThemesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/news/': {
+      id: '/news/'
+      path: '/news'
+      fullPath: '/news/'
+      preLoaderRoute: typeof NewsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/news/$slug': {
@@ -239,12 +239,12 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
-  DispatchesRoute: DispatchesRoute,
   PioneersRoute: PioneersRoute,
   PublicationsRoute: PublicationsRoute,
   ThemesRoute: ThemesRoute,
   NewsSlugRoute: NewsSlugRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
+  NewsIndexRoute: NewsIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport

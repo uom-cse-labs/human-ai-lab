@@ -155,6 +155,8 @@ export const TEAM_MEMBERS: TeamMember[] = teamData.teamMembers;
 
 export const FOUNDING_RAS: TeamMember[] = teamData.foundingRAs;
 
+export const RESEARCH_ASSISTANTS: TeamMember[] = (teamData as any).researchAssistants || [];
+
 export const STUDENT_RESEARCHERS: StudentResearcher[] = teamData.studentResearchers;
 
 export const ALUMNI: Alumni[] = teamData.alumni;

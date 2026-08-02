@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { TEAM_MEMBERS } from '@/data'
 import { Badge } from '@/components/ui/badge'
 import PioneerCard from '@/components/PioneerCard'
+import { Mail, Linkedin, GraduationCap } from 'lucide-react'
 
 export const Route = createFileRoute('/pioneers')({
   component: PioneersPage,
@@ -33,7 +34,7 @@ function PioneersPage() {
         {(() => {
           const indika = TEAM_MEMBERS.find((m) => m.id === 'member-1')!
           return (
-            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center pb-16 border-b border-outline">
+            <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start pb-16 border-b border-outline">
               <div className="w-full lg:w-4/12">
                 <div className="relative aspect-[3/4] w-full rounded-3xl overflow-hidden border border-outline shadow-2xl group">
                   <img
@@ -50,26 +51,37 @@ function PioneersPage() {
                   <Badge variant="outline" className="font-mono uppercase tracking-widest text-primary border-primary/30 bg-primary/5">
                     {indika.title}
                   </Badge>
-                  <Badge variant="secondary" className="font-mono uppercase tracking-widest bg-surface-dim text-on-background/60">
+                  {/* <Badge variant="secondary" className="font-mono uppercase tracking-widest bg-surface-dim text-on-background/60">
                     {indika.role}
-                  </Badge>
+                  </Badge> */}
                 </div>
                 <h2 className="font-sans text-4xl md:text-6xl font-black tracking-tighter text-on-background uppercase mb-8 leading-[1]">
                   {indika.name}
                 </h2>
-                <div className="bg-surface p-6 md:p-8 border-l-2 border-primary mb-8 rounded-2xl">
-                  <p className="font-mono text-xs font-black text-on-background/40 uppercase tracking-[0.2em] mb-2">
-                    Core Investigation Focus
-                  </p>
-                  <p className="font-sans text-xl text-on-background font-bold leading-relaxed">
-                    {indika.expertise}
-                  </p>
-                </div>
                 <div className="space-y-4">
-                  <p className="font-sans text-lg text-on-background/70 leading-[1.8] font-normal whitespace-pre-line">
+                  <p className="font-sans text-lg text-on-background/70 leading-relaxed font-normal whitespace-pre-line">
                     {indika.bio}
                   </p>
                 </div>
+                {indika.socials && (
+                  <div className="flex gap-4 mt-8">
+                    {indika.socials.email && (
+                      <a href={indika.socials.email} className="text-on-background/60 hover:text-primary transition-colors" aria-label="Email">
+                        <Mail className="w-6 h-6" />
+                      </a>
+                    )}
+                    {indika.socials.linkedin && (
+                      <a href={indika.socials.linkedin} target="_blank" rel="noopener noreferrer" className="text-on-background/60 hover:text-primary transition-colors" aria-label="LinkedIn">
+                        <Linkedin className="w-6 h-6" />
+                      </a>
+                    )}
+                    {indika.socials.scholar && (
+                      <a href={indika.socials.scholar} target="_blank" rel="noopener noreferrer" className="text-on-background/60 hover:text-primary transition-colors" aria-label="Google Scholar">
+                        <GraduationCap className="w-6 h-6" />
+                      </a>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           )

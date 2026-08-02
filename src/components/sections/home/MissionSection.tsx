@@ -4,7 +4,7 @@ export default function MissionSection() {
   const stats = [
     { value: '10+', label: 'ACTIVE PROJECTS' },
     { value: '50+', label: 'PUBLICATIONS' },
-    { value: '08', label: 'RESEARCH FELLOWS' },
+    { value: '10+', label: 'RESEARCH FELLOWS' },
   ];
 
   return (

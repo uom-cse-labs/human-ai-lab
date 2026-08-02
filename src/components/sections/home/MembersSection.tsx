@@ -100,14 +100,14 @@ export default function MembersSection({
               className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface border border-outline/50 rounded-3xl p-8 transition-all hover:border-primary/50"
             >
               {/* Photo: Left */}
-              <div className="lg:col-span-3 relative aspect-[4/5] w-full overflow-hidden border border-outline bg-surface-dim rounded-2xl max-w-[280px] mx-auto lg:mx-0">
+              <div className="lg:col-span-3 relative aspect-[4/5] w-full overflow-hidden border border-outline rounded-2xl shadow-sm max-w-[280px] mx-auto lg:mx-0">
                 <img
                   src={director.imageUrl}
                   alt={director.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102 grayscale contrast-[1.1] brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+                <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
               </div>
 
               {/* Bio & Details: Right */}
@@ -193,14 +193,14 @@ export default function MembersSection({
                 onClick={() => onSelectMember(member)}
                 className="group cursor-pointer flex flex-col bg-surface border border-outline/30 rounded-3xl p-6 transition-all hover:border-primary/50"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 border border-outline bg-surface-dim rounded-2xl">
+                <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 rounded-2xl border border-outline shadow-sm">
                   <img
                     src={member.imageUrl}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102 grayscale contrast-[1.1] brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+                  <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <h4 className="font-sans text-lg font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">
@@ -231,14 +231,14 @@ export default function MembersSection({
                 onClick={() => onSelectMember(ra)}
                 className="group cursor-pointer flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden mb-4 border border-outline bg-surface-dim rounded-xl">
+                <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 rounded-2xl border border-outline shadow-sm">
                   <img
                     src={ra.imageUrl}
                     alt={ra.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102 grayscale contrast-[1.1] brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity rounded-xl" />
+                  <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <h4 className="font-sans text-sm font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">

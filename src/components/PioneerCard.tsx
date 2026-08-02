@@ -11,7 +11,7 @@ export default function PioneerCard({ member }: PioneerCardProps) {
         <img
           src={member.imageUrl}
           alt={member.name}
-          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105 grayscale contrast-125 brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+          className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-60 pointer-events-none" />

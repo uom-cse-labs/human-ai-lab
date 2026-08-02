@@ -51,26 +51,42 @@ const contactDetails = [
       <div className="space-y-2">
         <div>
           <span className="font-semibold text-on-background">
-            Dr. Robert Johnson
+            Prof. Indika Perera
           </span>
           <br />
           <a
-            href="tel:+94112345678"
+            href="tel:+94710610616"
             className="hover:text-primary transition-colors"
           >
-            +94 11 234 5678
+            +94 71 061 0616
+          </a>
+          <br />
+          <a
+            href="mailto:indika@cse.mrt.ac.lk"
+            className="hover:text-primary transition-colors"
+          >
+            indika@cse.mrt.ac.lk
+
           </a>
         </div>
         <div>
           <span className="font-semibold text-on-background">
-            Dr. Sarah Williams
+            Miss. Gayani Wickramarathna
           </span>
           <br />
           <a
-            href="tel:+94112345679"
+            href="tel:+94703423934"
             className="hover:text-primary transition-colors"
           >
-            +94 11 234 5679
+            +94 70 342 3934
+          </a>
+          <br />
+          <a
+            href="mailto:gayani.20@cse.mrt.ac.lk"
+            className="hover:text-primary transition-colors"
+          >
+            gayani.20@cse.mrt.ac.lk
+
           </a>
         </div>
       </div>
@@ -79,14 +95,12 @@ const contactDetails = [
   {
     icon: Clock,
     label: "Office Hours",
-    value: "Monday – Friday, 9:00 AM – 5:00 PM (SLST)",
+    value: "Monday – Friday, 8:00 AM – 5:00 PM (SLST)",
   },
 ];
 
 const referenceLinks = [
-  { label: "Google Scholar", href: "#", icon: GoogleScholarIcon },
-  { label: "ResearchGate", href: "#", icon: ResearchGateIcon },
-  { label: "LinkedIn", href: "#", icon: LinkedInIcon },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/humanairesearchlab/", icon: LinkedInIcon }
 ];
 
 export default function ContactSection() {

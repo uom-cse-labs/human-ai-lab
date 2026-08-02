@@ -8,6 +8,7 @@ export interface Publication {
   abstract: string;
   keyFindings: string[];
   citation: string;
+  imageUrl?: string;
 }
 
 export interface FocusArea {

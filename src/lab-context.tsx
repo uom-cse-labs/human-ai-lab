@@ -11,10 +11,6 @@ interface LabContextType {
   setSelectedMember: (t: TeamMember | null) => void
   selectedNews: NewsItem | null
   setSelectedNews: (n: NewsItem | null) => void
-  isContactOpen: boolean
-  setIsContactOpen: (b: boolean) => void
-  isSubmissionsOpen: boolean
-  setIsSubmissionsOpen: (b: boolean) => void
   handleNavigate: (sectionId: string) => void
 }
 
@@ -25,8 +21,6 @@ export function LabProvider({ children }: { children: ReactNode }) {
   const [selectedFocusArea, setSelectedFocusArea] = useState<FocusArea | null>(null)
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null)
   const [selectedNews, setSelectedNews] = useState<NewsItem | null>(null)
-  const [isContactOpen, setIsContactOpen] = useState(false)
-  const [isSubmissionsOpen, setIsSubmissionsOpen] = useState(false)
 
   const handleNavigate = (sectionId: string) => {
     if (sectionId === 'hero') {
@@ -48,8 +42,6 @@ export function LabProvider({ children }: { children: ReactNode }) {
       selectedFocusArea, setSelectedFocusArea,
       selectedMember, setSelectedMember,
       selectedNews, setSelectedNews,
-      isContactOpen, setIsContactOpen,
-      isSubmissionsOpen, setIsSubmissionsOpen,
       handleNavigate
     }}>
       {children}

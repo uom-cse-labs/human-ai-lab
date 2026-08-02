@@ -17,7 +17,7 @@ interface PaperReaderModalProps {
 
 export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl relative"
       >
@@ -46,8 +46,8 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             {paper.authors}
           </p>
 
-          <div className="bg-surface p-6 border-l-2 border-[#F27D26] mb-10 rounded-2xl">
-            <p className="font-mono text-xs font-black text-on-background/40 uppercase tracking-wider mb-2">
+<div className="bg-surface p-5 border-l-2 border-primary mb-8 rounded-2xl">
+  <p className="font-mono text-[10px] font-black text-on-background/40 uppercase tracking-wider mb-1">
               PUBLISHED IN / CITED AS:
             </p>
             <p className="font-sans text-sm text-on-background/80 leading-relaxed">
@@ -70,9 +70,9 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             </h3>
             <ul className="space-y-4 pt-2">
               {paper.keyFindings.map((finding, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <CheckCircle className="w-5 h-5 text-[#F27D26] shrink-0 mt-0.5" />
-                  <p className="font-sans text-base text-on-background/70 leading-[1.6]">
+<li key={idx} className="flex items-start gap-2.5">
+  <span className="font-mono text-xs font-black text-primary mt-0.5">•</span>
+  <p className="font-sans text-sm text-on-background/60 leading-[1.5]">
                     {finding}
                   </p>
                 </li>
@@ -80,6 +80,115 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             </ul>
           </div>
         </div>
+
+        <div className="w-full md:w-2/5 flex flex-col h-1/2 md:h-full bg-surface-dim">
+
+          <div className="px-6 py-4 border-b border-outline bg-surface flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary flex items-center justify-center text-white font-black italic rounded-full">
+                A.
+              </div>
+              <div>
+                <h4 className="font-sans text-xs font-black text-on-background uppercase tracking-wider">
+                  Research Companion
+                </h4>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className={`w-1.5 h-1.5 rounded-full ${aiActive === true ? 'bg-primary-light animate-pulse' : 'bg-primary animate-pulse'}`} />
+                  <span className="font-mono text-[9px] text-on-background/40 tracking-wider">
+                    {aiActive === true ? 'GEMINI LIVE' : 'LOCAL SYNTHESIS'}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <Button variant="ghost" size="icon-sm" onClick={onClose} title="Close Panel">
+              <X className="w-5 h-5" />
+            </Button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+            {messages.map((msg, i) => (
+              <div
+                key={i}
+                className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'} max-w-full`}
+              >
+                <div className={`p-4 rounded-2xl max-w-[90%] font-sans text-xs leading-relaxed ${
+                  msg.sender === 'user'
+                    ? 'bg-on-background text-background font-semibold'
+                    : 'bg-surface text-on-background border border-outline'
+                }`}>
+                  <div className="whitespace-pre-line">
+                    {msg.text}
+                  </div>
+                </div>
+                <span className="font-mono text-[8px] tracking-wider text-on-background/40 mt-1 uppercase px-1">
+                  {msg.sender === 'user' ? 'YOU' : 'ASSISTANT'}
+                </span>
+              </div>
+            ))}
+
+            {isTyping && (
+              <div className="flex items-center gap-2 text-on-background/40 font-mono text-xs px-2 animate-pulse">
+                <Bot className="w-4 h-4 text-primary" />
+                <span>AIM Assistant is reasoning...</span>
+              </div>
+            )}
+
+            {warningMessage && (
+              <div className="p-3 bg-surface border border-outline flex gap-2.5 text-on-background/60 rounded-2xl my-2">
+                <AlertCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                <div className="font-sans text-[11px] leading-normal font-normal">
+                  <strong>Developer Note:</strong> To activate conversational intelligence powered by Google Gemini, define a valid <code>GEMINI_API_KEY</code> in the Secrets dashboard.
+                </div>
+              </div>
+            )}
+
+            <div ref={chatEndRef} />
+          </div>
+
+          <div className="px-6 py-3 border-t border-outline bg-surface space-y-2">
+            <span className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] block uppercase">
+              RECOMMENDED QUESTIONS
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {sampleQuestions.map((q, idx) => (
+                <Button
+                  key={idx}
+                  variant="outline"
+                  size="sm"
+                  onClick={() => handleSuggestionClick(q)}
+                >
+                  {q}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <form
+            onSubmit={(e: FormEvent) => {
+              e.preventDefault();
+              handleSendMessage(inputValue);
+            }}
+            className="p-4 border-t border-outline bg-surface flex gap-2"
+          >
+            <Input
+              ref={searchInputRef}
+              placeholder="Ask a custom scholarly question..."
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+            <Button
+              type="submit"
+              disabled={!inputValue.trim()}
+              size="icon"
+              title="Send Message"
+            >
+              <Send className="w-4 h-4" />
+            </Button>
+          </form>
+
+        </div>
+
       </div>
     </div>
   );
@@ -96,13 +205,13 @@ interface FocusAreaModalProps {
 
 export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl"
       >
         <div className="p-6 md:p-8 border-b border-outline bg-surface flex items-center justify-between">
           <div>
-            <span className="font-mono text-[9px] font-black text-[#F27D26] tracking-[0.2em] uppercase select-none">
+            <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase select-none">
               {area.type}
             </span>
             <h2 className="font-sans text-2xl font-black text-on-background mt-1 uppercase">
@@ -136,7 +245,7 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
                 const parts = proj.split(':');
                 return (
                   <div key={idx} className="flex gap-2">
-                    <span className="text-[#F27D26] font-mono">•</span>
+                    <span className="text-primary font-mono">•</span>
                     <p className="font-sans text-sm text-on-background/60 leading-relaxed">
                       <strong className="text-on-background font-bold">{parts[0]}</strong>: {parts[1]}
                     </p>
@@ -150,7 +259,7 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-surface flex items-center justify-center text-[#F27D26] border border-outline rounded-full">
+              <div className="w-10 h-10 bg-surface flex items-center justify-center text-primary border border-outline rounded-full">
                 <User className="w-5 h-5" />
               </div>
               <div>
@@ -221,13 +330,13 @@ export function ContactModal({ onClose }: ContactModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-lg overflow-hidden animate-fade-in rounded-2xl"
       >
         <div className="p-6 border-b border-outline bg-surface flex items-center justify-between">
           <div>
-            <span className="font-mono text-[9px] font-black text-[#F27D26] tracking-[0.2em] uppercase">
+            <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase">
               LABORATORY INQUIRY
             </span>
             <h2 className="font-sans text-xl font-black text-on-background uppercase mt-1">
@@ -241,7 +350,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
 
         {submitted ? (
           <div className="p-8 text-center space-y-4">
-            <div className="w-16 h-16 bg-surface text-[#F27D26] border border-outline flex items-center justify-center mx-auto rounded-full">
+            <div className="w-16 h-16 bg-surface text-primary border border-outline flex items-center justify-center mx-auto rounded-full">
               <CheckCircle className="w-8 h-8" />
             </div>
             <h3 className="font-sans text-lg font-black text-on-background uppercase tracking-tight">
@@ -335,105 +444,6 @@ export function ContactModal({ onClose }: ContactModalProps) {
 }
 
 // ==========================================
-// 4. SUBMISSIONS DRAWER
-// ==========================================
-interface SubmissionsDrawerProps {
-  onClose: () => void;
-}
-
-export function SubmissionsDrawer({ onClose }: SubmissionsDrawerProps) {
-  const [submissions, setSubmissions] = useState<any[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchSubmissions = async () => {
-      try {
-        const res = await fetch('/api/contact/submissions');
-        const data = await res.json();
-        setSubmissions(data);
-      } catch {
-        console.error('Error loading submissions');
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchSubmissions();
-  }, []);
-
-  return (
-    <div className="fixed inset-y-0 right-0 z-50 w-full max-w-md bg-background border-l border-outline shadow-2xl flex flex-col p-6 animate-slide-in text-on-background">
-      <div className="flex items-center justify-between border-b border-outline pb-4 mb-6">
-        <div>
-          <span className="font-mono text-[9px] font-black text-[#F27D26] tracking-[0.2em] uppercase">
-            SERVER STATE ACTIVE
-          </span>
-          <h2 className="font-sans text-lg font-black text-on-background uppercase mt-1">
-            Active Submissions
-          </h2>
-        </div>
-        <Button variant="ghost" size="icon-sm" onClick={onClose}>
-          <X className="w-5 h-5" />
-        </Button>
-      </div>
-
-      <div className="flex-1 overflow-y-auto space-y-4">
-        {isLoading ? (
-          <div className="text-center font-mono text-xs text-on-background/40 py-12">
-            LOADING ACTIVE ARCHIVE STATE...
-          </div>
-        ) : submissions.length > 0 ? (
-          submissions.map((sub: any) => (
-            <div
-              key={sub.id}
-              className="bg-surface border border-outline p-5 space-y-2 rounded-2xl"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-sans text-xs font-black text-on-background uppercase tracking-tight">
-                  {sub.name}
-                </span>
-                <span className="font-mono text-[9px] text-on-background/40">
-                  {sub.timestamp}
-                </span>
-              </div>
-              <p className="font-sans text-xs text-on-background/50">
-                {sub.email}
-              </p>
-              <div className="h-px bg-outline my-1.5" />
-              <p className="font-mono text-[9px] font-black text-[#F27D26] uppercase tracking-wider">
-                SUBJECT: {sub.subject || 'GENERAL INQUIRY'}
-              </p>
-              <p className="font-sans text-xs text-on-background/70 leading-relaxed italic whitespace-pre-wrap">
-                &ldquo;{sub.message}&rdquo;
-              </p>
-            </div>
-          ))
-        ) : (
-          <div className="text-center py-12 border border-dashed border-outline rounded-2xl bg-surface/30">
-            <p className="font-sans text-xs text-on-background/40 font-normal">
-              No submissions registered in this server session yet.
-            </p>
-            <p className="font-mono text-[9px] text-[#F27D26] mt-2 tracking-wider">
-              Submit a proposal in the Connect box to see it register live!
-            </p>
-          </div>
-        )}
-      </div>
-
-      <div className="border-t border-outline pt-4 mt-6">
-        <Button
-          variant="secondary"
-          size="lg"
-          className="w-full justify-center py-4"
-          onClick={onClose}
-        >
-          CLOSE AUDIT PANEL
-        </Button>
-      </div>
-    </div>
-  );
-}
-
-// ==========================================
 // 5. BIO DETAIL MODAL
 // ==========================================
 interface BioModalProps {
@@ -443,7 +453,7 @@ interface BioModalProps {
 
 export function BioModal({ member, onClose }: BioModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
       >
@@ -478,7 +488,7 @@ export function BioModal({ member, onClose }: BioModalProps) {
               </p>
             </div>
 
-            <div className="bg-surface p-4 border-l-2 border-[#F27D26] rounded-2xl">
+            <div className="bg-surface p-4 border-l-2 border-primary rounded-2xl">
               <p className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] uppercase mb-1">
                 CORE INVESTIGATION FOCUS
               </p>
@@ -503,7 +513,7 @@ interface NewsModalProps {
 
 export function NewsModal({ news, onClose }: NewsModalProps) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
       <div
         className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
       >
@@ -518,14 +528,14 @@ export function NewsModal({ news, onClose }: NewsModalProps) {
             variant="ghost"
             size="icon-sm"
             onClick={onClose}
-            className="absolute top-4 right-4 bg-black/80 text-white hover:bg-[#F27D26] hover:text-black"
+            className="absolute top-4 right-4 bg-overlay/80 text-white hover:bg-primary hover:text-white"
           >
             <X className="w-5 h-5" />
           </Button>
         </div>
 
         <div className="p-8 space-y-4 bg-background">
-          <span className="font-mono text-[10px] font-black text-[#F27D26] tracking-[0.2em] uppercase block">
+          <span className="font-mono text-[10px] font-black text-primary tracking-[0.2em] uppercase block">
             PUBLISHED: {news.date}
           </span>
           <h2 className="font-sans text-2xl font-black text-on-background tracking-tight leading-snug uppercase">

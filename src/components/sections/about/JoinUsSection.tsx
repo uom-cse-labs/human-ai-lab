@@ -3,7 +3,7 @@ import SectionHeader from "@/components/sections/SectionHeader"
 
 export default function JoinUsSection() {
   return (
-    <section className="relative bg-white py-24">
+    <section className="relative bg-surface py-24">
       <div className="mx-auto max-w-7xl px-4 text-center lg:px-8">
         <SectionHeader
           title="Join Our Team"

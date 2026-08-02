@@ -101,6 +101,10 @@ npx @tanstack/intent@latest list      # Shows available skills (31 skills across
 5. **Theme toggle** — built-in with localStorage persistence (`light`/`dark`/`auto` modes).
 6. **TanStack Devtools** — configured in the root layout (`__root.tsx`), positioned bottom-right, with Router plugin.
 
+## Component Architecture
+
+1. **Extract loop internals** — Every `.map()` in a section component must delegate to a named component file. The section owns the layout/grid, and the extracted component owns a single item's rendering. Keep these extracted components as simple as possible: one file, one default export, no internal state unless required.
+
 ## Known Gotchas
 
 - The route tree file (`routeTree.gen.ts`) is auto-generated and must not be edited manually.

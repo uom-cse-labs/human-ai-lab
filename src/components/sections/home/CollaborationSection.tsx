@@ -1,4 +1,5 @@
 import SectionHeader from "@/components/sections/SectionHeader"
+import CollaborationPill from "./CollaborationPill"
 
 interface CollaborationSectionProps {
   areas: string[]
@@ -8,11 +9,11 @@ export default function CollaborationSection({
   areas,
 }: CollaborationSectionProps) {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-surface py-24">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <div className="overflow-hidden rounded-3xl border border-border-token">
+            <div className="overflow-hidden rounded-3xl border border-outline">
               <img
                 src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80&auto=format&fit=crop"
                 alt="Collaborative team discussion"
@@ -28,12 +29,7 @@ export default function CollaborationSection({
             />
             <div className="mt-10 flex flex-wrap gap-3">
               {areas.map((area) => (
-                <span
-                  key={area}
-                  className="rounded-full border border-border-token bg-bg-secondary px-5 py-2.5 text-sm font-medium text-text-secondary transition-colors duration-200 hover:border-brand/30 hover:bg-bg-muted hover:text-brand"
-                >
-                  {area}
-                </span>
+                <CollaborationPill key={area} label={area} />
               ))}
             </div>
           </div>

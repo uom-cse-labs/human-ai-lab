@@ -8,6 +8,7 @@ import ResearchThemesSection from '@/components/sections/home/ResearchThemesSect
 import PublicationsSection from '@/components/sections/home/PublicationsSection'
 import MembersSection from '@/components/sections/home/MembersSection'
 import NewsSection from '@/components/sections/home/NewsSection'
+import ContactSection from '@/components/sections/home/ContactSection'
 
 export const Route = createFileRoute('/')({
   component: Home,
@@ -44,7 +45,10 @@ function Home() {
       <MembersSection
         onSelectMember={(member) => setSelectedMember(member)}
       />
-      <NewsSection />
+      <NewsSection
+        onSelectNews={(news) => setSelectedNews(news)}
+      />
+      <ContactSection />
     </>
   )
 }

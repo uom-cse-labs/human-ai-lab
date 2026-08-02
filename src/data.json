@@ -21,7 +21,7 @@
       "title": "LEAD RESEARCHER",
       "bio": "Dr. Alex Chen completed her PhD at Oxford University focusing on the socio-technical impacts of algorithmic automation in developing economies. She serves on international AI policy panels and actively collaborates with civic tech groups to draft human-centered AI legislation. Her research focuses on the intersection of data ethics, post-colonial geography, and public policy.",
       "expertise": "Specializing in AI Ethics and Policy in the Global South.",
-      "imageUrl": "public/dulani_meedeniya.jpeg",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1785689409/dulani_meedeniya_kepqgz.jpg",
       "socials": {
         "email": "mailto:dulanim@cse.mrt.ac.lk",
         "linkedin": "https://www.linkedin.com/in/dulani-meedeniya-015b23a1/",
@@ -35,7 +35,7 @@
       "title": "PRINCIPAL INVESTIGATOR",
       "bio": "Dr. Jordan Taylor leads the Robotics and Human-Machine Interface labs at the University of Moratuwa. His research concentrates on developing low-cost, lightweight sensors and physical actuators that enable safer, more collaborative interactions between elders, field workers, and autonomous machinery. He is a passionate advocate for physical-first interface designs.",
       "expertise": "Pioneering work in Affective Computing and User Experience.",
-      "imageUrl": "public/kutila_gunasekara.jpeg",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1785689409/kutila_gunasekara_dpn0gz.jpg",
       "socials": {
         "email": "mailto:kutila@cse.mrt.ac.lk",
         "linkedin": "https://www.linkedin.com/in/kutila/",
@@ -49,7 +49,7 @@
       "title": "SENIOR ADVISOR",
       "bio": "Prof. Morgan Smith is a pioneer of computer science in Sri Lanka, having introduced the country's first software engineering curricula in the 1980s. His current advisory focus is on archiving and preserving local linguistic histories and cultural databases using decentralized technologies, ensuring future generations have clean, representative datasets to train localized systems.",
       "expertise": "Foundational contributor to AI research in Sri Lanka.",
-      "imageUrl": "public/gayani_wickramarathna.jpeg",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1785689410/gayani_wickramarathna_czf3hq.jpg",
       "socials": {
         "email": "mailto:gayani.20@cse.mrt.ac.lk",
         "linkedin": "https://www.linkedin.com/in/gwickramarathna/",

@@ -41,7 +41,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: 'Suresha Perera, Indika Perera, Supunmali Ahangama, S Rajasingham',
     publishedIn: '6th International Conference on Advanced Research in Computing (ICARC)',
     year: 2026,
-    imageUrl: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
     abstract: 'This paper investigates the use of capsule networks for detecting hate speech on Twitter by classifying social media content into hate and non-hate categories. The study compares the proposed embedded capsule network model with convolutional neural networks and traditional machine learning approaches on benchmark datasets. The capsule network achieved 93% accuracy, demonstrating strong performance and potential for improving automated hate speech detection systems.',
     keyFindings: [
       'Capsule networks can effectively handle Twitter-based hate speech classification tasks.',

@@ -7,6 +7,8 @@ import {
 } from "@/data";
 import { Mail, Linkedin, GraduationCap } from "lucide-react";
 
+interface MembersSectionProps {}
+
 interface SocialLinksProps {
   socials?: {
     email?: string;
@@ -29,7 +31,6 @@ function SocialLinks({ socials, size = "md" }: SocialLinksProps) {
   return (
     <div
       className={`flex items-center gap-1.5 ${isSm ? "mt-2" : "mt-3"}`}
-      onClick={(e) => e.stopPropagation()}
     >
       {socials.email && (
         <a href={socials.email} className={btnClass} title="Email">
@@ -62,7 +63,7 @@ function SocialLinks({ socials, size = "md" }: SocialLinksProps) {
   );
 }
 
-export default function MembersSection() {
+export default function MembersSection({}: MembersSectionProps = {}) {
   const director = TEAM_MEMBERS[0];
   const faculty = TEAM_MEMBERS.slice(1);
 
@@ -89,7 +90,9 @@ export default function MembersSection() {
               Leadership
             </h3>
 
-            <div className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface border border-outline/50 rounded-3xl p-8 transition-all hover:border-primary/50">
+            <div
+              className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface border border-outline/50 rounded-3xl p-8 transition-all hover:border-primary/50"
+            >
               {/* Photo: Left */}
               <div className="lg:col-span-3 relative aspect-[4/5] w-full overflow-hidden border border-outline rounded-2xl shadow-sm max-w-[280px] mx-auto lg:mx-0">
                 <img
@@ -122,7 +125,6 @@ export default function MembersSection() {
                   {/* Enlarged social icons for Director */}
                   <div
                     className="flex items-center gap-3 self-end md:self-auto shrink-0"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     {director.socials?.email && (
                       <a

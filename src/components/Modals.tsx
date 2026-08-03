@@ -31,8 +31,7 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
         </Button>
 
         <div className="w-full flex flex-col p-8 md:p-12 overflow-y-auto custom-scrollbar">
-          <div className="flex items-center justify-between mb-6">
-            <Badge>{paper.category}</Badge>
+          <div className="flex items-center justify-end mb-6">
             <span className="font-mono text-xs text-on-background/50 font-bold mr-10">
               YEAR: {paper.year}
             </span>

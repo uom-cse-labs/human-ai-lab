@@ -30,10 +30,7 @@ export default function PublicationCard({
 
         <div className="absolute inset-0 p-8 flex flex-col text-white z-10">
           <div className="flex flex-col h-full justify-between">
-            <div className="flex items-start justify-between">
-              <Badge className="bg-primary/90 hover:bg-primary border-none text-white font-semibold tracking-widest text-[9px] uppercase px-3 py-1 shadow-sm backdrop-blur-md">
-                {paper.category}
-              </Badge>
+            <div className="flex items-start justify-end">
               <span className="font-mono text-[11px] text-white/70 font-semibold tracking-wider bg-black/30 px-2 py-1 rounded-md backdrop-blur-sm">
                 {paper.year}
               </span>
@@ -74,10 +71,7 @@ export default function PublicationCard({
       className="group bg-surface hover:bg-surface-dim border border-outline hover:border-primary/30 p-8 flex flex-col justify-between h-[420px] cursor-pointer transition-all duration-500 hover:shadow-lg rounded-2xl"
     >
       <div className="space-y-6">
-        <div className="flex items-center justify-between pb-4 border-b border-outline">
-          <Badge variant="secondary" className="font-semibold tracking-widest text-[9px] uppercase px-3 py-1 rounded-sm bg-surface-container text-on-background/80">
-            {paper.category}
-          </Badge>
+        <div className="flex items-center justify-end pb-4 border-b border-outline">
           <span className="font-mono text-[11px] text-on-background/50 font-semibold tracking-wider">
             {paper.year}
           </span>

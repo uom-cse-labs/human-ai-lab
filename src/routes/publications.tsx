@@ -116,13 +116,11 @@ function PublicationsPage() {
                           : 'bg-surface border-outline hover:border-primary/40'
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-3">
-                        <Badge variant={isActive ? "default" : "secondary"}>
-                          {paper.category}
-                        </Badge>
+                      <div className="flex items-center justify-end mb-3">
                         <span className="font-mono text-[10px] text-on-background/40 font-bold">
                           {paper.year}
                         </span>
+                      </div>
                       </div>
                       <h3 className={`font-sans text-base font-black leading-[1.3] tracking-tight uppercase line-clamp-2 mb-2 transition-colors ${isActive ? 'text-on-background' : 'text-on-background group-hover:text-primary'}`}>
                         {paper.title}

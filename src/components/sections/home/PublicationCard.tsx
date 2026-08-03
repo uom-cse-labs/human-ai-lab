@@ -35,21 +35,21 @@ export default function PublicationCard({
               {paper.year}
             </span>
           </div>
-          <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-primary transition-colors uppercase line-clamp-3">
+          <h3 className="font-sans text-2xl font-black tracking-tight mb-2 group-hover:text-white/90 transition-colors uppercase line-clamp-3">
             {paper.title}
           </h3>
-          <p className="font-sans text-sm text-white/75 leading-[1.6] max-w-xl font-normal italic line-clamp-2">
+          <p className="font-sans text-sm text-white/90 leading-[1.6] max-w-xl font-normal italic line-clamp-2 drop-shadow-sm">
             {paper.authors}
           </p>
           {paper.publishedIn && (
             <Badge
               variant="outline"
-              className="mt-4 max-w-fit border-white/30 text-primary/80"
+              className="mt-4 max-w-fit border-white/30 text-white/90 backdrop-blur-sm"
             >
               {paper.publishedIn}
             </Badge>
           )}
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-white mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             READ BRIEF & CHAT <ArrowUpRight className="w-3.5 h-3.5" />
           </span>
         </div>

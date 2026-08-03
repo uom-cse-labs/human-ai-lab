@@ -99,21 +99,7 @@ function PublicationsPage() {
                 )}
               </div>
 
-              <div className="flex flex-wrap gap-2 pb-4 border-b border-outline">
-                {categories.map((cat) => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full transition-colors ${
-                      activeCategory === cat 
-                        ? 'bg-primary text-white font-black' 
-                        : 'bg-surface border border-outline text-on-background/70 hover:text-on-background'
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                ))}
-              </div>
+
             </div>
 
             <div className="flex flex-col gap-4 overflow-y-auto pr-2 lg:max-h-[70vh]">

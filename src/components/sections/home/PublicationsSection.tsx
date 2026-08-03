@@ -53,16 +53,7 @@ export default function PublicationsSection({
         </Button>
       </div>
 
-      <div className="flex flex-wrap gap-2.5 mb-12 border-b border-outline pb-6">
-        {categories.map((cat) => (
-          <CategoryButton
-            key={cat}
-            category={cat}
-            isActive={activeCategory === cat}
-            onSelect={setActiveCategory}
-          />
-        ))}
-      </div>
+
 
       {filteredPapers.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

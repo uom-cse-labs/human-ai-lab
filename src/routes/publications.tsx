@@ -1,10 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useRef, useEffect } from 'react'
 import { PUBLICATIONS } from '@/data'
-import { Search, X, FileText, CheckCircle2, BookOpen } from 'lucide-react'
+import { Search, X, FileText, CheckCircle2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { useLab } from '@/lab-context'
 import type { Publication } from '@/types'
 
 export const Route = createFileRoute('/publications')({
@@ -12,7 +11,6 @@ export const Route = createFileRoute('/publications')({
 })
 
 function PublicationsPage() {
-  const { setSelectedPaper } = useLab()
   const [searchTerm, setSearchTerm] = useState('')
   const [activeCategory, setActiveCategory] = useState<string>('ALL')
   const [showSearchBox, setShowSearchBox] = useState(false)
@@ -195,13 +193,6 @@ function PublicationsPage() {
                       {activeReaderPaper.citation}
                     </p>
                   </div>
-
-                  <Button 
-                    className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-black uppercase tracking-widest rounded-full transition-colors h-auto py-3 px-6 text-xs md:text-sm shadow-md"
-                    onClick={() => setSelectedPaper(activeReaderPaper)}
-                  >
-                    <BookOpen className="w-4 h-4 mr-2 stroke-[2.5]" /> OPEN INTERACTIVE READER
-                  </Button>
                 </div>
               </div>
             ) : (

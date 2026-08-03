@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import type { FormEvent } from 'react';
-import type { Publication, FocusArea, TeamMember } from '@/types';
-import { X, Send, Bot, CheckCircle, ArrowRight, User, AlertCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { Badge } from '@/components/ui/badge';
+import { useState } from "react";
+import type { FormEvent } from "react";
+import type { FocusArea, Publication, TeamMember } from "@/types";
+import { X, CheckCircle, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
 
 // ==========================================
 // 1. PAPER READER & AI CHAT ASSISTANT MODAL
@@ -18,13 +18,11 @@ interface PaperReaderModalProps {
 export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
-      <div
-        className="bg-background border border-outline w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl relative"
-      >
-        <Button 
-          variant="ghost" 
-          size="icon" 
-          onClick={onClose} 
+      <div className="bg-background border border-outline w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl relative">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onClose}
           className="absolute top-6 right-6 z-10 bg-surface border border-outline shadow-sm hover:bg-surface-dim rounded-full"
         >
           <X className="w-5 h-5" />
@@ -70,7 +68,9 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             <ul className="space-y-4 pt-2">
               {paper.keyFindings.map((finding, idx) => (
                 <li key={idx} className="flex items-start gap-2.5">
-                  <span className="font-mono text-xs font-black text-primary mt-0.5">•</span>
+                  <span className="font-mono text-xs font-black text-primary mt-0.5">
+                    •
+                  </span>
                   <p className="font-sans text-sm text-on-background/60 leading-[1.5]">
                     {finding}
                   </p>
@@ -93,12 +93,14 @@ interface FocusAreaModalProps {
   onViewPublications: () => void;
 }
 
-export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaModalProps) {
+export function FocusAreaModal({
+  area,
+  onClose,
+  onViewPublications,
+}: FocusAreaModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
-      <div
-        className="bg-background border border-outline w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl"
-      >
+      <div className="bg-background border border-outline w-full max-w-3xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-in rounded-2xl">
         <div className="p-6 md:p-8 border-b border-outline bg-surface flex items-center justify-between">
           <div>
             <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase select-none">
@@ -114,7 +116,6 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
         </div>
 
         <div className="p-6 md:p-8 overflow-y-auto space-y-6">
-
           <div className="space-y-3">
             <h4 className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase">
               OVERVIEW & MOTIVATION
@@ -127,7 +128,6 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
           <div className="h-px bg-outline" />
 
           <div className="flex justify-end gap-4 pt-2">
-
             <Button
               size="lg"
               onClick={() => {
@@ -139,7 +139,6 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
               EXPLORE PUBLICATIONS <ArrowRight className="w-3.5 h-3.5" />
             </Button>
           </div>
-
         </div>
       </div>
     </div>
@@ -155,10 +154,10 @@ interface ContactModalProps {
 
 export function ContactModal({ onClose }: ContactModalProps) {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -169,10 +168,10 @@ export function ContactModal({ onClose }: ContactModalProps) {
 
     setIsSubmitting(true);
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
       const data = await response.json();
       setIsSubmitting(false);
@@ -187,9 +186,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
-      <div
-        className="bg-background border border-outline w-full max-w-lg overflow-hidden animate-fade-in rounded-2xl"
-      >
+      <div className="bg-background border border-outline w-full max-w-lg overflow-hidden animate-fade-in rounded-2xl">
         <div className="p-6 border-b border-outline bg-surface flex items-center justify-between">
           <div>
             <span className="font-mono text-[9px] font-black text-primary tracking-[0.2em] uppercase">
@@ -213,13 +210,11 @@ export function ContactModal({ onClose }: ContactModalProps) {
               PROPOSAL REGISTERED SUCCESSFULLY
             </h3>
             <p className="font-sans text-sm text-on-background/60 leading-relaxed max-w-sm mx-auto font-normal">
-              Thank you for connecting with Human AI Lab at the University of Moratuwa. Our lead research administrator will review your proposal and respond shortly.
+              Thank you for connecting with Human AI Lab at the University of
+              Moratuwa. Our lead research administrator will review your
+              proposal and respond shortly.
             </p>
-            <Button
-              variant="secondary"
-              size="lg"
-              onClick={onClose}
-            >
+            <Button variant="secondary" size="lg" onClick={onClose}>
               CLOSE WINDOW
             </Button>
           </div>
@@ -234,7 +229,9 @@ export function ContactModal({ onClose }: ContactModalProps) {
                 required
                 placeholder="e.g. Dr. Jane Smith"
                 value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
               />
             </div>
 
@@ -247,7 +244,9 @@ export function ContactModal({ onClose }: ContactModalProps) {
                 required
                 placeholder="e.g. jsmith@academy.edu"
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
               />
             </div>
 
@@ -259,7 +258,9 @@ export function ContactModal({ onClose }: ContactModalProps) {
                 type="text"
                 placeholder="e.g. Collaborative Robotics Fellowship"
                 value={formData.subject}
-                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, subject: e.target.value })
+                }
               />
             </div>
 
@@ -271,7 +272,9 @@ export function ContactModal({ onClose }: ContactModalProps) {
                 required
                 placeholder="Please outline your proposed focus area, requested faculty, or technical scope..."
                 value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
               />
             </div>
 
@@ -284,12 +287,8 @@ export function ContactModal({ onClose }: ContactModalProps) {
               >
                 CANCEL
               </Button>
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                size="lg"
-              >
-                {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}
+              <Button type="submit" disabled={isSubmitting} size="lg">
+                {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
               </Button>
             </div>
           </form>
@@ -310,9 +309,7 @@ interface BioModalProps {
 export function BioModal({ member, onClose }: BioModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
-      <div
-        className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
-      >
+      <div className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl">
         <div className="flex flex-col md:flex-row h-full">
           <div className="w-full md:w-2/5 aspect-[4/5] md:aspect-auto md:h-full bg-surface-dim overflow-hidden relative border-b md:border-b-0 md:border-r border-outline rounded-l-2xl">
             <img
@@ -327,7 +324,9 @@ export function BioModal({ member, onClose }: BioModalProps) {
             <div>
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <Badge variant="ghost" className="text-[10px]">{member.title}</Badge>
+                  <Badge variant="ghost" className="text-[10px]">
+                    {member.title}
+                  </Badge>
                   <h2 className="font-sans text-xl font-black text-on-background mt-1 uppercase">
                     {member.name}
                   </h2>

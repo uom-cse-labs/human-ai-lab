@@ -4,7 +4,6 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import {
-  PaperReaderModal,
   FocusAreaModal,
   BioModal,
 } from '../components/Modals'
@@ -35,7 +34,6 @@ function RootLayout() {
 function RootContent() {
   const navigate = useNavigate()
   const {
-    selectedPaper, setSelectedPaper,
     selectedFocusArea, setSelectedFocusArea,
     selectedMember, setSelectedMember,
     handleNavigate,
@@ -65,12 +63,6 @@ function RootContent() {
         />
       </div>
 
-      {selectedPaper && (
-        <PaperReaderModal
-          paper={selectedPaper}
-          onClose={() => setSelectedPaper(null)}
-        />
-      )}
       {selectedFocusArea && (
         <FocusAreaModal
           area={selectedFocusArea}

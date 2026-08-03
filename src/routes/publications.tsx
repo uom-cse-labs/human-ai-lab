@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, useLocation } from '@tanstack/react-router'
 import { useState, useRef, useEffect } from 'react'
 import { PUBLICATIONS } from '@/data'
 import { Search, X, FileText, CheckCircle2 } from 'lucide-react'
@@ -7,18 +7,32 @@ import { Badge } from '@/components/ui/badge'
 import type { Publication } from '@/types'
 
 export const Route = createFileRoute('/publications')({
+  validateSearch: (search: Record<string, unknown>): { openSearch?: boolean } => ({
+    openSearch: search.openSearch === true,
+  }),
   component: PublicationsPage,
 })
 
 function PublicationsPage() {
+  const { openSearch } = Route.useSearch()
+  const navigate = Route.useNavigate()
+  const { hash } = useLocation()
   const [searchTerm, setSearchTerm] = useState('')
   const [activeCategory, setActiveCategory] = useState<string>('ALL')
-  const [showSearchBox, setShowSearchBox] = useState(false)
-  
+  const [showSearchBox, setShowSearchBox] = useState<boolean>(!!openSearch)
+
   const [activeReaderPaper, setActiveReaderPaper] = useState<Publication | null>(PUBLICATIONS[0] || null)
 
   const searchInputRef = useRef<HTMLInputElement>(null)
-  const categories = ['ALL', 'INTELLIGENCE', 'ETHICS', 'DESIGN', 'ROBOTICS']
+
+  const scrollToSearch = () => {
+    const el = document.getElementById('search')
+    if (el) {
+      const headerOffset = 96
+      const top = el.getBoundingClientRect().top + window.pageYOffset - headerOffset
+      window.scrollTo({ top, behavior: 'smooth' })
+    }
+  }
 
   const handleSearchArchiveClick = () => {
     setShowSearchBox(true)
@@ -27,13 +41,43 @@ function PublicationsPage() {
     }, 100)
   }
 
+  const clearSearch = () => {
+    setSearchTerm('')
+    setShowSearchBox(false)
+  }
+
+  useEffect(() => {
+    if (openSearch) {
+      setShowSearchBox(true)
+      navigate({ search: (prev) => ({ ...prev, openSearch: false }), replace: true })
+      const t = setTimeout(() => {
+        searchInputRef.current?.focus()
+        scrollToSearch()
+      }, 0)
+      return () => clearTimeout(t)
+    }
+  }, [openSearch])
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash)
+      if (el) {
+        const headerOffset = 96
+        const top = el.getBoundingClientRect().top + window.pageYOffset - headerOffset
+        window.scrollTo({ top, behavior: 'smooth' })
+      }
+    }
+  }, [hash])
+
   const filteredPapers = PUBLICATIONS.filter((paper) => {
     const matchesCategory = activeCategory === 'ALL' || paper.category === activeCategory
+    const term = searchTerm.trim().toLowerCase()
     const matchesSearch =
-      paper.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      paper.authors.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      paper.publishedIn.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      paper.abstract.toLowerCase().includes(searchTerm.toLowerCase())
+      term === '' ||
+      paper.title.toLowerCase().includes(term) ||
+      paper.authors.toLowerCase().includes(term) ||
+      paper.publishedIn.toLowerCase().includes(term) ||
+      paper.abstract.toLowerCase().includes(term)
     return matchesCategory && matchesSearch
   })
 
@@ -71,7 +115,7 @@ function PublicationsPage() {
           {/* Left Pane: Archive List */}
           <div className="w-full lg:w-5/12 flex flex-col gap-6 lg:sticky lg:top-28">
             <div className="flex flex-col gap-4 mb-2">
-              <div className="flex items-center justify-between">
+              <div id="search" className="flex items-center justify-between">
                 <h2 className="font-sans text-2xl font-black uppercase tracking-tight text-on-background">
                   Index
                 </h2>
@@ -90,7 +134,7 @@ function PublicationsPage() {
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="w-full bg-transparent border-none text-sm text-on-background placeholder-on-background/30 focus:outline-none"
                     />
-                    <button onClick={() => { setSearchTerm(''); setShowSearchBox(false); }} className="text-on-background/50 hover:text-on-background">
+                    <button onClick={clearSearch} className="text-on-background/50 hover:text-on-background">
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </div>

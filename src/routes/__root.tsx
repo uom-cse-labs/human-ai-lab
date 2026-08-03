@@ -51,7 +51,7 @@ function RootContent() {
       <div className="min-h-screen bg-background flex flex-col text-on-background relative selection:bg-primary/20 selection:text-primary" id="app-root">
         <Header
           onContactClick={() => navigate({ to: '/contact' })}
-          onSearchClick={() => handleNavigate('rounded-publications')}
+          onSearchClick={() => navigate({ to: '/publications', search: { openSearch: true }, hash: 'search' })}
           onNavigate={handleNavigate}
         />
         <main className="flex-1" id="main-content">

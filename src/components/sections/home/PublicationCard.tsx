@@ -44,12 +44,12 @@ export default function PublicationCard({
           {paper.publishedIn && (
             <Badge
               variant="outline"
-              className="mt-4 max-w-fit border-white/30 text-white/90 backdrop-blur-sm"
+              className="mt-4 max-w-fit border-white/30 bg-black/40 text-white backdrop-blur-md"
             >
               {paper.publishedIn}
             </Badge>
           )}
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-white mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-sky-400 mt-6 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             READ BRIEF & CHAT <ArrowUpRight className="w-3.5 h-3.5" />
           </span>
         </div>

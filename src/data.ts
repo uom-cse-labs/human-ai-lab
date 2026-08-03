@@ -40,7 +40,7 @@ export const PUBLICATIONS: Publication[] = [
     authors: 'Davis, A., et al.',
     publishedIn: 'CHI Conference 2023',
     year: 2023,
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200',
+    imageUrl: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=1200',
     abstract: 'As populations age, particularly in South Asia where family-based care is the cultural cornerstone, assistive robotic technologies must align with domestic physical rituals. This paper presents the design and evaluation of "Ayu-Node", a tangible wooden control interface integrated into domestic helper robots. Rather than screens or voice controls, Ayu-Node uses tactile physical geometries that mimic traditional Sri Lankan domestic utilities, making elder interaction natural, non-threatening, and highly intuitive.',
     keyFindings: [
       'Capsule networks can effectively handle Twitter-based hate speech classification tasks.',

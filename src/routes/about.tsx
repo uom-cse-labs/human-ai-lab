@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Target, Users, Lightbulb, ShieldCheck } from "lucide-react";
-import { useLab } from "@/lab-context";
 import MembersSection from "@/components/sections/home/MembersSection";
 import PillarCard from "@/components/sections/about/PillarCard";
 
@@ -9,7 +8,6 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
-  const { setSelectedMember } = useLab();
   const pillars = [
     {
       title: "Human-Centricity",
@@ -141,7 +139,7 @@ function About() {
         </div>
       </section>
 
-      <MembersSection onSelectMember={(member) => setSelectedMember(member)} />
+      <MembersSection />
 
       {/* Final CTA / Statement */}
       <section className="max-w-7xl mx-auto px-6 mt-28">

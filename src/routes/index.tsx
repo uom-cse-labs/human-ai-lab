@@ -18,7 +18,6 @@ function Home() {
   const navigate = useNavigate()
   const {
     setSelectedFocusArea,
-    setSelectedMember,
     handleNavigate,
   } = useLab()
 
@@ -41,9 +40,7 @@ function Home() {
         onReadPaper={() => navigate({ to: '/publications' })}
         onViewAllClick={() => navigate({ to: '/publications' })}
       />
-      <MembersSection
-        onSelectMember={(member) => setSelectedMember(member)}
-      />
+      <MembersSection />
       <NewsSection />
       <ContactSection />
     </>

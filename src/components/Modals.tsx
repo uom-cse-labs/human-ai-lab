@@ -127,41 +127,7 @@ export function FocusAreaModal({ area, onClose, onViewPublications }: FocusAreaM
 
           <div className="h-px bg-outline" />
 
-          <div className="space-y-3">
-            <h4 className="font-mono text-[10px] font-black text-on-background/40 tracking-[0.2em] uppercase">
-              CURRENT RESEARCH PROJECTS
-            </h4>
-            <div className="space-y-2.5">
-              {area.projects.map((proj, idx) => {
-                const parts = proj.split(':');
-                return (
-                  <div key={idx} className="flex gap-2">
-                    <span className="text-primary font-mono">•</span>
-                    <p className="font-sans text-sm text-on-background/60 leading-relaxed">
-                      <strong className="text-on-background font-bold">{parts[0]}</strong>: {parts[1]}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="h-px bg-outline" />
-
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-2">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-surface flex items-center justify-center text-primary border border-outline rounded-full">
-                <User className="w-5 h-5" />
-              </div>
-              <div>
-                <p className="font-mono text-[8px] text-on-background/40 tracking-[0.2em] uppercase">
-                  INVESTIGATOR LEAD
-                </p>
-                <p className="font-sans text-sm font-black text-on-background uppercase">
-                  {area.leadResearcher}
-                </p>
-              </div>
-            </div>
+          <div className="flex justify-end gap-4 pt-2">
 
             <Button
               size="lg"

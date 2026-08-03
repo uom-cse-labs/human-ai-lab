@@ -5,149 +5,151 @@ export const PUBLICATIONS: Publication[] = [
   {
     id: 'pub-1',
     category: 'INTELLIGENCE',
-    title: '"Cross-Cultural Bias in Sentiment Analysis: A Sri Lankan Case Study"',
-    authors: 'Chen, A., Taylor, J., & Patel, R.',
-    publishedIn: 'ICLR 2024, Vienna',
-    year: 2024,
-    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
-    abstract: 'Sentiment analysis models trained primarily on Western datasets exhibit severe degradation when applied to South Asian contexts, particularly in Sri Lanka. This research details how local linguistic nuances, sarcasm forms, and cultural codes alter emotional expression. We introduce "LankaSent", a culture-sensitive tokenization and training corpus that reduces cultural bias in machine learning by 34% while improving contextual accuracy.',
+    title: 'Inferring mood-while-eating with smartphone sensing and community-based model personalization',
+    authors: 'Wageesha Bangamuarachchi, Anju Chamantha, Lakmal Meegahapola, Haeeun Kim, Salvador Ruiz-Correa, Indika Perera, Daniel Gatica-Perez',
+    publishedIn: 'ACM Transactions on Computing for Healthcare',
+    year: 2025,
+    imageUrl: 'https://images.unsplash.com/photo-1543339308-43e59d6b73a6?auto=format&fit=crop&q=80&w=1200',
+    abstract: 'This study investigates mood during eating using passive smartphone sensing and self-reported data from two large datasets collected in Mexico and eight countries. The results show that generic mood inference models perform poorly in eating-specific contexts, while traditional population-level and user-level personalization methods are limited by context shifts and scarce negative mood labels. To address these challenges, the authors propose a community-based personalization approach that groups similar users, achieving the best mood-while-eating prediction performance with F1 scores of 62.5% (Mexico) and 85.7% (multinational dataset).',
     keyFindings: [
-      'Identified 14 specific cultural linguistic markers in Sri Lankan English and Sinhala-Tamil code-switching ignored by standard LLMs.',
-      'Constructed a benchmark dataset of 50,000 human-annotated local statements for training.',
-      'Demonstrated that adjusting word embeddings with local socio-cultural context vectors increases sentiment classification F1-score from 0.62 to 0.89.'
+      'Generic mood inference models perform worse when applied to eating-specific contexts.',
+      'Traditional population-level and user-level personalization methods struggle due to limited negative mood data.',
+      'Community-based personalization improves mood-while-eating prediction accuracy.'
     ],
-    citation: 'Chen, A., Taylor, J., & Patel, R. (2024). Cross-Cultural Bias in Sentiment Analysis: A Sri Lankan Case Study. In Proceedings of the International Conference on Learning Representations (ICLR 2024), Vienna, Austria.'
+    citation: 'Bangamuarachchi, W., Chamantha, A., Meegahapola, L., Kim, H., Ruiz-Correa, S., Perera, I., & Gatica-Perez, D. (2025). Inferring Mood-While-Eating with Smartphone Sensing and Community-Based Model Personalization. ACM Transactions on Computing for Healthcare, 6(3), Article 35, 1–35.'
   },
   {
     id: 'pub-2',
-    category: 'ETHICS',
-    title: '"Human-in-the-loop: Ethical Frameworks for Urban Planning AI"',
-    authors: 'Chen, A. & White, I.',
-    publishedIn: 'Nature Machine Intelligence, Vol 12',
+    category: 'INTELLIGENCE',
+    title: 'Large Language Model-Based Student Intent Classification for Intelligent Tutoring Systems',
+    authors: 'Malshan Keerthichandra, Tharoosha Vihidun, Shanuka Lakshan, Indika Perera',
+    publishedIn: '2024 9th International Conference on Information Technology Research (ICITR)',
     year: 2024,
-    abstract: 'Autonomous algorithmic decision-making in urban rezoning and infrastructure allocation often exacerbates historic socio-economic disparities. This paper introduces an actionable "Human-in-the-Loop" (HITL) ethical framework designed for municipal planning departments in developing economies. We detail a participatory governance pipeline that integrates machine learning simulations with public assembly inputs to foster equitable resource distribution.',
+    imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&q=80&w=1200',
+    abstract: 'This paper presents an intent classification module for the Learner-Aware AI (LAAI) intelligent tutoring system to identify diverse student behaviors during interactions. The authors introduce the LAAIIntentD dataset and fine-tune a lightweight large language model using LoRA techniques for efficient intent recognition. The proposed LAAI-intent-classifier outperforms GPT-based approaches in overall Precision, Recall, and F1-score, demonstrating its effectiveness for personalized educational AI systems.',
     keyFindings: [
-      'Proposed a multi-stakeholder mathematical constraint optimization model that guarantees a baseline resource equity index.',
-      'Conducted a comparative trial across three developing metro regions, showing a 40% increase in public satisfaction metrics with algorithmic suggestions.',
-      'Formulated the "Participatory AI Charter" containing audit guidelines for civil servants using predictive urban planning systems.'
+      'A custom LAAIIntentD dataset was developed for student intent classification in intelligent tutoring systems.',
+      'LoRA-based fine-tuning produced a lightweight intent classifier with improved Precision, Recall, and F1-score compared to GPT-based methods.',
+      'The proposed model provides an efficient and scalable solution for personalized AI-driven educational interactions.'
     ],
-    citation: 'Chen, A., & White, I. (2024). Human-in-the-loop: Ethical Frameworks for Urban Planning AI. Nature Machine Intelligence, 12(4), 312-325.'
+    citation: 'M. Keerthichandra, T. Vihidun, S. Lakshan, and I. Perera, “Large Language Model-Based Student Intent Classification for Intelligent Tutoring Systems,” in 2024 9th International Conference on Information Technology Research (ICITR), IEEE, 2024.'
   },
   {
     id: 'pub-3',
-    category: 'DESIGN',
-    title: '"Tangible Interfaces for Elder Care via Assistive Robotics"',
-    authors: 'Davis, A., et al.',
-    publishedIn: 'CHI Conference 2023',
-    year: 2023,
-    imageUrl: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?auto=format&fit=crop&q=80&w=1200',
-    abstract: 'As populations age, particularly in South Asia where family-based care is the cultural cornerstone, assistive robotic technologies must align with domestic physical rituals. This paper presents the design and evaluation of "Ayu-Node", a tangible wooden control interface integrated into domestic helper robots. Rather than screens or voice controls, Ayu-Node uses tactile physical geometries that mimic traditional Sri Lankan domestic utilities, making elder interaction natural, non-threatening, and highly intuitive.',
+    category: 'ETHICS',
+    title: 'Capsule Network-Based Dynamic Routing to Detect Hate Speech on Twitter',
+    authors: 'Suresha Perera, Indika Perera, Supunmali Ahangama, S Rajasingham',
+    publishedIn: '6th International Conference on Advanced Research in Computing (ICARC)',
+    year: 2026,
+    imageUrl: 'https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=1200',
+    abstract: 'This paper investigates the use of capsule networks for detecting hate speech on Twitter by classifying social media content into hate and non-hate categories. The study compares the proposed embedded capsule network model with convolutional neural networks and traditional machine learning approaches on benchmark datasets. The capsule network achieved 93% accuracy, demonstrating strong performance and potential for improving automated hate speech detection systems.',
     keyFindings: [
-      'Developed and user-tested 5 physical interaction metaphors among elder demographics (ages 70-90) with no previous computer literacy.',
-      'Proved that wooden tangible interfaces reduce task anxiety by 55% compared to tablet-based touch screen interfaces.',
-      'Maintained 94% task completion rates for daily medical reminders and micro-interaction prompts via assistive domestic devices.'
+      'Capsule networks can effectively handle Twitter-based hate speech classification tasks.',
+      'The proposed embedded capsule network model outperformed CNN and traditional machine learning approaches.',
+      'The model achieved 93% accuracy on widely used hate speech benchmark datasets.'
     ],
-    citation: 'Davis, A., Green, S., Parker, O., & Taylor, J. (2023). Tangible Interfaces for Elder Care via Assistive Robotics. In Proceedings of the ACM CHI Conference on Human Factors in Computing Systems (CHI 2023).'
+    citation: 'S. Perera, I. Perera, S. Ahangama, and S. Rajasingham, “Capsule Network-Based Dynamic Routing to Detect Hate Speech on Twitter,” in 2026 6th International Conference on Advanced Research in Computing (ICARC), IEEE, 2026.'
   },
   {
     id: 'pub-4',
-    category: 'INTELLIGENCE',
-    title: '"Low-Resource Language LLM Fine-Tuning: Methods and Sinhalese Benchmarks"',
-    authors: 'Patel, R., Taylor, J., & Chen, A.',
-    publishedIn: 'AAAI 2024, Vancouver',
-    year: 2024,
-    abstract: 'Fine-tuning large language models on low-resource morphological languages like Sinhalese often causes model collapse or severe vocabulary dilution. We present a novel Parameter-Efficient Fine-Tuning (PEFT) framework using localized adapters trained on custom syntactic trees. We introduce "LankaGLUE", the first comprehensive benchmark suite for evaluating Sinhala language understanding, featuring reading comprehension, sentiment analysis, and semantic similarity tasks.',
+    category: 'DESIGN',
+    title: 'A Framework for Adaptive User Interface Generation based on User Behavioural Patterns',
+    authors: 'Nilanka Rathnayake, Dulani Meedeniya, Indika Perera, Anuradha Welivita',
+    publishedIn: 'Moratuwa Engineering Research Conference (MERCon)',
+    year: 2019,
+    imageUrl: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=1200',
+    abstract: 'This paper proposes a generic adaptive user interface (AUI) platform that automatically generates personalized web interfaces by analyzing user behavior patterns using machine learning. The system enables automated user behavior capturing, data processing, analysis, and dynamic UI rendering to provide production-level adaptivity. The proposed platform improves user experience, achieving high usability scores and demonstrating the effectiveness of machine learning-driven UI customization.',
     keyFindings: [
-      'Mitigated vocabulary dilution by implementing a custom morphological sub-word tokenizer for Sinhalese.',
-      'Validated LankaGLUE benchmarks across 8 open-weight models, showcasing standard fine-tuning limitations.',
-      'Achieved a 22% improvement in reasoning tasks in low-resource environments using custom localized adapters.'
+      'A machine learning-based AUI platform was developed for automatic user interface customization.',
+      'The AdaBoost classifier achieved 100% accuracy in predicting large UI components and user scenarios.',
+      'The adaptive interface improved usability compared to non-adaptive interfaces, achieving higher SUS scores.'
     ],
-    citation: 'Patel, R., Taylor, J., & Chen, A. (2024). Low-Resource Language LLM Fine-Tuning: Methods and Sinhalese Benchmarks. In Proceedings of the AAAI Conference on Artificial Intelligence (AAAI 2024), Vancouver, Canada.'
+    citation: 'N. Rathnayake, D. Meedeniya, I. Perera, and A. Welivita, “A Framework for Adaptive User Interface Generation based on User Behavioural Patterns,” in 2019 Moratuwa Engineering Research Conference (MERCon), IEEE, 2019.'
   },
   {
     id: 'pub-5',
     category: 'ROBOTICS',
-    title: '"Collaborative Kinematics: Safe Multi-Agent Navigation in Agricultural Labs"',
-    authors: 'Taylor, J. & Chen, A.',
-    publishedIn: 'IEEE Transactions on Robotics, Vol 39',
-    year: 2023,
-    imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
-    abstract: 'In high-density indoor agricultural setups in tropical nations, collaborative robotic fleets must operate alongside human farm workers. We detail a novel kinematics planner using localized multi-agent reinforcement learning with safety guarantees. Our system handles unexpected obstacle avoidance (such as dynamic human steps or falling produce) in tight, unstructured greenhouse lanes without requiring extensive high-power visual processing.',
+    title: 'Real-time multimodal ADL recognition using convolution neural networks',
+    authors: 'Danushka Madhuranga, Rivindu Madushan, Chathuranga Siriwardane, Kutila Gunasekera',
+    publishedIn: 'The Visual Computer',
+    year: 2021,
+    imageUrl: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?auto=format&fit=crop&q=80&w=1200',
+    abstract: 'This paper presents an activity recognition system for Activities of Daily Living (ADLs) using combined depth video and audio modalities to improve privacy and recognition performance. The authors adapt CNN architectures for depth-based video analysis by extracting silhouettes and modifying networks to handle noisy and limited depth datasets. The proposed multimodal approach enables accurate ADL recognition and is extended into a real-time recognition system for ambient assisted living applications.',
     keyFindings: [
-      'Constructed a lightweight 2D spatial occupancy grid model running on edge microcontrollers (under 5W consumption).',
-      'Tested fleet efficiency across a 1200-hour operational simulation, reporting zero collisions with human workers.',
-      'Enhanced fleet-wide navigation efficiency by 18% compared to standard decentralized path planners.'
+      'A multimodal ADL recognition system combining depth video and audio data was proposed.',
+      'CNN-based methods were adapted for depth data using silhouette extraction and shallower architectures.',
+      'The proposed approach enables privacy-preserving and real-time activity recognition for assisted living systems.'
     ],
-    citation: 'Taylor, J., & Chen, A. (2023). Collaborative Kinematics: Safe Multi-Agent Navigation in Agricultural Labs. IEEE Transactions on Robotics, 39(6), 1482-1498.'
+    citation: 'D. Madhuranga, R. Madushan, C. Siriwardane, and K. Gunasekera, “Real-time multimodal ADL recognition using convolution neural networks,” The Visual Computer, vol. 37, no. 6, pp. 1263–1276, 2021.'
   }
 ];
 
 export const FOCUS_AREAS: FocusArea[] = [
   {
     id: 'focus-1',
-    title: 'Human-Robot Interaction',
+    title: 'Model Building and Model Engineering',
     type: 'CORE THEME',
-    description: 'Developing social intelligences that understand non-verbal cues and emotional context in collaborative workspace.',
+    description: 'This area focuses on the design, development, and refinement of mathematical and computational models that underpin intelligent systems. It bridges theoretical foundations with practical engineering to produce robust, scalable, and interpretable models.',
     iconName: 'robot',
     imageUrl: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
     bgClass: 'bg-stone-900',
     textClass: 'text-white',
-    detailedDescription: 'The Human-Robot Interaction (HRI) theme focuses on transitioning robots from isolated industrial assets to safe, empathetic, and collaborative teammates. Our researchers study the subtle physical and non-verbal interfaces of collaboration—such as micro-gestures, gaze-tracking, spatial pacing, and posture—to design systems that naturally adjust to their human partners. By combining computer vision, force-feedback, and real-time behavioral adaptation, we build interfaces that feel intuitive and secure.',
+    detailedDescription: 'Model Building and Model Engineering encompasses the systematic process of constructing, validating, and optimising mathematical, statistical, and machine learning models for real-world problem solving. Researchers in this area work across the full modelling lifecycle — from problem formulation and data-driven model design to parameter tuning, uncertainty quantification, and model evaluation. Emphasis is placed on developing models that are not only accurate but also computationally efficient, generalizable, and interpretable. Key methodologies include differential equation modelling, probabilistic graphical models, neural architecture design, ensemble methods, and simulation-based modelling. This area serves as the theoretical and methodological backbone for applied research across all other focus areas within the department.',
     projects: [
-      'Ayu-Node: Tangible wooden controls for domestic elder care robots.',
-      'Kinesics-AI: Multi-agent spatial awareness models for collaborative lab spaces.',
-      'Gaze-Sync: Predicting human manipulation intentions in assembly lines through continuous gaze-tracking.'
+      'TBA',
+      'TBA',
+      'TBA'
     ],
-    leadResearcher: 'Dr. Jordan Taylor'
+    leadResearcher: 'TBA'
   },
   {
     id: 'focus-2',
-    title: 'Cognitive Modeling',
+    title: 'Applied AI with domains',
     type: 'CORE THEME',
-    description: 'Simulating human decision-making patterns to improve the predictability of AI assistants.',
+    description: 'This area explores the practical deployment of artificial intelligence techniques across diverse application domains including healthcare, logistics, finance, and engineering. It translates AI research into domain-specific solutions that address real-world challenges.',
     iconName: 'brain',
     bgClass: 'bg-[#faf3e5]',
     textClass: 'text-[#1e1b13]',
-    detailedDescription: 'Predictable and safe artificial systems must be built on mathematically robust models of human cognition. The Cognitive Modeling core research path builds operational models of human attention, memory retention, decision fatigue, and risk aversion. Instead of relying on general statistical averages, our models incorporate demographic, cultural, and environmental parameters to predict how specific human groups interact with algorithmic suggestions, ensuring smoother technology transitions.',
+    detailedDescription: 'Applied AI with Domains focuses on the cross-disciplinary integration of artificial intelligence and machine learning methodologies into specialized fields to solve domain-specific problems. Researchers collaborate with industry partners and domain experts to identify high-impact challenges and develop AI-driven solutions tailored to the constraints and requirements of each application area. Research activities span predictive analytics, computer vision, natural language processing, optimization, and decision support systems deployed within sectors such as transportation, healthcare diagnostics, agricultural monitoring, financial forecasting, and smart manufacturing. A core objective of this area is to ensure that AI solutions are not only technically sound but also practically viable, ethically responsible, and contextually appropriate for real-world deployment.',
     projects: [
-      'Assistive-Predict: Simulating doctor decision loops to flag automated diagnostic errors.',
-      'Cognitive-Load Tracker: Real-time calculation of human user mental fatigue using low-intrusive behavioral markers.',
-      'Decision-Bridges: Aligning LLM reasoning hierarchies with human heuristic patterns.'
+      'TBA',
+      'TBA',
+      'TBA'
     ],
-    leadResearcher: 'Dr. Alex Chen'
+    leadResearcher: 'TBA'
   },
   {
     id: 'focus-3',
-    title: 'Algorithmic Ethics',
+    title: 'AI Governance and Policy making',
     type: 'CORE THEME',
-    description: 'Auditing local datasets for cultural biases and developing mitigation frameworks for public policy.',
+    description: 'This area examines the ethical, regulatory, and policy dimensions of artificial intelligence development and deployment. It aims to produce frameworks and guidelines that ensure AI systems are fair, transparent, accountable, and aligned with societal values.',
     iconName: 'shield',
     bgClass: 'bg-[#f5e1aa]',
     textClass: 'text-[#52461d]',
-    detailedDescription: 'Algorithms imported from Western tech hubs often amplify historic and cultural imbalances when applied in the Global South. The Algorithmic Ethics division audits local classification datasets, tests text embeddings for cultural biases, and defines participatory regulatory blueprints for municipal authorities. We collaborate directly with civil organizations and policy-makers to ensure that deployed AI tools protect marginal populations and distribute resources fairly.',
+    detailedDescription: 'AI Governance and Policy Making addresses the growing need for structured oversight of AI systems as they become increasingly embedded in critical societal functions. Research in this area investigates the ethical implications of AI decision-making, the development of fairness and bias mitigation frameworks, transparency and explainability standards, and the design of regulatory instruments suitable for rapidly evolving AI technologies. Interdisciplinary in nature, this area draws from computer science, law, philosophy, economics, and public policy to produce actionable governance models and policy recommendations. Researchers engage with government bodies, standards organisations, and civil society to translate technical insights into policy-relevant outputs, contributing to the responsible and inclusive development of AI at both national and international levels.',
     projects: [
-      'LankaSent Bias Audit: Benchmarking major NLP models for South Asian gender and geographic bias.',
-      'Ethical Rezoning Charter: Participatory templates for public infrastructure machine-learning tools.',
-      'AI-Impact Matrix: Quantifying the socio-economic displacement of automated services in regional industries.'
+      'TBA',
+      'TBA',
+      'TBA'
     ],
-    leadResearcher: 'Dr. Alex Chen'
+    leadResearcher: 'TBA'
   },
   {
     id: 'focus-4',
-    title: 'Explainable Systems',
+    title: 'MAS and Applications',
     type: 'NEW INITIATIVE',
-    description: 'Transforming "black-box" models into transparent tools that medical professionals can trust.',
+    description: 'This area investigates the theory and application of systems composed of multiple interacting autonomous agents capable of cooperative, competitive, or adaptive behaviour. It addresses complex problems where decentralized intelligence and coordination are essential.',
     iconName: 'eye',
     imageUrl: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&q=80&w=1200',
     bgClass: 'bg-stone-950',
     textClass: 'text-white',
-    detailedDescription: 'The Explainable Systems initiative bridges the gap between raw predictive power and actionable human comprehension. We develop novel visualization interfaces, semantic attribution frameworks, and real-time step-by-step logic maps that show exactly how an artificial network reached a specific classification. Focusing heavily on critical applications like oncology diagnostics, localized climate predictions, and credit access, our goal is to eliminate opaque "black-box" decision loops.',
+    detailedDescription: 'Multi-Agent Systems (MAS) and Applications focuses on the design, analysis, and deployment of systems in which multiple autonomous agents — each with their own goals, knowledge, and decision-making capabilities — interact within a shared environment to achieve individual or collective objectives. Research spans foundational topics including agent architectures, communication protocols, negotiation mechanisms, game-theoretic modelling, and emergent behaviour, as well as applied domains such as autonomous vehicle coordination, smart grid management, supply chain optimization, robotic swarms, and distributed simulation environments. A key research challenge addressed in this area is enabling agents to operate effectively under uncertainty, with incomplete information, and in dynamic environments. MAS research at the department aims to develop scalable, robust, and verifiable multi-agent frameworks with direct applicability to complex real-world systems.',
     projects: [
-      'Med-Explain: Clinical visualizers highlighting precise radiology features driving diagnostic classifications.',
-      'Heuristic Maps: Translating neural network weight shifts into high-level human semantic concepts.',
-      'Explainable-Water: Transparent predictive models for regional reservoir discharge and drought management.'
+      'TBA',
+      'TBA',
+      'TBA'
     ],
-    leadResearcher: 'Prof. Emeritus Morgan Smith'
+    leadResearcher: 'TBA'
   }
 ];
 

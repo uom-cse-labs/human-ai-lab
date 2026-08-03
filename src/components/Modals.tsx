@@ -33,16 +33,16 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
         <div className="w-full flex flex-col p-8 md:p-12 overflow-y-auto custom-scrollbar">
           <div className="flex items-center justify-between mb-6">
             <Badge>{paper.category}</Badge>
-            <span className="font-mono text-xs text-white/40 font-bold mr-10">
+            <span className="font-mono text-xs text-on-background/50 font-bold mr-10">
               YEAR: {paper.year}
             </span>
           </div>
 
-          <h2 className="font-sans text-3xl md:text-4xl font-black text-white leading-tight tracking-tight mb-4 uppercase pr-10">
+          <h2 className="font-sans text-3xl md:text-4xl font-black text-on-background leading-tight tracking-tight mb-4 uppercase pr-10">
             {paper.title}
           </h2>
 
-          <p className="font-sans text-base text-white/50 leading-relaxed italic mb-8">
+          <p className="font-sans text-base text-on-background/60 leading-relaxed italic mb-8">
             {paper.authors}
           </p>
 

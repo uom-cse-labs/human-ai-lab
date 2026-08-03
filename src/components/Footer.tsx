@@ -88,12 +88,6 @@ export default function Footer({ onContactClick }: FooterProps) {
             &copy; {currentYear} HUMAN AI LAB, UNIVERSITY OF MORATUWA. ALL
             RIGHTS RESERVED.
           </p>
-          <div className="flex items-center gap-3">
-            <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-            <span className="font-mono text-[9px] tracking-wider text-on-background/30 uppercase">
-              PILL DESIGN SYSTEM
-            </span>
-          </div>
         </div>
       </div>
     </footer>

@@ -5,7 +5,6 @@ import {
   STUDENT_RESEARCHERS,
   ALUMNI,
 } from "@/data";
-import type { TeamMember } from "@/types";
 import { Mail, Linkedin, GraduationCap } from "lucide-react";
 
 interface MembersSectionProps {}

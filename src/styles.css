@@ -61,6 +61,38 @@ body {
   to { transform: translateX(0); }
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 300ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  animation-fill-mode: both;
+}
+
+::view-transition-old(root) {
+  animation-name: pageOut;
+}
+
+::view-transition-new(root) {
+  animation-name: pageIn;
+}
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pageOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none;
+  }
+}
+
 .prose {
   --tw-prose-body: var(--color-on-background);
   --tw-prose-headings: var(--color-on-background);

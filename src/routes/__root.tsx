@@ -58,7 +58,6 @@ function RootContent() {
           <Outlet />
         </main>
         <Footer
-          onNavigate={handleNavigate}
           onContactClick={() => navigate({ to: '/contact' })}
         />
       </div>

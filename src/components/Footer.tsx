@@ -1,16 +1,22 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Link } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
 
 interface FooterProps {
-  onNavigate: (sectionId: string) => void;
   onContactClick: () => void;
 }
 
-export default function Footer({ onNavigate, onContactClick }: FooterProps) {
+export default function Footer({ onContactClick }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
-  const handleLinkClick = (id: string) => {
-    onNavigate(id);
-  };
+  const navItems = [
+    { label: "WHO WE ARE", route: "/about" },
+    { label: "RESEARCH THEMES", route: "/themes" },
+    { label: "PROJECTS", route: "/projects" },
+    { label: "PUBLICATIONS", route: "/publications" },
+    { label: "PIONEERS", route: "/pioneers" },
+    { label: "NEWS", route: "/news" },
+  ];
 
   return (
     <footer className="bg-surface-dim text-on-background pt-24 pb-16 border-t border-outline">
@@ -46,46 +52,18 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               SITEMAP
             </h4>
             <div className="flex flex-col gap-3">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleLinkClick("rounded-mission")}
-                className="justify-start py-2.5"
-              >
-                WHO WE ARE
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleLinkClick("rounded-focus-areas")}
-                className="justify-start py-2.5"
-              >
-                RESEARCH THEMES
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleLinkClick("rounded-publications")}
-                className="justify-start py-2.5"
-              >
-                PUBLICATIONS ARCHIVE
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleLinkClick("rounded-leadership")}
-                className="justify-start py-2.5"
-              >
-                RESEARCH PIONEERS
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => handleLinkClick("rounded-news")}
-                className="justify-start py-2.5"
-              >
-                LAB DISPATCHES
-              </Button>
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  to={item.route}
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "sm" }),
+                    "justify-start",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
             </div>
           </div>
 

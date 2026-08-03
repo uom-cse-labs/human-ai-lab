@@ -12,14 +12,14 @@ export default function TeamMemberCard({ member, onSelect }: TeamMemberCardProps
       onClick={() => onSelect(member)}
       className="group cursor-pointer flex flex-col"
     >
-      <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 border border-outline bg-surface rounded-2xl">
+      <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 rounded-2xl border border-outline shadow-sm">
         <img
           src={member.imageUrl}
           alt={member.name}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-102 grayscale contrast-[1.1] brightness-90 group-hover:grayscale-0 group-hover:brightness-100"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+        <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
       </div>
 
       <h3 className="font-sans text-lg font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">

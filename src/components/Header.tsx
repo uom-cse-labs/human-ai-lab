@@ -1,8 +1,8 @@
-import { Search, Menu, X } from 'lucide-react';
-import { useState } from 'react';
-import { Button, buttonVariants } from '@/components/ui/button';
-import { Link, useNavigate } from '@tanstack/react-router';
-import { cn } from '@/lib/utils';
+import { Search, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { cn } from "@/lib/utils";
 
 interface HeaderProps {
   onContactClick: () => void;
@@ -19,40 +19,44 @@ export default function Header({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'WHO WE ARE', route: '/about', id: 'rounded-mission' },
-    { label: 'RESEARCH THEMES', route: '/themes', id: 'rounded-focus-areas' },
-    { label: 'PUBLICATIONS', route: '/publications', id: 'rounded-publications' },
-    { label: 'PIONEERS', route: '/pioneers', id: 'rounded-leadership' },
-    { label: 'DISPATCHES', route: '/dispatches', id: 'rounded-news' },
+    { label: "WHO WE ARE", route: "/about" },
+    { label: "RESEARCH THEMES", route: "/themes" },
+    { label: "PROJECTS", route: "/projects" },
+    { label: "PUBLICATIONS", route: "/publications" },
+    { label: "PIONEERS", route: "/pioneers" },
+    { label: "NEWS", route: "/news" },
   ];
 
   return (
     <header className="sticky top-0 z-40 w-full bg-background/95 border-b border-outline backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
-<Link to="/" className="flex items-center gap-3 cursor-pointer group">
-  <div className="w-10 h-10 bg-[#F27D26] flex items-center justify-center font-sans font-black text-black text-base tracking-tighter italic transition-transform group-hover:scale-105 rounded-full">
-    AIM.
-  </div>
-  <div className="flex items-center gap-4">
-    <img src="/uom_logo.png" alt="University of Moratuwa" className="h-10 w-auto" />
-    <img src="/cse_logo.png" alt="Department of Computer Science and Engineering" className="h-10 w-auto" />
-  </div>
-  <div className="flex flex-col ml-2">
-    <span className="font-sans font-black text-sm tracking-wider text-on-background uppercase">
-      AIM LAB
-    </span>
-    <span className="font-mono text-[8px] tracking-[0.2em] text-[#F27D26] font-bold">
-      MORATUWA
-    </span>
-  </div>
-</Link>
+      <div className="max-w-container-nav mx-auto px-6 h-24 flex items-center justify-between">
+        <div
+          onClick={() => navigate({ to: "/" })}
+          className="flex items-center gap-4 cursor-pointer group"
+        >
+          <img
+            src="/uom_logo.png"
+            alt="University of Moratuwa"
+            className="h-14 w-auto"
+          />
+          <img
+            src="/cse_logo.png"
+            alt="Department of Computer Science and Engineering"
+            className="h-14 w-auto"
+          />
+          <img
+            src="/humanailogo.jpeg"
+            alt="Human AI Lab"
+            className="h-12 w-auto"
+          />
+        </div>
 
         <nav className="hidden md:flex items-center gap-4">
           {navItems.map((item) => (
             <Link
               key={item.label}
               to={item.route}
-              className={buttonVariants({ variant: 'ghost', size: 'sm' })}
+              className={buttonVariants({ variant: "ghost", size: "sm" })}
             >
               {item.label}
             </Link>
@@ -98,7 +102,10 @@ export default function Header({
               key={item.label}
               to={item.route}
               onClick={() => setMobileMenuOpen(false)}
-              className={cn(buttonVariants({ variant: 'ghost', size: 'sm' }), "justify-start py-2.5")}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "sm" }),
+                "justify-start py-2.5",
+              )}
             >
               {item.label}
             </Link>

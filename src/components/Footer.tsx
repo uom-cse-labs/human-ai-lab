@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { Button } from "@/components/ui/button";
 
 interface FooterProps {
   onNavigate: (sectionId: string) => void;
@@ -15,26 +15,20 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
   return (
     <footer className="bg-surface-dim text-on-background pt-24 pb-16 border-t border-outline">
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-outline">
-
           <div className="md:col-span-5 space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-primary flex items-center justify-center font-sans font-black text-white text-sm tracking-tighter italic rounded-full">
-                AIM.
-              </div>
-              <div className="flex flex-col">
-                <span className="font-sans font-black text-sm tracking-wider text-on-background uppercase">
-                  AIM LAB
-                </span>
-                <span className="font-mono text-[8px] tracking-[0.2em] text-primary font-bold">
-                  MORATUWA
-                </span>
-              </div>
+              <img
+                src="/humanailogo.jpeg"
+                alt="Human AI Lab"
+                className="w-auto h-24 object-contain"
+              />
             </div>
 
             <p className="font-sans text-sm text-on-background/60 leading-relaxed font-normal max-w-sm">
-              Sri Lanka's leading hub for research at the intersection of intelligence, ethical algorithmic architecture, and human psychology.
+              Sri Lanka's leading hub for research at the intersection of
+              intelligence, ethical algorithmic architecture, and human
+              psychology.
             </p>
 
             <div className="space-y-1">
@@ -55,7 +49,7 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleLinkClick('rounded-mission')}
+                onClick={() => handleLinkClick("rounded-mission")}
                 className="justify-start py-2.5"
               >
                 WHO WE ARE
@@ -63,7 +57,7 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleLinkClick('rounded-focus-areas')}
+                onClick={() => handleLinkClick("rounded-focus-areas")}
                 className="justify-start py-2.5"
               >
                 RESEARCH THEMES
@@ -71,7 +65,7 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleLinkClick('rounded-publications')}
+                onClick={() => handleLinkClick("rounded-publications")}
                 className="justify-start py-2.5"
               >
                 PUBLICATIONS ARCHIVE
@@ -79,7 +73,7 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleLinkClick('rounded-leadership')}
+                onClick={() => handleLinkClick("rounded-leadership")}
                 className="justify-start py-2.5"
               >
                 RESEARCH PIONEERS
@@ -87,7 +81,7 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => handleLinkClick('rounded-news')}
+                onClick={() => handleLinkClick("rounded-news")}
                 className="justify-start py-2.5"
               >
                 LAB DISPATCHES
@@ -100,7 +94,8 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               CONNECT
             </h4>
             <p className="font-sans text-sm text-on-background/60 leading-relaxed font-normal">
-              We welcome collaboration proposals, graduate research inquiries, and public policy partnerships.
+              We welcome collaboration proposals, graduate research inquiries,
+              and public policy partnerships.
             </p>
             <div className="flex pt-2">
               <Button onClick={onContactClick} size="lg">
@@ -108,12 +103,12 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
               </Button>
             </div>
           </div>
-
         </div>
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-mono text-[9px] text-on-background/40 tracking-wider uppercase">
-            &copy; {currentYear} AIM LAB, UNIVERSITY OF MORATUWA. ALL RIGHTS RESERVED.
+            &copy; {currentYear} HUMAN AI LAB, UNIVERSITY OF MORATUWA. ALL
+            RIGHTS RESERVED.
           </p>
           <div className="flex items-center gap-3">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
@@ -122,7 +117,6 @@ export default function Footer({ onNavigate, onContactClick }: FooterProps) {
             </span>
           </div>
         </div>
-
       </div>
     </footer>
   );

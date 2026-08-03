@@ -1,0 +1,45 @@
+[
+  {
+    "slug": "personalized-sinhala-speech-recognition",
+    "date": "JULY 20, 2026",
+    "title": "Personalized Sinhala Speech Recognition for Speech-Impaired Communication",
+    "content": "Building a speech-recognition system for Sinhala-speaking individuals with speech impairments such as dysarthria, personalized to each user's own voice and trained on 40 everyday phrases covering food, pain, help, and emergencies.",
+    "imageUrl": "https://snipboard.io/hkCU8s.jpg",
+    "order": 0
+  },
+  {
+    "slug": "social-media-virality-modeling",
+    "date": "JULY 5, 2026",
+    "title": "Multi-Agent Frameworks for Social Media Virality Modeling and Algorithm Behavior Reverse Engineering",
+    "content": "Unifying how content spreads on social media with how platform recommendation algorithms actually behave, using an LLM-based multi-agent simulation framework to reverse engineer platform behavior.",
+    "imageUrl": "https://snipboard.io/w4BY6c.jpg"
+  },
+  {
+    "slug": "research-to-product-automation",
+    "date": "JUNE 18, 2026",
+    "title": "Multi-Agent Pipeline for Research to Product Software Automation",
+    "content": "Automating the path from a written problem statement to a tested implementation through four gated multi-agent stages — Research, Architecture, Development, and Testing — with verified evidence and full audit trails.",
+    "imageUrl": "https://snipboard.io/XhU0VH.jpg"
+  },
+  {
+    "slug": "formally-constrained-self-evolution",
+    "date": "MAY 30, 2026",
+    "title": "Formally-Constrained Self-Evolution for Multi-Agent Systems via Verified Memory Containment and Causal Safety Verification",
+    "content": "Building self-evolving enterprise multi-agent architectures that remain formally safe as they improve, with formally verified automaton changes, full skill-lineage quarantine, and automatic rollback.",
+    "imageUrl": "https://snipboard.io/uYVzWt.jpg"
+  },
+  {
+    "slug": "stresssense-smartphone-mental-health",
+    "date": "MAY 12, 2026",
+    "title": "StressSense: Detecting Stress and Depression from Smartphone Usage Patterns",
+    "content": "Investigating whether smartphone usage patterns — screen time, app usage, sleep, movement, and social interaction — can reveal signs of stress, anxiety, or depression using simple, explainable machine learning models.",
+    "imageUrl": "https://snipboard.io/rZtxCA.jpg"
+  },
+  {
+    "slug": "graspnet-6dof-grasp-pose-estimation",
+    "date": "APRIL 25, 2026",
+    "title": "GraspNet – 6-DoF Grasp Pose Estimation",
+    "content": "Exploring 6-DoF grasp pose estimation using the GraspNet-1Billion benchmark to improve grasp detection accuracy and robustness for robotic manipulation in complex, cluttered environments.",
+    "imageUrl": "https://snipboard.io/p0QM8i.jpg"
+  }
+]

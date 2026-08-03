@@ -1,0 +1,202 @@
+{
+  "teamMembers": [
+    {
+      "id": "member-1",
+      "name": "Prof. Indika Perera",
+      "role": "DIRECTOR, HUMAN AI LAB",
+      "title": "DIRECTOR, HUMAN AI LAB",
+      "bio": "Eng. Prof. Indika Perera is a Professor in the Department of Computer Science and Engineering at the University of Moratuwa, Sri Lanka, and serves as the Director of the HumanAI Research Lab, an interdisciplinary initiative focused on advancing human-centered artificial intelligence through research and innovation. He holds a PhD in Computer Science from the University of St Andrews, United Kingdom, along with an MSc from the University of Moratuwa and an MBS and PGDBM from the University of Colombo, Sri Lanka. His research contributions span software engineering, software architecture and quality, technology-enhanced learning, immersive technologies, human-computer interaction, and emerging computing paradigms. Prof. Indika has contributed to numerous research publications and collaborative initiatives, exploring the intersection of software systems, intelligent technologies, and human-centered design. Through HumanAI Research Lab, he leads efforts toward developing responsible, innovative, and impactful AI solutions while fostering interdisciplinary collaboration and nurturing future researchers in artificial intelligence and related fields.",
+      "expertise": "Expertise in Multi-Agent Systems and Cognitive Architecture.",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1784541907/prof_indika_bqphbe.jpg",
+      "socials": {
+        "email": "mailto:indika@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/indika-perera-2aa7955/",
+        "scholar": "https://scholar.google.com/citations?hl=en&authuser=3&user=7txwaPoAAAAJ"
+      }
+    },
+    {
+      "id": "member-2",
+      "name": "Prof. Dulani Meedeniya",
+      "role": "LEAD RESEARCHER",
+      "title": "LEAD RESEARCHER",
+      "bio": "Dr. Alex Chen completed her PhD at Oxford University focusing on the socio-technical impacts of algorithmic automation in developing economies. She serves on international AI policy panels and actively collaborates with civic tech groups to draft human-centered AI legislation. Her research focuses on the intersection of data ethics, post-colonial geography, and public policy.",
+      "expertise": "Specializing in AI Ethics and Policy in the Global South.",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1785689409/dulani_meedeniya_kepqgz.jpg",
+      "socials": {
+        "email": "mailto:dulanim@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/dulani-meedeniya-015b23a1/",
+        "scholar": "https://scholar.google.com/citations?hl=en&authuser=3&user=DEUAL1UAAAAJ"
+      }
+    },
+    {
+      "id": "member-3",
+      "name": "Dr. Kutila Gunasekara",
+      "role": "PRINCIPAL INVESTIGATOR",
+      "title": "PRINCIPAL INVESTIGATOR",
+      "bio": "Dr. Jordan Taylor leads the Robotics and Human-Machine Interface labs at the University of Moratuwa. His research concentrates on developing low-cost, lightweight sensors and physical actuators that enable safer, more collaborative interactions between elders, field workers, and autonomous machinery. He is a passionate advocate for physical-first interface designs.",
+      "expertise": "Pioneering work in Affective Computing and User Experience.",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1785689409/kutila_gunasekara_dpn0gz.jpg",
+      "socials": {
+        "email": "mailto:kutila@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/kutila/",
+        "scholar": "https://scholar.google.com/citations?hl=en&authuser=3&user=W4HQiFAAAAAJ"
+      }
+    },
+    {
+      "id": "member-4",
+      "name": "Ms. Gayani Wickramarathna",
+      "role": "SENIOR ADVISOR",
+      "title": "SENIOR ADVISOR",
+      "bio": "Prof. Morgan Smith is a pioneer of computer science in Sri Lanka, having introduced the country's first software engineering curricula in the 1980s. His current advisory focus is on archiving and preserving local linguistic histories and cultural databases using decentralized technologies, ensuring future generations have clean, representative datasets to train localized systems.",
+      "expertise": "Foundational contributor to AI research in Sri Lanka.",
+      "imageUrl": "https://res.cloudinary.com/bajgh4wo/image/upload/v1785689410/gayani_wickramarathna_czf3hq.jpg",
+      "socials": {
+        "email": "mailto:gayani.20@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/gwickramarathna/",
+        "scholar": "https://scholar.google.com/citations?user=Ri5QZgoAAAAJ&hl=en&authuser=3"
+      }
+    }
+  ],
+  "foundingRAs": [
+    {
+      "id": "ra-1",
+      "name": "Sahan Gunathunga",
+      "role": "Founding Research Assistant",
+      "title": "Founding RA",
+      "bio": "",
+      "expertise": "",
+      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400",
+      "socials": {
+        "email": "mailto:sahangunathunga.21@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/sahan-gunathunga/"
+      }
+    },
+    {
+      "id": "ra-2",
+      "name": "Sanjana Kumarasingha",
+      "role": "Founding Research Assistant",
+      "title": "Founding RA",
+      "bio": "",
+      "expertise": "",
+      "imageUrl": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400&h=400",
+      "socials": {
+        "email": "mailto:sanjana.21@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/company/humanairesearchlab/"
+      }
+    },
+    {
+      "id": "ra-3",
+      "name": "Ashen Sandeep",
+      "role": "Founding Research Assistant",
+      "title": "Founding RA",
+      "bio": "",
+      "expertise": "",
+      "imageUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400&h=400",
+      "socials": {
+        "email": "mailto:ashensandeep.21@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/ashen-sandeep"
+      }
+    },
+    {
+      "id": "ra-4",
+      "name": "Tharidu Deshan",
+      "role": "Founding Research Assistant",
+      "title": "Founding RA",
+      "bio": "",
+      "expertise": "",
+      "imageUrl": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400&h=400",
+      "socials": {
+        "email": "mailto:deshan.21@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/tharidu-deshan-260b6027a"
+      }
+    }
+  ],
+  "researchAssistants": [
+    {
+      "id": "ra-1",
+      "name": "Nimendra Gunawardana",
+      "role": "Research Assistant",
+      "title": "Research Assistant",
+      "bio": "",
+      "expertise": "",
+      "socials": {
+        "email": "mailto:nimendraamiththa1@gmail.com",
+        "linkedin": "https://www.linkedin.com/in/nimendra-gunawardana-a68a69216/"
+      }
+    }
+  ],
+  "studentResearchers": [
+    {
+      "name": "Umen Samaranayake",
+      "role": "Undergraduate Researcher, CSE",
+      "socials": {
+        "email": "mailto:umen.22@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/umen-samaranayake/"
+      }
+    },
+    {
+      "name": "Isurumuni Wijesooriya",
+      "role": "Undergraduate Researcher, CSE",
+      "socials": {
+        "email": "mailto:isurumuni.22@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/isurumuni-wijesooriya"
+      }
+    },
+    {
+      "name": "Himadree Gallage",
+      "role": "Undergraduate Researcher, CSE",
+      "socials": {
+        "email": "mailto:himadree.22@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/himadree-gallage-4ab6422a4/"
+      }
+    },
+    {
+      "name": "Erandathee Wijeratne",
+      "role": "Undergraduate Researcher, CSE",
+      "socials": {
+        "email": "mailto:erandathee.22@cse.mrt.ac.lk",
+        "linkedin": "https://www.linkedin.com/in/erandathee-wijeratne2001/"
+      }
+    }
+  ],
+  "alumni": [
+    {
+      "name": "Dr. Michael Clark",
+      "role": "Postdoctoral Researcher (2022 - 2024)",
+      "currentPosition": "Assistant Professor at National University of Singapore",
+      "socials": {
+        "email": "mailto:michael.clark@nus.edu.sg",
+        "linkedin": "https://linkedin.com/in/dr-michael-clark",
+        "scholar": "https://scholar.google.com/citations?user=michael-clark"
+      }
+    },
+    {
+      "name": "Isabella White",
+      "role": "Research Assistant (2023 - 2024)",
+      "currentPosition": "PhD Candidate at Stanford University",
+      "socials": {
+        "email": "mailto:isabella.white@stanford.edu",
+        "linkedin": "https://linkedin.com/in/isabella-white",
+        "scholar": "https://scholar.google.com/citations?user=isabella-white"
+      }
+    },
+    {
+      "name": "Ethan Harris",
+      "role": "Undergraduate Researcher (2023)",
+      "currentPosition": "Software Engineer at Google",
+      "socials": {
+        "linkedin": "https://linkedin.com/in/ethan-harris"
+      }
+    },
+    {
+      "name": "Charlotte Miller",
+      "role": "Research Assistant (2022 - 2023)",
+      "currentPosition": "PhD Candidate at Carnegie Mellon University",
+      "socials": {
+        "email": "mailto:charlotte.miller@cmu.edu",
+        "linkedin": "https://linkedin.com/in/charlotte-miller",
+        "scholar": "https://scholar.google.com/citations?user=charlotte-miller"
+      }
+    }
+  ]
+}

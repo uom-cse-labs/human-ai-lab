@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import type { FormEvent } from 'react';
-import type { Publication, FocusArea, TeamMember, NewsItem } from '@/types';
+import type { Publication, FocusArea, TeamMember } from '@/types';
 import { X, Send, Bot, CheckCircle, ArrowRight, User, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -46,8 +46,8 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             {paper.authors}
           </p>
 
-<div className="bg-surface p-5 border-l-2 border-primary mb-8 rounded-2xl">
-  <p className="font-mono text-[10px] font-black text-on-background/40 uppercase tracking-wider mb-1">
+          <div className="bg-surface p-5 border-l-2 border-primary mb-8 rounded-2xl">
+            <p className="font-mono text-[10px] font-black text-on-background/40 uppercase tracking-wider mb-1">
               PUBLISHED IN / CITED AS:
             </p>
             <p className="font-sans text-sm text-on-background/80 leading-relaxed">
@@ -70,9 +70,9 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             </h3>
             <ul className="space-y-4 pt-2">
               {paper.keyFindings.map((finding, idx) => (
-<li key={idx} className="flex items-start gap-2.5">
-  <span className="font-mono text-xs font-black text-primary mt-0.5">•</span>
-  <p className="font-sans text-sm text-on-background/60 leading-[1.5]">
+                <li key={idx} className="flex items-start gap-2.5">
+                  <span className="font-mono text-xs font-black text-primary mt-0.5">•</span>
+                  <p className="font-sans text-sm text-on-background/60 leading-[1.5]">
                     {finding}
                   </p>
                 </li>
@@ -80,115 +80,6 @@ export function PaperReaderModal({ paper, onClose }: PaperReaderModalProps) {
             </ul>
           </div>
         </div>
-
-        <div className="w-full md:w-2/5 flex flex-col h-1/2 md:h-full bg-surface-dim">
-
-          <div className="px-6 py-4 border-b border-outline bg-surface flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-primary flex items-center justify-center text-white font-black italic rounded-full">
-                A.
-              </div>
-              <div>
-                <h4 className="font-sans text-xs font-black text-on-background uppercase tracking-wider">
-                  Research Companion
-                </h4>
-                <div className="flex items-center gap-1.5 mt-0.5">
-                  <span className={`w-1.5 h-1.5 rounded-full ${aiActive === true ? 'bg-primary-light animate-pulse' : 'bg-primary animate-pulse'}`} />
-                  <span className="font-mono text-[9px] text-on-background/40 tracking-wider">
-                    {aiActive === true ? 'GEMINI LIVE' : 'LOCAL SYNTHESIS'}
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <Button variant="ghost" size="icon-sm" onClick={onClose} title="Close Panel">
-              <X className="w-5 h-5" />
-            </Button>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
-            {messages.map((msg, i) => (
-              <div
-                key={i}
-                className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'} max-w-full`}
-              >
-                <div className={`p-4 rounded-2xl max-w-[90%] font-sans text-xs leading-relaxed ${
-                  msg.sender === 'user'
-                    ? 'bg-on-background text-background font-semibold'
-                    : 'bg-surface text-on-background border border-outline'
-                }`}>
-                  <div className="whitespace-pre-line">
-                    {msg.text}
-                  </div>
-                </div>
-                <span className="font-mono text-[8px] tracking-wider text-on-background/40 mt-1 uppercase px-1">
-                  {msg.sender === 'user' ? 'YOU' : 'ASSISTANT'}
-                </span>
-              </div>
-            ))}
-
-            {isTyping && (
-              <div className="flex items-center gap-2 text-on-background/40 font-mono text-xs px-2 animate-pulse">
-                <Bot className="w-4 h-4 text-primary" />
-                <span>AIM Assistant is reasoning...</span>
-              </div>
-            )}
-
-            {warningMessage && (
-              <div className="p-3 bg-surface border border-outline flex gap-2.5 text-on-background/60 rounded-2xl my-2">
-                <AlertCircle className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <div className="font-sans text-[11px] leading-normal font-normal">
-                  <strong>Developer Note:</strong> To activate conversational intelligence powered by Google Gemini, define a valid <code>GEMINI_API_KEY</code> in the Secrets dashboard.
-                </div>
-              </div>
-            )}
-
-            <div ref={chatEndRef} />
-          </div>
-
-          <div className="px-6 py-3 border-t border-outline bg-surface space-y-2">
-            <span className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] block uppercase">
-              RECOMMENDED QUESTIONS
-            </span>
-            <div className="flex flex-wrap gap-1.5">
-              {sampleQuestions.map((q, idx) => (
-                <Button
-                  key={idx}
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleSuggestionClick(q)}
-                >
-                  {q}
-                </Button>
-              ))}
-            </div>
-          </div>
-
-          <form
-            onSubmit={(e: FormEvent) => {
-              e.preventDefault();
-              handleSendMessage(inputValue);
-            }}
-            className="p-4 border-t border-outline bg-surface flex gap-2"
-          >
-            <Input
-              ref={searchInputRef}
-              placeholder="Ask a custom scholarly question..."
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-            <Button
-              type="submit"
-              disabled={!inputValue.trim()}
-              size="icon"
-              title="Send Message"
-            >
-              <Send className="w-4 h-4" />
-            </Button>
-          </form>
-
-        </div>
-
       </div>
     </div>
   );
@@ -357,7 +248,7 @@ export function ContactModal({ onClose }: ContactModalProps) {
               PROPOSAL REGISTERED SUCCESSFULLY
             </h3>
             <p className="font-sans text-sm text-on-background/60 leading-relaxed max-w-sm mx-auto font-normal">
-              Thank you for connecting with AIM at the University of Moratuwa. Our lead research administrator will review your proposal and respond shortly.
+              Thank you for connecting with Human AI Lab at the University of Moratuwa. Our lead research administrator will review your proposal and respond shortly.
             </p>
             <Button
               variant="secondary"
@@ -497,54 +388,6 @@ export function BioModal({ member, onClose }: BioModalProps) {
               </p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// ==========================================
-// 6. NEWS ARTICLE DETAIL MODAL
-// ==========================================
-interface NewsModalProps {
-  news: NewsItem;
-  onClose: () => void;
-}
-
-export function NewsModal({ news, onClose }: NewsModalProps) {
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay/80 backdrop-blur-xs p-4">
-      <div
-        className="bg-background border border-outline w-full max-w-2xl overflow-hidden animate-fade-in rounded-2xl"
-      >
-        <div className="aspect-[16/9] w-full relative overflow-hidden bg-surface border-b border-outline rounded-t-2xl">
-          <img
-            src={news.imageUrl}
-            alt={news.title}
-            className="w-full h-full object-cover filter grayscale contrast-110 brightness-90"
-            referrerPolicy="no-referrer"
-          />
-          <Button
-            variant="ghost"
-            size="icon-sm"
-            onClick={onClose}
-            className="absolute top-4 right-4 bg-overlay/80 text-white hover:bg-primary hover:text-white"
-          >
-            <X className="w-5 h-5" />
-          </Button>
-        </div>
-
-        <div className="p-8 space-y-4 bg-background">
-          <span className="font-mono text-[10px] font-black text-primary tracking-[0.2em] uppercase block">
-            PUBLISHED: {news.date}
-          </span>
-          <h2 className="font-sans text-2xl font-black text-on-background tracking-tight leading-snug uppercase">
-            {news.title}
-          </h2>
-          <div className="h-px bg-outline my-3" />
-          <p className="font-sans text-sm text-on-background/60 leading-[1.65] font-normal">
-            {news.details}
-          </p>
         </div>
       </div>
     </div>

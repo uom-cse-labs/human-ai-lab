@@ -1,42 +1,26 @@
-import { useState, useRef } from "react";
 import type { Publication } from "@/types";
 import { PUBLICATIONS } from "@/data";
-import { Search, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import CategoryButton from "./CategoryButton";
 import PublicationCard from "./PublicationCard";
+import { useState } from "react";
 
 interface PublicationsSectionProps {
   onReadPaper: (paper: Publication) => void;
+  onViewAllClick: () => void;
 }
 
 export default function PublicationsSection({
   onReadPaper,
+  onViewAllClick,
 }: PublicationsSectionProps) {
-  const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("ALL");
-  const [showSearchBox, setShowSearchBox] = useState(false);
-
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   const categories = ["ALL", "INTELLIGENCE", "ETHICS", "DESIGN", "ROBOTICS"];
 
-  const handleSearchArchiveClick = () => {
-    setShowSearchBox(true);
-    setTimeout(() => {
-      searchInputRef.current?.focus();
-    }, 100);
-  };
-
   const filteredPapers = PUBLICATIONS.filter((paper) => {
-    const matchesCategory =
-      activeCategory === "ALL" || paper.category === activeCategory;
-    const matchesSearch =
-      paper.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      paper.authors.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      paper.publishedIn.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      paper.abstract.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return activeCategory === "ALL" || paper.category === activeCategory;
   });
 
   return (
@@ -58,37 +42,15 @@ export default function PublicationsSection({
           </p>
         </div>
 
-        {!showSearchBox ? (
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={handleSearchArchiveClick}
-          >
-            SEARCH ARCHIVE
-          </Button>
-        ) : (
-          <div className="flex items-center gap-2 w-full lg:w-96 bg-surface border border-outline py-2.5 px-4 self-start lg:self-end animate-fade-in rounded-full">
-            <Search className="w-4 h-4 text-primary" />
-            <input
-              ref={searchInputRef}
-              type="text"
-              placeholder="Search by title, author, key term..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-transparent border-none text-sm text-on-background placeholder-on-background/30 focus:outline-none"
-            />
-            <Button
-              variant="ghost"
-              size="icon-sm"
-              onClick={() => {
-                setSearchTerm("");
-                setShowSearchBox(false);
-              }}
-            >
-              <X className="w-4 h-4" />
-            </Button>
-          </div>
-        )}
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onViewAllClick}
+          className="gap-2"
+        >
+          VIEW ALL PUBLICATIONS
+          <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+        </Button>
       </div>
 
       <div className="flex flex-wrap gap-2.5 mb-12 border-b border-outline pb-6">
@@ -116,13 +78,10 @@ export default function PublicationsSection({
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => {
-              setSearchTerm("");
-              setActiveCategory("ALL");
-            }}
+            onClick={() => setActiveCategory("ALL")}
             className="mt-4 underline"
           >
-            Clear Filters & Search
+            Clear Filters
           </Button>
         </div>
       )}

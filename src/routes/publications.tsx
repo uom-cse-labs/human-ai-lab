@@ -17,7 +17,6 @@ function PublicationsPage() {
   const [activeCategory, setActiveCategory] = useState<string>('ALL')
   const [showSearchBox, setShowSearchBox] = useState(false)
   
-  // Local state for the split-pane reader
   const [activeReaderPaper, setActiveReaderPaper] = useState<Publication | null>(PUBLICATIONS[0] || null)
 
   const searchInputRef = useRef<HTMLInputElement>(null)
@@ -40,7 +39,6 @@ function PublicationsPage() {
     return matchesCategory && matchesSearch
   })
 
-  // If filter hides the active paper, maybe reset it?
   useEffect(() => {
     if (activeReaderPaper && !filteredPapers.find(p => p.id === activeReaderPaper.id)) {
       if (filteredPapers.length > 0) setActiveReaderPaper(filteredPapers[0])
@@ -48,16 +46,15 @@ function PublicationsPage() {
     }
   }, [filteredPapers, activeReaderPaper])
 
-
   return (
     <main className="min-h-screen bg-background pb-28">
       {/* Editorial Hero */}
       <section className="w-full relative bg-surface border-b border-outline overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-1/4 w-1/2 h-full bg-[#F27D26] blur-[150px] rounded-full transform translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute top-0 right-1/4 w-1/2 h-full bg-primary blur-[150px] rounded-full transform translate-x-1/2 -translate-y-1/2" />
         </div>
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 relative z-10 flex flex-col gap-6">
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] border border-[#F27D26]/30 bg-[#F27D26]/10 w-fit px-3 py-1 rounded-full">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary border border-primary/30 bg-primary/10 w-fit px-3 py-1 rounded-full">
             SCHOLARLY OUTPUT
           </span>
           <h1 className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] uppercase max-w-5xl">
@@ -86,7 +83,7 @@ function PublicationsPage() {
                   </Button>
                 ) : (
                   <div className="flex items-center gap-2 bg-surface border border-outline py-1.5 px-3 rounded-full animate-fade-in w-full max-w-[200px]">
-                    <Search className="w-3.5 h-3.5 text-[#F27D26]" />
+                    <Search className="w-3.5 h-3.5 text-primary" />
                     <input
                       ref={searchInputRef}
                       type="text"
@@ -95,7 +92,7 @@ function PublicationsPage() {
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="w-full bg-transparent border-none text-sm text-on-background placeholder-on-background/30 focus:outline-none"
                     />
-                    <button onClick={() => { setSearchTerm(''); setShowSearchBox(false); }} className="text-on-background/50 hover:text-white">
+                    <button onClick={() => { setSearchTerm(''); setShowSearchBox(false); }} className="text-on-background/50 hover:text-on-background">
                       <X className="w-3.5 h-3.5" />
                     </button>
                   </div>
@@ -109,8 +106,8 @@ function PublicationsPage() {
                     onClick={() => setActiveCategory(cat)}
                     className={`font-mono text-[10px] uppercase tracking-widest px-3 py-1.5 rounded-full transition-colors ${
                       activeCategory === cat 
-                        ? 'bg-[#F27D26] text-black font-black' 
-                        : 'bg-surface border border-outline text-on-background/70 hover:text-white'
+                        ? 'bg-primary text-white font-black' 
+                        : 'bg-surface border border-outline text-on-background/70 hover:text-on-background'
                     }`}
                   >
                     {cat}
@@ -119,7 +116,7 @@ function PublicationsPage() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 overflow-y-auto pr-2 custom-scrollbar lg:max-h-[70vh]">
+            <div className="flex flex-col gap-4 overflow-y-auto pr-2 lg:max-h-[70vh]">
               {filteredPapers.length > 0 ? (
                 filteredPapers.map((paper) => {
                   const isActive = activeReaderPaper?.id === paper.id;
@@ -129,19 +126,19 @@ function PublicationsPage() {
                       onClick={() => setActiveReaderPaper(paper)}
                       className={`group cursor-pointer p-5 rounded-2xl border transition-all duration-300 ${
                         isActive 
-                          ? 'bg-surface-dim border-[#F27D26]' 
-                          : 'bg-surface border-outline hover:border-[#F27D26]/40'
+                          ? 'bg-surface-dim border-primary' 
+                          : 'bg-surface border-outline hover:border-primary/40'
                       }`}
                     >
                       <div className="flex items-center justify-between mb-3">
-                        <Badge variant={isActive ? "default" : "secondary"} className={isActive ? "bg-[#F27D26]/20 text-[#F27D26]" : ""}>
+                        <Badge variant={isActive ? "default" : "secondary"}>
                           {paper.category}
                         </Badge>
                         <span className="font-mono text-[10px] text-on-background/40 font-bold">
                           {paper.year}
                         </span>
                       </div>
-                      <h3 className={`font-sans text-base font-black leading-[1.3] tracking-tight uppercase line-clamp-2 mb-2 transition-colors ${isActive ? 'text-white' : 'text-on-background group-hover:text-[#F27D26]'}`}>
+                      <h3 className={`font-sans text-base font-black leading-[1.3] tracking-tight uppercase line-clamp-2 mb-2 transition-colors ${isActive ? 'text-on-background' : 'text-on-background group-hover:text-primary'}`}>
                         {paper.title}
                       </h3>
                       <p className="font-sans text-xs text-on-background/50 leading-relaxed italic truncate">
@@ -169,7 +166,7 @@ function PublicationsPage() {
                 </div>
                 
                 <div className="relative z-10">
-                  <Badge variant="outline" className="font-mono text-[10px] tracking-widest uppercase border-[#F27D26]/30 text-[#F27D26] mb-6">
+                  <Badge variant="outline" className="font-mono text-[10px] tracking-widest uppercase border-primary/30 text-primary mb-6">
                     {activeReaderPaper.publishedIn} — {activeReaderPaper.year}
                   </Badge>
                   
@@ -182,7 +179,7 @@ function PublicationsPage() {
                   </p>
 
                   <div className="mb-10">
-                    <h4 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-[#F27D26] mb-4">
+                    <h4 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-primary mb-4">
                       Abstract
                     </h4>
                     <p className="font-sans text-lg text-on-background/80 leading-[1.8]">
@@ -197,7 +194,7 @@ function PublicationsPage() {
                     <ul className="space-y-4">
                       {activeReaderPaper.keyFindings.map((finding, idx) => (
                         <li key={idx} className="flex gap-4 items-start">
-                          <CheckCircle2 className="w-5 h-5 text-[#F27D26] flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                           <span className="font-sans text-base text-on-background/80 leading-[1.6]">
                             {finding}
                           </span>
@@ -207,7 +204,7 @@ function PublicationsPage() {
                   </div>
 
                   <div className="mb-10">
-                     <h4 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-on-background/50 mb-4">
+                    <h4 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-on-background/50 mb-4">
                       Citation
                     </h4>
                     <p className="font-mono text-xs text-on-background/60 leading-[1.6] bg-background p-4 rounded-xl border border-outline select-all">
@@ -216,7 +213,7 @@ function PublicationsPage() {
                   </div>
 
                   <Button 
-                    className="w-full md:w-auto bg-[#F27D26] hover:bg-[#E06D1E] text-black font-black uppercase tracking-widest rounded-full transition-colors h-auto py-3 px-6 text-xs md:text-sm shadow-md"
+                    className="w-full md:w-auto bg-primary hover:bg-primary-hover text-white font-black uppercase tracking-widest rounded-full transition-colors h-auto py-3 px-6 text-xs md:text-sm shadow-md"
                     onClick={() => setSelectedPaper(activeReaderPaper)}
                   >
                     <BookOpen className="w-4 h-4 mr-2 stroke-[2.5]" /> OPEN INTERACTIVE READER

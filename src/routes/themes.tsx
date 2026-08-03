@@ -28,10 +28,10 @@ function Themes() {
       {/* Hero Section */}
       <section className="w-full relative bg-surface border-b border-outline overflow-hidden">
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-0 w-1/2 h-full bg-[#F27D26] blur-[150px] rounded-full transform -translate-x-1/2 -translate-y-1/2" />
+          <div className="absolute top-1/2 left-0 w-1/2 h-full bg-primary blur-[150px] rounded-full transform -translate-x-1/2 -translate-y-1/2" />
         </div>
         <div className="max-w-7xl mx-auto px-6 pt-32 pb-24 relative z-10 flex flex-col gap-6">
-          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-[#F27D26] border border-[#F27D26]/30 bg-[#F27D26]/10 w-fit px-3 py-1 rounded-full">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary border border-primary/30 bg-primary/10 w-fit px-3 py-1 rounded-full">
             EXPLORE OUR DOMAINS
           </span>
           <h1 className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] uppercase max-w-5xl">
@@ -62,14 +62,14 @@ function Themes() {
                         className="w-full h-full object-cover filter grayscale contrast-125 brightness-75 group-hover:scale-105 transition-transform duration-700" 
                         referrerPolicy="no-referrer"
                       />
-                      <div className="absolute inset-0 bg-[#F27D26]/10 mix-blend-overlay transition-opacity group-hover:opacity-50" />
+                      <div className="absolute inset-0 bg-primary/10 mix-blend-overlay transition-opacity group-hover:opacity-50" />
                     </div>
                   ) : (
-                    <div className={`relative aspect-[4/3] w-full rounded-3xl overflow-hidden border border-outline flex items-center justify-center group ${area.bgClass}`}>
-                       <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
-                       <div className="bg-background/20 p-12 rounded-full backdrop-blur-md border border-black/10 shadow-2xl group-hover:scale-110 transition-transform duration-700">
-                          {renderIcon(area.iconName, `w-32 h-32 ${area.textClass}`)}
-                       </div>
+                    <div className="relative aspect-[4/3] w-full rounded-3xl overflow-hidden border border-outline flex items-center justify-center group bg-surface-dim">
+                      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10" />
+                      <div className="bg-background/20 p-12 rounded-full backdrop-blur-md border border-black/10 shadow-2xl group-hover:scale-110 transition-transform duration-700">
+                        {renderIcon(area.iconName, 'w-32 h-32 text-primary')}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -77,10 +77,10 @@ function Themes() {
                 {/* Content Side */}
                 <div className="w-full lg:w-1/2 flex flex-col justify-center">
                   <div className="mb-6 flex items-center gap-4">
-                    <div className="w-12 h-12 flex items-center justify-center bg-surface-container text-[#F27D26] border border-outline rounded-xl">
+                    <div className="w-12 h-12 flex items-center justify-center bg-surface-container text-primary border border-outline rounded-xl">
                       {renderIcon(area.iconName, 'w-5 h-5')}
                     </div>
-                    <Badge variant="outline" className="font-mono uppercase tracking-widest text-[#F27D26] border-[#F27D26]/30">
+                    <Badge variant="outline" className="font-mono uppercase tracking-widest text-primary border-primary/30">
                       {area.type}
                     </Badge>
                   </div>
@@ -89,7 +89,7 @@ function Themes() {
                     {area.title}
                   </h2>
                   
-                  <p className="font-sans text-xl text-on-background/80 font-medium leading-[1.6] mb-8 border-l-2 border-[#F27D26] pl-6 py-1">
+                  <p className="font-sans text-xl text-on-background/80 font-medium leading-[1.6] mb-8 border-l-2 border-primary pl-6 py-1">
                     {area.description}
                   </p>
 
@@ -97,6 +97,34 @@ function Themes() {
                     <p className="font-sans text-base text-on-background/60 leading-[1.8]">
                       {area.detailedDescription}
                     </p>
+                  </div>
+
+                  {/* Active Projects */}
+                  <div>
+                    <h3 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-on-background/50 mb-6">
+                      Active Projects
+                    </h3>
+                    <ul className="space-y-4">
+                      {area.projects.map((project, i) => (
+                        <li key={i} className="flex gap-4 items-start group/project">
+                          <span className="font-mono text-xs text-primary font-bold mt-1 group-hover/project:translate-x-1 transition-transform">
+                            0{i + 1}
+                          </span>
+                          <span className="font-sans text-sm text-on-background/80 leading-[1.6]">
+                            {project}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="mt-10 pt-6 border-t border-outline flex items-center justify-between">
+                    <span className="font-mono text-[10px] font-black tracking-widest text-on-background/40 uppercase">
+                      Lead Researcher
+                    </span>
+                    <span className="font-sans font-bold text-on-background uppercase">
+                      {area.leadResearcher}
+                    </span>
                   </div>
 
                 </div>
@@ -108,8 +136,8 @@ function Themes() {
 
       {/* Outro */}
       <section className="max-w-7xl mx-auto px-6 mt-20">
-        <div className="bg-surface border border-outline p-12 md:p-20 rounded-3xl text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[#F27D26]/5 mix-blend-overlay" />
+        <div className="bg-surface border border-outline p-12 md:p-20 rounded-3xl text-left relative overflow-hidden">
+          <div className="absolute inset-0 bg-primary/5 mix-blend-overlay" />
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="font-sans text-3xl md:text-5xl font-black tracking-tighter text-on-background uppercase leading-[1.1] mb-6">
               Ready to dive deeper?
@@ -117,7 +145,7 @@ function Themes() {
             <p className="font-sans text-lg text-on-background/60 mb-10">
               Explore our specific implementations of these themes in our peer-reviewed publications archive.
             </p>
-            <Link to="/publications" className="inline-flex bg-[#F27D26] text-black font-sans font-black uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white transition-colors">
+            <Link to="/publications" className="inline-flex bg-primary text-white font-sans font-black uppercase tracking-wider px-8 py-4 rounded-full hover:bg-primary-hover transition-colors">
               Read Our Publications
             </Link>
           </div>

@@ -1,4 +1,4 @@
-import { createRootRoute, HeadContent, Outlet, Scripts, useNavigate } from '@tanstack/react-router'
+import { createRootRoute, HeadContent, Scripts, useNavigate } from '@tanstack/react-router'
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import Header from '../components/Header'
@@ -20,18 +20,32 @@ export const Route = createRootRoute({
     ],
     links: [{ rel: 'stylesheet', href: appCss }],
   }),
-  component: RootLayout,
+  shellComponent: RootDocument,
 })
 
-function RootLayout() {
+function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <LabProvider>
-      <RootContent />
-    </LabProvider>
+    <html lang="en">
+      <head>
+        <HeadContent />
+      </head>
+      <body className="font-sans antialiased">
+        <LabProvider>
+          <RootContent>{children}</RootContent>
+        </LabProvider>
+        <TanStackDevtools
+          config={{ position: 'bottom-right' }}
+          plugins={[
+            { name: 'Tanstack Router', render: <TanStackRouterDevtoolsPanel /> },
+          ]}
+        />
+        <Scripts />
+      </body>
+    </html>
   )
 }
 
-function RootContent() {
+function RootContent({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate()
   const {
     selectedFocusArea, setSelectedFocusArea,
@@ -41,7 +55,6 @@ function RootContent() {
 
   return (
     <>
-      <HeadContent />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-primary focus:shadow-sm focus:outline-2 focus:outline-offset-2 focus:outline-primary"
@@ -55,7 +68,7 @@ function RootContent() {
           onNavigate={handleNavigate}
         />
         <main className="flex-1" id="main-content">
-          <Outlet />
+          {children}
         </main>
         <Footer
           onContactClick={() => navigate({ to: '/contact' })}
@@ -75,14 +88,6 @@ function RootContent() {
           onClose={() => setSelectedMember(null)}
         />
       )}
-
-      <TanStackDevtools
-        config={{ position: 'bottom-right' }}
-        plugins={[
-          { name: 'Tanstack Router', render: <TanStackRouterDevtoolsPanel /> },
-        ]}
-      />
-      <Scripts />
     </>
   )
 }

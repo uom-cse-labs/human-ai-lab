@@ -116,9 +116,11 @@ export default function MembersSection({}: MembersSectionProps = {}) {
                     {director.name}
                   </h4>
 
-                  <p className="font-sans text-sm text-on-background/70 leading-[1.75] font-normal mb-6">
-                    {director.bio}
-                  </p>
+                  {director.bio && (
+                    <p className="font-sans text-sm text-on-background/70 leading-[1.75] font-normal mb-6">
+                      {director.bio}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mt-4">
@@ -225,9 +227,11 @@ export default function MembersSection({}: MembersSectionProps = {}) {
                   {ra.title}
                 </p>
                 <SocialLinks socials={ra.socials} />
-                <p className="font-sans text-[11px] text-on-background/55 leading-relaxed mt-2.5">
-                  {ra.expertise}
-                </p>
+                {ra.expertise && (
+                  <p className="font-sans text-[11px] text-on-background/55 leading-relaxed mt-2.5">
+                    {ra.expertise}
+                  </p>
+                )}
               </div>
             ))}
           </div>

@@ -59,9 +59,11 @@ function PioneersPage() {
                   {indika.name}
                 </h2>
                 <div className="space-y-4">
-                  <p className="font-sans text-lg text-on-background/70 leading-relaxed font-normal whitespace-pre-line">
-                    {indika.bio}
-                  </p>
+                  {indika.bio && (
+                    <p className="font-sans text-lg text-on-background/70 leading-relaxed font-normal whitespace-pre-line">
+                      {indika.bio}
+                    </p>
+                  )}
                 </div>
                 {indika.socials && (
                   <div className="flex gap-4 mt-8">

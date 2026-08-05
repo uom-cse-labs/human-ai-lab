@@ -338,19 +338,23 @@ export function BioModal({ member, onClose }: BioModalProps) {
 
               <div className="h-px bg-outline mb-4" />
 
-              <p className="font-sans text-sm text-on-background/60 leading-[1.65] font-normal mb-6">
-                {member.bio}
-              </p>
+              {member.bio && (
+                <p className="font-sans text-sm text-on-background/60 leading-[1.65] font-normal mb-6">
+                  {member.bio}
+                </p>
+              )}
             </div>
 
-            <div className="bg-surface p-4 border-l-2 border-primary rounded-2xl">
-              <p className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] uppercase mb-1">
-                CORE INVESTIGATION FOCUS
-              </p>
-              <p className="font-sans text-xs text-on-background font-semibold leading-relaxed">
-                {member.expertise}
-              </p>
-            </div>
+            {member.expertise && (
+              <div className="bg-surface p-4 border-l-2 border-primary rounded-2xl">
+                <p className="font-mono text-[8px] font-black text-on-background/40 tracking-[0.2em] uppercase mb-1">
+                  CORE INVESTIGATION FOCUS
+                </p>
+                <p className="font-sans text-xs text-on-background font-semibold leading-relaxed">
+                  {member.expertise}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>

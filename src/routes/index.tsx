@@ -17,9 +17,7 @@ export const Route = createFileRoute('/')({
 function Home() {
   const navigate = useNavigate()
   const {
-    setSelectedPaper,
     setSelectedFocusArea,
-    setSelectedMember,
     handleNavigate,
   } = useLab()
 
@@ -39,12 +37,10 @@ function Home() {
         onViewAllClick={() => navigate({ to: '/themes' })}
       />
       <PublicationsSection
-        onReadPaper={(paper) => setSelectedPaper(paper)}
+        onReadPaper={() => navigate({ to: '/publications' })}
         onViewAllClick={() => navigate({ to: '/publications' })}
       />
-      <MembersSection
-        onSelectMember={(member) => setSelectedMember(member)}
-      />
+      <MembersSection />
       <NewsSection />
       <ContactSection />
     </>

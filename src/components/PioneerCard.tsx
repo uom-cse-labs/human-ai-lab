@@ -65,7 +65,7 @@ export default function PioneerCard({ member }: PioneerCardProps) {
           </div>
         )}
 
-        {member.id === "member-1" && (
+        {member.id === "member-1" && member.bio && (
           <div className="mt-auto pt-2 border-t border-outline/50">
             <p className="font-sans text-sm text-on-background/70 leading-[1.7] font-normal whitespace-pre-line">
               {member.bio}

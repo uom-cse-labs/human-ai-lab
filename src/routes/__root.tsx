@@ -4,7 +4,6 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import {
-  PaperReaderModal,
   FocusAreaModal,
   BioModal,
 } from '../components/Modals'
@@ -35,7 +34,6 @@ function RootLayout() {
 function RootContent() {
   const navigate = useNavigate()
   const {
-    selectedPaper, setSelectedPaper,
     selectedFocusArea, setSelectedFocusArea,
     selectedMember, setSelectedMember,
     handleNavigate,
@@ -53,24 +51,17 @@ function RootContent() {
       <div className="min-h-screen bg-background flex flex-col text-on-background relative selection:bg-primary/20 selection:text-primary" id="app-root">
         <Header
           onContactClick={() => navigate({ to: '/contact' })}
-          onSearchClick={() => handleNavigate('rounded-publications')}
+          onSearchClick={() => navigate({ to: '/publications', search: { openSearch: true }, hash: 'search' })}
           onNavigate={handleNavigate}
         />
         <main className="flex-1" id="main-content">
           <Outlet />
         </main>
         <Footer
-          onNavigate={handleNavigate}
           onContactClick={() => navigate({ to: '/contact' })}
         />
       </div>
 
-      {selectedPaper && (
-        <PaperReaderModal
-          paper={selectedPaper}
-          onClose={() => setSelectedPaper(null)}
-        />
-      )}
       {selectedFocusArea && (
         <FocusAreaModal
           area={selectedFocusArea}

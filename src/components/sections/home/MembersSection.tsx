@@ -5,12 +5,9 @@ import {
   STUDENT_RESEARCHERS,
   ALUMNI,
 } from "@/data";
-import type { TeamMember } from "@/types";
 import { Mail, Linkedin, GraduationCap } from "lucide-react";
 
-interface MembersSectionProps {
-  onSelectMember: (member: TeamMember) => void;
-}
+interface MembersSectionProps {}
 
 interface SocialLinksProps {
   socials?: {
@@ -34,7 +31,6 @@ function SocialLinks({ socials, size = "md" }: SocialLinksProps) {
   return (
     <div
       className={`flex items-center gap-1.5 ${isSm ? "mt-2" : "mt-3"}`}
-      onClick={(e) => e.stopPropagation()}
     >
       {socials.email && (
         <a href={socials.email} className={btnClass} title="Email">
@@ -67,9 +63,7 @@ function SocialLinks({ socials, size = "md" }: SocialLinksProps) {
   );
 }
 
-export default function MembersSection({
-  onSelectMember,
-}: MembersSectionProps) {
+export default function MembersSection({}: MembersSectionProps = {}) {
   const director = TEAM_MEMBERS[0];
   const faculty = TEAM_MEMBERS.slice(1);
 
@@ -97,8 +91,7 @@ export default function MembersSection({
             </h3>
 
             <div
-              onClick={() => onSelectMember(director)}
-              className="group cursor-pointer grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface border border-outline/50 rounded-3xl p-8 transition-all hover:border-primary/50"
+              className="group grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 bg-surface border border-outline/50 rounded-3xl p-8 transition-all hover:border-primary/50"
             >
               {/* Photo: Left */}
               <div className="lg:col-span-3 relative aspect-[4/5] w-full overflow-hidden border border-outline rounded-2xl shadow-sm max-w-[280px] mx-auto lg:mx-0">
@@ -123,16 +116,17 @@ export default function MembersSection({
                     {director.name}
                   </h4>
 
-                  <p className="font-sans text-sm text-on-background/70 leading-[1.75] font-normal mb-6">
-                    {director.bio}
-                  </p>
+                  {director.bio && (
+                    <p className="font-sans text-sm text-on-background/70 leading-[1.75] font-normal mb-6">
+                      {director.bio}
+                    </p>
+                  )}
                 </div>
 
                 <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mt-4">
                   {/* Enlarged social icons for Director */}
                   <div
                     className="flex items-center gap-3 self-end md:self-auto shrink-0"
-                    onClick={(e) => e.stopPropagation()}
                   >
                     {director.socials?.email && (
                       <a
@@ -182,8 +176,7 @@ export default function MembersSection({
             {faculty.map((member) => (
               <div
                 key={member.id}
-                onClick={() => onSelectMember(member)}
-                className="group cursor-pointer flex flex-col bg-surface border border-outline/30 rounded-3xl p-6 transition-all hover:border-primary/50"
+                className="group flex flex-col bg-surface border border-outline/30 rounded-3xl p-6 transition-all hover:border-primary/50"
               >
                 <div className="relative aspect-[4/5] w-full overflow-hidden mb-6 rounded-2xl border border-outline shadow-sm">
                   <img
@@ -217,9 +210,16 @@ export default function MembersSection({
             {FOUNDING_RAS.map((ra) => (
               <div
                 key={ra.id}
-                onClick={() => onSelectMember(ra)}
-                className="group cursor-pointer flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
+                className="group flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
               >
+                <div className="relative aspect-[4/5] w-full overflow-hidden mb-4 rounded-xl border border-outline shadow-sm">
+                  <img
+                    src={ra.imageUrl}
+                    alt={ra.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-primary/10 opacity-0 duration-700 group-hover:opacity-100 transition-opacity" />
+                </div>
                 <h4 className="font-sans text-sm font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">
                   {ra.name}
                 </h4>
@@ -227,9 +227,11 @@ export default function MembersSection({
                   {ra.title}
                 </p>
                 <SocialLinks socials={ra.socials} />
-                <p className="font-sans text-[11px] text-on-background/55 leading-relaxed mt-2.5">
-                  {ra.expertise}
-                </p>
+                {ra.expertise && (
+                  <p className="font-sans text-[11px] text-on-background/55 leading-relaxed mt-2.5">
+                    {ra.expertise}
+                  </p>
+                )}
               </div>
             ))}
           </div>
@@ -246,8 +248,7 @@ export default function MembersSection({
               {RESEARCH_ASSISTANTS.map((ra) => (
                 <div
                   key={ra.id}
-                  onClick={() => onSelectMember(ra)}
-                  className="group cursor-pointer flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
+                  className="group flex flex-col bg-surface border border-outline/20 rounded-2xl p-4 transition-all hover:border-primary/30"
                 >
                   <h4 className="font-sans text-sm font-black text-on-background group-hover:text-primary transition-colors leading-snug uppercase tracking-tight">
                     {ra.name}

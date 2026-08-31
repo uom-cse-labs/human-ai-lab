@@ -72,6 +72,17 @@
                 "linkedin": "https://www.linkedin.com/in/gwickramarathna/",
                 "scholar": "https://scholar.google.com/citations?user=Ri5QZgoAAAAJ&hl=en&authuser=3"
             }
+        },
+        {
+            "id": "member-7",
+            "name": "Savindu Rajapaksha",
+            "role": "RESEARCH FELLOW",
+            "title": "RESEARCH FELLOW",
+            "imageUrl": "/photos/savidu_rajakapshe.png",
+            "socials": {
+                "email": "mailto:savindu.20@cse.mrt.ac.lk",
+                "linkedin": "https://www.linkedin.com/in/savindu-rajapaksha-8a11231a1/"
+            }
         }
     ],
     "foundingRAs": [

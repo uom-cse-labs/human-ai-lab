@@ -1,6 +1,6 @@
 ---
 title: "HumanAI Research Lab Explores AI-Powered Robotic Automation with Intelligent Coffee-Making Robotic Arm"
-date: "AUGUST 25, 2025"
+date: "AUGUST 25, 2026"
 content: "Under the guidance of Dr. Chathuranga Hettiarachchi, HumanAI Research Lab is exploring robotic automation through the development of an intelligent robotic arm capable of coffee preparation, cleaning tasks, and creative latte art movements, integrating AI, robotics, and human-centered design."
 imageUrl: "https://snipboard.io/TABRn2.jpg"
 ---

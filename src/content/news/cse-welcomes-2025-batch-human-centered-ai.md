@@ -1,6 +1,6 @@
 ---
 title: "CSE Welcomes 2025 Batch with an Insightful Session on Human-Centered AI and Future AI Applications"
-date: "AUGUST 18, 2025"
+date: "AUGUST 18, 2026"
 content: "The Department of Computer Science and Engineering welcomed the CSE 2025 batch with an engaging session on Human-Centered AI and Future AI Applications delivered by Eng. Prof. Indika Perera, exploring the role of UI, UX, and human-centered approaches in shaping the future of AI."
 imageUrl: "https://snipboard.io/F7Php1.jpg"
 ---

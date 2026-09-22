@@ -18,11 +18,11 @@ export default function HeroSection({
         <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(52.91%_0.221_262.13/0.03)_1px,transparent_1px),linear-gradient(to_bottom,oklch(52.91%_0.221_262.13/0.03)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
       </div>
 
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
         <img
           src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=2000"
           alt=""
-          className="w-full h-full object-cover object-center filter grayscale contrast-100 opacity-25 brightness-110"
+          className="w-full h-full object-cover object-center filter contrast-150 saturate-150 brightness-110"
           referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80" />

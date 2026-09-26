@@ -1,0 +1,12 @@
+# ./gradlew bootRun: no AWS needed. Tokens from a local mock OAuth2 server (see README).
+hai:
+  issuer-uri: http://localhost:9000/default
+  client-id: local-dashboard
+  mail:
+    provider: log
+    from-address: no-reply@localhost
+    to-address: lab-inbox@localhost
+  storage: local
+  local:
+    data-dir: ../../.local-data
+    seed-dir: ../../apps/web/src

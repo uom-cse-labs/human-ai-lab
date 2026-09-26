@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 700" width="1080" height="700" role="img" aria-label="Component architecture of the Human-AI Lab platform">
+<title>Component architecture of the Human-AI Lab platform</title>
+<style>
+  .n-comp{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2}
+  .n-store{fill:#e9ebf4;stroke:#c7cbdc;stroke-width:1.2}
+  .n-person{fill:#eef0f7;stroke:#c7cbdc;stroke-width:1.2}
+  .n-ext{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:5 4}
+  .t-name{fill:#0d0f2b;font:600 13.5px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-sub{fill:#525a7c;font:400 10.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-eye{fill:#525a7c;font:500 9.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.1em}
+  .t-edge{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-edge.path{fill:#0e7686}
+  .t-bound{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em}
+  .t-title{fill:#151b54;font:700 17px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-band{fill:#0d0f2b;font:400 11.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-num{fill:#ffffff;font:600 10px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .e{fill:none;stroke:#525a7c;stroke-width:1.4}
+  .e.path{stroke:#0e7686;stroke-width:2}
+  .e.ret{stroke-dasharray:5 4}
+  .life{stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:4 5}
+  .bound{fill:none;stroke:#151b54;stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:7 5}
+  .band{fill:#f3f4fa;stroke:#c7cbdc;stroke-width:1;stroke-dasharray:4 4}
+  .note{fill:#e3f3f5;stroke:#0e7686;stroke-width:1}
+  .ah{fill:#525a7c} .ah.path{fill:#0e7686}
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+  <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah path"/></marker>
+  <marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 z" fill="#ffffff" stroke="#525a7c" stroke-width="1.2"/></marker>
+  <marker id="dia" viewBox="0 0 16 10" refX="1" refY="5" markerWidth="16" markerHeight="10" orient="auto"><path d="M1 5 L8 1 L15 5 L8 9 z" fill="#525a7c"/></marker>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#525a7c" stroke-width="1.4"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1079" height="699" rx="20" fill="#ffffff" stroke="#dfe2ec"/>
+<text class="t-title" x="40" y="42" text-anchor="start">Components</text>
+<g transform="translate(20 64)">
+<rect class="band" x="20" y="536" width="1000" height="40" rx="14"/>
+<text class="t-band" x="520" y="560" text-anchor="middle">Shared contract · contracts/ (OpenAPI + JSON Schema) → generated TypeScript and Java types · packages/ui (site components)</text>
+<path class="e path" d="M180 64 L180 114" marker-end="url(#ahp)"/>
+<text class="t-edge path" x="188" y="94" text-anchor="start">browses</text>
+<path class="e path" d="M110 180 L110 408" marker-end="url(#ahp)"/>
+<text class="t-edge path" x="118" y="262" text-anchor="start">loads photos, video</text>
+<path class="e path" d="M250 180 L280 408" marker-end="url(#ahp)"/>
+<text class="t-edge path" x="290" y="344" text-anchor="start">reads content</text>
+<path class="e" d="M300 168 L370 248" marker-end="url(#ah)"/>
+<text class="t-edge" x="340" y="206" text-anchor="start">sends message</text>
+<path class="e" d="M455 250 L455 182" marker-end="url(#ah)"/>
+<text class="t-edge" x="462" y="222" text-anchor="start">emails</text>
+<path class="e" d="M710 64 L710 114" marker-end="url(#ah)"/>
+<text class="t-edge" x="718" y="94" text-anchor="start">manages content</text>
+<path class="e" d="M820 148 L888 148" marker-end="url(#ah)"/>
+<text class="t-edge" x="854" y="140" text-anchor="middle">signs in</text>
+<path class="e" d="M650 180 L650 248" marker-end="url(#ah)"/>
+<text class="t-edge" x="642" y="220" text-anchor="end">edits, publishes</text>
+<path class="e" d="M800 180 L900 248" marker-end="url(#ah)"/>
+<text class="t-edge" x="862" y="206" text-anchor="start">uploads files</text>
+<path class="e" d="M935 314 L935 408" marker-end="url(#ah)"/>
+<text class="t-edge" x="943" y="366" text-anchor="start">triggers</text>
+<path class="e" d="M850 442 L742 442" marker-end="url(#ah)"/>
+<text class="t-edge" x="796" y="434" text-anchor="middle">marks ready</text>
+<path class="e" d="M650 314 L650 408" marker-end="url(#ah)"/>
+<text class="t-edge" x="658" y="366" text-anchor="start">reads, writes drafts</text>
+<path class="e" d="M560 306 L362 408" marker-end="url(#ah)"/>
+<text class="t-edge" x="470" y="382" text-anchor="start">publishes release</text>
+<path class="e" d="M935 474 L935 508 L105 508 L105 476" marker-end="url(#ah)"/>
+<text class="t-edge" x="520" y="500" text-anchor="middle">writes renditions (resized photos, web-ready video)</text>
+<rect class="n-person" x="100" y="20" width="160" height="44" rx="22"/>
+<text class="t-name" x="180" y="47" text-anchor="middle">Visitor</text>
+<rect class="n-person" x="620" y="20" width="180" height="44" rx="22"/>
+<text class="t-name" x="710" y="47" text-anchor="middle">Editor or admin</text>
+<rect class="n-comp" x="60" y="116" width="240" height="64" rx="14"/>
+<text class="t-name" x="180" y="144" text-anchor="middle">Public website</text>
+<text class="t-sub" x="180" y="162" text-anchor="middle">apps/web</text>
+<rect class="n-ext" x="380" y="116" width="150" height="64" rx="14"/>
+<text class="t-name" x="455" y="144" text-anchor="middle">Lab inbox</text>
+<text class="t-sub" x="455" y="162" text-anchor="middle">email · outside AWS</text>
+<rect class="n-comp" x="600" y="116" width="220" height="64" rx="14"/>
+<text class="t-name" x="710" y="144" text-anchor="middle">Admin dashboard</text>
+<text class="t-sub" x="710" y="162" text-anchor="middle">apps/admin</text>
+<rect class="n-comp" x="890" y="116" width="130" height="64" rx="14"/>
+<text class="t-name" x="955" y="144" text-anchor="middle">Identity</text>
+<text class="t-sub" x="955" y="162" text-anchor="middle">invite-only · MFA</text>
+<rect class="n-comp" x="340" y="250" width="180" height="64" rx="14"/>
+<text class="t-name" x="430" y="278" text-anchor="middle">Contact service</text>
+<text class="t-sub" x="430" y="296" text-anchor="middle">content-api · Java</text>
+<rect class="n-comp" x="560" y="250" width="180" height="64" rx="14"/>
+<text class="t-name" x="650" y="278" text-anchor="middle">Content API</text>
+<text class="t-sub" x="650" y="296" text-anchor="middle">content-api · Java</text>
+<rect class="n-store" x="850" y="250" width="170" height="64" rx="14"/>
+<text class="t-name" x="935" y="278" text-anchor="middle">Upload inbox</text>
+<text class="t-sub" x="935" y="296" text-anchor="middle">private, unprocessed</text>
+<rect class="n-store" x="20" y="410" width="170" height="64" rx="14"/>
+<text class="t-name" x="105" y="438" text-anchor="middle">Media library</text>
+<text class="t-sub" x="105" y="456" text-anchor="middle">photo &amp; video renditions</text>
+<rect class="n-store" x="210" y="410" width="180" height="64" rx="14"/>
+<text class="t-name" x="300" y="438" text-anchor="middle">Published content</text>
+<text class="t-sub" x="300" y="456" text-anchor="middle">versioned JSON releases</text>
+<rect class="n-store" x="560" y="410" width="180" height="64" rx="14"/>
+<text class="t-name" x="650" y="438" text-anchor="middle">Content database</text>
+<text class="t-sub" x="650" y="456" text-anchor="middle">drafts · media · audit</text>
+<rect class="n-comp" x="850" y="410" width="170" height="64" rx="14"/>
+<text class="t-name" x="935" y="438" text-anchor="middle">Media processor</text>
+<text class="t-sub" x="935" y="456" text-anchor="middle">services/media</text>
+</g>
+<line x1="40" y1="672" x2="62" y2="672" stroke="#0e7686" stroke-width="2"/><text class="t-edge" x="70" y="676" text-anchor="start">visitor path</text><line x1="177.6" y1="672" x2="199.6" y2="672" stroke="#525a7c" stroke-width="2"/><text class="t-edge" x="207.6" y="676" text-anchor="start">editing &amp; background work</text><rect x="407.6" y="666" width="14" height="12" rx="4" fill="#ffffff" stroke="#c7cbdc"/><text class="t-edge" x="433.6" y="676" text-anchor="start">service or app</text><rect x="558.8" y="666" width="14" height="12" rx="4" fill="#e9ebf4" stroke="#c7cbdc"/><text class="t-edge" x="584.8" y="676" text-anchor="start">data store</text><rect x="682.8" y="666" width="14" height="12" rx="4" fill="#ffffff" stroke="#c7cbdc" stroke-dasharray="3 2"/><text class="t-edge" x="708.8" y="676" text-anchor="start">outside the system</text>
+</svg>

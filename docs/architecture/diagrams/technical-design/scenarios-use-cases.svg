@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 860" width="1240" height="860" role="img" aria-label="Scenarios: use cases">
+<title>Scenarios: use cases</title>
+<style>
+  .n-comp{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2}
+  .n-store{fill:#e9ebf4;stroke:#c7cbdc;stroke-width:1.2}
+  .n-person{fill:#eef0f7;stroke:#c7cbdc;stroke-width:1.2}
+  .n-ext{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:5 4}
+  .t-name{fill:#0d0f2b;font:600 13.5px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-sub{fill:#525a7c;font:400 10.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-eye{fill:#525a7c;font:500 9.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.1em}
+  .t-edge{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-edge.path{fill:#0e7686}
+  .t-bound{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em}
+  .t-title{fill:#151b54;font:700 17px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-band{fill:#0d0f2b;font:400 11.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-num{fill:#ffffff;font:600 10px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .e{fill:none;stroke:#525a7c;stroke-width:1.4}
+  .e.path{stroke:#0e7686;stroke-width:2}
+  .e.ret{stroke-dasharray:5 4}
+  .life{stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:4 5}
+  .bound{fill:none;stroke:#151b54;stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:7 5}
+  .band{fill:#f3f4fa;stroke:#c7cbdc;stroke-width:1;stroke-dasharray:4 4}
+  .note{fill:#e3f3f5;stroke:#0e7686;stroke-width:1}
+  .ah{fill:#525a7c} .ah.path{fill:#0e7686}
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+  <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah path"/></marker>
+  <marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 z" fill="#ffffff" stroke="#525a7c" stroke-width="1.2"/></marker>
+  <marker id="dia" viewBox="0 0 16 10" refX="1" refY="5" markerWidth="16" markerHeight="10" orient="auto"><path d="M1 5 L8 1 L15 5 L8 9 z" fill="#525a7c"/></marker>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#525a7c" stroke-width="1.4"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1239" height="859" rx="20" fill="#ffffff" stroke="#dfe2ec"/>
+<text class="t-title" x="40" y="42" text-anchor="start">Scenarios · use cases</text>
+<rect class="bound" x="220" y="60" width="820" height="740" rx="20"/>
+<text class="t-bound" x="240" y="84" text-anchor="start">HAI PLATFORM</text>
+<circle cx="110" cy="140" r="10" fill="#eef0f7" stroke="#0d0f2b" stroke-width="1.4"/><path d="M110 150 V180 M94 162 H126 M110 180 L98 200 M110 180 L122 200" stroke="#0d0f2b" stroke-width="1.4" fill="none"/><text class="t-name" x="110" y="220" text-anchor="middle">Visitor</text>
+<path class="e" d="M130 162 L288 110"/>
+<ellipse class="n-comp" cx="440" cy="110" rx="150" ry="19"/><text class="t-name" x="440" y="115" text-anchor="middle">Browse pages</text>
+<path class="e" d="M130 162 L288 156"/>
+<ellipse class="n-comp" cx="440" cy="156" rx="150" ry="19"/><text class="t-name" x="440" y="161" text-anchor="middle">Read news &amp; projects</text>
+<path class="e" d="M130 162 L288 202"/>
+<ellipse class="n-comp" cx="440" cy="202" rx="150" ry="19"/><text class="t-name" x="440" y="207" text-anchor="middle">Watch videos, view galleries</text>
+<path class="e" d="M130 162 L288 248"/>
+<ellipse class="n-comp" cx="440" cy="248" rx="150" ry="19"/><text class="t-name" x="440" y="253" text-anchor="middle">Send a contact message</text>
+<circle cx="110" cy="370" r="10" fill="#eef0f7" stroke="#0d0f2b" stroke-width="1.4"/><path d="M110 380 V410 M94 392 H126 M110 410 L98 430 M110 410 L122 430" stroke="#0d0f2b" stroke-width="1.4" fill="none"/><text class="t-name" x="110" y="450" text-anchor="middle">Editor</text>
+<path class="e" d="M130 392 L288 320"/>
+<ellipse class="n-comp" cx="440" cy="320" rx="150" ry="19"/><text class="t-name" x="440" y="325" text-anchor="middle">Sign in with MFA</text>
+<path class="e" d="M130 392 L288 366"/>
+<ellipse class="n-comp" cx="440" cy="366" rx="150" ry="19"/><text class="t-name" x="440" y="371" text-anchor="middle">Edit drafts</text>
+<path class="e" d="M130 392 L288 412"/>
+<ellipse class="n-comp" cx="440" cy="412" rx="150" ry="19"/><text class="t-name" x="440" y="417" text-anchor="middle">Upload photos &amp; videos</text>
+<path class="e" d="M130 392 L288 458"/>
+<ellipse class="n-comp" cx="440" cy="458" rx="150" ry="19"/><text class="t-name" x="440" y="463" text-anchor="middle">Place media in slots</text>
+<path class="e" d="M130 392 L288 504"/>
+<ellipse class="n-comp" cx="440" cy="504" rx="150" ry="19"/><text class="t-name" x="440" y="509" text-anchor="middle">Preview changes</text>
+<circle cx="110" cy="640" r="10" fill="#eef0f7" stroke="#0d0f2b" stroke-width="1.4"/><path d="M110 650 V680 M94 662 H126 M110 680 L98 700 M110 680 L122 700" stroke="#0d0f2b" stroke-width="1.4" fill="none"/><text class="t-name" x="110" y="720" text-anchor="middle">Admin</text>
+<path class="e" d="M130 662 L288 590"/>
+<ellipse class="n-comp" cx="440" cy="590" rx="150" ry="19"/><text class="t-name" x="440" y="595" text-anchor="middle">Publish</text>
+<path class="e" d="M130 662 L288 636"/>
+<ellipse class="n-comp" cx="440" cy="636" rx="150" ry="19"/><text class="t-name" x="440" y="641" text-anchor="middle">Roll back a release</text>
+<path class="e" d="M130 662 L288 682"/>
+<ellipse class="n-comp" cx="440" cy="682" rx="150" ry="19"/><text class="t-name" x="440" y="687" text-anchor="middle">Invite &amp; manage users</text>
+<path class="e" d="M130 662 L288 728"/>
+<ellipse class="n-comp" cx="440" cy="728" rx="150" ry="19"/><text class="t-name" x="440" y="733" text-anchor="middle">Delete media</text>
+<path class="e" d="M130 662 L288 774"/>
+<ellipse class="n-comp" cx="440" cy="774" rx="150" ry="19"/><text class="t-name" x="440" y="779" text-anchor="middle">View audit log</text>
+<path class="e" d="M110 626 V462" marker-end="url(#tri)"/>
+<text class="t-edge" x="118" y="545" text-anchor="start">inherits</text>
+<ellipse class="n-store" cx="870" cy="412" rx="130" ry="19"/><text class="t-name" x="870" y="417" text-anchor="middle">Process media</text>
+<path class="e ret" d="M590 412 H738" marker-end="url(#oa)"/>
+<text class="t-edge" x="664" y="404" text-anchor="middle">«include»</text>
+<ellipse class="n-store" cx="870" cy="590" rx="130" ry="19"/><text class="t-name" x="870" y="595" text-anchor="middle">Build release snapshot</text>
+<path class="e ret" d="M590 590 H738" marker-end="url(#oa)"/>
+<text class="t-edge" x="664" y="582" text-anchor="middle">«include»</text>
+<ellipse class="n-store" cx="870" cy="660" rx="130" ry="19"/><text class="t-name" x="870" y="665" text-anchor="middle">Refresh CDN cache</text>
+<path class="e ret" d="M590 636 L744 656" marker-end="url(#oa)"/>
+<text class="t-edge" x="664" y="638" text-anchor="middle">«include»</text>
+<path class="e ret" d="M870 609 V639" marker-end="url(#oa)"/>
+<rect class="n-comp" x="1070" y="386" width="150" height="52" rx="12"/>
+<text class="t-sub" x="1145" y="404" text-anchor="middle">«system»</text>
+<text class="t-name" x="1145" y="424" text-anchor="middle">Media processor</text>
+<path class="e" d="M1000 412 H1070"/>
+<text class="t-edge" x="40" y="840" text-anchor="start">Tinted ovals are internal steps that other use cases include. They are never started directly by a person.</text>
+</svg>

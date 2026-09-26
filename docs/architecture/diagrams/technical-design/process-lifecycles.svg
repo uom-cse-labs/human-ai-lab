@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 670" width="1240" height="670" role="img" aria-label="Process view: media asset and content item lifecycles">
+<title>Process view: media asset and content item lifecycles</title>
+<style>
+  .n-comp{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2}
+  .n-store{fill:#e9ebf4;stroke:#c7cbdc;stroke-width:1.2}
+  .n-person{fill:#eef0f7;stroke:#c7cbdc;stroke-width:1.2}
+  .n-ext{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:5 4}
+  .t-name{fill:#0d0f2b;font:600 13.5px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-sub{fill:#525a7c;font:400 10.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-eye{fill:#525a7c;font:500 9.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.1em}
+  .t-edge{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-edge.path{fill:#0e7686}
+  .t-bound{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em}
+  .t-title{fill:#151b54;font:700 17px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-band{fill:#0d0f2b;font:400 11.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-num{fill:#ffffff;font:600 10px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .e{fill:none;stroke:#525a7c;stroke-width:1.4}
+  .e.path{stroke:#0e7686;stroke-width:2}
+  .e.ret{stroke-dasharray:5 4}
+  .life{stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:4 5}
+  .bound{fill:none;stroke:#151b54;stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:7 5}
+  .band{fill:#f3f4fa;stroke:#c7cbdc;stroke-width:1;stroke-dasharray:4 4}
+  .note{fill:#e3f3f5;stroke:#0e7686;stroke-width:1}
+  .ah{fill:#525a7c} .ah.path{fill:#0e7686}
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+  <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah path"/></marker>
+  <marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 z" fill="#ffffff" stroke="#525a7c" stroke-width="1.2"/></marker>
+  <marker id="dia" viewBox="0 0 16 10" refX="1" refY="5" markerWidth="16" markerHeight="10" orient="auto"><path d="M1 5 L8 1 L15 5 L8 9 z" fill="#525a7c"/></marker>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#525a7c" stroke-width="1.4"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1239" height="669" rx="20" fill="#ffffff" stroke="#dfe2ec"/>
+<text class="t-title" x="40" y="42" text-anchor="start">Process view · lifecycles</text>
+<text class="t-bound" x="40" y="80" text-anchor="start">MEDIA ASSET</text>
+<circle cx="60" cy="122" r="8" fill="#0d0f2b"/>
+<path class="e" d="M68 122 H108" marker-end="url(#ah)"/>
+<rect class="n-comp" x="110" y="100" width="150" height="44" rx="22"/><text class="t-name" x="185" y="120" text-anchor="middle">uploading</text><text class="t-sub" x="185" y="135" text-anchor="middle">URL issued</text>
+<rect class="n-comp" x="380" y="100" width="150" height="44" rx="22"/><text class="t-name" x="455" y="120" text-anchor="middle">processing</text><text class="t-sub" x="455" y="135" text-anchor="middle">sharp / MediaConvert</text>
+<rect class="n-comp" x="650" y="100" width="150" height="44" rx="22"/><text class="t-name" x="725" y="120" text-anchor="middle">ready</text><text class="t-sub" x="725" y="135" text-anchor="middle">usable in content</text>
+<rect class="n-comp" x="960" y="100" width="150" height="44" rx="22"/><text class="t-name" x="1035" y="127" text-anchor="middle">deleted</text>
+<rect class="n-comp" x="380" y="210" width="150" height="44" rx="22"/><text class="t-name" x="455" y="230" text-anchor="middle">failed</text><text class="t-sub" x="455" y="245" text-anchor="middle">reason recorded</text>
+<circle cx="1170" cy="122" r="10" fill="none" stroke="#0d0f2b" stroke-width="1.5"/><circle cx="1170" cy="122" r="6" fill="#0d0f2b"/>
+<path class="e" d="M260 122 H378" marker-end="url(#ah)"/>
+<text class="t-edge" x="319" y="114" text-anchor="middle">S3 event</text>
+<path class="e" d="M530 122 H648" marker-end="url(#ah)"/>
+<text class="t-edge" x="589" y="114" text-anchor="middle">renditions saved</text>
+<path class="e" d="M800 122 H958" marker-end="url(#ah)"/>
+<text class="t-edge" x="879" y="114" text-anchor="middle">delete · if unused</text>
+<path class="e" d="M1110 122 H1158" marker-end="url(#ah)"/>
+<path class="e" d="M430 144 V208" marker-end="url(#ah)"/>
+<text class="t-edge" x="422" y="180" text-anchor="end">bad file / job error</text>
+<path class="e" d="M480 210 V146" marker-end="url(#ah)"/>
+<text class="t-edge" x="488" y="180" text-anchor="start">retry (admin)</text>
+<path class="e" d="M530 232 H1010 V146" marker-end="url(#ah)"/>
+<text class="t-edge" x="770" y="226" text-anchor="middle">discard</text>
+<path class="e" d="M185 144 V290 H1060 V146" marker-end="url(#ah)"/>
+<text class="t-edge" x="620" y="284" text-anchor="middle">upload not finished within 24 h → cleaned up</text>
+<text class="t-bound" x="40" y="360" text-anchor="start">CONTENT ITEM</text>
+<circle cx="60" cy="412" r="8" fill="#0d0f2b"/>
+<path class="e" d="M68 412 H108" marker-end="url(#ah)"/>
+<rect class="n-comp" x="110" y="390" width="140" height="44" rx="22"/><text class="t-name" x="180" y="410" text-anchor="middle">draft</text><text class="t-sub" x="180" y="425" text-anchor="middle">never visible</text>
+<rect class="n-comp" x="380" y="390" width="160" height="44" rx="22"/><text class="t-name" x="460" y="410" text-anchor="middle">published</text><text class="t-sub" x="460" y="425" text-anchor="middle">in current release</text>
+<rect class="n-comp" x="680" y="390" width="190" height="44" rx="22"/><text class="t-name" x="775" y="410" text-anchor="middle">published, edited</text><text class="t-sub" x="775" y="425" text-anchor="middle">draft differs from live</text>
+<rect class="n-comp" x="380" y="520" width="160" height="44" rx="22"/><text class="t-name" x="460" y="540" text-anchor="middle">unpublished</text><text class="t-sub" x="460" y="555" text-anchor="middle">hidden</text>
+<rect class="n-comp" x="960" y="520" width="150" height="44" rx="22"/><text class="t-name" x="1035" y="547" text-anchor="middle">deleted</text>
+<circle cx="1170" cy="542" r="10" fill="none" stroke="#0d0f2b" stroke-width="1.5"/><circle cx="1170" cy="542" r="6" fill="#0d0f2b"/>
+<path class="e" d="M250 412 H378" marker-end="url(#ah)"/>
+<text class="t-edge" x="314" y="404" text-anchor="middle">publish</text>
+<path class="e" d="M540 412 H678" marker-end="url(#ah)"/>
+<text class="t-edge" x="609" y="404" text-anchor="middle">edit</text>
+<path class="e" d="M775 390 V366 H460 V388" marker-end="url(#ah)"/>
+<text class="t-edge" x="617" y="360" text-anchor="middle">publish</text>
+<path class="e" d="M430 434 V518" marker-end="url(#ah)"/>
+<text class="t-edge" x="422" y="480" text-anchor="end">unpublish</text>
+<path class="e" d="M490 520 V436" marker-end="url(#ah)"/>
+<text class="t-edge" x="498" y="480" text-anchor="start">publish</text>
+<path class="e" d="M540 542 H958" marker-end="url(#ah)"/>
+<text class="t-edge" x="750" y="534" text-anchor="middle">delete</text>
+<path class="e" d="M180 434 V600 H1035 V566" marker-end="url(#ah)"/>
+<text class="t-edge" x="610" y="594" text-anchor="middle">delete (never published)</text>
+<path class="e" d="M1110 542 H1158" marker-end="url(#ah)"/>
+<text class="t-edge path" x="40" y="646" text-anchor="start">Only an admin can publish. Visitors see items exactly as captured in the current release.</text>
+</svg>

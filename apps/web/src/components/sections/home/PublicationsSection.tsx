@@ -1,0 +1,82 @@
+import type { Publication } from "@/types";
+import { usePublications } from "@/lib/content";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import CategoryButton from "./CategoryButton";
+import PublicationCard from "./PublicationCard";
+import { useState } from "react";
+
+interface PublicationsSectionProps {
+  onReadPaper: (paper: Publication) => void;
+  onViewAllClick: () => void;
+}
+
+export default function PublicationsSection({
+  onReadPaper,
+  onViewAllClick,
+}: PublicationsSectionProps) {
+  const { publications } = usePublications();
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+
+  const categories = ["ALL", "INTELLIGENCE", "ETHICS", "DESIGN", "ROBOTICS"];
+
+  const filteredPapers = publications.filter((paper) => {
+    return activeCategory === "ALL" || paper.category === activeCategory;
+  });
+
+  return (
+    <section
+      id="rounded-publications"
+      className="max-w-7xl mx-auto px-6 py-28 border-b border-outline"
+    >
+      <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+        <div className="max-w-2xl">
+          <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
+            SCHOLARLY OUTPUT
+          </span>
+          <h2 className="font-sans text-4xl md:text-5xl font-black tracking-tighter text-on-background mt-2 mb-4 uppercase select-none">
+            Recent Publications
+          </h2>
+          <p className="font-sans text-base text-on-background/60 leading-[1.6] font-normal">
+            Our latest peer-reviewed research presented at leading global
+            conferences including NeurIPS, CHI, and AAAI.
+          </p>
+        </div>
+
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onViewAllClick}
+          className="gap-2"
+        >
+          VIEW ALL PUBLICATIONS
+          <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1.5 transition-transform" />
+        </Button>
+      </div>
+
+
+
+      {filteredPapers.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredPapers.map((paper) => (
+            <PublicationCard key={paper.id} paper={paper} onRead={onReadPaper} />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-20 bg-surface/40 border border-dashed border-outline rounded-2xl">
+          <p className="font-sans text-on-background/40 font-normal">
+            No publications found matching your active filter criteria.
+          </p>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setActiveCategory("ALL")}
+            className="mt-4 underline"
+          >
+            Clear Filters
+          </Button>
+        </div>
+      )}
+    </section>
+  );
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@hai/admin",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Content dashboard for invited editors and admins (technical design §4.6).",
+  "scripts": {
+    "dev": "vite dev --port 6015",
+    "build": "vite build",
+    "preview": "vite preview --port 6015",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@hai/content-schema": "*",
+    "@tanstack/react-router": "^1.170.18",
+    "lucide-react": "^0.545.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.1.18",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0"
+  }
+}

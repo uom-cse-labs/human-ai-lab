@@ -24,13 +24,13 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      - run: npm run build -w @hai/web
         env:
           BASE_URL: /${{ github.event.repository.name }}/
-      - run: cp dist/index.html dist/404.html
+      - run: cp apps/web/dist/index.html apps/web/dist/404.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: apps/web/dist
 
   deploy:
     runs-on: ubuntu-latest

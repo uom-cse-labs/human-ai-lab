@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: content-api
+  main:
+    banner-mode: off
+  jackson:
+    default-property-inclusion: non_null
+
+# Values come from environment variables set by the CDK Api stack.
+hai:
+  issuer-uri: ${COGNITO_ISSUER_URI}
+  client-id: ${COGNITO_CLIENT_ID}
+  mail:
+    provider: ${MAIL_PROVIDER:ses}
+    from-address: ${MAIL_FROM_ADDRESS}
+    to-address: ${MAIL_TO_ADDRESS}

@@ -1,0 +1,16 @@
+{
+  "requestContext": {
+    "elb": {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/content-api/0123456789abcdef"
+    }
+  },
+  "httpMethod": "GET",
+  "path": "/api/content/news",
+  "multiValueQueryStringParameters": {},
+  "multiValueHeaders": {
+    "host": ["origin.humanai.example"],
+    "x-forwarded-proto": ["https"]
+  },
+  "body": null,
+  "isBase64Encoded": false
+}

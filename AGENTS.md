@@ -55,48 +55,47 @@ None required by default. Standard Vite conventions apply:
 - `VITE_*` variables are exposed to the client at build time.
 - Variables for server-side use should be accessed via `process.env` in server functions.
 
-## Dev Scripts
+## Repository layout (monorepo)
 
-| Command                    | Description                     |
-|----------------------------|---------------------------------|
-| `npm run dev`              | Start dev server on port 6014   |
-| `npm run build`            | Build for production            |
-| `npm run preview`          | Preview production build        |
-| `npm run generate-routes`  | Regenerate route tree           |
-| `npm run test`             | Run Vitest tests                |
-
-## Project Structure
+npm workspaces (TypeScript) + Gradle (Java). The architecture is in `docs/architecture/technical-design.md`; read it before changing anything outside `apps/web`.
 
 ```
-.
+apps/web/                 public website (this React app; everything under "src/" below lives here)
+services/content-api/     Content API: Java 21, Spring Boot 4, AWS Lambda behind an internal ALB
+contracts/openapi.yaml    API + release-file contract; generated code is never edited by hand
+packages/content-schema/  TypeScript types generated from contracts/
+infra/                    AWS CDK app
+docs/                     architecture, page checklists, guides, agent config
+```
+
+## Dev Scripts
+
+Run from the repository root. Website scripts not listed here run with `-w @hai/web`, e.g. `npm run generate-routes -w @hai/web`.
+
+| Command                        | Description                              |
+|--------------------------------|------------------------------------------|
+| `npm run dev`                  | Website dev server on port 6014          |
+| `npm run build`                | Build the website (`apps/web/dist`)      |
+| `npm test`                     | Tests in every workspace                 |
+| `npm run contracts:generate`   | Regenerate TS types from the contract    |
+| `./gradlew build` (in `services/content-api`) | Build, test and package the API |
+
+## Website structure (`apps/web`)
+
+```
+apps/web/
 ├── public/              # Static assets
-│   ├── favicon.ico
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
 ├── src/
 │   ├── components/      # Shared UI components
-│   │   ├── Footer.tsx
-│   │   ├── Header.tsx
-│   │   └── ThemeToggle.tsx
-│   ├── routes/          # File-based routing
-│   │   ├── __root.tsx   # Root layout / shell
-│   │   ├── about.tsx    # /about
-│   │   └── index.tsx    # /
+│   ├── routes/          # File-based routing (__root.tsx, index.tsx, about.tsx, news/, projects/, …)
+│   ├── lib/             # Content loaders (news, projects)
+│   ├── content/         # Markdown news and projects + generated indexes
 │   ├── router.tsx       # Router factory
 │   ├── styles.css       # Global styles + Tailwind import
 │   └── routeTree.gen.ts # Auto-generated (do not edit)
-├── .cta.json            # CLI scaffolding metadata
-├── .gitignore
-├── .vscode/settings.json
-├── package.json
-├── package-lock.json
-├── tsconfig.json
-├── tsr.config.json
-├── vite.config.ts
-├── AGENTS.md
-└── README.md
+├── scripts/             # Content index generators (run before dev/build)
+├── index.html, vite.config.ts, tsconfig.json, tsr.config.json, components.json
+└── package.json         # @hai/web
 ```
 
 ## Follow-Up TanStack Intent Commands

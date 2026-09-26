@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 470" width="1240" height="470" role="img" aria-label="Growth path from S3 hosting to a server-rendered site">
+<title>Growth path from S3 hosting to a server-rendered site</title>
+<style>
+  .n-comp{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2}
+  .n-store{fill:#e9ebf4;stroke:#c7cbdc;stroke-width:1.2}
+  .n-person{fill:#eef0f7;stroke:#c7cbdc;stroke-width:1.2}
+  .n-ext{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:5 4}
+  .t-name{fill:#0d0f2b;font:600 13.5px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-sub{fill:#525a7c;font:400 10.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-eye{fill:#525a7c;font:500 9.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.1em}
+  .t-edge{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-edge.path{fill:#0e7686}
+  .t-bound{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em}
+  .t-title{fill:#151b54;font:700 17px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-band{fill:#0d0f2b;font:400 11.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-num{fill:#ffffff;font:600 10px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .e{fill:none;stroke:#525a7c;stroke-width:1.4}
+  .e.path{stroke:#0e7686;stroke-width:2}
+  .e.ret{stroke-dasharray:5 4}
+  .life{stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:4 5}
+  .bound{fill:none;stroke:#151b54;stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:7 5}
+  .band{fill:#f3f4fa;stroke:#c7cbdc;stroke-width:1;stroke-dasharray:4 4}
+  .note{fill:#e3f3f5;stroke:#0e7686;stroke-width:1}
+  .ah{fill:#525a7c} .ah.path{fill:#0e7686}
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+  <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah path"/></marker>
+  <marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 z" fill="#ffffff" stroke="#525a7c" stroke-width="1.2"/></marker>
+  <marker id="dia" viewBox="0 0 16 10" refX="1" refY="5" markerWidth="16" markerHeight="10" orient="auto"><path d="M1 5 L8 1 L15 5 L8 9 z" fill="#525a7c"/></marker>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#525a7c" stroke-width="1.4"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1239" height="469" rx="20" fill="#ffffff" stroke="#dfe2ec"/>
+<text class="t-title" x="40" y="42" text-anchor="start">Growth path · S3 stays for files, compute is added behind CloudFront</text>
+<rect class="band" x="20" y="64" width="385" height="350" rx="16"/>
+<text class="t-name" x="40" y="92" text-anchor="start">Now · static site + Java API</text>
+<rect class="n-comp" x="40" y="108" width="345" height="44" rx="12"/>
+<text class="t-name" x="212" y="135" text-anchor="middle">CloudFront + WAF</text>
+<path class="e" d="M64 152 V322"/>
+<path class="e" d="M64 198 H82" marker-end="url(#ah)"/>
+<rect class="n-store" x="84" y="176" width="301" height="44" rx="12"/>
+<text class="t-sub" x="100" y="193" text-anchor="start">/*</text>
+<text class="t-name" x="100" y="211" text-anchor="start">S3 · SPA (index.html)</text>
+<path class="e" d="M64 260 H82" marker-end="url(#ah)"/>
+<rect class="n-store" x="84" y="238" width="301" height="44" rx="12"/>
+<text class="t-sub" x="100" y="255" text-anchor="start">/content/*  /media/*</text>
+<text class="t-name" x="100" y="273" text-anchor="start">S3 · releases and media</text>
+<path class="e" d="M64 322 H82" marker-end="url(#ah)"/>
+<rect class="n-comp" x="84" y="300" width="301" height="44" rx="12"/>
+<text class="t-sub" x="100" y="317" text-anchor="start">/api/*</text>
+<text class="t-name" x="100" y="335" text-anchor="start">Java API on Lambda (via ALB)</text>
+<text class="t-edge path" x="40" y="384" text-anchor="start">Pages render in the browser</text>
+<text class="t-edge" x="40" y="402" text-anchor="start">SEO: weak · compute: API only</text>
+<rect class="band" x="425" y="64" width="385" height="350" rx="16"/>
+<text class="t-name" x="445" y="92" text-anchor="start">Next · prerendered pages</text>
+<rect class="n-comp" x="445" y="108" width="345" height="44" rx="12"/>
+<text class="t-name" x="617" y="135" text-anchor="middle">CloudFront + WAF</text>
+<path class="e" d="M469 152 V322"/>
+<path class="e path" d="M469 198 H487" marker-end="url(#ahp)"/>
+<rect class="note" x="489" y="176" width="301" height="44" rx="12"/>
+<text class="t-sub" x="505" y="193" text-anchor="start">/*</text>
+<text class="t-name" x="505" y="211" text-anchor="start">S3 · HTML rendered on publish</text>
+<path class="e" d="M469 260 H487" marker-end="url(#ah)"/>
+<rect class="n-store" x="489" y="238" width="301" height="44" rx="12"/>
+<text class="t-sub" x="505" y="255" text-anchor="start">/content/*  /media/*</text>
+<text class="t-name" x="505" y="273" text-anchor="start">S3 · releases and media</text>
+<path class="e" d="M469 322 H487" marker-end="url(#ah)"/>
+<rect class="n-comp" x="489" y="300" width="301" height="44" rx="12"/>
+<text class="t-sub" x="505" y="317" text-anchor="start">/api/*</text>
+<text class="t-name" x="505" y="335" text-anchor="start">Java API on Lambda (via ALB)</text>
+<text class="t-edge path" x="445" y="384" text-anchor="start">Publish also writes one HTML file per page</text>
+<text class="t-edge" x="445" y="402" text-anchor="start">SEO: good · still no page servers</text>
+<rect class="band" x="830" y="64" width="385" height="350" rx="16"/>
+<text class="t-name" x="850" y="92" text-anchor="start">Later · server-rendered site</text>
+<rect class="n-comp" x="850" y="108" width="345" height="44" rx="12"/>
+<text class="t-name" x="1022" y="135" text-anchor="middle">CloudFront + WAF</text>
+<path class="e" d="M874 152 V322"/>
+<path class="e path" d="M874 198 H892" marker-end="url(#ahp)"/>
+<rect class="note" x="894" y="176" width="301" height="44" rx="12"/>
+<text class="t-sub" x="910" y="193" text-anchor="start">/*</text>
+<text class="t-name" x="910" y="211" text-anchor="start">SSR app (Node) on the same ALB</text>
+<path class="e" d="M874 260 H892" marker-end="url(#ah)"/>
+<rect class="n-store" x="894" y="238" width="301" height="44" rx="12"/>
+<text class="t-sub" x="910" y="255" text-anchor="start">/assets/*  /media/*</text>
+<text class="t-name" x="910" y="273" text-anchor="start">S3 · assets and media</text>
+<path class="e" d="M874 322 H892" marker-end="url(#ah)"/>
+<rect class="n-comp" x="894" y="300" width="301" height="44" rx="12"/>
+<text class="t-sub" x="910" y="317" text-anchor="start">/api/*</text>
+<text class="t-name" x="910" y="335" text-anchor="start">Java API on Lambda (via ALB)</text>
+<text class="t-edge path" x="850" y="384" text-anchor="start">Per-request pages, member logins, search</text>
+<text class="t-edge" x="850" y="402" text-anchor="start">Same CloudFront, WAF and ALB</text>
+<text class="t-edge" x="40" y="446" text-anchor="start">Teal = the one route that changes at each step. Assets, media and releases stay on S3 throughout.</text>
+</svg>

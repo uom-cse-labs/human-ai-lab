@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Same tokens as the public website (DESIGN.md §10.2). */
+@theme {
+  --color-primary: #151B54;
+  --color-primary-hover: #1f2680;
+  --color-primary-light: #eef0f7;
+  --color-on-background: #0d0f2b;
+  --color-background: #ffffff;
+  --color-surface: #f5f6fa;
+  --color-surface-dim: #e8eaf2;
+  --color-outline: #c2c6d6;
+  --color-outline-variant: #d5d8e4;
+  --color-muted: #525a7c;
+  --color-success: #0e7a4f;
+  --color-success-light: #e3f5ec;
+  --color-warning: #8a5a00;
+  --color-warning-light: #fdf1d8;
+  --color-danger: #b42318;
+  --color-danger-light: #fdecea;
+
+  --font-sans: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+body {
+  margin: 0;
+  background: var(--color-surface);
+  color: var(--color-on-background);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}

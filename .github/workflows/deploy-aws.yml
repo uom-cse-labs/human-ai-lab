@@ -1,0 +1,63 @@
+name: Deploy to AWS
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        type: choice
+        options: [staging, prod]
+        required: true
+
+permissions:
+  id-token: write   # GitHub OIDC → short-lived AWS credentials, no stored keys
+  contents: read
+
+concurrency:
+  group: deploy-${{ inputs.environment }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      AWS_REGION: ap-south-1
+      HAI_STAGING_ACCOUNT: ${{ inputs.environment == 'staging' && vars.AWS_ACCOUNT_ID || '' }}
+      HAI_PROD_ACCOUNT: ${{ inputs.environment == 'prod' && vars.AWS_ACCOUNT_ID || '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ vars.AWS_ACCOUNT_ID }}:role/hai-${{ inputs.environment }}-github-deploy
+          aws-region: ap-south-1
+
+      - run: npm ci
+      - name: Build the Content API Lambda package
+        working-directory: services/content-api
+        run: ./gradlew build
+      - name: Deploy stacks
+        working-directory: infra
+        run: npx cdk deploy -c env=${{ inputs.environment }} --all --require-approval never --outputs-file cdk-outputs.json
+
+      - name: Build the website
+        run: npm run build -w @hai/web
+      - name: Upload the website (hashed assets first, index.html last)
+        run: |
+          STACK="Hai-$([ '${{ inputs.environment }}' = prod ] && echo Prod || echo Staging)-WebPublic"
+          BUCKET=$(jq -r --arg s "$STACK" '.[$s].SiteBucketName' infra/cdk-outputs.json)
+          DIST=$(jq -r --arg s "$STACK" '.[$s].DistributionId' infra/cdk-outputs.json)
+          aws s3 sync apps/web/dist/assets "s3://$BUCKET/assets" --cache-control "public,max-age=31536000,immutable"
+          aws s3 sync apps/web/dist "s3://$BUCKET" --exclude "assets/*" --exclude index.html --cache-control "public,max-age=86400"
+          aws s3 cp apps/web/dist/index.html "s3://$BUCKET/index.html" --cache-control "no-cache"
+          aws s3 sync apps/web/dist "s3://$BUCKET" --delete --exclude "assets/*"
+          aws cloudfront create-invalidation --distribution-id "$DIST" --paths "/*"

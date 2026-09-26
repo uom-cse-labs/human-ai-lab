@@ -1,0 +1,17 @@
+{
+  "requestContext": {
+    "elb": {
+      "targetGroupArn": "arn:aws:elasticloadbalancing:ap-south-1:123456789012:targetgroup/content-api/0123456789abcdef"
+    }
+  },
+  "httpMethod": "POST",
+  "path": "/api/contact",
+  "multiValueQueryStringParameters": {},
+  "multiValueHeaders": {
+    "content-type": ["application/json"],
+    "host": ["origin.humanai.example"],
+    "x-forwarded-proto": ["https"]
+  },
+  "body": "{\"name\":\"Asha\",\"email\":\"asha@example.com\",\"message\":\"Hello from the ALB test\"}",
+  "isBase64Encoded": false
+}

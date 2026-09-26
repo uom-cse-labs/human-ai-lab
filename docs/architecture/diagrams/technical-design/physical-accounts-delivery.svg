@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1040 412" width="1040" height="412" role="img" aria-label="AWS accounts and delivery pipeline">
+<title>AWS accounts and delivery pipeline</title>
+<style>
+  .n-comp{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2}
+  .n-store{fill:#e9ebf4;stroke:#c7cbdc;stroke-width:1.2}
+  .n-person{fill:#eef0f7;stroke:#c7cbdc;stroke-width:1.2}
+  .n-ext{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:5 4}
+  .t-name{fill:#0d0f2b;font:600 13.5px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-sub{fill:#525a7c;font:400 10.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-eye{fill:#525a7c;font:500 9.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.1em}
+  .t-edge{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-edge.path{fill:#0e7686}
+  .t-bound{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em}
+  .t-title{fill:#151b54;font:700 17px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-band{fill:#0d0f2b;font:400 11.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-num{fill:#ffffff;font:600 10px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .e{fill:none;stroke:#525a7c;stroke-width:1.4}
+  .e.path{stroke:#0e7686;stroke-width:2}
+  .e.ret{stroke-dasharray:5 4}
+  .life{stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:4 5}
+  .bound{fill:none;stroke:#151b54;stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:7 5}
+  .band{fill:#f3f4fa;stroke:#c7cbdc;stroke-width:1;stroke-dasharray:4 4}
+  .note{fill:#e3f3f5;stroke:#0e7686;stroke-width:1}
+  .ah{fill:#525a7c} .ah.path{fill:#0e7686}
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+  <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah path"/></marker>
+  <marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 z" fill="#ffffff" stroke="#525a7c" stroke-width="1.2"/></marker>
+  <marker id="dia" viewBox="0 0 16 10" refX="1" refY="5" markerWidth="16" markerHeight="10" orient="auto"><path d="M1 5 L8 1 L15 5 L8 9 z" fill="#525a7c"/></marker>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#525a7c" stroke-width="1.4"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1039" height="411" rx="20" fill="#ffffff" stroke="#dfe2ec"/>
+<text class="t-title" x="40" y="42" text-anchor="start">Accounts and delivery</text>
+<g transform="translate(0 44)">
+<rect class="n-comp" x="20" y="60" width="210" height="64" rx="16"/>
+<text class="t-name" x="125" y="88" text-anchor="middle">GitHub repository</text>
+<text class="t-sub" x="125" y="106" text-anchor="middle">main · dev · pull requests</text>
+<rect class="n-comp" x="20" y="186" width="210" height="64" rx="16"/>
+<text class="t-name" x="125" y="214" text-anchor="middle">GitHub Actions</text>
+<text class="t-sub" x="125" y="232" text-anchor="middle">test · build · cdk deploy</text>
+<path class="e" d="M125 124 V184" marker-end="url(#ah)"/>
+<text class="t-edge" x="133" y="159" text-anchor="start">on push</text>
+<rect class="bound" x="262" y="20" width="758" height="296" rx="20"/>
+<text class="t-bound" x="282" y="44" text-anchor="start">AWS ORGANIZATION</text>
+<rect class="n-comp" x="290" y="60" width="220" height="190" rx="16"/><text class="t-name" x="310" y="88" text-anchor="start">Management account</text><text class="t-sub" x="310" y="116" text-anchor="start">IAM Identity Center sign-in</text><text class="t-sub" x="310" y="136" text-anchor="start">Org-wide CloudTrail</text><text class="t-sub" x="310" y="156" text-anchor="start">Budgets and billing</text><text class="t-sub" x="310" y="176" text-anchor="start">Service control policies</text><text class="t-sub" x="310" y="196" text-anchor="start">Root: role mailbox + MFA</text><text class="t-sub" x="310" y="226" text-anchor="start">No website resources</text>
+<path class="e ret" d="M512 150 H538" marker-end="url(#ah)"/>
+<path class="e ret" d="M762 150 H788" marker-end="url(#ah)"/>
+<rect class="n-comp" x="540" y="60" width="220" height="190" rx="16"/><text class="t-name" x="560" y="88" text-anchor="start">hai-staging</text><text class="t-sub" x="560" y="116" text-anchor="start">Same stacks as production</text><text class="t-sub" x="560" y="136" text-anchor="start">Own data, own users</text><text class="t-sub" x="560" y="156" text-anchor="start">*.cloudfront.net URLs</text><text class="t-sub" x="560" y="176" text-anchor="start">until a domain is ready</text><text class="t-sub" x="560" y="226" text-anchor="start">Deploys from dev</text>
+<rect class="n-comp" x="790" y="60" width="210" height="190" rx="16"/><text class="t-name" x="810" y="88" text-anchor="start">hai-prod</text><text class="t-sub" x="810" y="116" text-anchor="start">Route 53 zone(s)</text><text class="t-sub" x="810" y="136" text-anchor="start">Canonical domain</text><text class="t-sub" x="810" y="156" text-anchor="start">+ redirecting aliases</text><text class="t-sub" x="810" y="176" text-anchor="start">Data stacks retained</text><text class="t-sub" x="810" y="226" text-anchor="start">Deploys from main</text>
+<path class="e path" d="M230 232 H250 V280 H650 V252" marker-end="url(#ahp)"/>
+<path class="e path" d="M650 280 H895 V252" marker-end="url(#ahp)"/>
+<text class="t-edge path" x="658" y="270" text-anchor="start">dev</text>
+<text class="t-edge path" x="903" y="270" text-anchor="start">main + approval</text>
+<text class="t-edge path" x="450" y="300" text-anchor="middle">assumes an IAM role via OIDC · no stored keys</text>
+</g>
+<text class="t-edge" x="40" y="392" text-anchor="start">Dashed arrows: people sign in once through IAM Identity Center and get scoped access to each workload account.</text>
+</svg>

@@ -1,0 +1,906 @@
+openapi: 3.1.0
+info:
+  title: Human-AI Lab Content API
+  version: 0.1.0
+  description: |
+    Contract for the Content API (services/content-api) and the published release files.
+    This file is the single source of truth: Java interfaces/DTOs and TypeScript types are generated from it.
+    Never edit generated code by hand; change this file and regenerate.
+servers:
+  - url: /api
+    description: Same-origin path on the public and admin CloudFront distributions
+
+tags:
+  - name: content
+  - name: media
+  - name: slots
+  - name: releases
+  - name: users
+  - name: audit
+  - name: contact
+
+security:
+  - cognito: []
+
+paths:
+  /content/{type}:
+    parameters:
+      - $ref: '#/components/parameters/ContentTypeParam'
+    get:
+      tags: [content]
+      operationId: listContent
+      summary: List items of a content type (drafts with status). Role editor.
+      parameters:
+        - $ref: '#/components/parameters/CursorParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: One page of items
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContentItemPage' }
+        default: { $ref: '#/components/responses/Problem' }
+    post:
+      tags: [content]
+      operationId: createContent
+      summary: Create an item. Role editor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ContentItemInput' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContentItem' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /content/{type}/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ContentTypeParam'
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      tags: [content]
+      operationId: getContent
+      summary: Get one item. Role editor.
+      responses:
+        '200':
+          description: The item
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContentItem' }
+        default: { $ref: '#/components/responses/Problem' }
+    put:
+      tags: [content]
+      operationId: updateContent
+      summary: Save an item. Requires If-Match with the current version; 409 on conflict. Role editor.
+      parameters:
+        - name: If-Match
+          in: header
+          required: true
+          schema: { type: integer, minimum: 1 }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ContentItemInput' }
+      responses:
+        '200':
+          description: Saved
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContentItem' }
+        default: { $ref: '#/components/responses/Problem' }
+    delete:
+      tags: [content]
+      operationId: deleteContent
+      summary: Delete a draft or unpublished item. Role admin.
+      responses:
+        '204': { description: Deleted }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /content/{type}/{id}/unpublish:
+    parameters:
+      - $ref: '#/components/parameters/ContentTypeParam'
+      - $ref: '#/components/parameters/IdParam'
+    post:
+      tags: [content]
+      operationId: unpublishContent
+      summary: Hide an item from the next release. Role admin.
+      responses:
+        '200':
+          description: Unpublished
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContentItem' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media:
+    get:
+      tags: [media]
+      operationId: listMedia
+      summary: List media, newest first. Role editor.
+      parameters:
+        - $ref: '#/components/parameters/CursorParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: One page of media
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MediaAssetPage' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media/uploads:
+    post:
+      tags: [media]
+      operationId: startUpload
+      summary: Start an upload; returns presigned part URLs. Role editor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UploadRequest' }
+      responses:
+        '201':
+          description: Upload started
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/UploadTicket' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media/{id}/complete:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    post:
+      tags: [media]
+      operationId: completeUpload
+      summary: Complete a multipart upload. Role editor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UploadCompletion' }
+      responses:
+        '200':
+          description: Upload completed; processing starts
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MediaAsset' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media/embeds:
+    post:
+      tags: [media]
+      operationId: createEmbed
+      summary: Register a YouTube or Vimeo video. Role editor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EmbedRequest' }
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MediaAsset' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      tags: [media]
+      operationId: getMedia
+      summary: Get one media asset. Role editor.
+      responses:
+        '200':
+          description: The asset
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MediaAsset' }
+        default: { $ref: '#/components/responses/Problem' }
+    patch:
+      tags: [media]
+      operationId: updateMedia
+      summary: Update alt text and caption. Role editor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/MediaUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MediaAsset' }
+        default: { $ref: '#/components/responses/Problem' }
+    delete:
+      tags: [media]
+      operationId: deleteMedia
+      summary: Delete if unused. Role admin.
+      responses:
+        '204': { description: Deleted }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media/{id}/usage:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    get:
+      tags: [media]
+      operationId: getMediaUsage
+      summary: Where the asset is used. Role editor.
+      responses:
+        '200':
+          description: Usage list
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/MediaUsage' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /media/{id}/retry:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    post:
+      tags: [media]
+      operationId: retryMedia
+      summary: Re-run processing of a failed asset. Role admin.
+      responses:
+        '202':
+          description: Processing restarted
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/MediaAsset' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /slots:
+    get:
+      tags: [slots]
+      operationId: listSlots
+      summary: Slots and their placements. Role editor.
+      responses:
+        '200':
+          description: All slots
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Slot' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /slots/{key}:
+    parameters:
+      - name: key
+        in: path
+        required: true
+        schema: { $ref: '#/components/schemas/SlotKey' }
+    put:
+      tags: [slots]
+      operationId: replacePlacements
+      summary: Replace a slot's placements (ordered). Role editor.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items: { $ref: '#/components/schemas/PlacementInput' }
+      responses:
+        '200':
+          description: Updated slot
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Slot' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /publish:
+    post:
+      tags: [releases]
+      operationId: publish
+      summary: Publish a new release. Role admin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PublishRequest' }
+      responses:
+        '201':
+          description: Published
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Release' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /releases:
+    get:
+      tags: [releases]
+      operationId: listReleases
+      summary: Releases, newest first. Role admin.
+      parameters:
+        - $ref: '#/components/parameters/CursorParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: One page of releases
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ReleasePage' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /releases/{id}/restore:
+    parameters:
+      - $ref: '#/components/parameters/IdParam'
+    post:
+      tags: [releases]
+      operationId: restoreRelease
+      summary: Roll back to an earlier release. Role admin.
+      responses:
+        '200':
+          description: Restored
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Release' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /users:
+    get:
+      tags: [users]
+      operationId: listUsers
+      summary: List users. Role admin.
+      responses:
+        '200':
+          description: All users
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/User' }
+        default: { $ref: '#/components/responses/Problem' }
+    post:
+      tags: [users]
+      operationId: inviteUser
+      summary: Invite a user. Role admin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserInvite' }
+      responses:
+        '201':
+          description: Invited
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /users/{sub}:
+    parameters:
+      - name: sub
+        in: path
+        required: true
+        schema: { type: string }
+    patch:
+      tags: [users]
+      operationId: updateUser
+      summary: Change role or disable. Role admin.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/UserUpdate' }
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/User' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /audit:
+    get:
+      tags: [audit]
+      operationId: listAuditEvents
+      summary: Audit events for a month. Role admin.
+      parameters:
+        - name: month
+          in: query
+          required: true
+          schema: { type: string, pattern: '^\d{4}-\d{2}$' }
+        - $ref: '#/components/parameters/CursorParam'
+        - $ref: '#/components/parameters/LimitParam'
+      responses:
+        '200':
+          description: One page of audit events
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/AuditEventPage' }
+        default: { $ref: '#/components/responses/Problem' }
+
+  /contact:
+    post:
+      tags: [contact]
+      operationId: sendContactMessage
+      summary: Public contact form. No sign-in; rate-limited by WAF.
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ContactMessage' }
+      responses:
+        '202':
+          description: Accepted for delivery
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ContactResult' }
+        default: { $ref: '#/components/responses/Problem' }
+
+components:
+  securitySchemes:
+    cognito:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Cognito access token. Groups claim carries the role (editor, admin).
+
+  parameters:
+    ContentTypeParam:
+      name: type
+      in: path
+      required: true
+      schema: { $ref: '#/components/schemas/ContentType' }
+    IdParam:
+      name: id
+      in: path
+      required: true
+      schema: { type: string, minLength: 1, maxLength: 64 }
+    CursorParam:
+      name: cursor
+      in: query
+      required: false
+      schema: { type: string }
+    LimitParam:
+      name: limit
+      in: query
+      required: false
+      schema: { type: integer, minimum: 1, maximum: 100, default: 25 }
+
+  responses:
+    Problem:
+      description: Error (RFC 9457 problem details)
+      content:
+        application/problem+json:
+          schema: { $ref: '#/components/schemas/Problem' }
+
+  schemas:
+    # ---------- shared ----------
+    Problem:
+      type: object
+      required: [type, title, status, code]
+      properties:
+        type: { type: string }
+        title: { type: string }
+        status: { type: integer }
+        code:
+          type: string
+          description: Stable machine-readable code, e.g. VERSION_CONFLICT, PUBLISH_IN_PROGRESS, VALIDATION_FAILED
+        detail: { type: string }
+        errors:
+          type: array
+          items: { $ref: '#/components/schemas/FieldError' }
+    FieldError:
+      type: object
+      required: [field, message]
+      properties:
+        field: { type: string }
+        message: { type: string }
+
+    # ---------- content ----------
+    ContentType:
+      type: string
+      enum: [news, project, member, publication, theme, gallery, page-section, site-settings]
+    ContentStatus:
+      type: string
+      enum: [draft, published, unpublished]
+    ContentItemInput:
+      type: object
+      required: [slug, title]
+      properties:
+        slug: { type: string, pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$', maxLength: 120 }
+        title: { type: string, minLength: 1, maxLength: 300 }
+        summary: { type: string, maxLength: 1000 }
+        body: { type: string, description: Markdown, maxLength: 200000 }
+        mediaRefs:
+          type: array
+          items: { type: string }
+        fields:
+          type: object
+          description: Type-specific fields (validated per content type by the API)
+          additionalProperties: true
+    ContentItem:
+      allOf:
+        - $ref: '#/components/schemas/ContentItemInput'
+        - type: object
+          required: [id, type, status, version, updatedBy, updatedAt]
+          properties:
+            id: { type: string }
+            type: { $ref: '#/components/schemas/ContentType' }
+            status: { $ref: '#/components/schemas/ContentStatus' }
+            version: { type: integer, minimum: 1 }
+            publishedVersion: { type: integer, minimum: 1 }
+            updatedBy: { type: string }
+            updatedAt: { type: string, format: date-time }
+    ContentItemPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/ContentItem' }
+        nextCursor: { type: string }
+
+    # ---------- media ----------
+    MediaKind:
+      type: string
+      enum: [image, video, embed]
+    MediaStatus:
+      type: string
+      enum: [uploading, processing, ready, failed]
+    Rendition:
+      type: object
+      required: [key, format, role]
+      properties:
+        key: { type: string }
+        format: { type: string, enum: [webp, avif, jpg, mp4] }
+        role: { type: string, enum: [srcset, video, poster, placeholder] }
+        width: { type: integer }
+        bytes: { type: integer, format: int64 }
+    MediaAsset:
+      type: object
+      required: [id, kind, status, uploadedBy, createdAt]
+      properties:
+        id: { type: string }
+        kind: { $ref: '#/components/schemas/MediaKind' }
+        status: { $ref: '#/components/schemas/MediaStatus' }
+        failureReason: { type: string }
+        altText: { type: string, maxLength: 500 }
+        caption: { type: string, maxLength: 1000 }
+        width: { type: integer }
+        height: { type: integer }
+        durationSec: { type: integer }
+        embedUrl: { type: string, format: uri }
+        renditions:
+          type: array
+          items: { $ref: '#/components/schemas/Rendition' }
+        uploadedBy: { type: string }
+        createdAt: { type: string, format: date-time }
+    MediaAssetPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/MediaAsset' }
+        nextCursor: { type: string }
+    UploadRequest:
+      type: object
+      required: [fileName, contentType, sizeBytes]
+      properties:
+        fileName: { type: string, maxLength: 255 }
+        contentType:
+          type: string
+          enum: [image/jpeg, image/png, image/webp, image/heic, video/mp4, video/quicktime, video/webm]
+        sizeBytes: { type: integer, format: int64, minimum: 1 }
+    UploadTicket:
+      type: object
+      required: [mediaId, uploadId, partSizeBytes, parts, expiresAt]
+      properties:
+        mediaId: { type: string }
+        uploadId: { type: string }
+        partSizeBytes: { type: integer, format: int64 }
+        parts:
+          type: array
+          items:
+            type: object
+            required: [partNumber, url]
+            properties:
+              partNumber: { type: integer }
+              url: { type: string, format: uri }
+        expiresAt: { type: string, format: date-time }
+    UploadCompletion:
+      type: object
+      required: [uploadId, parts]
+      properties:
+        uploadId: { type: string }
+        parts:
+          type: array
+          items:
+            type: object
+            required: [partNumber, etag]
+            properties:
+              partNumber: { type: integer }
+              etag: { type: string }
+    EmbedRequest:
+      type: object
+      required: [url, altText]
+      properties:
+        url: { type: string, format: uri }
+        altText: { type: string, minLength: 1, maxLength: 500 }
+        caption: { type: string, maxLength: 1000 }
+    MediaUpdate:
+      type: object
+      properties:
+        altText: { type: string, minLength: 1, maxLength: 500 }
+        caption: { type: string, maxLength: 1000 }
+    MediaUsage:
+      type: object
+      required: [kind, ref]
+      properties:
+        kind: { type: string, enum: [content, placement] }
+        ref: { type: string, description: 'content type/id, or slot key' }
+
+    # ---------- slots ----------
+    SlotKey:
+      type: string
+      pattern: '^[a-z0-9-]+(\.[a-z0-9-]+)+$'
+      description: e.g. home.hero, home.gallery, about.lab-space
+    Slot:
+      type: object
+      required: [key, label, accepts, maxItems, placements]
+      properties:
+        key: { $ref: '#/components/schemas/SlotKey' }
+        label: { type: string }
+        accepts:
+          type: array
+          items: { $ref: '#/components/schemas/MediaKind' }
+        maxItems: { type: integer }
+        placements:
+          type: array
+          items: { $ref: '#/components/schemas/Placement' }
+    PlacementInput:
+      type: object
+      required: [mediaId, visible]
+      properties:
+        mediaId: { type: string }
+        visible: { type: boolean }
+    Placement:
+      allOf:
+        - $ref: '#/components/schemas/PlacementInput'
+        - type: object
+          required: [order]
+          properties:
+            order: { type: integer }
+
+    # ---------- releases ----------
+    PublishRequest:
+      type: object
+      properties:
+        note: { type: string, maxLength: 500 }
+    Release:
+      type: object
+      required: [id, publishedBy, publishedAt, isCurrent]
+      properties:
+        id: { type: string, description: ISO timestamp, e.g. 2026-10-02T09-15-00Z }
+        publishedBy: { type: string }
+        publishedAt: { type: string, format: date-time }
+        note: { type: string }
+        isCurrent: { type: boolean }
+    ReleasePage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/Release' }
+        nextCursor: { type: string }
+
+    # ---------- users & audit ----------
+    Role:
+      type: string
+      enum: [editor, admin]
+    UserStatus:
+      type: string
+      enum: [invited, active, disabled]
+    User:
+      type: object
+      required: [sub, email, name, role, status]
+      properties:
+        sub: { type: string }
+        email: { type: string, format: email }
+        name: { type: string }
+        role: { $ref: '#/components/schemas/Role' }
+        status: { $ref: '#/components/schemas/UserStatus' }
+        lastSignInAt: { type: string, format: date-time }
+    UserInvite:
+      type: object
+      required: [email, name, role]
+      properties:
+        email: { type: string, format: email }
+        name: { type: string, minLength: 1, maxLength: 200 }
+        role: { $ref: '#/components/schemas/Role' }
+    UserUpdate:
+      type: object
+      properties:
+        role: { $ref: '#/components/schemas/Role' }
+        disabled: { type: boolean }
+    AuditEvent:
+      type: object
+      required: [at, userId, action, entityRef]
+      properties:
+        at: { type: string, format: date-time }
+        userId: { type: string }
+        action:
+          type: string
+          enum: [create, update, delete, upload, place, publish, unpublish, rollback, invite, disable]
+        entityRef: { type: string }
+        summary: { type: string }
+    AuditEventPage:
+      type: object
+      required: [items]
+      properties:
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/AuditEvent' }
+        nextCursor: { type: string }
+
+    # ---------- contact ----------
+    ContactMessage:
+      type: object
+      required: [name, email, message]
+      properties:
+        name: { type: string, minLength: 1, maxLength: 200 }
+        email: { type: string, format: email, maxLength: 254 }
+        subject: { type: string, maxLength: 200 }
+        message: { type: string, minLength: 1, maxLength: 5000 }
+        website:
+          type: string
+          maxLength: 200
+          description: Honeypot. Must be empty; bots tend to fill it.
+    ContactResult:
+      type: object
+      required: [success]
+      properties:
+        success: { type: boolean }
+
+    # ---------- published release files (served by CloudFront, not by the API) ----------
+    ReleasePointer:
+      description: /content/current.json
+      type: object
+      required: [schema, release, publishedAt]
+      properties:
+        schema: { type: integer, const: 1 }
+        release: { type: string }
+        publishedAt: { type: string, format: date-time }
+    PublishedImage:
+      type: object
+      required: [alt, src]
+      properties:
+        alt: { type: string }
+        src: { type: string, description: Root-relative path under /media }
+        srcset: { type: string }
+        width: { type: integer }
+        height: { type: integer }
+        placeholder: { type: string }
+    PublishedNewsItem:
+      type: object
+      required: [id, slug, title, date]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        title: { type: string }
+        date: { type: string, format: date }
+        summary: { type: string }
+        body: { type: string }
+        cover: { $ref: '#/components/schemas/PublishedImage' }
+    PublishedNewsFile:
+      description: /content/releases/{id}/news.json
+      type: object
+      required: [schema, items]
+      properties:
+        schema: { type: integer, const: 1 }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedNewsItem' }
+    PublishedPublication:
+      description: Mirrors the website's Publication type
+      type: object
+      required: [id, category, title, authors, publishedIn, year, abstract, keyFindings, citation]
+      properties:
+        id: { type: string }
+        category: { type: string, enum: [INTELLIGENCE, ETHICS, DESIGN, ROBOTICS] }
+        title: { type: string }
+        authors: { type: string }
+        publishedIn: { type: string }
+        year: { type: integer }
+        abstract: { type: string }
+        keyFindings:
+          type: array
+          items: { type: string }
+        citation: { type: string }
+        imageUrl: { type: string }
+    PublishedPublicationsFile:
+      description: /content/releases/{id}/publications.json
+      type: object
+      required: [schema, items]
+      properties:
+        schema: { type: integer, const: 1 }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPublication' }
+    PublishedTheme:
+      description: Mirrors the website's FocusArea type (a research theme)
+      type: object
+      required: [id, title, type, description, iconName, bgClass, textClass, detailedDescription, projects, leadResearcher]
+      properties:
+        id: { type: string }
+        title: { type: string }
+        type: { type: string, enum: [CORE THEME, NEW INITIATIVE] }
+        description: { type: string }
+        iconName: { type: string, enum: [robot, brain, shield, eye] }
+        imageUrl: { type: string }
+        bgClass: { type: string }
+        textClass: { type: string }
+        detailedDescription: { type: string }
+        projects:
+          type: array
+          items: { type: string }
+        leadResearcher: { type: string }
+    PublishedThemesFile:
+      description: /content/releases/{id}/themes.json
+      type: object
+      required: [schema, items]
+      properties:
+        schema: { type: integer, const: 1 }
+        items:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedTheme' }
+    PublishedSocialLinks:
+      type: object
+      properties:
+        email: { type: string }
+        linkedin: { type: string }
+        scholar: { type: string }
+    PublishedPerson:
+      description: Mirrors the website's TeamMember, StudentResearcher and Alumni types
+      type: object
+      required: [name, role]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        role: { type: string }
+        title: { type: string }
+        bio: { type: string }
+        expertise: { type: string }
+        imageUrl: { type: string }
+        topic: { type: string }
+        period: { type: string }
+        currentPosition: { type: string }
+        socials: { $ref: '#/components/schemas/PublishedSocialLinks' }
+    PublishedMembersFile:
+      description: /content/releases/{id}/members.json. Same groups as the website's data.json
+      type: object
+      required: [schema, teamMembers, foundingRAs, researchAssistants, studentResearchers, alumni]
+      properties:
+        schema: { type: integer, const: 1 }
+        teamMembers:
+          description: Director first, then faculty
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPerson' }
+        foundingRAs:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPerson' }
+        researchAssistants:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPerson' }
+        studentResearchers:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPerson' }
+        alumni:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPerson' }

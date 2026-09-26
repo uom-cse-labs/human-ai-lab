@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 780" width="1240" height="780" role="img" aria-label="Logical view: domain model">
+<title>Logical view: domain model</title>
+<style>
+  .n-comp{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2}
+  .n-store{fill:#e9ebf4;stroke:#c7cbdc;stroke-width:1.2}
+  .n-person{fill:#eef0f7;stroke:#c7cbdc;stroke-width:1.2}
+  .n-ext{fill:#ffffff;stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:5 4}
+  .t-name{fill:#0d0f2b;font:600 13.5px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-sub{fill:#525a7c;font:400 10.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-eye{fill:#525a7c;font:500 9.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.1em}
+  .t-edge{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-edge.path{fill:#0e7686}
+  .t-bound{fill:#525a7c;font:500 11px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace;letter-spacing:.08em}
+  .t-title{fill:#151b54;font:700 17px 'DM Sans', 'Segoe UI', Helvetica, Arial, sans-serif}
+  .t-band{fill:#0d0f2b;font:400 11.5px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .t-num{fill:#ffffff;font:600 10px 'JetBrains Mono', 'SFMono-Regular', Menlo, Consolas, monospace}
+  .e{fill:none;stroke:#525a7c;stroke-width:1.4}
+  .e.path{stroke:#0e7686;stroke-width:2}
+  .e.ret{stroke-dasharray:5 4}
+  .life{stroke:#c7cbdc;stroke-width:1.2;stroke-dasharray:4 5}
+  .bound{fill:none;stroke:#151b54;stroke-opacity:.45;stroke-width:1.3;stroke-dasharray:7 5}
+  .band{fill:#f3f4fa;stroke:#c7cbdc;stroke-width:1;stroke-dasharray:4 4}
+  .note{fill:#e3f3f5;stroke:#0e7686;stroke-width:1}
+  .ah{fill:#525a7c} .ah.path{fill:#0e7686}
+</style>
+<defs>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah"/></marker>
+  <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ah path"/></marker>
+  <marker id="tri" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11 z" fill="#ffffff" stroke="#525a7c" stroke-width="1.2"/></marker>
+  <marker id="dia" viewBox="0 0 16 10" refX="1" refY="5" markerWidth="16" markerHeight="10" orient="auto"><path d="M1 5 L8 1 L15 5 L8 9 z" fill="#525a7c"/></marker>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#525a7c" stroke-width="1.4"/></marker>
+</defs>
+<rect x="0.5" y="0.5" width="1239" height="779" rx="20" fill="#ffffff" stroke="#dfe2ec"/>
+<text class="t-title" x="40" y="42" text-anchor="start">Logical view · domain model</text>
+<rect class="n-comp" x="40" y="70" width="300" height="175" rx="10"/><path d="M40 114 H340" stroke="#c7cbdc"/><text class="t-sub" x="190" y="87" text-anchor="middle">«content type»</text><text class="t-name" x="190" y="105" text-anchor="middle">Content types</text><text class="t-sub" x="54" y="132" text-anchor="start">NewsArticle</text><text class="t-sub" x="54" y="149" text-anchor="start">Project</text><text class="t-sub" x="54" y="166" text-anchor="start">Member</text><text class="t-sub" x="54" y="183" text-anchor="start">Publication</text><text class="t-sub" x="54" y="200" text-anchor="start">Gallery</text><text class="t-sub" x="54" y="217" text-anchor="start">PageSection</text><text class="t-sub" x="54" y="234" text-anchor="start">SiteSettings</text>
+<rect class="n-comp" x="450" y="70" width="320" height="209" rx="10"/><path d="M450 114 H770" stroke="#c7cbdc"/><text class="t-sub" x="610" y="87" text-anchor="middle">«abstract»</text><text class="t-name" x="610" y="105" text-anchor="middle">ContentItem</text><text class="t-sub" x="464" y="132" text-anchor="start">id, type, slug</text><text class="t-sub" x="464" y="149" text-anchor="start">title, summary</text><text class="t-sub" x="464" y="166" text-anchor="start">body: Markdown</text><text class="t-sub" x="464" y="183" text-anchor="start">fields: per type</text><text class="t-sub" x="464" y="200" text-anchor="start">mediaRefs: MediaAsset[]</text><text class="t-sub" x="464" y="217" text-anchor="start">status: draft | published | unpublished</text><text class="t-sub" x="464" y="234" text-anchor="start">version: number</text><text class="t-sub" x="464" y="251" text-anchor="start">publishedVersion?: number</text><text class="t-sub" x="464" y="268" text-anchor="start">updatedBy, updatedAt</text>
+<rect class="n-comp" x="880" y="70" width="320" height="127" rx="10"/><path d="M880 100 H1200" stroke="#c7cbdc"/><text class="t-name" x="1040" y="90" text-anchor="middle">Release</text><text class="t-sub" x="894" y="118" text-anchor="start">id: ISO timestamp</text><text class="t-sub" x="894" y="135" text-anchor="start">publishedBy: User</text><text class="t-sub" x="894" y="152" text-anchor="start">note</text><text class="t-sub" x="894" y="169" text-anchor="start">snapshotPrefix: S3 key</text><text class="t-sub" x="894" y="186" text-anchor="start">isCurrent: boolean</text>
+<rect class="n-comp" x="40" y="340" width="300" height="127" rx="10"/><path d="M40 370 H340" stroke="#c7cbdc"/><text class="t-name" x="190" y="360" text-anchor="middle">Placement</text><text class="t-sub" x="54" y="388" text-anchor="start">slotKey</text><text class="t-sub" x="54" y="405" text-anchor="start">mediaId</text><text class="t-sub" x="54" y="422" text-anchor="start">order: number</text><text class="t-sub" x="54" y="439" text-anchor="start">visible: boolean</text><text class="t-sub" x="54" y="456" text-anchor="start">updatedBy</text>
+<rect class="n-comp" x="450" y="340" width="320" height="195" rx="10"/><path d="M450 370 H770" stroke="#c7cbdc"/><text class="t-name" x="610" y="360" text-anchor="middle">MediaAsset</text><text class="t-sub" x="464" y="388" text-anchor="start">id (content-addressed)</text><text class="t-sub" x="464" y="405" text-anchor="start">kind: image | video | embed</text><text class="t-sub" x="464" y="422" text-anchor="start">status: uploading | processing |</text><text class="t-sub" x="464" y="439" text-anchor="start">        ready | failed</text><text class="t-sub" x="464" y="456" text-anchor="start">originalKey (uploads bucket)</text><text class="t-sub" x="464" y="473" text-anchor="start">altText (required), caption</text><text class="t-sub" x="464" y="490" text-anchor="start">width, height, durationSec</text><text class="t-sub" x="464" y="507" text-anchor="start">embedUrl? (YouTube / Vimeo)</text><text class="t-sub" x="464" y="524" text-anchor="start">uploadedBy, createdAt</text>
+<rect class="n-comp" x="880" y="340" width="320" height="127" rx="10"/><path d="M880 370 H1200" stroke="#c7cbdc"/><text class="t-name" x="1040" y="360" text-anchor="middle">User</text><text class="t-sub" x="894" y="388" text-anchor="start">sub (Cognito id)</text><text class="t-sub" x="894" y="405" text-anchor="start">email, name</text><text class="t-sub" x="894" y="422" text-anchor="start">role: editor | admin</text><text class="t-sub" x="894" y="439" text-anchor="start">status: invited | active | disabled</text><text class="t-sub" x="894" y="456" text-anchor="start">lastSignInAt</text>
+<rect class="n-comp" x="40" y="600" width="300" height="110" rx="10"/><path d="M40 630 H340" stroke="#c7cbdc"/><text class="t-name" x="190" y="620" text-anchor="middle">Slot</text><text class="t-sub" x="54" y="648" text-anchor="start">key, e.g. home.hero</text><text class="t-sub" x="54" y="665" text-anchor="start">label</text><text class="t-sub" x="54" y="682" text-anchor="start">accepts: image | video</text><text class="t-sub" x="54" y="699" text-anchor="start">maxItems</text>
+<rect class="n-comp" x="450" y="600" width="320" height="110" rx="10"/><path d="M450 630 H770" stroke="#c7cbdc"/><text class="t-name" x="610" y="620" text-anchor="middle">Rendition</text><text class="t-sub" x="464" y="648" text-anchor="start">key (media bucket)</text><text class="t-sub" x="464" y="665" text-anchor="start">format: webp | avif | mp4 | jpg</text><text class="t-sub" x="464" y="682" text-anchor="start">width, bytes</text><text class="t-sub" x="464" y="699" text-anchor="start">role: srcset | video | poster</text>
+<rect class="n-comp" x="880" y="600" width="320" height="110" rx="10"/><path d="M880 630 H1200" stroke="#c7cbdc"/><text class="t-name" x="1040" y="620" text-anchor="middle">AuditEvent</text><text class="t-sub" x="894" y="648" text-anchor="start">at, userId</text><text class="t-sub" x="894" y="665" text-anchor="start">action: create | update | publish ...</text><text class="t-sub" x="894" y="682" text-anchor="start">entityRef</text><text class="t-sub" x="894" y="699" text-anchor="start">summary</text>
+<path class="e" d="M340 140 H448" marker-end="url(#tri)"/>
+<text class="t-edge" x="394" y="132" text-anchor="middle">is a</text>
+<path class="e" d="M880 140 H772" marker-end="url(#oa)"/>
+<text class="t-edge" x="825" y="132" text-anchor="middle">captures</text>
+<text class="t-edge" x="876" y="158" text-anchor="end">0..*</text>
+<text class="t-edge" x="774" y="158" text-anchor="start">1..*</text>
+<path class="e" d="M610 279 V338" marker-end="url(#oa)"/>
+<text class="t-edge" x="618" y="314" text-anchor="start">references</text>
+<text class="t-edge" x="602" y="294" text-anchor="end">0..*</text>
+<text class="t-edge" x="602" y="334" text-anchor="end">0..*</text>
+<path class="e" d="M340 400 H448" marker-end="url(#oa)"/>
+<text class="t-edge" x="394" y="392" text-anchor="middle">shows</text>
+<text class="t-edge" x="344" y="416" text-anchor="start">0..*</text>
+<text class="t-edge" x="446" y="416" text-anchor="end">1</text>
+<path class="e" d="M880 400 H772" marker-end="url(#oa)"/>
+<text class="t-edge" x="825" y="392" text-anchor="middle">uploads</text>
+<text class="t-edge" x="876" y="416" text-anchor="end">1</text>
+<text class="t-edge" x="774" y="416" text-anchor="start">0..*</text>
+<path class="e" d="M190 598 V469" marker-end="url(#oa)"/>
+<text class="t-edge" x="198" y="538" text-anchor="start">contains</text>
+<text class="t-edge" x="182" y="592" text-anchor="end">1</text>
+<text class="t-edge" x="182" y="484" text-anchor="end">0..*</text>
+<path class="e" d="M610 536 V598" marker-start="url(#dia)"/>
+<text class="t-edge" x="618" y="572" text-anchor="start">has</text>
+<text class="t-edge" x="602" y="592" text-anchor="end">1..*</text>
+<path class="e" d="M1040 469 V598" marker-end="url(#oa)"/>
+<text class="t-edge" x="1048" y="538" text-anchor="start">performs</text>
+<text class="t-edge" x="1032" y="592" text-anchor="end">0..*</text>
+<path class="e" d="M1040 338 V199" marker-end="url(#oa)"/>
+<text class="t-edge" x="1048" y="272" text-anchor="start">publishes</text>
+<text class="t-edge" x="1032" y="214" text-anchor="end">0..*</text>
+<text class="t-edge" x="40" y="760" text-anchor="start">Open arrow = association (read in arrow direction) · hollow triangle = "is a" · filled diamond = owns (deleted together).</text>
+</svg>

@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+
+jobs:
+  node:
+    name: Web, contracts and infrastructure
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Generated TypeScript types match contracts/openapi.yaml
+        run: npm run check:generated -w @hai/content-schema
+      - run: npm run typecheck -w @hai/content-schema
+      - run: npm run build -w @hai/web
+      - run: npm run typecheck -w @hai/admin
+      - run: npm run build -w @hai/admin
+      - run: npm run test -w @hai/web
+      - run: npm run typecheck -w @hai/infra
+      - run: npm run test -w @hai/infra
+
+  content-api:
+    name: Content API (Java)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/content-api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build, test (incl. ArchUnit and ALB-event tests) and package the Lambda zip
+        run: ./gradlew build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: content-api-zip
+          path: services/content-api/build/distributions/content-api.zip
+          retention-days: 7
+
+  synth:
+    name: CDK synth (staging and prod)
+    needs: [node, content-api]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - uses: actions/download-artifact@v4
+        with:
+          name: content-api-zip
+          path: services/content-api/build/distributions
+      - working-directory: infra
+        run: |
+          npx cdk synth -c env=staging --quiet
+          npx cdk synth -c env=prod --quiet

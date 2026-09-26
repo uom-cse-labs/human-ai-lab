@@ -11,5 +11,16 @@ dist-ssr
 .vinxi
 __unconfig*
 todos.json
-src/content/news-index.gen.json
+apps/web/src/content/news-index.gen.json
 .scratch
+
+# Java / Gradle
+.gradle/
+build/
+*.class
+
+# AWS CDK
+cdk.out/
+
+# Local development data (dashboard drafts and releases)
+.local-data/

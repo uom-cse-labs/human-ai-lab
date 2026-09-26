@@ -6,6 +6,10 @@ export type ContentItemPage = components['schemas']['ContentItemPage']
 export type Release = components['schemas']['Release']
 export type ReleasePage = components['schemas']['ReleasePage']
 export type Problem = components['schemas']['Problem']
+export type MediaAsset = components['schemas']['MediaAsset']
+export type MediaAssetPage = components['schemas']['MediaAssetPage']
+export type UploadTicket = components['schemas']['UploadTicket']
+export type UploadContentType = components['schemas']['UploadRequest']['contentType']
 
 /** An API error carrying the server's problem details (contract: RFC 9457). */
 export class ApiError extends Error {
@@ -83,8 +87,46 @@ const content = {
   delete: (type: ContentTypeKey, id: string) => request<void>('DELETE', `/content/${type}/${id}`),
 }
 
+const media = {
+  list: () => request<MediaAssetPage>('GET', '/media?limit=100'),
+  get: (id: string) => request<MediaAsset>('GET', `/media/${id}`),
+  describe: (id: string, altText: string, caption?: string) =>
+    request<MediaAsset>('PATCH', `/media/${id}`, { altText, ...(caption !== undefined ? { caption } : {}) }),
+  usage: (id: string) => request<{ kind: string; ref: string }[]>('GET', `/media/${id}/usage`),
+  delete: (id: string) => request<void>('DELETE', `/media/${id}`),
+
+  /**
+   * Uploads a photo the way the platform does in AWS: ask the API for an upload URL, send the file straight
+   * there (S3 in AWS, the local API in development), then tell the API it has arrived.
+   */
+  async upload(file: File, altText: string): Promise<MediaAsset> {
+    const ticket = await request<UploadTicket>('POST', '/media/uploads', {
+      fileName: file.name,
+      contentType: file.type as UploadContentType,
+      sizeBytes: file.size,
+    })
+    const put = await fetch(ticket.parts[0].url, {
+      method: 'PUT',
+      headers: { 'Content-Type': file.type, 'X-Local-Role': getLocalRole() },
+      body: file,
+    })
+    if (!put.ok) {
+      throw new ApiError({ type: 'about:blank', title: 'Upload failed', status: put.status, code: 'UPLOAD_FAILED', detail: 'The file could not be uploaded. Check your connection and try again.' })
+    }
+    const asset = await request<MediaAsset>('POST', `/media/${ticket.mediaId}/complete`, {
+      uploadId: ticket.uploadId,
+      parts: [{ partNumber: 1, etag: put.headers.get('ETag') ?? '' }],
+    })
+    if (asset.status === 'failed') {
+      throw new ApiError({ type: 'about:blank', title: 'Photo rejected', status: 422, code: 'MEDIA_REJECTED', detail: asset.failureReason ?? 'This photo could not be processed.' })
+    }
+    return altText.trim() ? media.describe(asset.id, altText.trim()) : asset
+  },
+}
+
 export const api = {
   content,
+  media,
   listNews: () => content.list('news'),
   getNews: (id: string) => content.get('news', id),
   createNews: (input: ContentItemInput) => content.create('news', input),

@@ -1,5 +1,6 @@
 import type { FieldDef, FormValues } from '../collections.ts'
 import { CARD_STYLES } from '../collections.ts'
+import ImageField from './ImageField.tsx'
 
 const input = 'w-full rounded-xl border border-outline bg-background px-3 py-2 text-sm'
 
@@ -13,6 +14,10 @@ export default function FormField({ def, values, onChange }: Props) {
   const id = `field-${def.key}`
   const value = values[def.key] ?? ''
   const change = (v: string) => onChange(def.key, v)
+
+  if (def.kind === 'image') {
+    return <ImageField id={id} label={def.label} value={value} onChange={change} help={def.help} />
+  }
 
   let control
   switch (def.kind) {

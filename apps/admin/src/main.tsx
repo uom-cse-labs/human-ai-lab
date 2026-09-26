@@ -9,6 +9,7 @@ import CollectionEditorPage from './pages/CollectionEditorPage.tsx'
 import CollectionListPage from './pages/CollectionListPage.tsx'
 import NewsEditorPage from './pages/NewsEditorPage.tsx'
 import NewsListPage from './pages/NewsListPage.tsx'
+import MediaLibraryPage from './pages/MediaLibraryPage.tsx'
 import ReleasesPage from './pages/ReleasesPage.tsx'
 import './styles.css'
 
@@ -32,6 +33,8 @@ const editNewsRoute = createRoute({
   },
 })
 const releasesRoute = createRoute({ getParentRoute: () => rootRoute, path: '/releases', component: ReleasesPage })
+// Not /media: that path serves the photo files themselves.
+const libraryRoute = createRoute({ getParentRoute: () => rootRoute, path: '/library', component: MediaLibraryPage })
 
 // Publications, research themes and people share one list and one editor, driven by collections.ts.
 const findCollection = (section: string) => COLLECTIONS.find((c) => c.path === `/${section}`)
@@ -65,7 +68,7 @@ const sectionEditRoute = createRoute({
 
 const router = createRouter({
   routeTree: rootRoute.addChildren([
-    indexRoute, newsRoute, newNewsRoute, editNewsRoute, releasesRoute, sectionRoute, sectionNewRoute, sectionEditRoute,
+    indexRoute, newsRoute, newNewsRoute, editNewsRoute, releasesRoute, libraryRoute, sectionRoute, sectionNewRoute, sectionEditRoute,
   ]),
 })
 

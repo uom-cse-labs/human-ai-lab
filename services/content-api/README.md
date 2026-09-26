@@ -38,4 +38,4 @@ With the `local` profile (`bootRun`), `hai.storage=local` stores drafts, release
 
 ## Status
 
-Implemented: drafts for news, publications, research themes and people, with optimistic locking and per-type publish rules; publish and rollback (admin only); contact endpoint, Cognito security, ALB/Lambda integration. Storage adapters exist for local files only; in AWS the content endpoints stay off until the DynamoDB and S3 adapters land. Media, slots, users and audit come next.
+Implemented: drafts for news, publications, research themes and people, with optimistic locking and per-type publish rules; publish and rollback (admin only); media library with photo upload and processing (re-encoded, EXIF removed, web sizes); contact endpoint, Cognito security, ALB/Lambda integration. Storage adapters exist for local files only; in AWS the content endpoints stay off until the DynamoDB and S3 adapters land. Media, slots, users and audit come next.

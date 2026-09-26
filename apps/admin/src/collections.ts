@@ -5,7 +5,7 @@ import type { ContentItem, ContentTypeKey } from './api/client.ts'
  * (title, summary, body, or a named entry in `fields`) and how to edit it.
  */
 
-export type FieldKind = 'text' | 'textarea' | 'url' | 'number' | 'select' | 'lines' | 'cardStyle'
+export type FieldKind = 'text' | 'textarea' | 'url' | 'number' | 'select' | 'lines' | 'cardStyle' | 'image'
 
 export type FormValues = Record<string, string>
 
@@ -103,7 +103,7 @@ export const COLLECTIONS: CollectionDef[] = [
       { key: 'body', target: 'body', label: 'Abstract', kind: 'textarea', rows: 6, required: true, wide: true },
       { key: 'keyFindings', label: 'Key findings', kind: 'lines', rows: 4, wide: true, help: 'One finding per line.' },
       { key: 'citation', label: 'Citation', kind: 'textarea', rows: 3, required: true, wide: true },
-      { key: 'imageUrl', label: 'Image URL', kind: 'url', wide: true },
+      { key: 'imageUrl', label: 'Image', kind: 'image', wide: true },
       ORDER,
     ],
   },
@@ -129,7 +129,7 @@ export const COLLECTIONS: CollectionDef[] = [
       { key: 'leadResearcher', label: 'Lead researcher', kind: 'text' },
       { key: 'cardStyle', label: 'Card colours', kind: 'cardStyle', help: 'Used when the theme has no image.' },
       { key: 'projects', label: 'Projects', kind: 'lines', rows: 4, wide: true, help: 'One project per line.' },
-      { key: 'imageUrl', label: 'Image URL', kind: 'url', wide: true },
+      { key: 'imageUrl', label: 'Image', kind: 'image', wide: true, help: 'Shown on the theme card instead of the card colours.' },
       ORDER,
     ],
   },
@@ -156,7 +156,7 @@ export const COLLECTIONS: CollectionDef[] = [
       { key: 'jobTitle', label: 'Title on profile card', kind: 'text', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
       { key: 'body', target: 'body', label: 'Biography', kind: 'textarea', rows: 6, wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
       { key: 'expertise', label: 'Expertise', kind: 'text', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
-      { key: 'imageUrl', label: 'Photo URL', kind: 'url', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
+      { key: 'imageUrl', label: 'Photo', kind: 'image', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
       { key: 'topic', label: 'Research topic', kind: 'text', wide: true, showWhen: inGroups('student') },
       { key: 'period', label: 'Period', kind: 'text', showWhen: inGroups('alumni'), placeholder: '2022 – 2024' },
       { key: 'currentPosition', label: 'Current position', kind: 'text', wide: true, showWhen: inGroups('alumni') },

@@ -28,6 +28,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/content": "http://localhost:8080",
+      "/media": "http://localhost:8080",
       "/api": "http://localhost:8080",
     },
   },

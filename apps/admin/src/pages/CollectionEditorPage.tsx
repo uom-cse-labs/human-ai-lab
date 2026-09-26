@@ -8,6 +8,7 @@ import Notice from '../components/Notice.tsx'
 import StatusChip from '../components/StatusChip.tsx'
 import { CARD_STYLES, field, type CollectionDef, type FieldDef, type FormValues } from '../collections.ts'
 import { publishState, slugify } from '../lib/format.ts'
+import { mediaIdsIn } from '../lib/media.ts'
 
 const input = 'w-full rounded-xl border border-outline bg-background px-3 py-2 text-sm'
 
@@ -41,7 +42,9 @@ function toInput(collection: CollectionDef, values: FormValues, existing?: Conte
     else if (def.kind === 'lines') fields[def.key] = raw.split('\n').map((l) => l.trim()).filter(Boolean)
     else fields[def.key] = raw
   }
-  return { title: values.title.trim(), slug: values.slug.trim(), summary, body, fields }
+  // Library photos this item uses, so they can't be deleted while in use and are checked before publishing.
+  const mediaRefs = mediaIdsIn(...collection.fields.filter((d) => d.kind === 'image').map((d) => values[d.key]), body)
+  return { title: values.title.trim(), slug: values.slug.trim(), summary, body, fields, mediaRefs }
 }
 
 export default function CollectionEditorPage({ collection, id }: { collection: CollectionDef; id?: string }) {

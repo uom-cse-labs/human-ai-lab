@@ -40,7 +40,7 @@ public class LocalSecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/content/**").permitAll()
+                        .requestMatchers("/content/**", "/media/**").permitAll()
                         .requestMatchers("/api/contact").permitAll()
                         .requestMatchers("/api/**").hasRole("EDITOR")
                         .anyRequest().denyAll())

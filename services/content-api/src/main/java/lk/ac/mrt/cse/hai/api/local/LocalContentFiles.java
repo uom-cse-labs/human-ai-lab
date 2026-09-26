@@ -8,7 +8,7 @@ import org.springframework.http.CacheControl;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-/** Local development only: serves published release files at /content/*, as CloudFront does from S3. */
+/** Local development only: serves published release files at /content/* and photos at /media/*, as CloudFront does from S3. */
 @Configuration
 @Profile("local")
 public class LocalContentFiles implements WebMvcConfigurer {
@@ -23,6 +23,9 @@ public class LocalContentFiles implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/content/**")
                 .addResourceLocations(contentDir.toUri().toString())
+                .setCacheControl(CacheControl.noCache());
+        registry.addResourceHandler("/media/**")
+                .addResourceLocations(contentDir.getParent().resolve("media").toUri().toString())
                 .setCacheControl(CacheControl.noCache());
     }
 }

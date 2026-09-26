@@ -409,10 +409,12 @@ export interface components {
         Rendition: {
             key: string;
             /** @enum {string} */
-            format: "webp" | "avif" | "jpg" | "mp4";
+            format: "webp" | "avif" | "jpg" | "png" | "mp4";
             /** @enum {string} */
             role: "srcset" | "video" | "poster" | "placeholder";
             width?: number;
+            /** @description Root-relative public path, e.g. /media/{id}/1600.jpg */
+            src?: string;
             /** Format: int64 */
             bytes?: number;
         };
@@ -421,6 +423,11 @@ export interface components {
             kind: components["schemas"]["MediaKind"];
             status: components["schemas"]["MediaStatus"];
             failureReason?: string;
+            fileName?: string;
+            /** @description Root-relative path of the rendition to use on the website (largest image), e.g. /media/{id}/1600.jpg */
+            src?: string;
+            /** @description Small rendition for the dashboard's media library */
+            thumbnailSrc?: string;
             altText?: string;
             caption?: string;
             width?: number;

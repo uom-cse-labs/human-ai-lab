@@ -62,7 +62,7 @@ npm run dev:local
 
 On first start, the API imports the site's existing news articles and publishes them. Data lives in `.local-data/` (git-ignored); delete that folder to start again.
 
-The dashboard manages **news, publications, research themes and people** (everyone on the About page). Projects, media uploads, real sign-in (Cognito) and the AWS storage adapters come next (see the roadmap).
+The dashboard manages **news, publications, research themes and people** (everyone on the About page), with **photo upload** and a media library everywhere a photo appears. Projects, video, real sign-in (Cognito) and the AWS storage adapters come next (see the roadmap).
 
 ## Commands
 

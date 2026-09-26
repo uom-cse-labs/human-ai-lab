@@ -99,6 +99,25 @@ public class PublishServiceTest {
     }
 
     @Test
+    void photosMustBeReadyAndDescribedBeforePublishing() {
+        var media = new lk.ac.mrt.cse.hai.api.domain.media.MediaServiceTest.MemoryMedia();
+        media.save(new lk.ac.mrt.cse.hai.api.domain.media.MediaAsset("m_1", lk.ac.mrt.cse.hai.api.domain.media.MediaKind.IMAGE,
+                lk.ac.mrt.cse.hai.api.domain.media.MediaStatus.READY, null, "lab.jpg", "image/jpeg", 1, null, null, 10, 10, null,
+                List.of(), "editor", Instant.EPOCH));
+        contents.create(ContentType.NEWS, new ContentDraft("open-day", "Open day", null, "Body", Map.of("date", "2026-10-01"),
+                List.of("m_1", "m_gone")), "editor");
+        PublishService checking = new PublishService(repository, store, log, lock, clock, media);
+
+        assertThatThrownBy(() -> checking.publish(null, "admin"))
+                .isInstanceOfSatisfying(PublishValidationException.class, e -> assertThat(e.problems())
+                        .extracting(PublishValidationException.Problem::message)
+                        .containsExactlyInAnyOrder(
+                                "\"Open day\" uses the photo \"lab.jpg\", which needs alt text. Add it in the media library.",
+                                "\"Open day\" uses a photo that was deleted. Choose another."));
+        assertThat(store.events).isEmpty();
+    }
+
+    @Test
     void releasesInTheSameSecondGetDistinctIds() {
         news("open-day", "2026-10-01");
 

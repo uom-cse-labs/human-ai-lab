@@ -1,12 +1,15 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, ImagePlus } from 'lucide-react'
 import Markdown from 'react-markdown'
 import { api, ApiError, isAdmin, type ContentItem, type ContentItemInput } from '../api/client.ts'
 import ApiErrorNotice from '../components/ApiErrorNotice.tsx'
+import ImageField from '../components/ImageField.tsx'
+import MediaPicker from '../components/MediaPicker.tsx'
 import Notice from '../components/Notice.tsx'
 import StatusChip from '../components/StatusChip.tsx'
 import { publishState, slugify, stringField } from '../lib/format.ts'
+import { mediaIdsIn } from '../lib/media.ts'
 
 interface Form {
   title: string
@@ -37,6 +40,7 @@ function toInput(form: Form): ContentItemInput {
     summary: form.summary.trim() || undefined,
     body: form.body,
     fields: { date: form.date, ...(form.imageUrl.trim() ? { imageUrl: form.imageUrl.trim() } : {}) },
+    mediaRefs: mediaIdsIn(form.imageUrl, form.body),
   }
 }
 
@@ -53,6 +57,8 @@ export default function NewsEditorPage({ id }: { id?: string }) {
   const [saved, setSaved] = useState(false)
   const [error, setError] = useState<Error>()
   const [confirmDelete, setConfirmDelete] = useState(false)
+  const [insertingPhoto, setInsertingPhoto] = useState(false)
+  const bodyRef = useRef<HTMLTextAreaElement>(null)
 
   useEffect(() => {
     if (!id) return
@@ -164,29 +170,44 @@ export default function NewsEditorPage({ id }: { id?: string }) {
           <textarea id="summary" rows={2} maxLength={1000} value={form.summary} onChange={(e) => update('summary', e.target.value)} className={input} />
           <p className="mt-1 text-xs text-muted">Shown on news cards and under the headline.</p>
         </div>
-        <div className="sm:col-span-2">
-          <label htmlFor="imageUrl" className={label}>Cover image URL</label>
-          <input id="imageUrl" type="url" value={form.imageUrl} onChange={(e) => update('imageUrl', e.target.value)} className={input} placeholder="https://…" />
-          <p className="mt-1 text-xs text-muted">Uploading from the media library arrives in a later release of the dashboard.</p>
-        </div>
+        <ImageField id="imageUrl" label="Cover image" value={form.imageUrl} onChange={(v) => update('imageUrl', v)} help="Shown on news cards and at the top of the article." />
       </section>
 
       <section className="rounded-2xl border border-outline-variant bg-background p-5">
         <div className="mb-3 flex items-center justify-between">
           <label htmlFor="body" className="text-sm font-medium">Article (Markdown)</label>
+          <div className="flex items-center gap-2">
+          <button type="button" onClick={() => setInsertingPhoto(true)} className="inline-flex items-center gap-1.5 rounded-full border border-outline px-3 py-1 text-xs font-semibold hover:border-primary">
+            <ImagePlus className="h-3.5 w-3.5" aria-hidden /> Insert photo
+          </button>
           <div className="flex rounded-full border border-outline p-0.5 text-xs font-semibold" role="tablist">
             <button type="button" role="tab" aria-selected={tab === 'write'} onClick={() => setTab('write')} className={`rounded-full px-3 py-1 ${tab === 'write' ? 'bg-primary text-white' : ''}`}>Write</button>
             <button type="button" role="tab" aria-selected={tab === 'preview'} onClick={() => setTab('preview')} className={`rounded-full px-3 py-1 ${tab === 'preview' ? 'bg-primary text-white' : ''}`}>Preview</button>
           </div>
+          </div>
         </div>
         {tab === 'write' ? (
-          <textarea id="body" rows={16} value={form.body} onChange={(e) => update('body', e.target.value)} className={`${input} font-mono`} />
+          <textarea ref={bodyRef} id="body" rows={16} value={form.body} onChange={(e) => update('body', e.target.value)} className={`${input} font-mono`} />
         ) : (
           <div className="prose max-w-none rounded-xl border border-outline-variant p-4">
             <Markdown skipHtml>{form.body || '*Nothing to preview yet.*'}</Markdown>
           </div>
         )}
       </section>
+
+      {insertingPhoto && (
+        <MediaPicker
+          onClose={() => setInsertingPhoto(false)}
+          onChoose={(asset) => {
+            // Insert the photo as Markdown where the cursor is (or at the end).
+            const at = bodyRef.current?.selectionStart ?? form.body.length
+            const snippet = `\n\n![${(asset.altText ?? '').replace(/[\[\]]/g, '')}](${asset.src})\n\n`
+            update('body', form.body.slice(0, at) + snippet + form.body.slice(at))
+            setTab('write')
+            setInsertingPhoto(false)
+          }}
+        />
+      )}
 
       {item && isAdmin() && (
         <section className="flex flex-wrap items-center gap-3 rounded-2xl border border-outline-variant bg-background p-5 text-sm">

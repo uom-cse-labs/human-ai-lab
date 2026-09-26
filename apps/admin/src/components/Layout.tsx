@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
-import { BookOpen, History, Lightbulb, Newspaper, Users } from 'lucide-react'
+import { BookOpen, History, Images, Lightbulb, Newspaper, Users } from 'lucide-react'
 import { getLocalRole, setLocalRole, type LocalRole } from '../api/client.ts'
 
 export default function Layout({ children }: { children: ReactNode }) {
@@ -34,6 +34,9 @@ export default function Layout({ children }: { children: ReactNode }) {
           </Link>
           <Link to="/$section" params={{ section: 'people' }} className={navLink} activeProps={active}>
             <Users className="h-4 w-4" aria-hidden /> People
+          </Link>
+          <Link to="/library" className={navLink} activeProps={active}>
+            <Images className="h-4 w-4" aria-hidden /> Media library
           </Link>
           <Link to="/releases" className={navLink} activeProps={active}>
             <History className="h-4 w-4" aria-hidden /> Releases

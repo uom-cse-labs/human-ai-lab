@@ -6,6 +6,7 @@ import lk.ac.mrt.cse.hai.api.contract.model.Problem;
 import lk.ac.mrt.cse.hai.api.domain.contact.MailDeliveryException;
 import lk.ac.mrt.cse.hai.api.domain.content.ContentRuleException;
 import lk.ac.mrt.cse.hai.api.domain.content.VersionConflictException;
+import lk.ac.mrt.cse.hai.api.domain.media.MediaRuleException;
 import lk.ac.mrt.cse.hai.api.domain.publishing.PublishInProgressException;
 import lk.ac.mrt.cse.hai.api.domain.publishing.PublishValidationException;
 import lk.ac.mrt.cse.hai.api.domain.shared.NotFoundException;
@@ -66,6 +67,16 @@ public class ProblemHandler {
     @ExceptionHandler(ContentRuleException.class)
     ResponseEntity<Problem> rule(ContentRuleException e) {
         return respond(problem(HttpStatus.CONFLICT, e.code(), e.getMessage()));
+    }
+
+    @ExceptionHandler(MediaRuleException.class)
+    ResponseEntity<Problem> media(MediaRuleException e) {
+        HttpStatus status = switch (e.code()) {
+            case "UNSUPPORTED_MEDIA_TYPE" -> HttpStatus.UNSUPPORTED_MEDIA_TYPE;
+            case "FILE_TOO_LARGE" -> HttpStatus.CONTENT_TOO_LARGE;
+            default -> HttpStatus.CONFLICT;
+        };
+        return respond(problem(status, e.code(), e.getMessage()));
     }
 
     @ExceptionHandler(PublishInProgressException.class)

@@ -557,9 +557,10 @@ components:
       required: [key, format, role]
       properties:
         key: { type: string }
-        format: { type: string, enum: [webp, avif, jpg, mp4] }
+        format: { type: string, enum: [webp, avif, jpg, png, mp4] }
         role: { type: string, enum: [srcset, video, poster, placeholder] }
         width: { type: integer }
+        src: { type: string, description: 'Root-relative public path, e.g. /media/{id}/1600.jpg' }
         bytes: { type: integer, format: int64 }
     MediaAsset:
       type: object
@@ -569,6 +570,13 @@ components:
         kind: { $ref: '#/components/schemas/MediaKind' }
         status: { $ref: '#/components/schemas/MediaStatus' }
         failureReason: { type: string }
+        fileName: { type: string }
+        src:
+          type: string
+          description: Root-relative path of the rendition to use on the website (largest image), e.g. /media/{id}/1600.jpg
+        thumbnailSrc:
+          type: string
+          description: Small rendition for the dashboard's media library
         altText: { type: string, maxLength: 500 }
         caption: { type: string, maxLength: 1000 }
         width: { type: integer }

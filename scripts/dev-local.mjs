@@ -1,36 +1,34 @@
-// Runs the whole platform locally, no AWS needed:
-//   Content API  http://localhost:8080  (Spring Boot, `local` profile, data in .local-data/)
-//   Dashboard    http://localhost:6015
+// Runs the whole platform locally, no Cloudflare account needed:
+//   Content API  http://localhost:8080  (the hai-admin Worker in `wrangler dev`, data in .local-data/cloudflare/)
+//   Dashboard    http://localhost:6015  (sign-in is simulated: switch between Admin and Editor in the sidebar)
 //   Website      http://localhost:6014  (reads published releases from the API)
-// Needs Java 21: set JAVA_HOME, or install a JDK under ~/.jdks/. Stop everything with Ctrl+C.
-import { spawn } from 'node:child_process'
-import { existsSync, readdirSync } from 'node:fs'
-import { homedir } from 'node:os'
+// Stop everything with Ctrl+C. The Java Content API still runs on its own: `cd services/content-api && ./gradlew bootRun`.
+import { spawn, spawnSync } from 'node:child_process'
+import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
 const root = new URL('..', import.meta.url).pathname
 
-function javaHome() {
-  if (process.env.JAVA_HOME) return process.env.JAVA_HOME
-  const jdks = join(homedir(), '.jdks')
-  const jdk21 = existsSync(jdks) && readdirSync(jdks).find((d) => d.startsWith('jdk-21'))
-  return jdk21 ? join(jdks, jdk21) : undefined
+// The Worker serves the dashboard's built files too, so they must exist once.
+if (!existsSync(join(root, 'apps/admin/dist'))) {
+  spawnSync('npm', ['run', 'build', '-w', '@hai/admin'], { cwd: root, stdio: 'inherit' })
 }
 
 const services = [
-  { name: 'api  ', color: 33, cwd: join(root, 'services/content-api'), cmd: './gradlew', args: ['bootRun', '--console=plain', '-q'], env: { JAVA_HOME: javaHome() } },
-  { name: 'admin', color: 35, cwd: root, cmd: 'npm', args: ['run', 'dev', '-w', '@hai/admin'] },
-  { name: 'web  ', color: 36, cwd: root, cmd: 'npm', args: ['run', 'dev:releases', '-w', '@hai/web'] },
+  {
+    name: 'api  ',
+    color: 33,
+    cmd: 'npx',
+    args: ['wrangler', 'dev', '-c', 'cloudflare/admin/wrangler.jsonc', '--port', '8080', '--var', 'SIMULATED_SIGN_IN:true',
+      '--persist-to', '.local-data/cloudflare', '--show-interactive-dev-session=false'],
+  },
+  { name: 'admin', color: 35, cmd: 'npm', args: ['run', 'dev', '-w', '@hai/admin'] },
+  { name: 'web  ', color: 36, cmd: 'npm', args: ['run', 'dev:releases', '-w', '@hai/web'] },
 ]
 
-if (!services[0].env.JAVA_HOME) {
-  console.error('Java 21 not found. Set JAVA_HOME to a JDK 21 installation.')
-  process.exit(1)
-}
-
-const children = services.map(({ name, color, cwd, cmd, args, env }) => {
-  // Each service gets its own process group, so stopping it also stops npm's and Gradle's child processes.
-  const child = spawn(cmd, args, { cwd, env: { ...process.env, ...env }, stdio: ['ignore', 'pipe', 'pipe'], detached: true })
+const children = services.map(({ name, color, cmd, args }) => {
+  // Each service gets its own process group, so stopping it also stops npm's and wrangler's child processes.
+  const child = spawn(cmd, args, { cwd: root, env: process.env, stdio: ['ignore', 'pipe', 'pipe'], detached: true })
   const prefix = `\x1b[${color}m${name}\x1b[0m │ `
   for (const stream of [child.stdout, child.stderr]) {
     stream.on('data', (chunk) => {

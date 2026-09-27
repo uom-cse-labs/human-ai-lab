@@ -15,7 +15,7 @@ public class LocalContentFiles implements WebMvcConfigurer {
 
     private final Path contentDir;
 
-    public LocalContentFiles(@Value("${hai.local.data-dir}") String dataDir) {
+    public LocalContentFiles(@Value("${hai.data-dir}") String dataDir) {
         this.contentDir = Path.of(dataDir).toAbsolutePath().normalize().resolve("content");
     }
 

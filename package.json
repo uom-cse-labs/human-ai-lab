@@ -5,7 +5,8 @@
   "workspaces": [
     "apps/*",
     "packages/*",
-    "infra"
+    "infra",
+    "cloudflare"
   ],
   "scripts": {
     "dev": "npm run dev -w @hai/web",
@@ -14,7 +15,8 @@
     "typecheck": "npm run typecheck --workspaces --if-present",
     "contracts:generate": "npm run generate -w @hai/content-schema",
     "diagrams": "node docs/architecture/diagrams/technical-design/build.mjs",
-    "dev:local": "node scripts/dev-local.mjs"
+    "dev:local": "node scripts/dev-local.mjs",
+    "cf:deploy": "npm run deploy -w @hai/cloudflare"
   },
   "engines": {
     "node": ">=22"

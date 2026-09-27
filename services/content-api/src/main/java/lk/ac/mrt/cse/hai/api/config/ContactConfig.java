@@ -1,5 +1,7 @@
 package lk.ac.mrt.cse.hai.api.config;
 
+import java.net.http.HttpClient;
+import lk.ac.mrt.cse.hai.api.adapters.mail.BrevoMailSender;
 import lk.ac.mrt.cse.hai.api.adapters.mail.LoggingMailSender;
 import lk.ac.mrt.cse.hai.api.adapters.mail.SesMailSender;
 import lk.ac.mrt.cse.hai.api.domain.contact.ContactService;
@@ -18,6 +20,8 @@ public class ContactConfig {
         return switch (mail.provider()) {
             case "ses" -> new SesMailSender(
                     SesV2Client.builder().httpClient(UrlConnectionHttpClient.create()).build(), mail.fromAddress());
+            case "brevo" -> new BrevoMailSender(HttpClient.newHttpClient(), BrevoMailSender.API,
+                    mail.apiKey(), mail.fromAddress());
             case "log" -> new LoggingMailSender();
             default -> throw new IllegalStateException("Unknown hai.mail.provider: " + mail.provider());
         };

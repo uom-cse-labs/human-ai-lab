@@ -17,6 +17,7 @@ tags:
   - name: releases
   - name: users
   - name: audit
+  - name: session
   - name: contact
 
 security:
@@ -422,6 +423,19 @@ paths:
               schema: { $ref: '#/components/schemas/AuditEventPage' }
         default: { $ref: '#/components/responses/Problem' }
 
+  /session:
+    get:
+      tags: [session]
+      operationId: getSession
+      summary: The signed-in user and their role, so the dashboard shows only what they may do. Role editor.
+      responses:
+        '200':
+          description: Signed in
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+        default: { $ref: '#/components/responses/Problem' }
+
   /contact:
     post:
       tags: [contact]
@@ -712,6 +726,12 @@ components:
     Role:
       type: string
       enum: [editor, admin]
+    Session:
+      type: object
+      required: [name, role]
+      properties:
+        name: { type: string, description: Email (Cloudflare Access) or username, as recorded in updatedBy and publishedBy }
+        role: { $ref: '#/components/schemas/Role' }
     UserStatus:
       type: string
       enum: [invited, active, disabled]

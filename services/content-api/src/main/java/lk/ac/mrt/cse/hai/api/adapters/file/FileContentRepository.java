@@ -19,10 +19,16 @@ public class FileContentRepository implements ContentRepository {
 
     private final Path root;
     private final ObjectMapper json;
+    private final FileMirror mirror;
 
     public FileContentRepository(Path dataDir, ObjectMapper json) {
+        this(dataDir, json, FileMirror.NONE);
+    }
+
+    public FileContentRepository(Path dataDir, ObjectMapper json, FileMirror mirror) {
         this.root = dataDir.resolve("items");
         this.json = json;
+        this.mirror = mirror;
     }
 
     @Override
@@ -58,7 +64,9 @@ public class FileContentRepository implements ContentRepository {
         if (stored != expectedVersion) {
             throw new VersionConflictException(get(item.type(), item.id()).orElseThrow());
         }
-        JsonFiles.write(json, file(item.type(), item.id()), item);
+        Path file = file(item.type(), item.id());
+        JsonFiles.write(json, file, item);
+        mirror.put(file);
     }
 
     @Override
@@ -68,6 +76,7 @@ public class FileContentRepository implements ContentRepository {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+        mirror.delete(file(type, id));
     }
 
     private Path file(ContentType type, String id) {

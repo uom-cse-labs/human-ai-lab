@@ -338,6 +338,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/session": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** The signed-in user and their role, so the dashboard shows only what they may do. Role editor. */
+        get: operations["getSession"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/contact": {
         parameters: {
             query?: never;
@@ -521,6 +538,11 @@ export interface components {
         };
         /** @enum {string} */
         Role: "editor" | "admin";
+        Session: {
+            /** @description Email (Cloudflare Access) or username */
+            name: string;
+            role: components["schemas"]["Role"];
+        };
         /** @enum {string} */
         UserStatus: "invited" | "active" | "disabled";
         User: {
@@ -1281,6 +1303,27 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["AuditEventPage"];
+                };
+            };
+            default: components["responses"]["Problem"];
+        };
+    };
+    getSession: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Signed in */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Session"];
                 };
             };
             default: components["responses"]["Problem"];

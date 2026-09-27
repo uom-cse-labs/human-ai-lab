@@ -18,7 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
  * contact form needs a valid Cognito access token, and admin-only use cases check the role.
  */
 @Configuration
-@Profile("!local")
+@Profile("!local & !cloudflare")
 public class SecurityConfig {
 
     @Bean

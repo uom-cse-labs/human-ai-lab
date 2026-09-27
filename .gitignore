@@ -24,3 +24,4 @@ cdk.out/
 
 # Local development data (dashboard drafts and releases)
 .local-data/
+cloudflare/src/seed.gen.json

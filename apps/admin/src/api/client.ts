@@ -9,6 +9,7 @@ export type Problem = components['schemas']['Problem']
 export type MediaAsset = components['schemas']['MediaAsset']
 export type MediaAssetPage = components['schemas']['MediaAssetPage']
 export type UploadTicket = components['schemas']['UploadTicket']
+export type Session = components['schemas']['Session']
 export type UploadContentType = components['schemas']['UploadRequest']['contentType']
 
 /** An API error carrying the server's problem details (contract: RFC 9457). */
@@ -25,11 +26,36 @@ export class ApiError extends Error {
   }
 }
 
+/**
+ * `vite dev` (npm run dev:local): sign-in is simulated and the role comes from the sidebar picker.
+ * Deployed on Cloudflare, Cloudflare Access signs people in before the dashboard loads.
+ */
+export const SIMULATED_SIGN_IN = import.meta.env.DEV
+
 export type LocalRole = 'admin' | 'editor'
 
 const ROLE_KEY = 'hai.localRole'
 
-/** Local development has no Cognito yet; the API trusts this header only under its `local` profile. */
+let session: Session | null = null
+
+/** Deployed: asks the API who signed in. Resolves to null if it can't tell (e.g. Access not set up yet). */
+export async function loadSession(): Promise<Session | null> {
+  if (SIMULATED_SIGN_IN) {
+    return null
+  }
+  try {
+    session = await request<Session>('GET', '/session')
+  } catch {
+    session = null
+  }
+  return session
+}
+
+export function getSession(): Session | null {
+  return session
+}
+
+/** Simulated sign-in only; the API trusts this header only under its `local` profile. */
 export function getLocalRole(): LocalRole {
   try {
     return localStorage.getItem(ROLE_KEY) === 'editor' ? 'editor' : 'admin'
@@ -40,7 +66,11 @@ export function getLocalRole(): LocalRole {
 
 /** Publishing, rolling back, hiding and deleting need the admin role; the API enforces this too. */
 export function isAdmin(): boolean {
-  return getLocalRole() === 'admin'
+  return SIMULATED_SIGN_IN ? getLocalRole() === 'admin' : session?.role === 'admin'
+}
+
+function roleHeader(): Record<string, string> {
+  return SIMULATED_SIGN_IN ? { 'X-Local-Role': getLocalRole() } : {}
 }
 
 export function setLocalRole(role: LocalRole) {
@@ -56,7 +86,7 @@ async function request<T>(method: string, path: string, body?: unknown, headers:
     method,
     headers: {
       ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
-      'X-Local-Role': getLocalRole(),
+      ...roleHeader(),
       ...headers,
     },
     body: body === undefined ? undefined : JSON.stringify(body),
@@ -96,8 +126,8 @@ const media = {
   delete: (id: string) => request<void>('DELETE', `/media/${id}`),
 
   /**
-   * Uploads a photo the way the platform does in AWS: ask the API for an upload URL, send the file straight
-   * there (S3 in AWS, the local API in development), then tell the API it has arrived.
+   * Uploads a photo: ask the API for an upload URL, send the file there (the API itself, locally and on
+   * Cloudflare), then tell the API it has arrived.
    */
   async upload(file: File, altText: string): Promise<MediaAsset> {
     const ticket = await request<UploadTicket>('POST', '/media/uploads', {
@@ -107,7 +137,7 @@ const media = {
     })
     const put = await fetch(ticket.parts[0].url, {
       method: 'PUT',
-      headers: { 'Content-Type': file.type, 'X-Local-Role': getLocalRole() },
+      headers: { 'Content-Type': file.type, ...roleHeader() },
       body: file,
     })
     if (!put.ok) {

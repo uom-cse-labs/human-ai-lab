@@ -16,10 +16,16 @@ public class FileReleaseLog implements ReleaseLog {
 
     private final Path file;
     private final ObjectMapper json;
+    private final FileMirror mirror;
 
     public FileReleaseLog(Path dataDir, ObjectMapper json) {
+        this(dataDir, json, FileMirror.NONE);
+    }
+
+    public FileReleaseLog(Path dataDir, ObjectMapper json, FileMirror mirror) {
         this.file = dataDir.resolve("releases.json");
         this.json = json;
+        this.mirror = mirror;
     }
 
     @Override
@@ -27,6 +33,7 @@ public class FileReleaseLog implements ReleaseLog {
         List<Release> all = new ArrayList<>(list());
         all.add(release);
         JsonFiles.write(json, file, all);
+        mirror.put(file);
     }
 
     @Override

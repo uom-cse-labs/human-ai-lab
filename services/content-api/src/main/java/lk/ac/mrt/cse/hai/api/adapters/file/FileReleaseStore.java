@@ -19,24 +19,36 @@ public class FileReleaseStore implements ReleaseStore {
 
     private final Path contentDir;
     private final ObjectMapper json;
+    private final FileMirror mirror;
 
     public FileReleaseStore(Path dataDir, ObjectMapper json) {
+        this(dataDir, json, FileMirror.NONE);
+    }
+
+    public FileReleaseStore(Path dataDir, ObjectMapper json, FileMirror mirror) {
         this.contentDir = dataDir.resolve("content");
         this.json = ReleaseFiles.writer(json);
+        this.mirror = mirror;
     }
 
     @Override
     public void write(Release release, Snapshot snapshot) {
         Path dir = contentDir.resolve("releases").resolve(release.id());
-        ReleaseFiles.of(snapshot).forEach((name, content) -> JsonFiles.write(json, dir.resolve(name), content));
+        ReleaseFiles.of(snapshot).forEach((name, content) -> {
+            JsonFiles.write(json, dir.resolve(name), content);
+            mirror.put(dir.resolve(name));
+        });
     }
 
     @Override
     public synchronized void pointTo(Release release) {
-        JsonFiles.write(json, contentDir.resolve("current.json"), new ReleasePointer()
+        Path pointer = contentDir.resolve("current.json");
+        JsonFiles.write(json, pointer, new ReleasePointer()
                 .schema(ReleasePointer.SchemaEnum.NUMBER_1)
                 .release(release.id())
                 .publishedAt(release.publishedAt().atOffset(ZoneOffset.UTC)));
+        // Written after every release file, so visitors never see a pointer to a half-written release.
+        mirror.put(pointer);
     }
 
     @Override

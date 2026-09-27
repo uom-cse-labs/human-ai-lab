@@ -1,7 +1,24 @@
 import { useState, type ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
 import { BookOpen, History, Images, Lightbulb, Newspaper, Users } from 'lucide-react'
-import { getLocalRole, setLocalRole, type LocalRole } from '../api/client.ts'
+import { getLocalRole, getSession, setLocalRole, SIMULATED_SIGN_IN, type LocalRole } from '../api/client.ts'
+
+function SignedInAs() {
+  const session = getSession()
+  return (
+    <div className="mt-8 rounded-xl border border-outline-variant px-4 py-3 text-xs text-muted">
+      {session ? (
+        <>
+          <p>Signed in as</p>
+          <p className="mt-1 break-all font-semibold text-on-background">{session.name}</p>
+          <p className="mt-1">{session.role === 'admin' ? 'Admin: can publish' : 'Editor: drafts only'}</p>
+        </>
+      ) : (
+        <p>Sign-in isn't working yet. Ask the site maintainer to finish the Cloudflare Access setup.</p>
+      )}
+    </div>
+  )
+}
 
 export default function Layout({ children }: { children: ReactNode }) {
   const [role, setRole] = useState<LocalRole>(getLocalRole())
@@ -42,20 +59,24 @@ export default function Layout({ children }: { children: ReactNode }) {
             <History className="h-4 w-4" aria-hidden /> Releases
           </Link>
         </nav>
-        <div className="mt-8 rounded-xl border border-dashed border-outline px-4 py-3 text-xs text-muted">
-          <p className="font-semibold text-on-background">Local mode</p>
-          <p className="mt-1">Sign-in is simulated. You're using the dashboard as:</p>
-          <label htmlFor="local-role" className="sr-only">Role</label>
-          <select
-            id="local-role"
-            value={role}
-            onChange={(e) => changeRole(e.target.value as LocalRole)}
-            className="mt-2 w-full rounded-full border border-outline bg-background px-3 py-1.5 text-sm text-on-background"
-          >
-            <option value="admin">Admin: can publish</option>
-            <option value="editor">Editor: drafts only</option>
-          </select>
-        </div>
+        {SIMULATED_SIGN_IN ? (
+          <div className="mt-8 rounded-xl border border-dashed border-outline px-4 py-3 text-xs text-muted">
+            <p className="font-semibold text-on-background">Local mode</p>
+            <p className="mt-1">Sign-in is simulated. You're using the dashboard as:</p>
+            <label htmlFor="local-role" className="sr-only">Role</label>
+            <select
+              id="local-role"
+              value={role}
+              onChange={(e) => changeRole(e.target.value as LocalRole)}
+              className="mt-2 w-full rounded-full border border-outline bg-background px-3 py-1.5 text-sm text-on-background"
+            >
+              <option value="admin">Admin: can publish</option>
+              <option value="editor">Editor: drafts only</option>
+            </select>
+          </div>
+        ) : (
+          <SignedInAs />
+        )}
       </aside>
       <main className="px-4 py-8 sm:px-8">
         <div className="mx-auto max-w-5xl">{children}</div>

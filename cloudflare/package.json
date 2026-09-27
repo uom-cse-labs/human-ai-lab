@@ -1,0 +1,24 @@
+{
+  "name": "@hai/cloudflare",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Cloudflare deployment: the public site Worker, and the dashboard Worker with the Content API.",
+  "scripts": {
+    "seed": "node scripts/build-seed.mjs",
+    "deploy": "node scripts/deploy.mjs",
+    "pretypecheck": "npm run seed",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p test",
+    "pretest": "npm run seed",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260927.1",
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.5",
+    "wrangler": "^4.141.0"
+  },
+  "dependencies": {
+    "@hai/content-schema": "*"
+  }
+}

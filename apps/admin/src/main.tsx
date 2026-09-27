@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import {
   createRootRoute, createRoute, createRouter, Outlet, redirect, RouterProvider,
 } from '@tanstack/react-router'
+import { loadSession } from './api/client.ts'
 import Layout from './components/Layout.tsx'
 import { COLLECTIONS } from './collections.ts'
 import CollectionEditorPage from './pages/CollectionEditorPage.tsx'
@@ -78,8 +79,11 @@ declare module '@tanstack/react-router' {
   }
 }
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
-)
+// Know the signed-in role before the first render, so admin-only actions never flash on screen.
+void loadSession().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+    </StrictMode>,
+  )
+})

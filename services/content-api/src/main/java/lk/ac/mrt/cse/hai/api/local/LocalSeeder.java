@@ -31,12 +31,15 @@ import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 /**
- * Local development only: imports the website's built-in content (news Markdown, publications, research
- * themes and people) into any empty collection, then publishes so the website keeps showing it. A prototype
- * of the phase 3 migration. Never publishes over someone's unpublished edits.
+ * Imports the website's built-in content (news Markdown, publications, research themes and people) into any
+ * empty collection, then publishes so the website keeps showing it. A prototype of the phase 3 migration.
+ * Never publishes over someone's unpublished edits.
+ *
+ * <p>Locally it fills any empty collection on every start. On Cloudflare ({@code hai.seed-only-before-first-publish})
+ * it runs only until the first release exists, so a collection emptied on purpose stays empty.
  */
 @Component
-@Profile("local")
+@Profile({"local", "cloudflare"})
 public class LocalSeeder implements ApplicationRunner {
 
     private static final Logger log = LoggerFactory.getLogger(LocalSeeder.class);
@@ -51,18 +54,24 @@ public class LocalSeeder implements ApplicationRunner {
     private final PublishService publishing;
     private final ObjectMapper json;
     private final Path siteSource;
+    private final boolean onlyBeforeFirstPublish;
 
     public LocalSeeder(ContentService contents, PublishService publishing, ObjectMapper json,
-            @Value("${hai.local.seed-dir}") String siteSource) {
+            @Value("${hai.seed-dir}") String siteSource,
+            @Value("${hai.seed-only-before-first-publish:false}") boolean onlyBeforeFirstPublish) {
         this.contents = contents;
         this.publishing = publishing;
         this.json = json;
         this.siteSource = Path.of(siteSource).toAbsolutePath().normalize();
+        this.onlyBeforeFirstPublish = onlyBeforeFirstPublish;
     }
 
     @Override
     public void run(ApplicationArguments args) throws IOException {
         if (!Files.isDirectory(siteSource)) {
+            return;
+        }
+        if (onlyBeforeFirstPublish && !publishing.list(null, 1).items().isEmpty()) {
             return;
         }
         List<String> imported = new ArrayList<>();

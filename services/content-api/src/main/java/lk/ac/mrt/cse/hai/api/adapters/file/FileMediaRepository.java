@@ -17,15 +17,22 @@ public class FileMediaRepository implements MediaRepository {
 
     private final Path dir;
     private final ObjectMapper json;
+    private final FileMirror mirror;
 
     public FileMediaRepository(Path dataDir, ObjectMapper json) {
+        this(dataDir, json, FileMirror.NONE);
+    }
+
+    public FileMediaRepository(Path dataDir, ObjectMapper json, FileMirror mirror) {
         this.dir = dataDir.resolve("media-records");
         this.json = json;
+        this.mirror = mirror;
     }
 
     @Override
     public synchronized void save(MediaAsset asset) {
         JsonFiles.write(json, file(asset.id()), asset);
+        mirror.put(file(asset.id()));
     }
 
     @Override
@@ -56,6 +63,7 @@ public class FileMediaRepository implements MediaRepository {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+        mirror.delete(file(id));
     }
 
     private Path file(String id) {

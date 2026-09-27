@@ -1,0 +1,31 @@
+# Cloudflare container (see cloudflare/README.md). The dashboard Worker passes these environment variables
+# in when it starts the container; their values come from cloudflare/admin/wrangler.jsonc and Worker secrets.
+server:
+  port: 8080
+  # Clean stop when Cloudflare puts the container to sleep: finish in-flight writes to R2 first.
+  shutdown: graceful
+
+hai:
+  # Cloudflare Access: https://<team>.cloudflareaccess.com and the application's AUD tag.
+  # Until both are set, the dashboard API refuses every request (the contact form still works).
+  issuer-uri: ${ACCESS_ISSUER:https://not-configured.cloudflareaccess.com}
+  client-id: ${ACCESS_AUD:not-configured}
+  admin-emails: ${ADMIN_EMAILS:}
+  mail:
+    provider: ${MAIL_PROVIDER:log}
+    from-address: ${MAIL_FROM_ADDRESS:no-reply@localhost}
+    to-address: ${MAIL_TO_ADDRESS}
+    # Brevo's email API over HTTPS (containers can't reach SMTP ports). Set by the Worker when BREVO_API_KEY exists.
+    api-key: ${MAIL_API_KEY:}
+  storage: r2
+  # Working copy on the container's disk; R2 is the durable store.
+  data-dir: /data
+  r2:
+    account-id: ${R2_ACCOUNT_ID}
+    access-key-id: ${R2_ACCESS_KEY_ID}
+    secret-access-key: ${R2_SECRET_ACCESS_KEY}
+    bucket: ${R2_BUCKET}
+    endpoint: ${R2_ENDPOINT:}
+  # The website's built-in content, copied into the image; imported on the very first start only.
+  seed-dir: /app/seed
+  seed-only-before-first-publish: true

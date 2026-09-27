@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Local development only: receives the browser's file upload, standing in for S3's presigned PUT URL.
- * The dashboard sends the file here exactly as it would to S3.
+ * Receives the browser's file upload, standing in for S3's presigned PUT URL: locally, and on Cloudflare, where
+ * the dashboard Worker passes the upload through to the API. The dashboard sends the file here exactly as it
+ * would to S3.
  */
 @RestController
-@Profile("local")
+@Profile({"local", "cloudflare"})
 public class LocalUploadController {
 
     private final MediaService media;

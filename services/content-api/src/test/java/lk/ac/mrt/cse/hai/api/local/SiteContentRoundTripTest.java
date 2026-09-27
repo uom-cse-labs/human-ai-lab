@@ -36,7 +36,7 @@ class SiteContentRoundTripTest {
         var contents = new ContentService(repository, Clock.systemUTC());
         var publishing = new PublishService(repository, store, new PublishServiceTest.MemoryLog(),
                 new PublishServiceTest.SwitchLock(), Clock.systemUTC());
-        new LocalSeeder(contents, publishing, JSON, SITE.toString()).run(null);
+        new LocalSeeder(contents, publishing, JSON, SITE.toString(), false).run(null);
         published = new java.util.HashMap<>();
         ObjectMapper writer = ReleaseFiles.writer(JSON);
         ReleaseFiles.of(store.lastSnapshot).forEach((name, file) -> published.put(name, writer.valueToTree(file)));

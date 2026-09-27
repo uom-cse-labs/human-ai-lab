@@ -1,0 +1,31 @@
+// hai-site: the public website. Deploy with `npm run cf:deploy` from the repository root
+// (see cloudflare/README.md). Deployed after hai-admin, which it calls for the contact form.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "hai-site",
+  "main": "../src/site.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+
+  // The website, built with VITE_CONTENT_SOURCE=releases. /api, /content and /media go to the Worker code first.
+  "assets": {
+    "directory": "../../apps/web/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/content/*", "/media/*"]
+  },
+
+  // Read-only use: published releases and photos.
+  "r2_buckets": [{ "binding": "CONTENT", "bucket_name": "hai-content" }],
+
+  // The contact form and first-start calls go to the dashboard Worker's AdminService, never its /api.
+  "services": [{ "binding": "ADMIN", "service": "hai-admin", "entrypoint": "AdminService" }],
+
+  // At most 5 contact messages per minute from one IP address.
+  "ratelimits": [
+    { "name": "CONTACT_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
+  ]
+
+  // Custom domain: uncomment and set once the domain is on Cloudflare (see cloudflare/README.md).
+  // , "routes": [{ "pattern": "humanai.example.org", "custom_domain": true }]
+}

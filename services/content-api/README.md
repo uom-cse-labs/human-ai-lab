@@ -23,6 +23,7 @@ Interfaces and DTOs under `lk.ac.mrt.cse.hai.api.contract` are generated from [`
 | `./gradlew build` | Compile, test, and package `build/distributions/content-api.zip` for Lambda |
 | `./gradlew test` | Unit, security, architecture and ALB-event tests |
 | `./gradlew bootRun` | Run locally on port 8080 with the `local` profile (emails are logged, not sent) |
+| `./gradlew bootJar` | Package the runnable jar used by the Cloudflare container image ([Dockerfile](Dockerfile)) |
 
 `bootRun` accepts tokens from a local OAuth2 server at `http://localhost:9000/default`, such as
 `docker run -p 9000:8080 ghcr.io/navikt/mock-oauth2-server`. The public contact endpoint works without one:
@@ -35,6 +36,10 @@ curl -X POST localhost:8080/api/contact -H 'content-type: application/json' \
 ## Local storage
 
 With the `local` profile (`bootRun`), `hai.storage=local` stores drafts, releases and the release history as files in `../../.local-data/`, laid out as in the S3 content bucket, and serves `/content/*` like CloudFront. Sign-in is simulated: the `X-Local-Role` header (`admin` or `editor`) chooses the role. This profile refuses to start inside Lambda.
+
+## Cloudflare
+
+The `cloudflare` profile ([application-cloudflare.yml](src/main/resources/application-cloudflare.yml)) runs the same file adapters with `hai.storage=r2`. The data folder is a working copy on the container's disk, every write is also sent to R2 (`R2Mirror`), and the folder is restored from R2 on start. Sign-in is Cloudflare Access: the `Cf-Access-Jwt-Assertion` token is validated here, and `ADMIN_EMAILS` decides who is an admin. Contact mail goes through Brevo's HTTPS API. The deployment itself is described in [cloudflare/README.md](../../cloudflare/README.md).
 
 ## Status
 

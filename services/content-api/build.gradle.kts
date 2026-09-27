@@ -39,6 +39,7 @@ dependencies {
     implementation("com.amazonaws.serverless:aws-serverless-java-container-springboot4:3.0.2")
     implementation("com.amazonaws:aws-lambda-java-core:1.4.0")
     implementation("software.amazon.awssdk:sesv2")
+    implementation("software.amazon.awssdk:s3") // Cloudflare R2 through its S3-compatible API
     implementation("software.amazon.awssdk:url-connection-client")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -106,14 +107,17 @@ tasks.build {
     dependsOn("buildZip")
 }
 
-tasks.bootJar {
-    enabled = false
-}
-
-// `./gradlew bootRun` for local development needs an embedded server, which the Lambda package excludes.
+// `./gradlew bootRun` for local development and the Cloudflare container need an embedded server,
+// which the Lambda package excludes.
 dependencies {
     tomcatForLocalRun("org.apache.tomcat.embed:tomcat-embed-core")
     tomcatForLocalRun("org.springframework.boot:spring-boot-tomcat")
+}
+
+// Cloudflare container image: one runnable jar, build/libs/content-api.jar (see Dockerfile).
+tasks.bootJar {
+    archiveFileName.set("content-api.jar")
+    classpath(tomcatForLocalRun)
 }
 
 tasks.bootRun {

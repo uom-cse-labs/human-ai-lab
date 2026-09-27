@@ -26,6 +26,8 @@ jobs:
       - run: npm run typecheck -w @hai/admin
       - run: npm run build -w @hai/admin
       - run: npm run test -w @hai/web
+      - run: npm run typecheck -w @hai/cloudflare
+      - run: npm run test -w @hai/cloudflare
       - run: npm run typecheck -w @hai/infra
       - run: npm run test -w @hai/infra
 

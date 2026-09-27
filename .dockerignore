@@ -1,0 +1,8 @@
+# Only the Content API image is built from the repository root. Send it just what the Dockerfile copies.
+*
+!contracts/
+!services/content-api/
+!apps/web/src/content/
+!apps/web/src/data.json
+services/content-api/build/
+services/content-api/.gradle/

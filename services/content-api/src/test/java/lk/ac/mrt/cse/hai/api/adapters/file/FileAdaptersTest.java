@@ -65,6 +65,58 @@ class FileAdaptersTest {
         assertThat(store.currentReleaseId()).contains(release.id());
     }
 
+    /** Records what the adapters report, as keys relative to the data folder. */
+    private final class RecordingMirror implements FileMirror {
+        final List<String> events = new java.util.ArrayList<>();
+
+        @Override
+        public void put(Path file) {
+            assertThat(file).exists();
+            events.add("put " + dataDir.relativize(file));
+        }
+
+        @Override
+        public void delete(Path file) {
+            assertThat(file).doesNotExist();
+            events.add("delete " + dataDir.relativize(file));
+        }
+
+        @Override
+        public void deleteTree(Path dir) {
+            assertThat(dir).doesNotExist();
+            events.add("deleteTree " + dataDir.relativize(dir));
+        }
+    }
+
+    @Test
+    void everyWriteIsMirroredAfterItLandsOnDisk() {
+        RecordingMirror mirror = new RecordingMirror();
+        FileContentRepository repository = new FileContentRepository(dataDir, json, mirror);
+        FileReleaseStore store = new FileReleaseStore(dataDir, json, mirror);
+        FileReleaseLog log = new FileReleaseLog(dataDir, json, mirror);
+        FileMediaLibrary library = new FileMediaLibrary(dataDir, mirror);
+        Release release = new Release("2026-10-02T09-15-00Z", "admin", Instant.parse("2026-10-02T09:15:00Z"), null);
+
+        repository.save(item(1), 0);
+        store.write(release, new Snapshot(Map.of(ContentType.NEWS, List.of(item(1)))));
+        store.pointTo(release);
+        log.record(release);
+        library.put("m_1", "photo-800.webp", new byte[] {1, 2, 3}, "image/webp");
+        library.delete("m_1");
+        repository.delete(ContentType.NEWS, "n_1");
+
+        assertThat(mirror.events).contains(
+                "put items/news/n_1.json",
+                "put content/releases/2026-10-02T09-15-00Z/news.json",
+                "put releases.json",
+                "put media/m_1/photo-800.webp",
+                "deleteTree media/m_1",
+                "delete items/news/n_1.json");
+        // The pointer goes last, so visitors never see a pointer to a half-written release.
+        int pointer = mirror.events.indexOf("put content/current.json");
+        assertThat(mirror.events.subList(0, pointer)).filteredOn(e -> e.startsWith("put content/releases/")).hasSize(4);
+    }
+
     @Test
     void releaseLogListsNewestFirst() {
         FileReleaseLog log = new FileReleaseLog(dataDir, json);

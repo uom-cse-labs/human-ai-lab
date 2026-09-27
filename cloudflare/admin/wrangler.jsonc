@@ -1,0 +1,53 @@
+// hai-admin: the content dashboard and the Content API (TypeScript, in this Worker).
+// Deploy with `npm run cf:deploy` from the repository root (see cloudflare/README.md).
+// Everything here fits Cloudflare's free plan.
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "hai-admin",
+  "main": "../src/admin.ts",
+  "compatibility_date": "2026-09-01",
+  "observability": { "enabled": true },
+
+  // Bundles the website's built-in content, which a new deployment imports once.
+  "build": { "command": "npm run --silent seed -w @hai/cloudflare" },
+
+  // The dashboard's static files. /api, /content and /media go to the Worker code first.
+  "assets": {
+    "directory": "../../apps/admin/dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/content/*", "/media/*"]
+  },
+
+  // Drafts, the media library and the release history: one SQLite-backed Durable Object.
+  "durable_objects": {
+    "bindings": [{ "name": "CONTENT_STORE", "class_name": "ContentStore" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["ContentStore"] }],
+
+  // Published releases (content/), photos (media/) and upload originals (uploads/). Created by the deploy script.
+  "r2_buckets": [{ "binding": "CONTENT", "bucket_name": "hai-content" }],
+
+  // Cloudflare Images makes the web sizes of uploaded photos (5,000 a month free; about 3 per photo).
+  "images": { "binding": "IMAGES" },
+
+  // ---------------------------------------------------------------------------------------------------
+  // Settings. Edit these, commit, and deploy again. The repository is public, so two settings are kept out
+  // of it as Worker secrets, stored by the deploy script from environment variables or a git-ignored .env:
+  //   ADMIN_EMAILS   who can publish and roll back, comma-separated (everyone else Access lets in can
+  //                  edit drafts only)
+  //   BREVO_API_KEY  sends contact-form messages
+  // ---------------------------------------------------------------------------------------------------
+  "vars": {
+    // Cloudflare Access (see "Protect the dashboard" in cloudflare/README.md). Until both are set, nobody
+    // can sign in to the dashboard, but the public site and contact form work. Neither is secret: both
+    // appear in the Access login address.
+    "ACCESS_TEAM_DOMAIN": "bold-fire-35fa",   // from bold-fire-35fa.cloudflareaccess.com
+    "ACCESS_AUD": "f1ff78d4d0f9fd456084e7f970932ca5ad8b940bf1b1454609a99398b87167a0",
+
+    // Contact form, sent through Brevo (README step 4). Until the BREVO_API_KEY secret is stored, messages are
+    // only written to the Worker log.
+    "MAIL_TO_ADDRESS": "humanai@cse.mrt.ac.lk",
+    "MAIL_FROM_ADDRESS": ""     // a sender verified in Brevo; defaults to MAIL_TO_ADDRESS
+  }
+}

@@ -7,6 +7,5 @@ hai:
     from-address: no-reply@localhost
     to-address: lab-inbox@localhost
   storage: local
-  local:
-    data-dir: ../../.local-data
-    seed-dir: ../../apps/web/src
+  data-dir: ../../.local-data
+  seed-dir: ../../apps/web/src

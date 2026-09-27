@@ -10,9 +10,15 @@ import lk.ac.mrt.cse.hai.api.domain.media.MediaLibrary;
 public class FileMediaLibrary implements MediaLibrary {
 
     private final Path dir;
+    private final FileMirror mirror;
 
     public FileMediaLibrary(Path dataDir) {
+        this(dataDir, FileMirror.NONE);
+    }
+
+    public FileMediaLibrary(Path dataDir, FileMirror mirror) {
         this.dir = dataDir.resolve("media");
+        this.mirror = mirror;
     }
 
     @Override
@@ -27,11 +33,14 @@ public class FileMediaLibrary implements MediaLibrary {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+        mirror.put(target);
         return "/media/" + mediaId + "/" + fileName;
     }
 
     @Override
     public void delete(String mediaId) {
-        FileUploadInbox.deleteTree(dir.resolve(SafeIds.check(mediaId)));
+        Path folder = dir.resolve(SafeIds.check(mediaId));
+        FileUploadInbox.deleteTree(folder);
+        mirror.deleteTree(folder);
     }
 }

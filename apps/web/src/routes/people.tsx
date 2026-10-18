@@ -3,6 +3,7 @@ import { titled } from '@/lib/title'
 import { useLab } from '@/lab-context'
 import { usePeopleDirectory } from '@/lib/content'
 import { asTeamMember } from '@/lib/people'
+import { SHOW_ALUMNI } from '@/site-settings'
 import AlumniRow from '@/components/people/AlumniRow'
 import DirectorCard from '@/components/people/DirectorCard'
 import JumpLink from '@/components/people/JumpLink'
@@ -22,7 +23,8 @@ export const Route = createFileRoute('/people')({
 function PeoplePage() {
   const { directory } = usePeopleDirectory()
   const { setSelectedMember } = useLab()
-  const { director, faculty, fellows, postgraduates, assistants, undergraduates, alumni } = directory
+  const { director, faculty, fellows, postgraduates, assistants, undergraduates } = directory
+  const alumni = SHOW_ALUMNI ? directory.alumni : []
 
   const sections = [
     { id: 'director', label: 'Director', count: director ? 1 : 0 },

@@ -12,6 +12,9 @@ const buttonVariants = cva(
         outline: "bg-transparent text-on-background border border-outline hover:bg-on-background hover:text-background hover:border-on-background",
         secondary: "bg-on-background text-background hover:bg-primary hover:text-white",
         ghost: "bg-transparent text-on-background/50 hover:text-primary",
+        // For use on dark photos and dark panels.
+        light: "bg-white text-on-background hover:bg-primary-light",
+        "outline-light": "bg-transparent text-white border border-white/60 hover:bg-white/10 hover:border-white",
       },
       size: {
         xl: "h-20 px-10 text-xs",

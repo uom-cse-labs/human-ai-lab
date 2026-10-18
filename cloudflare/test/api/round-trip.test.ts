@@ -64,4 +64,18 @@ describe('the site content round trip', () => {
     expect(items[0].cover).toEqual({ src: 'https://snipboard.io/TABRn2.jpg', alt: items[0].title })
     expect(items[0].body).toMatch(/^Under the guidance/)
   })
+
+  it('publishes the publication type and links when set', async () => {
+    const store = new MemoryStore()
+    const files = new MemoryFiles()
+    const contents = new ContentService(store)
+    contents.create('publication', {
+      slug: 'p', title: 'P', body: 'Abstract', mediaRefs: [],
+      fields: { category: 'DESIGN', year: 2025, authors: 'A', publishedIn: 'CHI', citation: 'C', publicationType: 'conference', doi: '10.1145/1', pdfUrl: 'https://arxiv.org/pdf/1' },
+    }, 'asha')
+    const release = await new PublishService(store, files).publish(undefined, 'admin')
+    const [pub] = (files.json(`content/releases/${release.id}/publications.json`) as { items: Record<string, unknown>[] }).items
+    expect(pub).toMatchObject({ type: 'conference', doi: '10.1145/1', pdfUrl: 'https://arxiv.org/pdf/1' })
+    expect(pub).not.toHaveProperty('url')
+  })
 })

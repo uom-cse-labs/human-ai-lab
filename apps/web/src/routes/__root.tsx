@@ -10,13 +10,14 @@ import {
 import { LabProvider, useLab } from '@/lab-context'
 
 import appCss from '../styles.css?url'
+import { pageTitle } from '@/lib/title'
 
 export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'Human AI Lab' },
+      { title: pageTitle() },
     ],
     links: [{ rel: 'stylesheet', href: appCss }],
   }),

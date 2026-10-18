@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { titled } from '@/lib/title'
 import { useResearchThemes } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
 import { Bot, Brain, Shield, Eye, Network } from "lucide-react";
 
 export const Route = createFileRoute("/themes")({
+  head: titled('Research themes'),
   component: Themes,
 });
 

@@ -9,6 +9,7 @@ import { ContentService } from './api/content.ts'
 import { CloudflareImageProcessor, OriginalSizeProcessor } from './api/images.ts'
 import { MediaService } from './api/media.ts'
 import { CONTENT_TYPES, hasUnpublishedChanges } from './api/model.ts'
+import { migrateLegacyGroups } from './api/people.ts'
 import { PublishService } from './api/publishing.ts'
 import { Router } from './api/router.ts'
 import { IMPORT_USER, importSiteContent, type SeedBundle } from './api/seed.ts'
@@ -28,11 +29,22 @@ export class ContentStore extends DurableObject<AdminEnv> {
   constructor(ctx: DurableObjectState, env: AdminEnv) {
     super(ctx, env)
     this.store = new SqlStore(ctx.storage.sql)
+    this.migratePeopleGroups()
     const files = new R2Files(env.CONTENT)
     this.contents = new ContentService(this.store)
     this.publishing = new PublishService(this.store, files)
     const processor = env.IMAGES ? new CloudflareImageProcessor(env.IMAGES) : new OriginalSizeProcessor()
     this.router = new Router({ contents: this.contents, media: new MediaService(this.store, files, processor), publishing: this.publishing })
+  }
+
+  /**
+   * People saved before academic grouping move to the new groups. Only the group changes and the version is
+   * kept, so nothing shows as an unpublished edit; the next release publishes the same people, regrouped.
+   */
+  private migratePeopleGroups() {
+    for (const member of migrateLegacyGroups(this.store.listItems('member'))) {
+      this.store.saveItem(member, member.version)
+    }
   }
 
   /** One /api request from a signed-in user. */

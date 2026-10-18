@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { titled } from '@/lib/title'
 import { Target, Users, Lightbulb, ShieldCheck } from "lucide-react";
-import MembersSection from "@/components/sections/home/MembersSection";
+import LeadershipSection from "@/components/sections/home/LeadershipSection";
 import PillarCard from "@/components/sections/about/PillarCard";
 
 export const Route = createFileRoute("/about")({
+  head: titled('About'),
   component: About,
 });
 
@@ -139,7 +141,7 @@ function About() {
         </div>
       </section>
 
-      <MembersSection />
+      <LeadershipSection />
 
       {/* Final CTA / Statement */}
       <section className="max-w-7xl mx-auto px-6 mt-28">

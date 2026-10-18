@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface HeroSectionProps {
@@ -5,58 +6,45 @@ interface HeroSectionProps {
   onViewPublications: () => void;
 }
 
+/**
+ * A lab photograph in a rounded frame with a dark one-colour overlay (DESIGN.md §5), about 60% of the
+ * screen tall so the latest news shows on the first screen.
+ */
 export default function HeroSection({
   onExploreResearch,
   onViewPublications,
 }: HeroSectionProps) {
   return (
-    <section
-      id="rounded-hero"
-      className="relative min-h-[max(90vh,600px)] flex items-center bg-background overflow-hidden py-24 border-b border-outline"
-    >
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(52.91%_0.221_262.13/0.03)_1px,transparent_1px),linear-gradient(to_bottom,oklch(52.91%_0.221_262.13/0.03)_1px,transparent_1px)] bg-[size:5rem_5rem]" />
-      </div>
-
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
+    <section id="rounded-hero" className="bg-background px-4 pt-4 sm:px-6 sm:pt-6">
+      <div className="relative mx-auto flex min-h-112 max-w-7xl items-end overflow-hidden rounded-3xl bg-tertiary md:min-h-136">
         <img
-          src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80&w=2000"
-          alt=""
-          className="w-full h-full object-cover object-center filter contrast-150 saturate-150 brightness-110"
-          referrerPolicy="no-referrer"
+          src="/images/hero-robotic-arm.jpg"
+          alt="Robotic arms in the Human-AI Lab, prepared for automated coffee making"
+          className="absolute inset-0 h-full w-full object-cover grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/80" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-tertiary via-tertiary/70 to-tertiary/30 md:bg-gradient-to-r" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <div className="lg:col-span-11 xl:col-span-10 flex flex-col items-start">
-          <div className="mb-8 flex items-center gap-3 animate-fade-in">
-            <span className="w-12 h-[2px] bg-primary" />
-            <span className="font-mono text-[10px] font-black uppercase tracking-[0.25em] text-primary">
-              DEPARTMENT OF COMPUTER SCIENCE & ENGINEERING — UNIVERSITY OF MORATUWA
-            </span>
-          </div>
-
-          <h1 className="font-sans text-5xl md:text-7xl lg:text-[5.5rem] font-black tracking-tighter text-on-background leading-[0.9] mb-10 uppercase select-none">
-            <span className="text-primary italic">Human</span>
-            -Centered{" "}
-            <span className="text-on-background relative inline-block underline decoration-primary decoration-[6px] md:decoration-[10px] underline-offset-[8px] md:underline-offset-[14px]">
-              AI
-            </span>{" "}
-            Research Lab.
-          </h1>
-
-          <p className="font-sans text-lg md:text-xl text-on-background/60 leading-[1.6] max-w-3xl mb-12 font-normal">
-            Advancing Human-Centered Artificial Intelligence through
-            interdisciplinary research.
+        <div className="relative z-10 w-full p-6 sm:p-10 lg:p-14">
+          <p className="mb-5 font-mono text-xs uppercase tracking-widest text-white/70">
+            Department of Computer Science &amp; Engineering · University of Moratuwa
           </p>
 
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
-            <Button size="xl" onClick={onExploreResearch}>
-              EXPLORE THEMES
+          <h1 className="max-w-3xl text-4xl font-black leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
+            Human-Centered AI Research Lab
+          </h1>
+
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80 md:text-xl">
+            Advancing human-centered artificial intelligence through interdisciplinary research.
+          </p>
+
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button variant="light" size="lg" className="group" onClick={onExploreResearch}>
+              Explore research themes
+              <ArrowRight className="ml-3 size-4 transition-transform group-hover:translate-x-1" aria-hidden />
             </Button>
-            <Button variant="outline" size="xl" onClick={onViewPublications}>
-              PUBLICATIONS
+            <Button variant="outline-light" size="lg" className="group" onClick={onViewPublications}>
+              Read publications
+              <ArrowRight className="ml-3 size-4 transition-transform group-hover:translate-x-1" aria-hidden />
             </Button>
           </div>
         </div>

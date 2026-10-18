@@ -9,6 +9,13 @@ export interface Publication {
   keyFindings: string[];
   citation: string;
   imageUrl?: string;
+  /** Journal article, conference paper…; worked out from the venue when not set. */
+  type?: 'journal' | 'conference' | 'workshop' | 'book-chapter' | 'thesis' | 'preprint' | 'report';
+  doi?: string;
+  /** The paper on the publisher's site */
+  url?: string;
+  /** A freely available copy */
+  pdfUrl?: string;
 }
 
 export interface FocusArea {

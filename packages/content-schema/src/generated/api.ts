@@ -636,7 +636,19 @@ export interface components {
             keyFindings: string[];
             citation: string;
             imageUrl?: string;
+            type?: components["schemas"]["PublicationType"];
+            /** @description Digital Object Identifier, e.g. 10.1145/3700000 */
+            doi?: string;
+            /** @description Link to the paper on the publisher's site */
+            url?: string;
+            /** @description Link to a freely available PDF (preprint or author copy) */
+            pdfUrl?: string;
         };
+        /**
+         * @description Kind of publication (content item field `publicationType`)
+         * @enum {string}
+         */
+        PublicationType: "journal" | "conference" | "workshop" | "book-chapter" | "thesis" | "preprint" | "report";
         /** @description /content/releases/{id}/publications.json */
         PublishedPublicationsFile: {
             /** @constant */
@@ -683,11 +695,36 @@ export interface components {
             period?: string;
             currentPosition?: string;
             socials?: components["schemas"]["PublishedSocialLinks"];
+            /** @description Present in the people list (members.json `people`); omitted in the older group lists */
+            group?: components["schemas"]["PeopleGroup"];
+            /**
+             * @description Postgraduate researchers only
+             * @enum {string}
+             */
+            degree?: "PhD" | "MPhil" | "MSc";
+            /** @description Postgraduate researchers only */
+            startYear?: number;
+            /** @description Postgraduate researchers only */
+            supervisor?: string;
+            /** @description Research assistants who joined when the lab was founded */
+            founding?: boolean;
         };
-        /** @description /content/releases/{id}/members.json. Same groups as the website's data.json */
+        /**
+         * @description Academic grouping, most senior first (content item field `group`)
+         * @enum {string}
+         */
+        PeopleGroup: "director" | "faculty" | "research-fellow" | "postgraduate" | "research-assistant" | "undergraduate" | "alumni";
+        /**
+         * @description /content/releases/{id}/members.json. `people` lists everyone with their academic group, in page order.
+         *     The older group lists (same groups as the website's data.json) are still written so earlier website
+         *     versions keep working: teamMembers = director, faculty and research fellows; foundingRAs and
+         *     researchAssistants = research assistants with and without `founding`; studentResearchers =
+         *     postgraduate and undergraduate researchers.
+         */
         PublishedMembersFile: {
             /** @constant */
             schema: 1;
+            people?: components["schemas"]["PublishedPerson"][];
             /** @description Director first, then faculty */
             teamMembers: components["schemas"]["PublishedPerson"][];
             foundingRAs: components["schemas"]["PublishedPerson"][];

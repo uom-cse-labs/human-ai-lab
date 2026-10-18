@@ -5,6 +5,7 @@
  */
 import type { ContentService } from './content.ts'
 import type { Fields } from './model.ts'
+import { DEGREES } from './people.ts'
 
 /** The website's built-in content, bundled into the Worker at build time (scripts/build-seed.mjs). */
 export interface SeedBundle {
@@ -18,12 +19,29 @@ export interface SeedBundle {
 
 export const IMPORT_USER = 'website import'
 
-const MEMBER_GROUPS: Record<string, string> = {
-  teamMembers: 'team',
-  foundingRAs: 'founding-ra',
-  researchAssistants: 'research-assistant',
-  studentResearchers: 'student',
-  alumni: 'alumni',
+/** The website's data.json groups, in page order. */
+const DATA_GROUPS = ['teamMembers', 'foundingRAs', 'researchAssistants', 'studentResearchers', 'alumni']
+
+/**
+ * The academic group for someone in data.json: the first of teamMembers is the director, then research
+ * fellows and faculty by their role; founding research assistants are research assistants with the flag.
+ */
+function academicGroup(dataGroup: string, person: Record<string, unknown>, index: number): Fields {
+  const role = `${person.role ?? ''} ${person.title ?? ''}`.toLowerCase()
+  switch (dataGroup) {
+    case 'teamMembers':
+      return { group: index === 0 ? 'director' : role.includes('fellow') ? 'research-fellow' : 'faculty' }
+    case 'foundingRAs':
+      return { group: 'research-assistant', founding: 'yes' }
+    case 'researchAssistants':
+      return { group: 'research-assistant' }
+    case 'studentResearchers': {
+      const degree = DEGREES.find((d) => role.includes(d.toLowerCase()))
+      return degree ? { group: 'postgraduate', degree } : { group: 'undergraduate' }
+    }
+    default:
+      return { group: 'alumni' }
+  }
 }
 
 const MONTHS = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
@@ -68,9 +86,9 @@ export function importSiteContent(bundle: SeedBundle, contents: ContentService):
 
   let people = 0
   const usedSlugs = new Set<string>()
-  for (const [groupName, group] of Object.entries(MEMBER_GROUPS)) {
-    ;(bundle.people[groupName] ?? []).forEach((person, i) => {
-      const fields: Fields = { group, order: i + 1 }
+  for (const dataGroup of DATA_GROUPS) {
+    ;(bundle.people[dataGroup] ?? []).forEach((person, i) => {
+      const fields: Fields = { ...academicGroup(dataGroup, person, i), order: i + 1 }
       putIfPresent(fields, 'role', person.role)
       putIfPresent(fields, 'jobTitle', person.title)
       for (const key of ['expertise', 'imageUrl', 'topic', 'period', 'currentPosition']) {

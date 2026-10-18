@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { titled } from '@/lib/title'
 import { getAllProjects } from "@/lib/projects";
 import type { ProjectIndexItem } from "@/lib/projects";
 import ProjectCard from "@/components/ProjectCard";
 import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/projects/")({
+  head: titled('Projects'),
   component: ProjectsPage,
 });
 

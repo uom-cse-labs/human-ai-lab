@@ -1,4 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageTitle } from '@/lib/title'
+import { newsTitle } from '@/lib/titles'
 import Markdown from "react-markdown";
 import { useNews } from "@/lib/news";
 import type { NewsIndexItem } from "@/lib/news";
@@ -6,6 +8,8 @@ import { ArrowLeft, Twitter, Linkedin, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/news/$slug")({
+  loader: async ({ params }) => ({ title: await newsTitle(params.slug) }),
+  head: ({ loaderData }) => ({ meta: [{ title: pageTitle(loaderData?.title ?? 'News') }] }),
   component: NewsArticle,
 });
 

@@ -1,10 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { pageTitle } from '@/lib/title'
+import { projectTitle } from '@/lib/titles'
 import Markdown from "react-markdown";
 import { getAllProjects, getProjectBody } from "@/lib/projects";
 import { ArrowLeft, Twitter, Linkedin, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/projects/$slug")({
+  loader: ({ params }) => ({ title: projectTitle(params.slug) }),
+  head: ({ loaderData }) => ({ meta: [{ title: pageTitle(loaderData?.title ?? 'Projects') }] }),
   component: ProjectDetail,
 });
 

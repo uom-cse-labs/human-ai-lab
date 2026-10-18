@@ -852,6 +852,14 @@ components:
           items: { type: string }
         citation: { type: string }
         imageUrl: { type: string }
+        type: { $ref: '#/components/schemas/PublicationType' }
+        doi: { type: string, description: 'Digital Object Identifier, e.g. 10.1145/3700000' }
+        url: { type: string, description: Link to the paper on the publisher's site }
+        pdfUrl: { type: string, description: Link to a freely available PDF (preprint or author copy) }
+    PublicationType:
+      type: string
+      enum: [journal, conference, workshop, book-chapter, thesis, preprint, report]
+      description: Kind of publication (content item field `publicationType`)
     PublishedPublicationsFile:
       description: /content/releases/{id}/publications.json
       type: object
@@ -910,12 +918,34 @@ components:
         period: { type: string }
         currentPosition: { type: string }
         socials: { $ref: '#/components/schemas/PublishedSocialLinks' }
+        group:
+          description: Present in the people list (members.json `people`); omitted in the older group lists
+          $ref: '#/components/schemas/PeopleGroup'
+        degree:
+          type: string
+          enum: [PhD, MPhil, MSc]
+          description: Postgraduate researchers only
+        startYear: { type: integer, description: Postgraduate researchers only }
+        supervisor: { type: string, description: Postgraduate researchers only }
+        founding: { type: boolean, description: Research assistants who joined when the lab was founded }
+    PeopleGroup:
+      type: string
+      enum: [director, faculty, research-fellow, postgraduate, research-assistant, undergraduate, alumni]
+      description: Academic grouping, most senior first (content item field `group`)
     PublishedMembersFile:
-      description: /content/releases/{id}/members.json. Same groups as the website's data.json
+      description: |
+        /content/releases/{id}/members.json. `people` lists everyone with their academic group, in page order.
+        The older group lists (same groups as the website's data.json) are still written so earlier website
+        versions keep working: teamMembers = director, faculty and research fellows; foundingRAs and
+        researchAssistants = research assistants with and without `founding`; studentResearchers =
+        postgraduate and undergraduate researchers.
       type: object
       required: [schema, teamMembers, foundingRAs, researchAssistants, studentResearchers, alumni]
       properties:
         schema: { type: integer, const: 1 }
+        people:
+          type: array
+          items: { $ref: '#/components/schemas/PublishedPerson' }
         teamMembers:
           description: Director first, then faculty
           type: array

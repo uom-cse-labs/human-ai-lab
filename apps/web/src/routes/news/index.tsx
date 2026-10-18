@@ -1,9 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { titled } from '@/lib/title'
 import { useNews } from "@/lib/news";
 import type { NewsIndexItem } from "@/lib/news";
 import { ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/news/")({
+  head: titled('News'),
   component: NewsPage,
 });
 

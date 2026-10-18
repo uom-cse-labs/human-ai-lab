@@ -96,3 +96,15 @@ function subscribe(listener: () => void) {
 export function useRelease(): ReleaseState {
   return useSyncExternalStore(subscribe, () => state, () => state)
 }
+
+/**
+ * The current release's files, waiting for them if they're still loading (for route loaders, which run
+ * before a page renders). Undefined when the site uses its bundled content or the release can't be loaded.
+ */
+export async function currentReleaseFiles(): Promise<ReleaseFiles | undefined> {
+  if (CONTENT_SOURCE !== 'releases') return undefined
+  if (state.files) return state.files
+  refresh(true)
+  await inFlight
+  return state.files
+}

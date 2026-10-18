@@ -5,6 +5,7 @@
  */
 import type { components } from '@hai/content-schema'
 import type { ContentItem, ContentType } from './model.ts'
+import { byGroupAndPosition, byPosition, isFounding, isPeopleGroup, migrateLegacyGroups, type PeopleGroup } from './people.ts'
 
 type Schemas = components['schemas']
 export type Snapshot = Map<ContentType, ContentItem[]>
@@ -51,6 +52,10 @@ function publications(items: ContentItem[]): Schemas['PublishedPublicationsFile'
       keyFindings: list(p, 'keyFindings'),
       citation: text(p, 'citation'),
       imageUrl: optional(p, 'imageUrl'),
+      type: optional(p, 'publicationType') as Schemas['PublishedPublication']['type'],
+      doi: optional(p, 'doi'),
+      url: optional(p, 'url'),
+      pdfUrl: optional(p, 'pdfUrl'),
     })),
   }
 }
@@ -75,33 +80,45 @@ function themes(items: ContentItem[]): Schemas['PublishedThemesFile'] {
 }
 
 function members(items: ContentItem[]): Schemas['PublishedMembersFile'] {
-  const sorted = ordered(items)
+  // Older entries still on legacy groups are published as their academic group.
+  const migrated = new Map(migrateLegacyGroups(items).map((m) => [m.id, m]))
+  const all = items.map((m) => migrated.get(m.id) ?? m)
+  const inGroups = (...groups: PeopleGroup[]) => all.filter((m) => groups.includes(m.fields.group as PeopleGroup)).sort(byPosition)
+  const assistants = inGroups('research-assistant')
   return {
     schema: 1,
-    teamMembers: group(sorted, 'team'),
-    foundingRAs: group(sorted, 'founding-ra'),
-    researchAssistants: group(sorted, 'research-assistant'),
-    studentResearchers: group(sorted, 'student'),
-    alumni: group(sorted, 'alumni'),
+    // The lists earlier website versions read (same shape as the website's data.json).
+    teamMembers: inGroups('director', 'faculty', 'research-fellow').map(person),
+    foundingRAs: assistants.filter(isFounding).map(person),
+    researchAssistants: assistants.filter((m) => !isFounding(m)).map(person),
+    studentResearchers: inGroups('postgraduate', 'undergraduate').map(person),
+    alumni: inGroups('alumni').map(person),
+    // Everyone, with their academic group, in page order.
+    people: all.filter((m) => isPeopleGroup(m.fields.group)).sort(byGroupAndPosition).map((m) => compact({
+      ...person(m),
+      group: m.fields.group as PeopleGroup,
+      degree: optional(m, 'degree') as Schemas['PublishedPerson']['degree'],
+      startYear: typeof m.fields.startYear === 'number' ? Math.trunc(m.fields.startYear) : undefined,
+      supervisor: optional(m, 'supervisor'),
+      founding: isFounding(m) || undefined,
+    })),
   }
 }
 
-function group(items: ContentItem[], name: string): Schemas['PublishedPerson'][] {
-  return items.filter((m) => text(m, 'group') === name).map((m) => {
-    const socials = compact({ email: optional(m, 'email'), linkedin: optional(m, 'linkedin'), scholar: optional(m, 'scholar') })
-    return compact({
-      id: m.slug,
-      name: m.title,
-      role: text(m, 'role'),
-      title: optional(m, 'jobTitle'),
-      bio: m.body?.trim() ? m.body : undefined,
-      expertise: optional(m, 'expertise'),
-      imageUrl: optional(m, 'imageUrl'),
-      topic: optional(m, 'topic'),
-      period: optional(m, 'period'),
-      currentPosition: optional(m, 'currentPosition'),
-      socials: Object.keys(socials).length ? socials : undefined,
-    })
+function person(m: ContentItem): Schemas['PublishedPerson'] {
+  const socials = compact({ email: optional(m, 'email'), linkedin: optional(m, 'linkedin'), scholar: optional(m, 'scholar') })
+  return compact({
+    id: m.slug,
+    name: m.title,
+    role: text(m, 'role'),
+    title: optional(m, 'jobTitle'),
+    bio: m.body?.trim() ? m.body : undefined,
+    expertise: optional(m, 'expertise'),
+    imageUrl: optional(m, 'imageUrl'),
+    topic: optional(m, 'topic'),
+    period: optional(m, 'period'),
+    currentPosition: optional(m, 'currentPosition'),
+    socials: Object.keys(socials).length ? socials : undefined,
   })
 }
 

@@ -137,6 +137,14 @@ describe('publish rules (ported from PublishRulesTest)', () => {
     expect(check(item('publication', { year: 1800 }))).toEqual(['category', 'year', 'authors', 'publishedIn', 'citation', 'body'])
   })
 
+  it('checks the optional publication type, DOI and links when given', () => {
+    const complete = { category: 'DESIGN', year: 2025, authors: 'A', publishedIn: 'CHI', citation: 'C' }
+    const pub = (extra: Record<string, unknown>) => item('publication', { ...complete, ...extra }, { body: 'Abstract' })
+    expect(check(pub({ publicationType: 'conference', doi: '10.1145/3613904.3642000', url: 'https://dl.acm.org/x', pdfUrl: 'https://arxiv.org/pdf/1' }))).toEqual([])
+    expect(check(pub({ publicationType: 'blog', doi: 'https://doi.org/10.1145/1', url: 'dl.acm.org/x', pdfUrl: 'ftp://x' })))
+      .toEqual(['publicationType', 'doi', 'url', 'pdfUrl'])
+  })
+
   it('a theme needs a type, an icon and a description', () => {
     expect(check(item('theme', { themeType: 'CORE THEME', iconName: 'cat' }))).toEqual(['iconName', 'summary'])
   })

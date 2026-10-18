@@ -14,7 +14,7 @@ export default function Footer({ onContactClick }: FooterProps) {
     { label: "RESEARCH THEMES", route: "/themes" },
     { label: "PROJECTS", route: "/projects" },
     { label: "PUBLICATIONS", route: "/publications" },
-    { label: "PIONEERS", route: "/pioneers" },
+    { label: "PEOPLE", route: "/people" },
     { label: "NEWS", route: "/news" },
   ];
 

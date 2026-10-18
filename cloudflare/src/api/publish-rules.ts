@@ -4,12 +4,13 @@
  */
 import type { FieldError } from './errors.ts'
 import type { ContentItem } from './model.ts'
+import { DEGREES, migrateLegacyGroups, PEOPLE_GROUPS } from './people.ts'
 import { type Snapshot, text } from './release-files.ts'
 
 export const PUBLICATION_CATEGORIES = ['INTELLIGENCE', 'ETHICS', 'DESIGN', 'ROBOTICS']
+export const PUBLICATION_TYPES = ['journal', 'conference', 'workshop', 'book-chapter', 'thesis', 'preprint', 'report']
 export const THEME_TYPES = ['CORE THEME', 'NEW INITIATIVE']
 export const THEME_ICONS = ['robot', 'brain', 'shield', 'eye']
-export const MEMBER_GROUPS = ['team', 'founding-ra', 'research-assistant', 'student', 'alumni']
 
 export function checkPublishRules(snapshot: Snapshot): FieldError[] {
   const problems: FieldError[] = []
@@ -34,15 +35,31 @@ export function checkPublishRules(snapshot: Snapshot): FieldError[] {
     requireText(item, 'publishedIn', 'needs the venue or journal it was published in.')
     requireText(item, 'citation', 'needs a citation.')
     if (blank(item.body)) add(item, 'body', 'needs an abstract.')
+    if (text(item, 'publicationType') && !PUBLICATION_TYPES.includes(text(item, 'publicationType'))) add(item, 'publicationType', 'needs a valid publication type.')
+    if (text(item, 'doi') && !/^10\.\d{4,9}\/\S+$/.test(text(item, 'doi'))) add(item, 'doi', 'has a DOI that doesn\'t look right. Use the form 10.1145/1234567, without https://doi.org/.')
+    for (const field of ['url', 'pdfUrl']) {
+      if (text(item, field) && !/^https?:\/\//.test(text(item, field))) add(item, field, `needs a full web address for ${field === 'url' ? 'the paper link' : 'the PDF link'} (starting with https://).`)
+    }
   }
   for (const item of snapshot.get('theme') ?? []) {
     requireOneOf(item, 'themeType', THEME_TYPES)
     requireOneOf(item, 'iconName', THEME_ICONS)
     if (blank(item.summary)) add(item, 'summary', 'needs a short description.')
   }
-  for (const item of snapshot.get('member') ?? []) {
-    requireOneOf(item, 'group', MEMBER_GROUPS)
+  const members = snapshot.get('member') ?? []
+  // Entries on the older groups are checked as the academic group they publish as.
+  const migrated = new Map(migrateLegacyGroups(members).map((m) => [m.id, m]))
+  const people = members.map((m) => migrated.get(m.id) ?? m)
+  for (const item of people) {
+    requireOneOf(item, 'group', [...PEOPLE_GROUPS])
     requireText(item, 'role', 'needs a role.')
+    if (text(item, 'group') === 'postgraduate') {
+      requireOneOf(item, 'degree', DEGREES)
+    }
+  }
+  const directors = people.filter((m) => text(m, 'group') === 'director')
+  for (const extra of directors.slice(1)) {
+    add(extra, 'group', 'is also set as director. Only one person can be the director.')
   }
   return problems
 }

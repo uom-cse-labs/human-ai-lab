@@ -9,6 +9,7 @@ import {
   TEAM_MEMBERS,
 } from '@/data'
 import type { Alumni, FocusArea, Publication, StudentResearcher, TeamMember } from '@/types'
+import { type PeopleDirectory, peopleDirectory } from './people'
 import { CONTENT_SOURCE, useRelease } from './release'
 
 type Status = 'loading' | 'ready' | 'error'
@@ -63,5 +64,25 @@ export function usePeople(): People {
       studentResearchers: (members?.studentResearchers ?? []) as StudentResearcher[],
       alumni: (members?.alumni ?? []) as Alumni[],
     }
+  }, [release])
+}
+
+/** Everyone, grouped for the People page (see lib/people.ts). */
+export function usePeopleDirectory(): { status: Status; directory: PeopleDirectory } {
+  const release = useRelease()
+  return useMemo(() => {
+    if (CONTENT_SOURCE === 'bundled') {
+      return {
+        status: 'ready',
+        directory: peopleDirectory({
+          teamMembers: TEAM_MEMBERS,
+          foundingRAs: FOUNDING_RAS,
+          researchAssistants: RESEARCH_ASSISTANTS,
+          studentResearchers: STUDENT_RESEARCHERS,
+          alumni: ALUMNI,
+        }),
+      }
+    }
+    return { status: release.status, directory: peopleDirectory(release.files?.members) }
   }, [release])
 }

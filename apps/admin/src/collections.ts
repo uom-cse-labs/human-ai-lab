@@ -70,13 +70,19 @@ const ORDER: FieldDef = {
   help: 'Lower numbers appear first on the website.',
 }
 
+/** Academic grouping, most senior first: the order of the sections on the People page. */
 export const PEOPLE_GROUPS = [
-  { value: 'team', label: 'Director & faculty' },
-  { value: 'founding-ra', label: 'Founding research assistants' },
+  { value: 'director', label: 'Director' },
+  { value: 'faculty', label: 'Faculty' },
+  { value: 'research-fellow', label: 'Research fellows' },
+  { value: 'postgraduate', label: 'Postgraduate researchers (PhD, MPhil, MSc)' },
   { value: 'research-assistant', label: 'Research assistants' },
-  { value: 'student', label: 'Student researchers' },
+  { value: 'undergraduate', label: 'Undergraduate researchers' },
   { value: 'alumni', label: 'Alumni' },
 ]
+
+/** Everyone currently in the lab, as opposed to alumni. */
+const CURRENT = ['director', 'faculty', 'research-fellow', 'postgraduate', 'research-assistant', 'undergraduate']
 
 const inGroups = (...groups: string[]) => (v: FormValues) => groups.includes(v.group)
 
@@ -100,6 +106,10 @@ export const COLLECTIONS: CollectionDef[] = [
       { key: 'year', label: 'Year', kind: 'number', required: true },
       { key: 'authors', label: 'Authors', kind: 'text', required: true, wide: true, placeholder: 'A. Author, B. Author' },
       { key: 'publishedIn', label: 'Published in', kind: 'text', required: true, wide: true, placeholder: 'Journal or conference' },
+      { key: 'publicationType', label: 'Type', kind: 'select', options: [{ value: '', label: 'Work it out from the venue' }, { value: 'journal', label: 'Journal article' }, { value: 'conference', label: 'Conference paper' }, { value: 'workshop', label: 'Workshop paper' }, { value: 'book-chapter', label: 'Book chapter' }, { value: 'thesis', label: 'Thesis' }, { value: 'preprint', label: 'Preprint' }, { value: 'report', label: 'Technical report' }] },
+      { key: 'doi', label: 'DOI', kind: 'text', placeholder: '10.1145/1234567', help: 'Without https://doi.org/.' },
+      { key: 'url', label: 'Paper link', kind: 'url', wide: true, placeholder: 'https://dl.acm.org/doi/…', help: "The paper on the publisher's site." },
+      { key: 'pdfUrl', label: 'PDF link', kind: 'url', wide: true, help: 'A freely available copy, e.g. on arXiv or the university repository.' },
       { key: 'body', target: 'body', label: 'Abstract', kind: 'textarea', rows: 6, required: true, wide: true },
       { key: 'keyFindings', label: 'Key findings', kind: 'lines', rows: 4, wide: true, help: 'One finding per line.' },
       { key: 'citation', label: 'Citation', kind: 'textarea', rows: 3, required: true, wide: true },
@@ -138,10 +148,10 @@ export const COLLECTIONS: CollectionDef[] = [
     path: '/people',
     label: 'People',
     singular: 'person',
-    description: 'Everyone on the About page: director, faculty, research assistants, students and alumni.',
-    websitePath: '/about',
+    description: 'Everyone on the People page, grouped as in academia: director, faculty, research fellows, postgraduate and undergraduate researchers, research assistants and alumni.',
+    websitePath: '/people',
     titleLabel: 'Name',
-    defaults: { group: 'team' },
+    defaults: { group: 'faculty' },
     sort: (a, b) =>
       PEOPLE_GROUPS.findIndex((g) => g.value === field(a, 'group')) - PEOPLE_GROUPS.findIndex((g) => g.value === field(b, 'group')) ||
       byOrder(a, b),
@@ -150,14 +160,18 @@ export const COLLECTIONS: CollectionDef[] = [
       { label: 'Role', value: (i) => field(i, 'role') },
     ],
     fields: [
-      { key: 'group', label: 'Group', kind: 'select', required: true, options: PEOPLE_GROUPS, help: 'In "Director & faculty", position 1 is shown as the director.' },
+      { key: 'group', label: 'Group', kind: 'select', required: true, options: PEOPLE_GROUPS, help: 'Sections on the People page, most senior first. Only one person can be the director.' },
       ORDER,
-      { key: 'role', label: 'Role', kind: 'text', required: true, wide: true, placeholder: 'e.g. LEAD RESEARCHER or Undergraduate Researcher, CSE' },
-      { key: 'jobTitle', label: 'Title on profile card', kind: 'text', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
-      { key: 'body', target: 'body', label: 'Biography', kind: 'textarea', rows: 6, wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
-      { key: 'expertise', label: 'Expertise', kind: 'text', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
-      { key: 'imageUrl', label: 'Photo', kind: 'image', wide: true, showWhen: inGroups('team', 'founding-ra', 'research-assistant') },
-      { key: 'topic', label: 'Research topic', kind: 'text', wide: true, showWhen: inGroups('student') },
+      { key: 'role', label: 'Position', kind: 'text', required: true, wide: true, placeholder: 'e.g. Senior Lecturer, PhD Student or Undergraduate Researcher, CSE' },
+      { key: 'degree', label: 'Degree', kind: 'select', required: true, showWhen: inGroups('postgraduate'), options: [{ value: '', label: 'Choose…' }, { value: 'PhD', label: 'PhD' }, { value: 'MPhil', label: 'MPhil' }, { value: 'MSc', label: 'MSc (research)' }] },
+      { key: 'startYear', label: 'Started in', kind: 'number', showWhen: inGroups('postgraduate'), placeholder: '2025' },
+      { key: 'supervisor', label: 'Supervisor', kind: 'text', wide: true, showWhen: inGroups('postgraduate'), placeholder: 'Prof. Indika Perera' },
+      { key: 'founding', label: 'Founding member', kind: 'select', showWhen: inGroups('research-assistant'), options: [{ value: '', label: 'No' }, { value: 'yes', label: 'Yes, joined when the lab was founded' }] },
+      { key: 'jobTitle', label: 'Title on profile card', kind: 'text', wide: true, showWhen: inGroups('director', 'faculty', 'research-fellow', 'research-assistant') },
+      { key: 'body', target: 'body', label: 'Biography', kind: 'textarea', rows: 6, wide: true, showWhen: inGroups('director', 'faculty', 'research-fellow', 'postgraduate', 'research-assistant') },
+      { key: 'expertise', label: 'Research interests', kind: 'text', wide: true, showWhen: inGroups('director', 'faculty', 'research-fellow', 'postgraduate', 'research-assistant'), placeholder: 'e.g. Human-computer interaction, software engineering' },
+      { key: 'imageUrl', label: 'Photo', kind: 'image', wide: true, showWhen: inGroups(...CURRENT) },
+      { key: 'topic', label: 'Research topic', kind: 'text', wide: true, showWhen: inGroups('postgraduate', 'undergraduate') },
       { key: 'period', label: 'Period', kind: 'text', showWhen: inGroups('alumni'), placeholder: '2022 – 2024' },
       { key: 'currentPosition', label: 'Current position', kind: 'text', wide: true, showWhen: inGroups('alumni') },
       { key: 'email', label: 'Email link', kind: 'text', placeholder: 'mailto:name@cse.mrt.ac.lk' },

@@ -12,6 +12,40 @@ export type UploadTicket = components['schemas']['UploadTicket']
 export type Session = components['schemas']['Session']
 export type UploadContentType = components['schemas']['UploadRequest']['contentType']
 
+/**
+ * The Cloudflare Access sign-in has expired: requests are redirected to the sign-in page, which the browser
+ * won't follow for a background request. Reloading the page signs in again.
+ */
+export class SessionExpiredError extends Error {
+  constructor() {
+    super('Your sign-in has expired.')
+  }
+}
+
+/** The API could not be reached at all (no network, or the local API isn't running). */
+export class OfflineError extends Error {
+  constructor() {
+    super('Could not reach the server.')
+  }
+}
+
+/**
+ * fetch, telling apart an expired sign-in (a redirect to the Access login) and an unreachable server from
+ * ordinary API responses.
+ */
+async function apiFetch(url: string, init: RequestInit): Promise<Response> {
+  let response: Response
+  try {
+    response = await fetch(url, { ...init, redirect: 'manual' })
+  } catch {
+    throw new OfflineError()
+  }
+  if (response.type === 'opaqueredirect' || (response.status >= 300 && response.status < 400)) {
+    throw new SessionExpiredError()
+  }
+  return response
+}
+
 /** An API error carrying the server's problem details (contract: RFC 9457). */
 export class ApiError extends Error {
   readonly problem: Problem
@@ -82,7 +116,7 @@ export function setLocalRole(role: LocalRole) {
 }
 
 async function request<T>(method: string, path: string, body?: unknown, headers: Record<string, string> = {}): Promise<T> {
-  const response = await fetch(`/api${path}`, {
+  const response = await apiFetch(`/api${path}`, {
     method,
     headers: {
       ...(body === undefined ? {} : { 'Content-Type': 'application/json' }),
@@ -135,7 +169,7 @@ const media = {
       contentType: file.type as UploadContentType,
       sizeBytes: file.size,
     })
-    const put = await fetch(ticket.parts[0].url, {
+    const put = await apiFetch(ticket.parts[0].url, {
       method: 'PUT',
       headers: { 'Content-Type': file.type, ...roleHeader() },
       body: file,
